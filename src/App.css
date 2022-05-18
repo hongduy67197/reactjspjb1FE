@@ -1,31 +1,7 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
 }
 
 @keyframes App-logo-spin {
@@ -35,4 +11,560 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* HEADER */
+.header {
+  width: 100%;
+  height: 100px;
+  background-color: #f94f30;
+  color: #ffffff;
+}
+
+/* LOGIN */
+.login_ {
+  background-color: rgb(238, 77, 45);
+}
+.login_header {
+  width: 100%;
+  height: 84px;
+  background: #ffffff;
+  margin: 0 auto;
+  position: relative;
+  box-shadow: 0 6px 6px rgb(0 0 0 / 6%);
+}
+.login_header_img {
+  height: 60px;
+  position: absolute;
+  top: 10px;
+  left: 100px;
+}
+.login_header_text {
+  position: absolute;
+  top: 31px;
+  left: 300px;
+  font-size: 1.5rem;
+  font-family: Helvetica Neue, Helvetica, Arial, Helvetica, sans-serif;
+  font-weight: 520;
+}
+.login_header_help {
+  position: absolute;
+  top: 33px;
+  right: 100px;
+  text-decoration: none;
+  color: #ee4d2d;
+  font-size: 0.875rem;
+  cursor: pointer;
+  font-family: Helvetica Neue, Helvetica, Arial, Helvetica, sans-serif;
+}
+.login_conter {
+  width: 75%;
+  margin: 0 auto;
+  height: 600px;
+  background-image: url(https://cf.shopee.vn/file/5569eb9dc7e09e2dbed5315b8f2ea8ba);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+/* ----------------------->>>>>  LOGIN-MODAL   <<<<<<------------------- */
+.login_conter_modal {
+  min-height: 30rem;
+  width: 24.8125rem;
+  background-color: #fff;
+  box-sizing: border-box;
+  box-shadow: 0 3px 10px 0 rgb(0 0 0 / 14%);
+  position: absolute;
+  top: 60px;
+  right: 0;
+  border-radius: 5px;
+  font-family: Helvetica Neue, Helvetica, Arial, Helvetica, sans-serif;
+}
+.login_conter_modal_QR {
+  position: absolute;
+  top: 15px;
+  left: 153px;
+  border: 2px solid #ffbf00;
+  padding: 11px 14px;
+  width: 120px;
+  font-family: Helvetica Neue, Helvetica, Arial, Helvetica, sans-serif;
+  color: #ffbf00;
+  font-weight: 600;
+  font-size: 14px;
+  background-color: #fefaec;
+}
+.login_conter_modal_QR ::after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  transform: rotate(45deg) translate(-50%);
+  position: absolute;
+  top: 26px;
+  right: -12px;
+  border-top: 2px solid #ffbf00;
+  border-right: 2px solid #ffbf00;
+  box-sizing: border-box;
+  background-color: #fefaec;
+}
+.login_conter_modal_img_QR {
+  position: absolute;
+  top: 19px;
+  right: 33px;
+}
+.login_conter_modal_img_QR img {
+  width: 50px;
+  cursor: pointer;
+}
+.login_conter_modal_headline {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  font-size: 20px;
+}
+.login_conter_modal_email {
+  position: absolute;
+  bottom: 350px;
+  width: 77%;
+  padding: 10px;
+  left: 35px;
+}
+.login_conter_modal_password {
+  position: absolute;
+  bottom: 280px;
+  width: 77%;
+  padding: 10px;
+  left: 35px;
+}
+.login_conter_modal_button {
+  position: absolute;
+  bottom: 210px;
+  left: 35px;
+  width: 83%;
+  padding: 12px;
+  background-color: #ee4d2d;
+  color: #ffffff;
+  border-radius: 3px;
+  border: none;
+  opacity: 0.7;
+}
+.login_conter_modal_a {
+  position: absolute;
+  bottom: 180px;
+  left: 38px;
+  font-size: 12px;
+}
+.login_conter_modal_a a {
+  text-decoration: none;
+  color: #05a;
+}
+.login_conter_modal_a2 {
+  margin: 0 0 0 135px;
+}
+.login_or {
+  position: absolute;
+  bottom: 140px;
+  left: 175px;
+  opacity: 0.6;
+  font-size: 15px;
+}
+.login_conter_modal_buttonGrup {
+  position: absolute;
+  bottom: 80px;
+  left: 30px;
+}
+.login_conter_modal_buttonGrup img {
+  width: 22px;
+  margin: 0 3px;
+  position: relative;
+  top: 5px;
+}
+.login_conter_modal_buttonGrup button {
+  border: 1px solid rgb(242, 233, 233);
+  background-color: transparent;
+  font-size: 12px;
+  font-family: Helvetica, Helvetica, Arial, Helvetica, sans-serif;
+  margin: 0 6px;
+  line-height: 25px;
+  width: 100px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.login_conter_modal_footer {
+  position: absolute;
+  bottom: 30px;
+  left: 65px;
+}
+.login_conter_modal_footer span,
+.singin_modal_footer span {
+  opacity: 0.5;
+}
+.login_conter_modal_footer button,
+.singin_modal_footer button {
+  border: none;
+  background-color: transparent;
+  color: #ee4d2d;
+  font-family: Helvetica, Helvetica, Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+/* SINGIN */
+.singin_ {
+  background-color: rgb(238, 77, 45);
+}
+
+/* --------------->>>  SING IN MODAL  <<<<----------- */
+.singin_conter_modal {
+  min-height: 427px;
+  width: 24.8125rem;
+  background-color: #fff;
+  box-sizing: border-box;
+  box-shadow: 0 3px 10px 0 rgb(0 0 0 / 14%);
+  position: absolute;
+  top: 80px;
+  right: 0;
+  border-radius: 5px;
+  font-family: Helvetica Neue, Helvetica, Arial, Helvetica, sans-serif;
+}
+.singin_conter_modal_input {
+  position: absolute;
+  top: 70px;
+  left: 35px;
+  padding: 10px 8px;
+  width: 300px;
+}
+.singin_conter_modal_next {
+  position: absolute;
+  bottom: 250px;
+  width: 320px;
+  left: 35px;
+  padding: 10px 8px;
+  font-size: 16px;
+  border: none;
+  background-color: #ee4d2d;
+  color: #ffffff;
+  border-radius: 3px;
+}
+.singin_conter_modal_buttonGrup {
+  position: absolute;
+  bottom: 140px;
+  left: 30px;
+}
+.singin_conter_modal_buttonGrup button {
+  padding: 5px 8px;
+  width: 150px;
+  margin: 0 8px;
+  font-size: 14px;
+  background-color: transparent;
+  border: 1px solid rgb(236, 220, 220);
+  border-radius: 3px;
+  line-height: 25px;
+  cursor: pointer;
+}
+.singin_conter_modal_or {
+  position: absolute;
+  bottom: 205px;
+  left: 173px;
+  opacity: 0.7;
+}
+.singin_conter_modal_buttonGrup img {
+  width: 22px;
+  margin: 0 3px;
+  position: relative;
+  top: 5px;
+}
+.singin_conter_modal_text {
+  position: absolute;
+  bottom: 70px;
+  left: 62px;
+}
+.singin_conter_modal_text a {
+  text-decoration: none;
+  color: #ee4d2d;
+  margin: 0 3px;
+  font-size: 14px;
+  font-family: Helvetica Neue, Helvetica, Arial, Helvetica, sans-serif;
+}
+.singin_conter_modal p {
+  position: absolute;
+  bottom: 80px;
+  left: 45px;
+  font-size: 14px;
+  font-family: Helvetica Neue, Helvetica, Arial, Helvetica, sans-serif;
+}
+.singin_modal_footer {
+  position: absolute;
+  bottom: 25px;
+  left: 70px;
+}
+
+/* --------------->>>>>>>  USER PAGE <<<<<<------------------ */
+.userPage_ {
+  display: flex;
+  background-color: #f5f5f5;
+  height: 60vw;
+}
+.userPage_page {
+  width: 25%;
+}
+.userPage_conter {
+  background-color: #ffffff;
+  margin-top: 20px;
+  width: 65%;
+  padding: 20px;
+}
+.userPage_button button {
+  display: none;
+}
+.comment,
+.mypage,
+.order,
+.promotion,
+.voucher {
+  display: none;
+}
+/* ------------>>>>>>>> MENU <<<<<<----------- */
+.menu_ {
+  width: 200px;
+  margin: 40px auto;
+  font-family: Helvetica, Helvetica, Arial, Helvetica, sans-serif;
+}
+.menu_ img {
+  width: 22px;
+  height: 22px;
+  font-size: 16px;
+}
+.menu_ button {
+  border: none;
+  background-color: transparent;
+  font-size: 15px;
+}
+.menu_ button:hover {
+  color: #ee4d2d;
+}
+.menu_header {
+  position: relative;
+  padding: 5px;
+  margin-bottom: 40px;
+}
+.menu_header img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+.menu_header span {
+  position: absolute;
+  top: 5px;
+  left: 40%;
+  font-weight: bolder;
+}
+.menu_header button {
+  opacity: 0.6;
+  position: absolute;
+  left: 37%;
+  bottom: 13px;
+  cursor: pointer;
+}
+.menu_promotion {
+  position: relative;
+  margin: 0 0 20px;
+  display: flex;
+}
+
+.menu_promotion button {
+  position: absolute;
+  top: 0;
+  left: 26px;
+}
+.menu_comment button,
+.menu_orders button,
+.menu_mypage button,
+.menu_voucher button {
+  position: absolute;
+  top: 2px;
+  left: 39px;
+}
+.menu_voucher {
+  position: relative;
+  margin: 0 0 15px;
+}
+
+.menu_mypage {
+  position: relative;
+  margin: 0 0 15px;
+}
+.menu_orders {
+  position: relative;
+  margin: 0 0 15px;
+}
+.menu_comment {
+  position: relative;
+  margin: 0 0 15px;
+}
+
+/* ----------->>>>>>>>>>> MY PAGE  <<<<<<<<------------ */
+/* HEADER */
+
+.mypage_ {
+  height: 500px;
+}
+.mypage_header {
+  margin-bottom: 40px;
+}
+
+.mypage_header span {
+  font-family: Helvetica, Helvetica, Arial, Helvetica, sans-serif;
+  font-weight: 550;
+}
+.mypage_header p {
+  margin: 5px 0 20px 0;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgb(215, 203, 203);
+}
+/* CONTER */
+.mypage_conter {
+  display: flex;
+}
+.mypage_conter_user {
+  width: 70%;
+  display: flex;
+}
+/* LEGHT */
+.mypage_conter_user_leght {
+  width: 20%;
+  margin-right: 15px;
+  position: relative;
+  opacity: 0.7;
+}
+.mypage_leght_user {
+  position: absolute;
+  top: 10px;
+  right: 5px;
+}
+.mypage_leght_name {
+  position: absolute;
+  top: 96px;
+  right: 5px;
+}
+.mypage_leght_email {
+  position: absolute;
+  top: 150px;
+  right: 5px;
+}
+.mypage_leght_phone {
+  position: absolute;
+  top: 190px;
+  right: 5px;
+}
+.mypage_leght_shopname {
+  position: absolute;
+  top: 250px;
+  right: 5px;
+}
+.mypage_leght_check {
+  position: absolute;
+  top: 300px;
+  right: 5px;
+}
+.mypage_leght_date {
+  position: absolute;
+  top: 370px;
+  right: 5px;
+}
+
+/* RIGHT */
+.mypage_conter_user_right {
+  width: 80%;
+  position: relative;
+}
+.mypage_right_user,
+.mypage_right_name {
+  width: 400px;
+  padding: 10px;
+}
+.mypage_right_text {
+  margin: 0 0 25px;
+  opacity: 0.7;
+}
+.mypage_right_email1 {
+  position: absolute;
+  top: 150px;
+}
+.mypage_right_email1 a,
+.mypage_right_phone1 a {
+  margin: 0 0 0 10px;
+  color: #05a;
+}
+.mypage_right_phone1 {
+  position: absolute;
+  top: 190px;
+}
+.mypage_right_shopname {
+  position: absolute;
+  top: 240px;
+  left: 0;
+  width: 400px;
+  padding: 10px;
+}
+.mypage_right_check {
+  position: absolute;
+  top: 300px;
+}
+.mypage_right_date {
+  position: absolute;
+  top: 350px;
+  left: -10px;
+  display: flex;
+}
+.mypage_right_date input {
+  width: 93px;
+  padding: 10px 16px;
+  margin: 10px;
+}
+.mypage_right_update {
+  position: absolute;
+  top: 440px;
+  left: 0;
+  padding: 10px 30px;
+  border: none;
+  background-color: #ee4d2d;
+  color: #ffffff;
+  border-radius: 3px;
+}
+/* IMAGER */
+.mypage_conter_imager {
+  width: 30%;
+  border-left: 1px solid rgb(238, 230, 230);
+  position: relative;
+  height: 200px;
+}
+.mypage_conter_imager img {
+  width: 100px;
+  position: absolute;
+  top: 0;
+  left: 26%;
+}
+.mypage_conter_imager button {
+  position: absolute;
+  top: 110px;
+  left: 29%;
+  border: 1px solid rgb(213, 204, 204);
+  padding: 8px 15px;
+  background-color: transparent;
+}
+.mypage_conter_imager span {
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  opacity: 0.6;
+}
+.mypage_conter_imager p {
+  position: absolute;
+  bottom: 5px;
+  left: 20%;
+  opacity: 0.6;
+}
+@font-face {
+  font-family: myFont;
+  src: url(https://www.myfonts.com/fonts/linotype/neue-helvetica/);
 }
