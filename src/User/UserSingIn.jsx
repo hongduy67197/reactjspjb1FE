@@ -22,10 +22,20 @@ function UserSingIn() {
           <span className="login_conter_modal_headline">Đăng ký</span>
           <input
             type="text"
-            placeholder="Số điện thoại"
-            className="singin_conter_modal_input"
+            placeholder="Email"
+            className="singin_conter_modal_email"
           />
-          <button className="singin_conter_modal_next">TIẾP THEO</button>
+          <input
+            type="text"
+            placeholder="Mật khẩu"
+            className="singin_conter_modal_password"
+          />
+          <input
+            type="text"
+            placeholder="Nhập lại mật khẩu"
+            className="singin_conter_modal_againpassword"
+          />
+          <button className="singin_conter_modal_next">ĐĂNG KÝ</button>
           <span className="singin_conter_modal_or">HOẶC</span>
           <div className="singin_conter_modal_buttonGrup">
             <button>

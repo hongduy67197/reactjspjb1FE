@@ -209,32 +209,47 @@
 
 /* SINGIN */
 .singin_ {
+  height: 800px;
   background-color: rgb(238, 77, 45);
 }
 
 /* --------------->>>  SING IN MODAL  <<<<----------- */
 .singin_conter_modal {
-  min-height: 427px;
+  min-height: 527px;
   width: 24.8125rem;
   background-color: #fff;
   box-sizing: border-box;
   box-shadow: 0 3px 10px 0 rgb(0 0 0 / 14%);
   position: absolute;
-  top: 80px;
+  top: 60px;
   right: 0;
   border-radius: 5px;
   font-family: Helvetica Neue, Helvetica, Arial, Helvetica, sans-serif;
 }
-.singin_conter_modal_input {
+.singin_conter_modal_email {
   position: absolute;
   top: 70px;
   left: 35px;
   padding: 10px 8px;
   width: 300px;
 }
+.singin_conter_modal_password {
+  position: absolute;
+  top: 130px;
+  left: 35px;
+  padding: 10px 8px;
+  width: 300px;
+}
+.singin_conter_modal_againpassword {
+  position: absolute;
+  top: 190px;
+  left: 35px;
+  padding: 10px 8px;
+  width: 300px;
+}
 .singin_conter_modal_next {
   position: absolute;
-  bottom: 250px;
+  bottom: 230px;
   width: 320px;
   left: 35px;
   padding: 10px 8px;
@@ -246,7 +261,7 @@
 }
 .singin_conter_modal_buttonGrup {
   position: absolute;
-  bottom: 140px;
+  bottom: 130px;
   left: 30px;
 }
 .singin_conter_modal_buttonGrup button {
@@ -262,7 +277,7 @@
 }
 .singin_conter_modal_or {
   position: absolute;
-  bottom: 205px;
+  bottom: 190px;
   left: 173px;
   opacity: 0.7;
 }
@@ -274,7 +289,7 @@
 }
 .singin_conter_modal_text {
   position: absolute;
-  bottom: 70px;
+  bottom: 60px;
   left: 62px;
 }
 .singin_conter_modal_text a {
@@ -286,14 +301,14 @@
 }
 .singin_conter_modal p {
   position: absolute;
-  bottom: 80px;
+  bottom: 70px;
   left: 45px;
   font-size: 14px;
   font-family: Helvetica Neue, Helvetica, Arial, Helvetica, sans-serif;
 }
 .singin_modal_footer {
   position: absolute;
-  bottom: 25px;
+  bottom: 20px;
   left: 70px;
 }
 
@@ -307,7 +322,7 @@
   width: 25%;
 }
 .userPage_conter {
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
   margin-top: 20px;
   width: 65%;
   padding: 20px;
@@ -320,6 +335,13 @@
 .order,
 .promotion,
 .voucher {
+  display: none;
+}
+
+.danhgia,
+.hoatdong,
+.khuyenmai,
+.vi {
   display: none;
 }
 /* ------------>>>>>>>> MENU <<<<<<----------- */
@@ -401,12 +423,22 @@
   position: relative;
   margin: 0 0 15px;
 }
-
+.menu_comment_list {
+  text-align: left;
+  margin-left: 45px;
+  display: none;
+  cursor: pointer;
+}
+.menu_comment_list p:hover {
+  color: #ee4d2d;
+}
 /* ----------->>>>>>>>>>> MY PAGE  <<<<<<<<------------ */
 /* HEADER */
 
 .mypage_ {
-  height: 500px;
+  height: 700px;
+  background-color: #ffffff;
+  padding: 10px;
 }
 .mypage_header {
   margin-bottom: 40px;
@@ -564,7 +596,220 @@
   left: 20%;
   opacity: 0.6;
 }
+
+/* -------------->>>>>>>>>>  ORDER <<<<<<<< --------------------- */
+/* HEADER */
+.order_header {
+  width: 100%;
+  background-color: #fff;
+  height: fit-content;
+  padding: 0 8px;
+  margin-bottom: 10px;
+}
+.order_header button {
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  width: 16.5%;
+  padding: 15px 0;
+  font-family: Helvetica, Helvetica, Arial, Helvetica, sans-serif;
+}
+.order_header button:hover {
+  color: #ee4d2d;
+}
+.order_header button:focus {
+  border-bottom: 2px solid #ee4d2d;
+}
+/* SEACH */
+.order_seach {
+  width: 100%;
+  height: 50px;
+  margin-top: 20px;
+  background-color: #eaeaea;
+  padding: 0 8px;
+  line-height: 50px;
+  opacity: 0.7;
+}
+.order_seach input {
+  border: none;
+  width: 90%;
+  height: 90%;
+  background-color: transparent;
+  font-size: 16px;
+  margin-left: 8px;
+  color: #eaeaea;
+}
+.order_seach input:focus {
+  border-color: #eaeaea;
+}
+/* CONTER */
+.order_conter {
+  width: 100%;
+  padding: 0 8px;
+  margin-top: 20px;
+  min-height: 500px;
+  background-color: #ffffff;
+}
+.order_conter_null {
+  position: relative;
+  top: 100px;
+  left: 40%;
+}
+.order_conter_null p {
+  margin-left: 40px;
+  font-size: 18px;
+}
+/* ONOF */
+.orderCheck,
+.orderDaGiao,
+.orderWaiting,
+.orderDangGiao,
+.orderDaHuy {
+  display: none;
+}
+
+/* ------------->>>>>>>>>>>>>>> COMMENT <<<<<------------- */
+/* CAPNHAT */
+.capnhat_ {
+  width: 100%;
+  min-height: 500px;
+  background-color: #ffffff;
+  position: relative;
+}
+.capnhat_ img {
+  width: 150px;
+  position: absolute;
+  top: 30%;
+  left: 40%;
+}
+.capnhat_ span {
+  position: absolute;
+  top: 60%;
+  left: 38%;
+}
+/* KHUYENMAI */
+.khuyenmai_header {
+  width: 100%;
+  height: 40px;
+  background-color: #ffffff;
+  position: relative;
+}
+.khuyenmai_header button {
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  right: 10px;
+  top: 30%;
+  font-size: 16px;
+  cursor: pointer;
+}
+.khuyenmai_conter {
+  width: 100%;
+  min-height: 600px;
+  background-color: #fff2ee;
+  padding: 15px;
+  box-sizing: border-box;
+}
+.khuyenmai_conter img {
+  width: 100px;
+}
+.khuyenmai_conter_div {
+  width: 100%;
+  height: 100px;
+  position: relative;
+}
+.khuyenmai_conter_div:hover {
+  background-color: #eaeaea;
+}
+.khuyenmai_conter_div p {
+  position: absolute;
+  top: 0px;
+  left: 120px;
+  margin: 0;
+  font-size: 18px;
+}
+.khuyenmai_conter_div span {
+  position: absolute;
+  top: 30px;
+  left: 120px;
+  font-size: 15px;
+}
+.khuyenmai_conter_div div {
+  position: absolute;
+  top: 60px;
+  left: 120px;
+  font-size: 15px;
+}
+.khuyenmai_conter_div button {
+  position: absolute;
+  right: 10px;
+  top: 20%;
+  border: 1px solid rgb(198, 188, 188);
+  background-color: #fff;
+  padding: 6px 8px;
+  border-radius: 4px;
+}
+/* VI */
+.vi_,
+.hoatdong_ {
+  width: 100%;
+  min-height: 500px;
+  background-color: #ffffff;
+  position: relative;
+}
+.vi_ img {
+  width: 150px;
+  position: absolute;
+  top: 30%;
+  left: 40%;
+}
+.vi_ span {
+  position: absolute;
+  top: 60%;
+  left: 40%;
+}
+/* HOAT DONG */
+.hoatdong_ {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 500px;
+  background-color: #ffffff;
+}
+.hoatdong_header {
+  height: 50px;
+  border-bottom: 1px solid rgb(229, 223, 223);
+  position: relative;
+}
+.hoatdong_header span {
+  position: absolute;
+  right: 10px;
+  top: 30%;
+  opacity: 0.6;
+}
+.hoatdong_header div {
+  position: absolute;
+  top: 30%;
+  left: 10px;
+}
+.hoatdong_conter img {
+  width: 150px;
+  position: absolute;
+  top: 30%;
+  left: 40%;
+}
+.hoatdong_conter span {
+  width: 150px;
+  position: absolute;
+  top: 60%;
+  left: 41%;
+}
 @font-face {
   font-family: myFont;
   src: url(https://www.myfonts.com/fonts/linotype/neue-helvetica/);
+}
+/* ipad mini */
+@media screen and (max-width: 768px) {
+}
+/* iphone 12 pro */
+@media screen and (min-width: 390px) {
 }
