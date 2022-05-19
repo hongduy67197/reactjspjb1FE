@@ -1,8 +1,11 @@
 import React from "react";
 import logo from "./logo.jpg";
-import "./style.css";
+import "./styleLogin.css";
+import { useNavigate } from "react-router-dom";
 
 function login() {
+  const a = useNavigate;
+  const navigate = a();
   function show() {
     document.querySelector(".password").type = "text";
     document.querySelector(".eye_show").style.display = "inline-block";
@@ -15,7 +18,9 @@ function login() {
     document.querySelector(".eye_hiden").style.display = "inline-block";
   }
 
-  function sigIn() {}
+  function Login() {
+    navigate("/admin/home");
+  }
   return (
     <div className="Login">
       <div className="formLogin">
@@ -28,10 +33,10 @@ function login() {
         <input type="password" className="password" />
         <i class="fa-solid fa-eye-slash eye_hiden" onClick={show}></i>
         <i class="fa-solid fa-eye eye_show" onClick={hiden}></i>
-        <button className="btnLogin" onClick={sigIn}>
+        <button className="btnLogin" onClick={Login}>
           LOGIN
         </button>
-        <div className="logo">
+        <div className="logo-info">
           <i class="fa-brands fa-facebook logo_fb"></i>
           <i class="fa-brands fa-google-plus-g logo_google"></i>
           <i class="fa-brands fa-twitter logo_twitter"></i>

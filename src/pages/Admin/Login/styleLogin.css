@@ -62,7 +62,7 @@
   color: #888ea8;
   font-size: 19px;
   border-bottom: 1px solid #ccc;
-  padding-bottom: 5px;
+  padding-bottom: 6px;
   cursor: pointer;
 }
 
@@ -71,7 +71,7 @@
   color: #888ea8;
   font-size: 19px;
   border-bottom: 1px solid #ccc;
-  padding-bottom: 5px;
+  padding-bottom: 6px;
   cursor: pointer;
 }
 
@@ -90,11 +90,14 @@
   box-shadow: 0 5px 20px 0 rgb(0 0 0 / 30%);
 }
 
-.logo {
-  width: 100%;
+.logo-info {
+  width: 100% !important;
   margin-top: 20px;
   margin-bottom: 50px;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  background-color: #fff !important;
 }
 
 .logo_fb {
