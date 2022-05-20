@@ -1,13 +1,15 @@
 import React from "react";
 import Header from "../../../Components/Header/header";
+import "./Donhang.css";
 
 function Danggiao() {
   return (
-    <Header>
-      <div>
-        <h1>Thongtin</h1>
+    <div>
+      <Header></Header>
+      <div className="danggiao">
+        <h1>Dang giao</h1>
       </div>
-    </Header>
+    </div>
   );
 }
 

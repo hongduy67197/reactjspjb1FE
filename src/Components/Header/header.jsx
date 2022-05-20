@@ -346,7 +346,9 @@ function Header() {
             <img className="logo" src={anh1} alt="anh1" />
           </div>
           <div>
-            <p>Shop online</p>
+            <p>
+              Shop <span className="online">online</span>
+            </p>
           </div>
         </div>
         <div className="botside">
@@ -356,47 +358,67 @@ function Header() {
           </div>
           <div onClick={onstaff} className="menu">
             <i className="fa-solid fa-users vicon"></i>
-            <p className="opt">Nhan vien</p>
+            <p className="opt nhanvien">Nhân viên</p>
             <i className="fa-solid fa-angle-right arrow"></i>
           </div>
           <div className="staff">
-            <p>- Cap quyen</p>
-            <p>- Quan ly nhan vien</p>
+            <p className="hover">- Cấp quyền</p>
+            <p className="hover">- Quản lý nhân viên</p>
           </div>
           <div onClick={onselect} className="menu">
             <i className="fa-solid fa-truck-ramp-box vicon"></i>
-            <p className="opt">Don hang</p>
+            <p className="donhang opt">Đơn hàng</p>
             <i className="fa-solid fa-angle-right arrow"></i>
           </div>
           <div className="select">
-            <p onClick={xacnhan}>- Cho xac nhan</p>
-            <p onClick={danggiao}>- Dang giao hang</p>
-            <p onClick={hoanthanh}>- Da hoan thanh</p>
-            <p onClick={tongket}>- Tong ket</p>
+            <p className="hover" onClick={xacnhan}>
+              - Chờ xác nhận
+            </p>
+            <p className="hover" onClick={danggiao}>
+              - Đang giao hàng
+            </p>
+            <p className="hover" onClick={hoanthanh}>
+              - Đã hoàn thành
+            </p>
+            <p className="hover" onClick={tongket}>
+              - Tổng kết
+            </p>
           </div>
           <div onClick={onproduct} className="menu">
             <i className="fa-solid fa-mobile-screen vicon"></i>
-            <p className="opt" style={{ marginLeft: "18px" }}>
-              San pham
+            <p className="opt sanpham" style={{ marginLeft: "18px" }}>
+              Sản phẩm
             </p>
             <i className="fa-solid fa-angle-right arrow"></i>
           </div>
           <div className="product">
-            <p onClick={trenke}>- San pham tren ke</p>
-            <p onClick={spmoi}>- San pham moi</p>
-            <p onClick={chinhsua}>- Chinh sua san pham</p>
-            <p onClick={khohang}>- Kho hang</p>
+            <p className="hover" onClick={trenke}>
+              - Sản phẩm trên kệ
+            </p>
+            <p className="hover" onClick={spmoi}>
+              - Sản phẩm mới
+            </p>
+            <p className="hover" onClick={chinhsua}>
+              - Chỉnh sửa sản phẩm
+            </p>
+            <p className="hover" onClick={khohang}>
+              - Kho hàng
+            </p>
           </div>
           <div onClick={oninfor} className="menu">
             <i className="fa-solid fa-pen-fancy vicon"></i>
-            <p className="opt" style={{ marginLeft: "15px" }}>
-              Thong tin
+            <p className="opt thongtin" style={{ marginLeft: "15px" }}>
+              Thông tin
             </p>
             <i className="fa-solid fa-angle-right arrow"></i>
           </div>
           <div className="infor">
-            <p onClick={chinhanh}>- Chi nhanh cua hang</p>
-            <p onClick={about}>- Ve doanh nghiep</p>
+            <p className="hover" onClick={chinhanh}>
+              - Chi nhánh cửa hàng
+            </p>
+            <p className="hover" onClick={about}>
+              - Về doanh nghiệp
+            </p>
           </div>
         </div>
       </div>
