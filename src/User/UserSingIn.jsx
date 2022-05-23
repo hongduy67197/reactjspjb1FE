@@ -3,8 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/shopee.png";
 import face from "../assets/images/logoFace.png";
 import google from "../assets/images/logoGoogle.jpg";
+import Context from "../Conter/Context";
+import { useContext } from "react";
 
 function UserSingIn(props) {
+  const addUser = useContext(Context).addUser;
+  const user = useContext(Context).user;
   // console.log(props);
   const navigate = useNavigate();
   function userSingin_next() {
@@ -30,6 +34,8 @@ function UserSingIn(props) {
       document.querySelector(".login_header").style.display = "none";
       document.querySelector(".login_conter").style.display = "none";
       document.querySelector(".singin_conter_modal").style.display = "none";
+      let newUser = { email: email, password: password };
+      addUser(newUser);
     }
   }
   // kiểm tra đầu vào password

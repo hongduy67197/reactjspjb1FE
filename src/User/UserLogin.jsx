@@ -9,7 +9,10 @@ import Context from "../Conter/Context";
 
 function UserLogin(props) {
   const navigate = useNavigate();
-  const user = useContext(Context);
+  const user = useContext(Context).user;
+  const id = useContext(Context).id;
+  const setId = useContext(Context).setId;
+  console.log(user);
   // console.log(12, user.user[0]);
   // console.log(props.user[props.user.length - 1].email);
   function submit() {
@@ -21,7 +24,7 @@ function UserLogin(props) {
     } else if (password === "" || testPassword(password)) {
       document.querySelector(".login_password_text").innerHTML =
         "Vui lòng nhập Password";
-    } else if (userFor(email, user.user) && passwordFor(password, user.user)) {
+    } else if (userFor(email, user) && passwordFor(password, user)) {
       navigate("/Home/Home");
     } else {
       document.querySelector(".login_ofcanva_modal").style.display = "block";

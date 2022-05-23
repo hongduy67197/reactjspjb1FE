@@ -25,6 +25,13 @@ function App() {
       password: "123456789",
     },
   ]);
+  function addUser(newUser) {
+    setUser(...user, newUser);
+  }
+  const [id, setId] = useState([]);
+  function addId(newId) {
+    setId(newId);
+  }
   // tín hiệu để render
   //   const [stoge, setStoge]=useState(0)
   //   function setStoge1(){
@@ -45,7 +52,15 @@ function App() {
 
   return (
     <BrowserRouter>
-      <ContextProvider testContext={{ user: user, setUser: setUser }}>
+      <ContextProvider
+        testContext={{
+          user: user,
+          setUser: setUser,
+          addUser: addUser,
+          id: id,
+          addId: addId,
+        }}
+      >
         <div className="App">
           <Header></Header>
           <Routes>
