@@ -3,11 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/shopee.png";
 import face from "../assets/images/logoFace.png";
 import google from "../assets/images/logoGoogle.jpg";
+import axios from '../axios'
 
 function UserSingIn(props) {
   // console.log(props);
   const navigate = useNavigate();
-  function userSingin_next() {
+  async function userSingin_next() {
     const email = document.querySelector(".singin_conter_modal_email").value;
     const password = document.querySelector(
       ".singin_conter_modal_password"
@@ -25,12 +26,16 @@ function UserSingIn(props) {
       document.querySelector(".singin_again_text").innerHTML =
         "Mật khẩu không khớp";
     } else {
+      const res = await axios.post('/user/register',{password, email})
+      console.log(res);
       document.querySelector(".singIn_ofcanva_modal").style.display = "block";
       document.querySelector(".singin_").style.background = "#EBEBEB";
       document.querySelector(".login_header").style.display = "none";
       document.querySelector(".login_conter").style.display = "none";
       document.querySelector(".singin_conter_modal").style.display = "none";
     }
+
+
   }
   // kiểm tra đầu vào password
   function testPassword(pass) {
@@ -84,7 +89,7 @@ function UserSingIn(props) {
     <div className="singin_">
       <div className="login_header">
         <Link to="App">
-          <img src={logo} alt="" className="login_header_img" />
+          <img src={logo} alt="" className="login_header_img" style={{width: 'auto'}}/>
         </Link>
         <span className="login_header_text">Đăng ký </span>
         <a href="" className="login_header_help">

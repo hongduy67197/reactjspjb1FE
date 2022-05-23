@@ -83,7 +83,7 @@ function UserLogin(props) {
     <div className="login_">
       <div className="login_header">
         <Link to="App">
-          <img src={logo} alt="" className="login_header_img" />
+          <img src={logo} alt="" className="login_header_img" style={{width: 'auto'}}/>
         </Link>
         <span className="login_header_text">Đăng nhập </span>
         <a href="" className="login_header_help">
