@@ -8,16 +8,6 @@ import "./style.css";
 import React from "react";
 import anh1 from "./aaa.png";
 import { useNavigate } from "react-router-dom";
-import Danggiao from "../../Pages/Admin/Donhang/Danggiao";
-import Hoanthanh from "../../Pages/Admin/Donhang/Hoanthanh";
-import Tongket from "../../Pages/Admin/Donhang/Tongket";
-import Xacnhan from "../../Pages/Admin/Donhang/Xacnhan";
-import Chinhsua from "../../Pages/Admin/Sanpham/Chinhsua";
-import Khohang from "../../Pages/Admin/Sanpham/Khohang";
-import Spmoi from "../../Pages/Admin/Sanpham/Spmoi";
-import Trenke from "../../Pages/Admin/Sanpham/Trenke";
-import Chinhanh from "../../Pages/Admin/Thongtin/Chinhanh";
-import About from "../../Pages/Admin/Thongtin/About";
 
 function Header() {
   const navigate = useNavigate();
@@ -25,6 +15,11 @@ function Header() {
   var countselect = 0;
   var countstaff = 0;
   var countinfor = 0;
+
+  function QLnhanvien() {
+    navigate("/admin/qlnhanvien");
+  }
+
   function xacnhan() {
     navigate("/admin/Xacnhan");
   }
@@ -353,41 +348,35 @@ function Header() {
         </div>
         <div className="botside">
           <div className="dashbar">
-            <i class="fa-solid fa-tv tv "></i>
+            <i className="fa-solid fa-tv tv "></i>
             <p>Dashboard</p>
           </div>
           <div onClick={onstaff} className="menu">
             <i className="fa-solid fa-users vicon"></i>
-            <p className="opt nhanvien">Nhân viên</p>
+            <p className="opt">Nhan vien</p>
             <i className="fa-solid fa-angle-right arrow"></i>
           </div>
           <div className="staff">
-            <p className="hover">- Cấp quyền</p>
-            <p className="hover">- Quản lý nhân viên</p>
+            <p>- Cap quyen</p>
+            <p onClick={QLnhanvien} className="qlnv">
+              - Quan ly nhan vien
+            </p>
           </div>
           <div onClick={onselect} className="menu">
             <i className="fa-solid fa-truck-ramp-box vicon"></i>
-            <p className="donhang opt">Đơn hàng</p>
+            <p className="opt">Don hang</p>
             <i className="fa-solid fa-angle-right arrow"></i>
           </div>
           <div className="select">
-            <p className="hover" onClick={xacnhan}>
-              - Chờ xác nhận
-            </p>
-            <p className="hover" onClick={danggiao}>
-              - Đang giao hàng
-            </p>
-            <p className="hover" onClick={hoanthanh}>
-              - Đã hoàn thành
-            </p>
-            <p className="hover" onClick={tongket}>
-              - Tổng kết
-            </p>
+            <p onClick={xacnhan}>- Cho xac nhan</p>
+            <p onClick={danggiao}>- Dang giao hang</p>
+            <p onClick={hoanthanh}>- Da hoan thanh</p>
+            <p onClick={tongket}>- Tong ket</p>
           </div>
           <div onClick={onproduct} className="menu">
             <i className="fa-solid fa-mobile-screen vicon"></i>
-            <p className="opt sanpham" style={{ marginLeft: "18px" }}>
-              Sản phẩm
+            <p className="opt" style={{ marginLeft: "18px" }}>
+              San pham
             </p>
             <i className="fa-solid fa-angle-right arrow"></i>
           </div>
@@ -432,7 +421,7 @@ function Header() {
           </div>
         </div>
         <div className="mid">
-          <i class="fa-solid fa-magnifying-glass search"></i>
+          <i className="fa-solid fa-magnifying-glass search"></i>
           <input placeholder="Search..." type="search" />
         </div>
         <div className="right">
@@ -446,7 +435,7 @@ function Header() {
       <div className="changecolor">
         <div className="topco">
           <h2 className="gd">Giao dien</h2>
-          <i onClick={coloroff} class="fa-solid fa-x"></i>
+          <i onClick={coloroff} className="fa-solid fa-x"></i>
         </div>
         <div>
           <p>Mau sang</p>
