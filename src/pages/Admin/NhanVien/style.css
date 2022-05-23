@@ -12,3 +12,12 @@
   font-size: 25px;
   font-weight: 600;
 }
+
+.update {
+  padding: 5px 20px;
+  border-radius: 10px;
+  outline: unset;
+  border: none;
+  cursor: pointer;
+  background-color: #0dcaf0;
+}

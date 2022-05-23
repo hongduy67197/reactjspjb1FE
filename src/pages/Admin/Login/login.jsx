@@ -18,9 +18,32 @@ function login() {
     document.querySelector(".eye_hiden").style.display = "inline-block";
   }
 
+  let data = [
+    { username: "Dat", password: 12345678, quyen: "admin" },
+    { username: "nhanvien", password: 12345678, quyen: "nhanvien" },
+  ];
+
   function Login() {
-    navigate("/admin/home");
+    let user = document.querySelector(".username").value;
+    let pass = document.querySelector(".password").value;
+
+    for (let i = 0; i < data.length; i++) {
+      if (user === "") {
+        document.querySelector(".note").innerHTML = "Vui lòng nhập UserName";
+      } else if (pass === "") {
+        document.querySelector(".note").innerHTML = "Vui lòng nhập PassWord";
+      } else if (
+        data[i].username == user &&
+        data[i].password == pass &&
+        data[i].quyen === "admin"
+      ) {
+        navigate("/admin/home");
+      } else {
+        document.querySelector(".note").innerHTML = "Tài khoản không chính xác";
+      }
+    }
   }
+
   return (
     <div className="Login">
       <div className="formLogin">
@@ -33,6 +56,7 @@ function login() {
         <input type="password" className="password" />
         <i class="fa-solid fa-eye-slash eye_hiden" onClick={show}></i>
         <i class="fa-solid fa-eye eye_show" onClick={hiden}></i>
+        <p className="note"></p>
         <button className="btnLogin" onClick={Login}>
           LOGIN
         </button>
