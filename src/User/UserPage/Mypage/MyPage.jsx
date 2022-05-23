@@ -1,5 +1,5 @@
 import React from "react";
-import userlogo from "../../assets/images/userlogo.jpg";
+import userlogo from "../../../assets/images/userlogo.jpg";
 
 function MyPage() {
   return (

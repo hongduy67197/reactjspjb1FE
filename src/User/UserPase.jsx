@@ -1,17 +1,22 @@
 import React from "react";
 import Header from "../Header/Header";
 import Comment from "./UserPage/Comment";
-import MyPage from "./UserPage/MyPage";
 import Orders from "./UserPage/Orders";
 import Promotion from "./UserPage/Promotion";
 import Voucher from "./UserPage/Voucher";
 import Menu from "./UserPage/Menu";
 import { Link } from "react-router-dom";
+// COMMENT
 import CapNhat from "./UserPage/Comment/CapNhat";
 import DanhGia from "./UserPage/Comment/DanhGia";
 import HoatDong from "./UserPage/Comment/HoatDong";
 import KhuyenMai from "./UserPage/Comment/KhuyenMai";
 import Vi from "./UserPage/Comment/Vi";
+// MY PAGE
+import Bank from "./UserPage/Mypage/Bank";
+import From from "./UserPage/Mypage/From";
+import ResetPassword from "./UserPage/Mypage/ResetPassword";
+import MyPage from "./UserPage/Mypage/MyPage";
 
 function UserPase() {
   function onof_comment() {
@@ -91,6 +96,37 @@ function UserPase() {
   function on_thongBao() {
     document.querySelector(".onof_thongBao").style.display = "block";
   }
+  // MY PAGE
+  function onof_hoso() {
+    document.querySelector(".hoso").style.display = "block";
+    document.querySelector(".bank").style.display = "none";
+    document.querySelector(".from").style.display = "none";
+    document.querySelector(".resetpassword").style.display = "none";
+  }
+  function onof_bank() {
+    document.querySelector(".hoso").style.display = "none";
+    document.querySelector(".bank").style.display = "block";
+    document.querySelector(".from").style.display = "none";
+    document.querySelector(".resetpassword").style.display = "none";
+  }
+  function onof_from() {
+    document.querySelector(".hoso").style.display = "none";
+    document.querySelector(".bank").style.display = "none";
+    document.querySelector(".from").style.display = "block";
+    document.querySelector(".resetpassword").style.display = "none";
+  }
+  function onof_resetPassword() {
+    document.querySelector(".hoso").style.display = "none";
+    document.querySelector(".bank").style.display = "none";
+    document.querySelector(".from").style.display = "none";
+    document.querySelector(".resetpassword").style.display = "block";
+  }
+  function on_mypage() {
+    document.querySelector(".onof_mypage").style.display = "block";
+  }
+  function of_mypage() {
+    document.querySelector(".onof_mypage").style.display = "none";
+  }
   return (
     <div>
       {/* <Header></Header> */}
@@ -102,7 +138,7 @@ function UserPase() {
             onof_order={onof_order}
             onof_promotion={onof_promotion}
             onof_voucher={onof_voucher}
-            // ==============
+            // ==============THÔNG BÁO
             onof_capNhat={onof_capNhat}
             onof_danhGia={onof_danhGia}
             onof_hoatDong={onof_hoatDong}
@@ -110,6 +146,13 @@ function UserPase() {
             onof_vi={onof_vi}
             of_thongBao={of_thongBao}
             on_thongBao={on_thongBao}
+            // =============== MY PAGE
+            onof_hoso={onof_hoso}
+            onof_bank={onof_bank}
+            onof_from={onof_from}
+            onof_resetPassword={onof_resetPassword}
+            on_mypage={on_mypage}
+            of_mypage={of_mypage}
           ></Menu>
         </div>
         <div className="userPage_conter">
@@ -124,9 +167,7 @@ function UserPase() {
           <div className="comment">
             <Comment></Comment>
           </div>
-          <div className="mypage">
-            <MyPage></MyPage>
-          </div>
+          <div className="mypage">{/* <MyPage></MyPage> */}</div>
           <div className="order">
             <Orders></Orders>
           </div>
@@ -152,6 +193,21 @@ function UserPase() {
             </div>
             <div className="vi">
               <Vi></Vi>
+            </div>
+          </div>
+          {/* bật tắt, chuyển trang MYPAGE */}
+          <div className="onof_mypage">
+            <div className="hoso">
+              <MyPage></MyPage>
+            </div>
+            <div className="bank">
+              <Bank></Bank>
+            </div>
+            <div className="from">
+              <From></From>
+            </div>
+            <div className="resetpassword">
+              <ResetPassword></ResetPassword>
             </div>
           </div>
         </div>

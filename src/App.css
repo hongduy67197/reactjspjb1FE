@@ -128,12 +128,24 @@
   padding: 10px;
   left: 35px;
 }
+.login_email_text {
+  position: absolute;
+  bottom: 325px;
+  left: 35px;
+  color: #ee4d2d;
+}
 .login_conter_modal_password {
   position: absolute;
   bottom: 280px;
   width: 77%;
   padding: 10px;
   left: 35px;
+}
+.login_password_text {
+  position: absolute;
+  bottom: 258px;
+  left: 35px;
+  color: #ee4d2d;
 }
 .login_conter_modal_button {
   position: absolute;
@@ -206,11 +218,83 @@
   font-family: Helvetica, Helvetica, Arial, Helvetica, sans-serif;
   font-size: 16px;
 }
-
+.login_ofcanva_modal {
+  padding: 10px;
+  width: 500px;
+  height: 200px;
+  background-color: #fff;
+  border-radius: 3px;
+  position: fixed;
+  top: 10px;
+  left: 30%;
+  border: 1px solid rgb(230, 219, 219);
+}
+.login_singin {
+  padding: 10px 0;
+  border-top: 1px solid rgb(230, 219, 219);
+}
+.ofcanva_modal_close_singin {
+  position: absolute;
+  right: 10px;
+  top: 30%;
+  padding: 8px 16px;
+  border: none;
+  background-color: #ee4d2d;
+  color: #ffffff;
+  border-radius: 3px;
+  font-size: 16px;
+}
+.ofcanva_modal_singin {
+  position: absolute;
+  bottom: 40%px;
+  right: 10px;
+  padding: 8px 16px;
+  border: none;
+  background-color: #05a;
+  font-size: 16px;
+  color: #f7f7f7;
+  border-radius: 3px;
+}
 /* SINGIN */
 .singin_ {
   height: 800px;
   background-color: rgb(238, 77, 45);
+}
+.singIn_ofcanva_modal {
+  width: 400px;
+  height: 200px;
+  background-color: white;
+  border: 1px solid rgb(230, 219, 219);
+  border-radius: 3px;
+  position: fixed;
+  top: 10px;
+  left: 35%;
+  padding: 10px;
+}
+.singIn_ofcanva_modal p {
+  font-size: 18px;
+}
+.ofcanva_modal_login {
+  position: absolute;
+  bottom: 20px;
+  right: 100px;
+  padding: 8px 16px;
+  border: none;
+  background-color: #05a;
+  font-size: 16px;
+  color: #f7f7f7;
+  border-radius: 3px;
+}
+.ofcanva_modal_close {
+  position: absolute;
+  bottom: 20px;
+  right: 10px;
+  padding: 8px 16px;
+  border: none;
+  background-color: #ee4d2d;
+  color: #ffffff;
+  border-radius: 3px;
+  font-size: 16px;
 }
 
 /* --------------->>>  SING IN MODAL  <<<<----------- */
@@ -233,6 +317,13 @@
   padding: 10px 8px;
   width: 300px;
 }
+.singin_mail_text {
+  position: absolute;
+  top: 113px;
+  left: 35px;
+  color: #ee4d2d;
+  font-size: 13px;
+}
 .singin_conter_modal_password {
   position: absolute;
   top: 130px;
@@ -240,12 +331,26 @@
   padding: 10px 8px;
   width: 300px;
 }
+.singin_password_text {
+  position: absolute;
+  top: 175px;
+  left: 35px;
+  color: #ee4d2d;
+  font-size: 13px;
+}
 .singin_conter_modal_againpassword {
   position: absolute;
   top: 190px;
   left: 35px;
   padding: 10px 8px;
   width: 300px;
+}
+.singin_again_text {
+  position: absolute;
+  top: 235px;
+  left: 35px;
+  color: #ee4d2d;
+  font-size: 13px;
 }
 .singin_conter_modal_next {
   position: absolute;
@@ -344,6 +449,12 @@
 .vi {
   display: none;
 }
+.hoso,
+.bank,
+.from,
+.resetpassword {
+  display: none;
+}
 /* ------------>>>>>>>> MENU <<<<<<----------- */
 .menu_ {
   width: 200px;
@@ -415,6 +526,12 @@
   position: relative;
   margin: 0 0 15px;
 }
+.menu_mypage_list {
+  text-align: left;
+  margin-left: 45px;
+  display: none;
+  cursor: pointer;
+}
 .menu_orders {
   position: relative;
   margin: 0 0 15px;
@@ -429,7 +546,8 @@
   display: none;
   cursor: pointer;
 }
-.menu_comment_list p:hover {
+.menu_comment_list p:hover,
+.menu_mypage_list p:hover {
   color: #ee4d2d;
 }
 /* ----------->>>>>>>>>>> MY PAGE  <<<<<<<<------------ */
@@ -802,6 +920,337 @@
   position: absolute;
   top: 60%;
   left: 41%;
+}
+
+/* ------------------>>>>> MY PAGE <<<<<------------- */
+/* BANK */
+.bank_,
+.from_ {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 600px;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 3px;
+}
+.cart_text,
+.taiKhoan_text,
+.from_header {
+  width: 100%;
+  height: 80px;
+  border-bottom: 1px solid rgb(235, 227, 227);
+  position: relative;
+}
+.taiKhoan_text span,
+.cart_text span,
+.from_header span {
+  font-size: 20px;
+  position: absolute;
+  top: 25%;
+}
+.from_header button,
+.taiKhoan_text button,
+.cart_text button {
+  position: absolute;
+  right: 10px;
+  top: 20%;
+  border: none;
+  background-color: #ee4d2d;
+  color: #fefaec;
+  border-radius: 3px;
+  padding: 12px 18px;
+}
+.from_conter,
+.cart_conter,
+.taiKhoan_conter {
+  width: 100%;
+  height: 200px;
+  text-align: center;
+  line-height: 200px;
+  font-size: 20px;
+}
+/* RESET PASSWORD*/
+.resetPassword_ {
+  width: 100%;
+  min-height: 500px;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 3px;
+}
+.resetPassword_header {
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  border-bottom: 1px solid rgb(232, 223, 223);
+}
+.resetPassword_header span {
+  font-size: 20px;
+}
+.resetPassword_conter {
+  display: flex;
+}
+.resetPassword_left {
+  width: 300px;
+  text-align: right;
+  position: relative;
+  padding: 0 20px 0 0;
+}
+.resetPassword_right {
+  width: 65%;
+  position: relative;
+  height: 100%;
+}
+.password_last,
+.password_last_text {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  width: 300px;
+  height: 30px;
+  padding: 5px;
+}
+.password_new,
+.password_new_text {
+  position: absolute;
+  top: 115px;
+  left: 0;
+  width: 300px;
+  height: 30px;
+  padding: 5px;
+}
+.password_newagain,
+.password_newagain_text {
+  position: absolute;
+  top: 200px;
+  width: 300px;
+  height: 30px;
+  left: 0;
+  padding: 5px;
+}
+.password_update {
+  position: absolute;
+  top: 300px;
+  left: 0;
+  padding: 12px 16px;
+  border: none;
+  background-color: #ee4d2d;
+  color: #fefaec;
+  border-radius: 3px;
+  font-family: Helvetica, Helvetica, Arial, Helvetica, sans-serif;
+}
+
+/* ----------------->>>>>>>>>>> VOUCHER <<<<------------ */
+.voucher_ {
+  width: 100%;
+  min-height: 750px;
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 3px;
+  position: relative;
+  box-sizing: border-box;
+}
+/* VOUCHER HEADER */
+.voucher_header_text {
+  font-size: 25px;
+  position: absolute;
+  top: 30px;
+  left: 58px;
+}
+.voucher_header_button {
+  position: absolute;
+  right: 55px;
+  top: 35px;
+}
+.voucher_button1 {
+  border: none;
+  background-color: transparent;
+  border-right: 1px solid rgb(143, 135, 135);
+  color: #ee4d2d;
+  font-size: 16px;
+  cursor: pointer;
+}
+.voucher_button2 {
+  cursor: pointer;
+  border: none;
+  font-size: 16px;
+  color: #ee4d2d;
+  background-color: transparent;
+  border-right: 1px solid rgb(143, 135, 135);
+}
+.voucher_button3 {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  opacity: 0.7;
+  font-size: 16px;
+}
+.voucher_header_seach {
+  position: absolute;
+  top: 90px;
+  left: 30px;
+}
+.voucher_header_seach {
+  width: 90%;
+  height: 100px;
+  background-color: #f7f7f7;
+  position: relative;
+  left: 5%;
+  text-align: center;
+  line-height: 100px;
+  font-size: 18px;
+}
+.voucher_header_seach input {
+  width: 350px;
+  margin: 0 10px;
+  padding: 10px;
+}
+.voucher_header_seach button {
+  border: none;
+  padding: 13px 35px;
+  color: rgb(118, 115, 115);
+  border-radius: 2px;
+}
+
+.voucher_conter {
+  position: relative;
+}
+.voucher_conter_button_grup {
+  position: absolute;
+  top: 120px;
+  left: 50px;
+  width: 90%;
+  border-bottom: 1px solid rgb(164, 157, 157);
+}
+.voucher_conter_button_grup button {
+  border: none;
+  background-color: transparent;
+  width: 20%;
+  font-size: 17px;
+  opacity: 0.8;
+  padding: 10px 0;
+}
+.voucher_conter_button_grup button:focus {
+  border-bottom: 2px solid #ee4d2d;
+}
+.voucher_comment {
+  width: 90%;
+  position: absolute;
+  top: 200px;
+  left: 50px;
+}
+/* ALL VOUCHER */
+
+.allvoucher_ {
+  width: 100%;
+  min-height: 500px;
+  box-sizing: border-box;
+  padding: 10px;
+}
+.allvoucher_conter_div {
+  position: relative;
+  width: 100%;
+}
+.allvoucher_conter_div:hover {
+  background-color: #f7f7f7;
+}
+.allvoucher_conter_div img {
+  width: 100px;
+}
+.allvoucher_conter_div p {
+  position: absolute;
+  top: 0;
+  left: 150px;
+  margin: 0;
+  width: 400px;
+}
+.allvoucher_conter_div span {
+  position: absolute;
+  top: 30px;
+  width: 500px;
+  left: 150px;
+}
+.allvoucher_conter_div div {
+  position: absolute;
+  top: 70px;
+  width: 300px;
+  left: 150px;
+}
+
+.allvoucher_conter_div button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background-color: #ee4d2d;
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 3px;
+}
+
+/* DICH VU */
+.dichvu_ {
+  width: 100%;
+  position: relative;
+  text-align: center;
+  min-height: 300px;
+}
+.dichvu_ img {
+  width: 150px;
+}
+.dichvu_ p {
+  margin: 0;
+}
+.dichvu_ button {
+  border: none;
+  background-color: #ee4d2d;
+  color: #f7f7f7;
+  padding: 12px 18px;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+/* SHOPEE */
+.shopee_modal {
+  width: 500px;
+  height: 120px;
+  border-radius: 3px;
+  border: 1px solid rgb(222, 216, 216);
+  border-left: 5px solid #fff;
+  display: flex;
+}
+.shopee_modal_imager {
+  background-color: #00bfa5;
+  border-left: 10px dotted #fff;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  box-sizing: content-box;
+  width: 30%;
+}
+.shopee_modal_text {
+  position: relative;
+  padding: 0 0 0 10px;
+  width: 65%;
+}
+.now {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  font-size: 12px;
+  color: #ee4d2d;
+}
+.dieuKien {
+  position: absolute;
+  right: 10px;
+  bottom: 5px;
+  color: #05a;
+}
+.voucher_comment_dichVu,
+.voucher_comment_doiTac,
+.voucher_comment_scan,
+.voucher_comment_shopee {
+  display: none;
 }
 @font-face {
   font-family: myFont;

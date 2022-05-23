@@ -1,49 +1,41 @@
 import React, { useState } from "react";
-import Comment from "./Comment";
-import MyPage from "./MyPage";
-import Orders from "./Orders";
-import Promotion from "./Promotion";
-import Voucher from "./Voucher";
-import pro from "../../assets/images/newFrent.png";
 import user from "../../assets/images/user.png";
 import order from "../../assets/images/orders.png";
 import comment from "../../assets/images/comment.png";
 import voucher from "../../assets/images/voucher.png";
 import userlogo from "../../assets/images/userlogo.jpg";
-import { Link } from "react-router-dom";
-import CapNhat from "./Comment/CapNhat";
-import DanhGia from "./Comment/DanhGia";
-import HoatDong from "./Comment/HoatDong";
-import KhuyenMai from "./Comment/KhuyenMai";
-import Vi from "./Comment/Vi";
 
 function Menu(props) {
-  function onof_promotion() {
-    props.of_thongBao();
-    props.onof_promotion();
-    document.querySelector(".menu_comment_list").style.display = "none";
-  }
   function onof_mypage() {
+    props.onof_hoso();
+    props.on_mypage();
     props.of_thongBao();
     props.onof_mypage();
     document.querySelector(".menu_comment_list").style.display = "none";
+    document.querySelector(".menu_mypage_list").style.display = "block";
   }
   function onof_orders() {
+    props.of_mypage();
     props.of_thongBao();
     props.onof_order();
     document.querySelector(".menu_comment_list").style.display = "none";
+    document.querySelector(".menu_mypage_list").style.display = "none";
   }
   function onof_comment() {
+    props.of_mypage();
     props.onof_comment();
     props.on_thongBao();
     document.querySelector(".menu_comment_list").style.display = "block";
+    document.querySelector(".menu_mypage_list").style.display = "none";
   }
   function onof_voucher() {
+    props.of_mypage();
     props.of_thongBao();
     props.onof_voucher();
     document.querySelector(".menu_comment_list").style.display = "none";
+    document.querySelector(".menu_mypage_list").style.display = "none";
   }
-
+  // THÔNG BÁO
   function menu_capNhat() {
     props.onof_capNhat();
   }
@@ -59,22 +51,37 @@ function Menu(props) {
   function menu_danhGia() {
     props.onof_danhGia();
   }
+  // TÀI KHOẢN CỦA TÔI
+  function menu_mypage() {
+    props.onof_hoso();
+  }
+  function menu_bank() {
+    props.onof_bank();
+  }
+  function menu_from() {
+    props.onof_from();
+  }
+  function menu_resetpassword() {
+    props.onof_resetPassword();
+  }
   return (
     <div className="menu_">
       <div className="menu_header">
         <img src={userlogo} alt="img" />
         <span>hello</span>
-        <button>
+        <button onClick={onof_mypage}>
           <i className="fa-solid fa-pen"></i>Sửa Hồ Sơ
         </button>
-      </div>
-      <div className="menu_promotion">
-        <img src={pro} alt="" />
-        <button onClick={onof_promotion}>Ưu Đãi Dành Riêng Bạn</button>
       </div>
       <div className="menu_mypage">
         <img src={user} alt="" />
         <button onClick={onof_mypage}>Tài Khoản Của Tôi</button>
+        <div className="menu_mypage_list">
+          <p onClick={menu_mypage}>Hồ Sơ</p>
+          <p onClick={menu_bank}>Ngân Hàng</p>
+          <p onClick={menu_from}>Địa Chỉ</p>
+          <p onClick={menu_resetpassword}>Đổi Mật Khẩu</p>
+        </div>
       </div>
       <div className="menu_orders">
         <img src={order} alt="" />
