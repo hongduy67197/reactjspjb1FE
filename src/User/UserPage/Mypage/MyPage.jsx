@@ -1,7 +1,11 @@
 import React from "react";
 import userlogo from "../../../assets/images/userlogo.jpg";
+import "../../UserPage/MypageCss.css";
 
 function MyPage() {
+  function img_file() {
+    document.querySelector(".input_file_img").click();
+  }
   return (
     <div className="mypage_">
       <div className="mypage_header">
@@ -42,17 +46,20 @@ function MyPage() {
               Khác
             </div>
             <div className="mypage_right_date">
-              <input type="number" />
-              <input type="number" />
-              <input type="number" />
+              <input type="date" />
             </div>
             <button className="mypage_right_update">Lưu</button>
           </div>
         </div>
         <div className="mypage_conter_imager">
           <img src={userlogo} alt="" />
-          <button>Chọn Ảnh</button>
-
+          <button onClick={img_file}>Chọn Ảnh</button>
+          <input
+            className="input_file_img"
+            type="file"
+            accept="image/png, image/jpeg"
+            style={{ display: "none" }}
+          />
           <p>Dung lượng file tối đa 1 MB </p>
           <span>Định dạng: .JPEG, .PNG</span>
         </div>

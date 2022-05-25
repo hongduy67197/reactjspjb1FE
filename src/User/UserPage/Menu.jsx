@@ -4,7 +4,7 @@ import order from "../../assets/images/orders.png";
 import comment from "../../assets/images/comment.png";
 import voucher from "../../assets/images/voucher.png";
 import userlogo from "../../assets/images/userlogo.jpg";
-
+import "./MenuCss.css";
 function Menu(props) {
   function onof_mypage() {
     props.onof_hoso();

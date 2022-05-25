@@ -17,7 +17,9 @@ import Bank from "./UserPage/Mypage/Bank";
 import From from "./UserPage/Mypage/From";
 import ResetPassword from "./UserPage/Mypage/ResetPassword";
 import MyPage from "./UserPage/Mypage/MyPage";
-
+// CSS
+import "./Userpage.css";
+import "./UserPage/CommentCss.css";
 function UserPase() {
   function onof_comment() {
     document.querySelector(".comment").style.display = "block";
