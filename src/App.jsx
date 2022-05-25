@@ -38,6 +38,7 @@ function App() {
   const [dataDuy, setDataDuy] = useState([])
   const [data123, setdata123] = useState([])
   const [show, setShow] = useState([])
+  const [dataFilter, setDataFilter]= useState([])
 
   //axious bài a thái
   // useEffect(() => {
@@ -954,12 +955,39 @@ function App() {
   function changeWallet(newData) {
     setWallet(wallet + newData)
   }
+  function changeFilterData(dataFilter){
+    setDataFilter(dataFilter)
+  }
   function loadagain() {
     setCount1(count1 + 1)
   }
   function setagain(newab) {
     setShow(newab)
   }
+   // -------------------function biến đổi tiếng việt có dấu thành không dấu.
+   function removeAccents(str) {
+    var AccentsMap = [
+        "aàảãáạăằẳẵắặâầẩẫấậ",
+        "AÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬ",
+        "dđ", "DĐ",
+        "eèẻẽéẹêềểễếệ",
+        "EÈẺẼÉẸÊỀỂỄẾỆ",
+        "iìỉĩíị",
+        "IÌỈĨÍỊ",
+        "oòỏõóọôồổỗốộơờởỡớợ",
+        "OÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢ",
+        "uùủũúụưừửữứự",
+        "UÙỦŨÚỤƯỪỬỮỨỰ",
+        "yỳỷỹýỵ",
+        "YỲỶỸÝỴ"
+    ];
+    for (var i = 0; i < AccentsMap.length; i++) {
+        var re = new RegExp('[' + AccentsMap[i].substr(1) + ']', 'g');
+        var char = AccentsMap[i][0];
+        str = str.replace(re, char);
+    }
+    return str;
+}
   return (
     <div className="App">
       <BrowserRouter>
@@ -983,9 +1011,9 @@ function App() {
                 return (<Route path={`/product/filter*`} element={<FilterProduct/>}/>)
               })
             })} */}
-            {dataProduct.map((val, i) => {
+            {dataFilter.map((val, i) => {
               return (
-                <Route path={`/${i}`} element={<ProductChild chimuc={i} dataval={ProductList} data={data} up={up} changeCart2={changeCart2} changeState={changeState} changeStateProduct={changeStateProduct} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} />} />
+                <Route path={`/product/filter/${removeAccents(val.ProductName).split(' ').join('')}`} element={<ProductChild dataFilter = {dataFilter} chimuc={i} dataval={ProductList} data={data} up={up} changeCart2={changeCart2} changeState={changeState} changeStateProduct={changeStateProduct} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} />} />
               )
             })}
             {/* route for filter brand */}
@@ -993,83 +1021,82 @@ function App() {
               // return (
               //   <Route path={`/${val.replace(/\s/g, '')}`} element={<FilterProduct referent='brand'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} />} />
               // )
-              return (<Route path={`/product/filter`} element={<FilterProduct referent='brand'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} />}/>)
+              return (<Route path={`/product/filter`} element={<FilterProduct referent='brand'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />}/>)
 
             })}
             {/* route for filter giá */}
             {filterProduct.price.map((val, i) => {
               // return (
-              //   <Route path={`/${val.replace(/\s/g, '')}`} element={<FilterProduct referent='price'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} />} />
+              //   <Route path={`/${val.replace(/\s/g, '')}`} element={<FilterProduct referent='price'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />
               // )
-              return (<Route path={`/product/filter`} element={<FilterProduct referent='price'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} />}/>)
+              return (<Route path={`/product/filter`} element={<FilterProduct referent='price'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />}/>)
             })}
             {/* route for filter loại điện thoại */}
             {filterProduct.typePhone.map((val, i) => {
               // return (
                 
-              //   <Route path={`/${val.replace(/\s/g, '')}`} element={<FilterProduct referent='typePhone'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} />} />
+              //   <Route path={`/${val.replace(/\s/g, '')}`} element={<FilterProduct referent='typePhone'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />
               // )
-              return (<Route path={`/product/filter`} element={<FilterProduct referent='typePhone'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} />}/>)
+              return (<Route path={`/product/filter`} element={<FilterProduct referent='typePhone'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />}/>)
 
             })}
             {/* route for filter hiệu năng và pin */}
             {filterProduct.performance.map((val, i) => {
               // return (
-              //   <Route path={`/${val.replace(/\s/g, '')}`} element={<FilterProduct referent='performance'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} />} />
+              //   <Route path={`/${val.replace(/\s/g, '')}`} element={<FilterProduct referent='performance'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />
               // )
-              return (<Route path={`/product/filter`}  element={<FilterProduct referent='performance'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} />}/>)
+              return (<Route path={`/product/filter`}  element={<FilterProduct referent='performance'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />}/>)
 
             })}
             {/* route for filter ram */}
             {filterProduct.ram.map((val, i) => {
               // return (
-              //   <Route path={`/${val.replace(/\s/g, '')}`} element={<FilterProduct referent='ram'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} />} />
+              //   <Route path={`/${val.replace(/\s/g, '')}`} element={<FilterProduct referent='ram'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />
               // )
-              return (<Route path={`/product/filter`} element={<FilterProduct referent='ram'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} />}/>)
+              return (<Route path={`/product/filter`} element={<FilterProduct referent='ram'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />}/>)
 
             })}
              {/* route for filter bộ nhớ trong */}
              {filterProduct.rom.map((val, i) => {
               // return (
-              //   <Route path={`/${val.replace(/\s/g, '')}`} element={<FilterProduct referent='rom'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} />} />
+              //   <Route path={`/${val.replace(/\s/g, '')}`} element={<FilterProduct referent='rom'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />
               // )
-              return (<Route path={`/product/filter`} element={<FilterProduct referent='rom'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} />}/>)
+              return (<Route path={`/product/filter`} element={<FilterProduct referent='rom'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />}/>)
 
             })}
             {/* route for filter bộ nhớ camera */}
             {filterProduct.camera.map((val, i) => {
               // return (
-              //   <Route path={`/${val.replace(/\s/g, '')}`} element={<FilterProduct referent='camera'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} />} />
+              //   <Route path={`/${val.replace(/\s/g, '')}`} element={<FilterProduct referent='camera'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />
               // )
-              return (<Route path={`/product/filter`} element={<FilterProduct referent='camera'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} />} />)
+              return (<Route path={`/product/filter`} element={<FilterProduct referent='camera'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />)
 
             })}
             {/* route for filter special feature */}
             {filterProduct.special_features.map((val, i) => {
               // return (
-              //   <Route path={`/${val.replace(/\s/g, '')}`} element={<FilterProduct referent='special'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} />} />
+              //   <Route path={`/${val.replace(/\s/g, '')}`} element={<FilterProduct referent='special'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />
               // )
-              return (<Route path={`/product/filter`}  element={<FilterProduct referent='special'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} />} />)
+              return (<Route path={`/product/filter`}  element={<FilterProduct referent='special'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />)
 
             })}
             {/* route for filter design  */}
             {filterProduct.design.map((val, i) => {
               // return (
-              //   <Route path={`/${val.replace(/\s/g, '')}`} element={<FilterProduct referent='design'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} />} />
+              //   <Route path={`/${val.replace(/\s/g, '')}`} element={<FilterProduct referent='design'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />
               // )
-              return (<Route path={`/product/filter`} element={<FilterProduct referent='design'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} />}/>)
+              return (<Route path={`/product/filter`} element={<FilterProduct referent='design'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData ={changeFilterData} />}/>)
 
             })}
             {/* route for filter panel */}
             {filterProduct.panel.map((val, i) => {
-              return (<Route path={`/product/filter`} element={<FilterProduct referent='panel'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} />}/>)
+              return (<Route path={`/product/filter`} element={<FilterProduct referent='panel'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />}/>)
 
               // return (
-              //   <Route path={`/${val.replace(/\s/g, '')}`} element={<FilterProduct referent='panel'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} />} />
+              //   <Route path={`/${val.replace(/\s/g, '')}`} element={<FilterProduct referent='panel'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />
               // )
             })}
-                <Route path='/chụpgócrộng' element={<FilterProduct referent='panel'  chimuc='chụp góc rộng' dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} />} />
-
+                <Route path='/chụpgócrộng' element={<FilterProduct referent='panel'  chimuc='chụp góc rộng' dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />
             <Route path='*' element={<>Error</>} />
           </Routes>
           <Footer />

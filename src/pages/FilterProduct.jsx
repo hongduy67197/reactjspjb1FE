@@ -152,7 +152,7 @@ function FilterProduct(props) {
 
     let navigate = useNavigate();
     function movePage(i) {
-        navigate(`/${i}`)
+        navigate(`/product/filter/${i}`)
     }
     function filterPages(i, key, e) {
         e.target.classList.toggle('myStyle')
@@ -669,12 +669,15 @@ function FilterProduct(props) {
                                     {/* <!-- product item --> */}
 
                                     {stateSort.map((val, i) => {
+                                        {
+                                            props.changeFilterData(stateSort)
+                                        }
                                         {/* {props.dataval.map((val, i) => { */ }
 
 
 
                                         return (<div class="col l-2-4 m-4 c-6">
-                                            <button onClick={() => { movePage(i) }} class="home-product-item">
+                                            <button onClick={() => { movePage(removeAccents(val.ProductName).split(' ').join('')) }} class="home-product-item">
 
                                                 <div class="home-product-item__img" style={{ backgroundImage: `url(${val.productPic[0]}) ` }}></div>
                                                 <h4 class="home-product-item__name">{val.ProductName}</h4>
