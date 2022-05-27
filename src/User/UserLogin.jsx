@@ -7,6 +7,7 @@ import apple from "../assets/images/logoApple.png";
 import qr from "../assets/images/qrtest2.png";
 import logoShopee from "../assets/images/logoShopee2.jpeg";
 import user from "../assets/images/user.png";
+import axios from "../axios";
 
 import Context from "../Conter/Context";
 import "./Userlogin.css";
@@ -19,7 +20,7 @@ function UserLogin(props) {
   // console.log(user);
   // console.log(12, user.user[0]);
   // console.log(props.user[props.user.length - 1].email);
-  function submit() {
+  async function submit() {
     let email = document.querySelector(".login_conter_modal_email").value;
     let password = document.querySelector(".login_conter_modal_password").value;
     if (email === "" || testEmail(email)) {
@@ -28,10 +29,9 @@ function UserLogin(props) {
     } else if (password === "" || testPassword(password)) {
       document.querySelector(".login_password_text").innerHTML =
         "Vui lòng nhập Password";
-    } else if (userFor(email, user) && passwordFor(password, user)) {
-      navigate("/Home/Home");
     } else {
-      document.querySelector(".login_ofcanva_modal").style.display = "block";
+      let res = await axios.post("/user/login", { email, password });
+      navigate("/Home/Home");
     }
   }
   // kiểm tra đầu vào Email
