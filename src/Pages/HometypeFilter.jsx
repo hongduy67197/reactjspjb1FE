@@ -21,7 +21,7 @@ let checka = 0;
 let commonButton;
 let newstButton
 let salestButton
-function FilterProduct(props) {
+function HometypeFilter(props) {
     // let newUpdate = props.data
     let newUpdateCart = props.dataCart
     let newUpdate = JSON.parse(JSON.stringify(props.data));
@@ -152,7 +152,8 @@ function FilterProduct(props) {
 
     let navigate = useNavigate();
     function movePage(i) {
-        navigate(`/product/filter/${i}`)
+        console.log(155,i)
+        // navigate(`/product/filter/home/${i}`)
     }
     function filterPages(i, key, e) {
         e.target.classList.toggle('myStyle')
@@ -194,11 +195,11 @@ function FilterProduct(props) {
                 })
                 console.log(179, listKey[0])
                 if (listKey[0] === 0) {
-                    link = '/product/filter'
+                    link = '/product/filter/home'
                 } else {
 
 
-                    link = '/product/filter?' + listKey.join('&')
+                    link = '/product/filter/home?' + listKey.join('&')
                     let l = link.replace('&0', '')
                     link = l;
                 }
@@ -207,7 +208,7 @@ function FilterProduct(props) {
                 console.log('tao')
             }
         }
-
+        console.log(211,link)
         navigate(link)
     }
     //-------------------
@@ -226,8 +227,8 @@ function FilterProduct(props) {
     // })
 
 
-    let a1 = window.location.href.replace('http://localhost:3000/product/filter?', '')
-    let examine = window.location.href.replace('http://localhost:3000/product/filter', '')
+    let a1 = window.location.href.replace('http://localhost:3000/product/filter/home?', '')
+    let examine = window.location.href.replace('http://localhost:3000/product/filter/home', '')
     if (examine === '') {
         var a3 = [
             { brand: ['Iphone', 'Samsung', 'Oppo', 'Vivo', 'Xiaomi', 'Realmi', 'Nokia', 'Itel', 'masstel'] },
@@ -241,8 +242,8 @@ function FilterProduct(props) {
             let a4 = val.split('=')
             let a6 = a4[0]
             a4.shift()
-            console.log(244, a4)
-            let a7 = a4[0].split(',')
+            console.log(244,a4)
+            let a7 = a4[0].split(',')   
             let a5 = { [a6]: a7 }
             return (a5)
         })
@@ -468,121 +469,9 @@ function FilterProduct(props) {
                 {/* <!-- phần container items --> */}
                 <div class="grid wide">
                     <div class="row sm-gutter app__content">
-                        <div class="col l-2 m-0 c-0">
-                            <nav class="category">
-                                <h4 class="category__heading">
-                                    <i class="category__heading-icon fa-solid fa-filter"></i>
-                                    BỘ LỌC TÌM KIẾM
-                                </h4>
-                                <ul class="category-list">
+                        
 
-                                    {/* category-item--active */}
-                                    <li class="category-item ">
-                                        <div class="category-item_link">
-                                            BRAND
-                                            <div className="category-item-detail-wrap">
-                                                {props.filter.brand.map((val, i) => {
-                                                    return <button key={val} onClick={(e) => { filterPages(removeAccents(val), 'brand', e) }} className="category-item-detail">{val}</button>
-                                                })}
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="category-item ">
-                                        <div class="category-item_link">
-                                            GIÁ
-                                            <div className="category-item-detail-wrap">
-                                                {props.filter.price.map((val, i) => {
-                                                    return <button key={val} onClick={(e) => { filterPages(removeAccents(val), 'priceReferent', e) }} className="category-item-detail">{val}</button>
-                                                })}
-                                            </div>
-
-                                        </div>
-                                    </li>
-                                    <li class="category-item ">
-                                        <div class="category-item_link">
-                                            LOẠI ĐIỆN THOẠI
-                                            <div className="category-item-detail-wrap">
-                                                {props.filter.typePhone.map((val, i) => {
-                                                    return <button key={val} onClick={(e) => { filterPages(removeAccents(val), 'typePhone', e) }} className="category-item-detail">{val}</button>
-                                                })}
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="category-item ">
-                                        <div class="category-item_link">
-                                            HIỆU NĂNG & PIN
-                                            <div className="category-item-detail-wrap">
-                                                {props.filter.performance.map((val, i) => {
-                                                    return <button key={val} onClick={(e) => { filterPages(removeAccents(val), 'performance', e) }} className="category-item-detail">{val}</button>
-                                                })}
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="category-item ">
-                                        <div class="category-item_link">
-                                            RAM
-                                            <div className="category-item-detail-wrap">
-                                                {props.filter.ram.map((val, i) => {
-                                                    return <button onClick={(e) => { filterPages(removeAccents(val), 'ram', e) }} className="category-item-detail">{val}</button>
-                                                })}
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="category-item ">
-                                        <div class="category-item_link">
-                                            BỘ NHỚ TRONG
-                                            <div className="category-item-detail-wrap">
-                                                {props.filter.rom.map((val, i) => {
-                                                    return <button key={val} onClick={(e) => { filterPages(removeAccents(val), 'rom', e) }} className="category-item-detail">{val}</button>
-                                                })}
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="category-item ">
-                                        <div class="category-item_link">
-                                            CAMERA
-                                            <div className="category-item-detail-wrap">
-                                                {props.filter.camera.map((val, i) => {
-                                                    return <button key={val} onClick={(e) => { filterPages(removeAccents(val), 'camera', e) }} className="category-item-detail">{val}</button>
-                                                })}
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="category-item ">
-                                        <div class="category-item_link">
-                                            TÍNH NĂNG ĐẶC BIỆT
-                                            <div className="category-item-detail-wrap">
-                                                {props.filter.special_features.map((val, i) => {
-                                                    return <button key={val} onClick={(e) => { filterPages(removeAccents(val), 'special_features', e) }} className="category-item-detail">{val}</button>
-                                                })}
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="category-item ">
-                                        <div class="category-item_link">
-                                            THIẾT KẾ
-                                            <div className="category-item-detail-wrap">
-                                                {props.filter.design.map((val, i) => {
-                                                    return <button key={val} onClick={(e) => { filterPages(removeAccents(val), 'design', e) }} className="category-item-detail">{val}</button>
-                                                })}
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="category-item ">
-                                        <div class="category-item_link">
-                                            MÀN HÌNH
-                                            <div className="category-item-detail-wrap">
-                                                {props.filter.panel.map((val, i) => {
-                                                    return <button key={val} onClick={(e) => { filterPages(removeAccents(val), 'panel', e) }} className="category-item-detail">{val}</button>
-                                                })}
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-
-                        <div class="col l-10 m-12 c-12">
+                        <div class="col l-12 m-12 c-12">
                             <div class="home-filter hide-on-moble-tablet">
 
                                 <span class="home-filter__label">Sắp xếp theo</span>
@@ -670,14 +559,19 @@ function FilterProduct(props) {
 
                                     {stateSort.map((val, i) => {
                                         {
-                                            props.changeFilterData(stateSort)
+                                            // props.changeFilterData(stateSort)
                                         }
                                         {/* {props.dataval.map((val, i) => { */ }
 
 
 
-                                        return (<div class="col l-2-4 m-4 c-6">
-                                            <button onClick={() => { movePage(removeAccents(val.ProductName).split(' ').join('')) }} class="home-product-item">
+                                        return (<div class="col l-2-4 m-4 c-6" key={i}>
+                                            <button onClick={() => { 
+                                                props.updateChimuc(i)
+                                                console.log(571, i)
+                                                movePage(removeAccents(val.ProductName).split(' ').join('')) 
+                                            }} 
+                                                className="home-product-item">
 
                                                 <div class="home-product-item__img" style={{ backgroundImage: `url(${val.productPic[0]}) ` }}></div>
                                                 <h4 class="home-product-item__name">{val.ProductName}</h4>
@@ -877,4 +771,4 @@ function FilterProduct(props) {
     )
 }
 
-export default FilterProduct
+export default HometypeFilter

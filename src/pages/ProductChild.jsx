@@ -25,6 +25,7 @@ function ProductChild(props) {
     console.log(8, newUpdate[i]);
     console.log(9, newUpdate);
     //check trùng
+    
     if (props.dataCart.length == 0) {
       newUpdate[i].storage = newUpdate[i].storage - newUpdate[i].SL;
       if (newUpdate[i].storage == 0) {
@@ -128,6 +129,7 @@ function ProductChild(props) {
     props.changeCart2(newUpdateCart)
     props.up()
   }
+  console.log(131, props.dataFilter)
 
   return (
     <>
@@ -135,7 +137,7 @@ function ProductChild(props) {
         <div class="product-detail-wrap">
             <div class="image-wrap">
                 <div class="image-primary">
-                    <img src={props.dataFilter[props.chimuc].productPic[0]} alt=""></img>
+                    {/* <img src={props.dataFilter[props.chimuc].productPic[0]} alt=""></img> */}
 
                 </div>
                 <div class="range-img">
@@ -150,12 +152,12 @@ function ProductChild(props) {
             <div class="content-right-wrap">
                 <div class="title-wrap">
                     <div class="icon"></div>
-                    <h1>{props.dataFilter[props.chimuc].ProductName}</h1>
+                    {/* <h1>{props.dataFilter[props.chimuc].ProductName}</h1> */}
                 </div>
                 <div class="evaluate-wrap">
                     <div class="star-evaluate"> 5sao</div>
                     <div class="number-comment">5090 đánh giá</div>
-                    <div class="sold">{props.dataFilter[props.chimuc].countSold}</div>
+                    {/* <div class="sold">{props.dataFilter[props.chimuc].countSold}</div> */}
                 </div>
                 <div class="price-wrap">
                     <div class="price">{props.dataFilter[props.chimuc].price}</div>
