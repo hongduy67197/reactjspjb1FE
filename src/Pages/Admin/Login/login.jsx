@@ -54,16 +54,16 @@ function login() {
         <input type="text" className="username" />
         <p className="title_pass">Password</p>
         <input type="password" className="password" />
-        <i class="fa-solid fa-eye-slash eye_hiden" onClick={show}></i>
-        <i class="fa-solid fa-eye eye_show" onClick={hiden}></i>
+        <i className="fa-solid fa-eye-slash eye_hiden" onClick={show}></i>
+        <i className="fa-solid fa-eye eye_show" onClick={hiden}></i>
         <p className="note"></p>
         <button className="btnLogin" onClick={Login}>
           LOGIN
         </button>
         <div className="logo-info">
-          <i class="fa-brands fa-facebook logo_fb"></i>
-          <i class="fa-brands fa-google-plus-g logo_google"></i>
-          <i class="fa-brands fa-twitter logo_twitter"></i>
+          <i className="fa-brands fa-facebook logo_fb"></i>
+          <i className="fa-brands fa-google-plus-g logo_google"></i>
+          <i className="fa-brands fa-twitter logo_twitter"></i>
         </div>
       </div>
     </div>

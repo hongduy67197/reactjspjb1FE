@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Header from "../Header/Header";
-import Comment from "./UserPage/Comment";
+// import Header from "../Header/Header";
 import Orders from "./UserPage/Orders";
 import Promotion from "./UserPage/Promotion";
 import Voucher from "./UserPage/Voucher";
 import Menu from "./UserPage/Menu";
 import { Link } from "react-router-dom";
+// import Comment from './UserPage/'
 // COMMENT
 import CapNhat from "./UserPage/Comment/CapNhat";
 import DanhGia from "./UserPage/Comment/DanhGia";
@@ -38,7 +38,7 @@ function getCookie(cname) {
   }
   return "";
 }
-function UserPase() {
+function UserPase(props) {
   const userInfo = useSelector(function (state) {
     return state.user;
   });
@@ -203,9 +203,7 @@ function UserPase() {
             <button onClick={onof_voucher}>voucher</button>
           </div>
           {/* bật tắt, chuyển trang phần PAGE */}
-          <div className="comment">
-            <Comment></Comment>
-          </div>
+          <div className="comment">{/* <Comment></Comment> */}</div>
           <div className="mypage">{/* <MyPage></MyPage> */}</div>
           <div className="order">
             <Orders></Orders>

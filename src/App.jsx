@@ -1,25 +1,22 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import logo from "./logo.svg";
 import "./App.css";
-import Login from "./Pages/Admin/Login/login";
-import Home from "./Pages/Admin/Home/home";
-import QLnhanvien from "./Pages/Admin/NhanVien/Nhanvien";
-import Xacnhan from "./Pages/Admin/Donhang/Xacnhan";
-import Tongket from "./Pages/Admin/Donhang/Tongket";
-import Hoanthanh from "./Pages/Admin/Donhang/Hoanthanh";
-import Danggiao from "./Pages/Admin/Donhang/Danggiao";
-import Chinhsua from "./Pages/Admin/Sanpham/Chinhsua";
-import Khohang from "./Pages/Admin/Sanpham/Khohang";
-import Spmoi from "./Pages/Admin/Sanpham/Spmoi";
-import Trenke from "./Pages/Admin/Sanpham/Trenke";
-import Chinhanh from "./Pages/Admin/Thongtin/Chinhanh";
-import About from "./Pages/Admin/Thongtin/About";
-import Header from "./Header/Header";
-import UserLogin from "./User/UserLogin";
+import "antd/dist/antd.css";
+
+import Header from "./compunentes/header/Header";
+import Footer from "./compunentes/footer/Footer";
+import Slider from "./compunentes/slider/Slider";
+import Home from "./compunentes/home/Home";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import Cards from "./compunentes/home/homePage/Cards";
+import ContextProvider from "./Conter/ContextProvider.jsx";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import UserSingIn from "./User/UserSingIn";
 import UserPase from "./User/UserPase";
-import { useState, useEffect } from "react";
-import ContextProvider from "./Conter/ContextProvider";
-
+import Login from "./Pages/Admin/Login/login";
+import QLnhanvien from "./Pages/Admin/Login/login";
+import UserLogin from "./User/UserLogin";
 function App() {
   const [user, setUser] = useState([
     {
@@ -43,6 +40,20 @@ function App() {
   function addId(newId) {
     setId(newId);
   }
+  const [Categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3150/admin/categories")
+      .then(function (res) {
+        setCategories(res.data);
+        // console.log(res.data);
+      })
+      .catch(function (err) {
+        console.log(99, err);
+      });
+  }, []);
+
   // tín hiệu để render
 
   //   const [stoge, setStoge]=useState(0)
@@ -61,16 +72,35 @@ function App() {
   //     })
   //   }, [stoge]);
   // const [user, setUser]=useState([JSON.parse(localStorage.getItem('user'))])
+  function of_header() {
+    document.querySelector(".onof_header").style.display = "none";
+  }
+  function on_header() {
+    document.querySelector(".onof_header").style.display = "block";
+  }
+  function of_slider() {
+    document.querySelector(".onof_slider").style.display = "none";
+  }
+  function on_slider() {
+    document.querySelector(".onof_slider").style.display = "block";
+  }
+
   return (
-    <div>
+    <div className="App">
       <BrowserRouter>
         <ContextProvider testContext={{ user: user, setUser: setUser }}>
           {/* <Header></Header> */}
+          <div className="onof_header">
+            <Header of_header={of_header} of_slider={of_slider}></Header>
+          </div>
+          <div className="onof_slider">
+            <Slider Categories={Categories} />
+          </div>
           <Routes>
-            <Route path="/" element={<App />} />
+            <Route path="/" element={<Home />} />
             <Route path="/admin/login" element={<Login />} />
             <Route path="/admin/home" element={<Home />} />
-            <Route path="/admin/qlnhanvien" element={<QLnhanvien />} />
+            {/* <Route path="/admin/qlnhanvien" element={<QLnhanvien />} />
             <Route path="/admin/Xacnhan" element={<Xacnhan />} />
             <Route path="/admin/Tongket" element={<Tongket />} />
             <Route path="/admin/Hoanthanh" element={<Hoanthanh />} />
@@ -81,18 +111,35 @@ function App() {
             <Route path="/admin/Trenke" element={<Trenke />} />
             <Route path="/admin/Chinhanh" element={<Chinhanh />} />
             <Route path="/admin/About" element={<About />} />
-            <Route path="/User/UserLogin" element={<UserLogin></UserLogin>} />
+            */}
+            <Route
+              path="/User/UserLogin"
+              element={
+                <UserLogin
+                  on_header={on_header}
+                  on_slider={on_slider}
+                ></UserLogin>
+              }
+            />
             <Route
               path="/User/UserSingIn"
-              element={<UserSingIn></UserSingIn>}
+              element={
+                <UserSingIn
+                  on_header={on_header}
+                  on_slider={on_slider}
+                ></UserSingIn>
+              }
             />
-            <Route path="/User/UserPase" element={<UserPase></UserPase>} />
+            <Route
+              path="/User/UserPase"
+              element={<UserPase of_slider={of_slider}></UserPase>}
+            />
             {/* <Route path="/Home/Home" element={<Home></Home>} /> */}
           </Routes>
+          <Footer />
         </ContextProvider>
       </BrowserRouter>
     </div>
   );
 }
-
 export default App;

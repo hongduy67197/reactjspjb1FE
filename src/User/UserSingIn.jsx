@@ -15,8 +15,8 @@ function UserSingIn(props) {
   const user = useContext(Context).user;
   // console.log(props);
   const navigate = useNavigate();
-  // async function userSingin_next() {
-  function userSingin_next() {
+  async function userSingin_next() {
+    // function userSingin_next() {
     const email = document.querySelector(".singin_conter_modal_email").value;
     const password = document.querySelector(
       ".singin_conter_modal_password"
@@ -34,15 +34,14 @@ function UserSingIn(props) {
       document.querySelector(".singin_again_text").innerHTML =
         "Mật khẩu không khớp";
     } else {
-      // const res = await axios.post("/user/register", { password, email });
-
+      const res = await axios.post("/user/register", { password, email });
       document.querySelector(".singIn_ofcanva_modal").style.display = "block";
       document.querySelector(".singin_").style.background = "#EBEBEB";
       document.querySelector(".login_header").style.display = "none";
       document.querySelector(".login_conter").style.display = "none";
       document.querySelector(".singin_conter_modal").style.display = "none";
-      let newUser = { email: email, password: password };
-      addUser(newUser);
+      // let newUser = { email: email, password: password };
+      // addUser(newUser);
     }
   }
   // kiểm tra đầu vào password
@@ -93,11 +92,15 @@ function UserSingIn(props) {
     navigate("/user/UserLogin");
     document.querySelector(".ofcanva_modal_close").click();
   }
+  function on_home() {
+    props.on_header();
+    props.on_slider();
+  }
   return (
     <>
       <div className="singin_">
         <div className="login_header">
-          <Link to="App">
+          <Link to="compunentes/home/Home" onClick={on_home}>
             <img
               src={logo}
               alt=""

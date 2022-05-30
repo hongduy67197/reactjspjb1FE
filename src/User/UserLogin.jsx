@@ -39,21 +39,24 @@ function UserLogin(props) {
         "Vui lòng nhập Password";
     } else {
       let res = await axios.post("/user/login", { email, password });
-      setCookie("user", res.data.data.token);
-      console.log(res.data.data.user);
+      console.log(42, res);
+      setCookie("user", res.data.data.token, 30);
       const action = Login({
-        username: res.data.data.user.username,
-        address: res.data.data.user.address,
-        avatar: res.data.data.user.avatar,
-        code: res.data.data.user.code,
-        email: res.data.data.user.email,
-        phone: res.data.data.user.phone,
-        role: res.data.data.user.role,
+        // username: res.data.data.user.username,
+        // address: res.data.data.user.address,
+        // avatar: res.data.data.user.avatar,
+        // code: res.data.data.user.code,
+        // email: res.data.data.user.email,
+        // phone: res.data.data.user.phone,
+        // role: res.data.data.user.role,
       });
-      console.log(action);
+      console.log(53, action);
       dispatch(action);
       // navigate("/Home/Home");
-      navigate("/User/UserPase");
+      console.log(134);
+      navigate("/compunentes/home/Home");
+      props.on_header();
+      props.on_silder();
     }
   }
   // kiểm tra đầu vào Email
@@ -86,21 +89,21 @@ function UserLogin(props) {
     document.querySelector(".login_password_text").innerHTML = "";
   }
   // Điều kiện đăng nhập Email
-  function userFor(x, arr) {
-    for (let a = 0; a < arr.length; a++) {
-      if (x === arr[a].email) {
-        return true;
-      }
-    }
-  }
+  // function userFor(x, arr) {
+  //   for (let a = 0; a < arr.length; a++) {
+  //     if (x === arr[a].email) {
+  //       return true;
+  //     }
+  //   }
+  // }
   // Điều kiện đăng nhập Password
-  function passwordFor(y, arr) {
-    for (let a = 0; a < arr.length; a++) {
-      if (y === arr[a].password) {
-        return true;
-      }
-    }
-  }
+  // function passwordFor(y, arr) {
+  //   for (let a = 0; a < arr.length; a++) {
+  //     if (y === arr[a].password) {
+  //       return true;
+  //     }
+  //   }
+  // }
   function singIn_next() {
     navigate("/user/UserSingIn");
     document.querySelector(".ofcanva_modal_close").click();
@@ -108,11 +111,15 @@ function UserLogin(props) {
   function of_ofcanva_modal() {
     document.querySelector(".login_ofcanva_modal").style.display = "none";
   }
+  function on_home() {
+    props.on_header();
+    props.on_slider();
+  }
   return (
     <>
       <div className="login_">
         <div className="login_header">
-          <Link to="App">
+          <Link to="compunentes/home/Home" onClick={on_home}>
             <img
               src={logo}
               alt=""

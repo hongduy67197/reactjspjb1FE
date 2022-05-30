@@ -100,7 +100,7 @@ function Trenke(props) {
           })}
           <div className="brand upcost" onClick={upcost}>
             <p id="brand">
-              Tăng <i class="fa-solid fa-arrow-up-wide-short"></i>
+              Tăng <i className="fa-solid fa-arrow-up-wide-short"></i>
             </p>
           </div>
           <div className="brand downcost" onClick={downcost}>
