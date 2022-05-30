@@ -1219,7 +1219,6 @@
   box-sizing: content-box;
   width: 30%;
 }
-<<<<<<< HEAD
 .App-link {
   color: #61dafb;
 }
@@ -1230,41 +1229,6 @@
   to {
     transform: rotate(360deg);
   }
-=======
-.shopee_modal_text {
-  position: relative;
-  padding: 0 0 0 10px;
-  width: 65%;
-}
-.now {
-  position: absolute;
-  right: 10px;
-  top: 5px;
-  font-size: 12px;
-  color: #ee4d2d;
-}
-.dieuKien {
-  position: absolute;
-  right: 10px;
-  bottom: 5px;
-  color: #05a;
-}
-.voucher_comment_dichVu,
-.voucher_comment_doiTac,
-.voucher_comment_scan,
-.voucher_comment_shopee {
-  display: none;
-}
-@font-face {
-  font-family: myFont;
-  src: url(https://www.myfonts.com/fonts/linotype/neue-helvetica/);
-}
-/* ipad mini */
-@media screen and (max-width: 768px) {
-}
-/* iphone 12 pro */
-@media screen and (min-width: 390px) {
->>>>>>> d5f946d34e3f63a0276c360e45b1ce9f7f73816b
 }
 table, tr, td,th {
   border: 1px solid black;
