@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import Comment from "./UserPage/Comment";
 import Orders from "./UserPage/Orders";
@@ -20,7 +20,44 @@ import MyPage from "./UserPage/Mypage/MyPage";
 // CSS
 import "./Userpage.css";
 import "./UserPage/CommentCss.css";
+import axios from "../axios";
+import { useSelector } from "react-redux";
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(";");
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
 function UserPase() {
+  const userInfo = useSelector(function (state) {
+    return state.user;
+  });
+  console.log(45, userInfo);
+  const [user, setUser] = useState([]);
+  useEffect(() => {
+    async function getUserInfo() {
+      const token = getCookie("user");
+      const res = await axios.get("/user", {
+        headers: {
+          Authorization: token,
+        },
+      });
+      window.localStorage.setItem("user", JSON.stringify(res.data));
+      setUser(JSON.parse(localStorage.getItem("user")));
+    }
+    getUserInfo();
+  }, []);
+  console.log(53, user);
   function onof_comment() {
     document.querySelector(".comment").style.display = "block";
     document.querySelector(".mypage").style.display = "none";

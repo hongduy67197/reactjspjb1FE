@@ -8,11 +8,19 @@ import qr from "../assets/images/qrtest2.png";
 import logoShopee from "../assets/images/logoShopee2.jpeg";
 import user from "../assets/images/user.png";
 import axios from "../axios";
-
 import Context from "../Conter/Context";
 import "./Userlogin.css";
+import { useDispatch } from "react-redux";
+import { Login } from "../redux/action/userAction";
 
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+  let expires = "expires=" + d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
 function UserLogin(props) {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useContext(Context).user;
   const id = useContext(Context).id;
@@ -31,7 +39,21 @@ function UserLogin(props) {
         "Vui lòng nhập Password";
     } else {
       let res = await axios.post("/user/login", { email, password });
-      navigate("/Home/Home");
+      setCookie("user", res.data.data.token);
+      console.log(res.data.data.user);
+      const action = Login({
+        username: res.data.data.user.username,
+        address: res.data.data.user.address,
+        avatar: res.data.data.user.avatar,
+        code: res.data.data.user.code,
+        email: res.data.data.user.email,
+        phone: res.data.data.user.phone,
+        role: res.data.data.user.role,
+      });
+      console.log(action);
+      dispatch(action);
+      // navigate("/Home/Home");
+      navigate("/User/UserPase");
     }
   }
   // kiểm tra đầu vào Email
