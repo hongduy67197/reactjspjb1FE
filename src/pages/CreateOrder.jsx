@@ -15,6 +15,10 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 
+import Header from '../compunentes/header/Header';
+import Footer from '../compunentes/footer/Footer';
+
+
 function CreateOrder(props) {
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
@@ -65,7 +69,8 @@ function CreateOrder(props) {
     }, []);
 
     //======================================================
-    // Method get User have address.
+    // CÁC METHOD VỚI AXIOS:
+    // Method get User have address, phone, name.
     const getUserAddress = async () => {
         try {
             const url = 'https://k24-server-1.herokuapp.com/' + 'user';
@@ -99,7 +104,6 @@ function CreateOrder(props) {
 
     // Method Post Payment:
     // function postOrder() {
-    //     // console.log(productCart);
     //     postPayment(productCart, userInfo);
     // }
 
@@ -118,11 +122,13 @@ function CreateOrder(props) {
                 },
                 headers: {},
             });
+            console.log(data);
         } catch (error) {
             console.log(error);
         }
     };
 
+    //=======================================================
     // CÁC HÀM HANDLE:
     const handleClickOpen = () => {
         setEditInfoOld(JSON.parse(JSON.stringify(userInfo))); // làm mất tham chiếu.
@@ -180,7 +186,7 @@ function CreateOrder(props) {
 
     return (
         <div className="main">
-            <h3 style={{ color: 'white', background: 'red' }}>header</h3>
+            <Header />
 
             <div className="navbar">
                 <Link to="/">
@@ -214,9 +220,9 @@ function CreateOrder(props) {
                             </Button>
                             <Dialog open={open} onClose={handleClose}>
                                 <DialogActions style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                    <DialogTitle>Edit Infomation</DialogTitle>
+                                    <DialogTitle>Chỉnh sửa thông tin</DialogTitle>
                                     <Button onClick={handleClose} style={{ color: 'red' }}>
-                                        Close
+                                        ĐÓNG
                                     </Button>
                                 </DialogActions>
 
@@ -236,7 +242,7 @@ function CreateOrder(props) {
                                         margin="dense"
                                         id="phone"
                                         label="Phone"
-                                        type="number"
+                                        type="phone"
                                         fullWidth
                                         variant="outlined"
                                         value={userInfo.phone}
@@ -255,9 +261,9 @@ function CreateOrder(props) {
                                 </DialogContent>
                                 <DialogActions>
                                     <Button onClick={handleCancel} style={{ color: 'gray' }}>
-                                        Cancel
+                                        HỦY BỎ
                                     </Button>
-                                    <Button onClick={handleSubmit}>Submit</Button>
+                                    <Button onClick={handleSubmit}>ĐỒNG Ý</Button>
                                 </DialogActions>
                             </Dialog>
                         </div>
@@ -350,7 +356,7 @@ function CreateOrder(props) {
                 </div>
             </div>
 
-            <h3 style={{ color: 'white', background: 'red' }}>Footer</h3>
+            <Footer />
         </div>
     );
 }

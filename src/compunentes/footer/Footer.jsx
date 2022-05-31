@@ -77,13 +77,13 @@ const Footer = () => {
           </div>
           <div className="f-certify">
             <a href="http://online.gov.vn/Home/WebDetails/20090">
-              <i class="icon__congthuong"></i>
+              <i className="icon__congthuong"></i>
             </a>
             <a href="https://www.thegioididong.com/tos#giai-quyet-khieu-nai">
-              <i class="icon__khieunai"></i>
+              <i className="icon__khieunai"></i>
             </a>
             <a href="https://www.dmca.com/Protection/Status.aspx?ID=5b62e759-2a0c-4d86-b972-af903bfbc89d&refurl=https://www.thegioididong.com/dtdd">
-              <i class="icon__protected"></i>
+              <i className="icon__protected"></i>
             </a>
             <a
               className="img-ncsc"
@@ -101,62 +101,62 @@ const Footer = () => {
               <ul className="footer__logo-list">
                 <li>
                   <a href="https://www.dienmayxanh.com/">
-                    <i class="iconlogo-dienmayxanh"></i>
+                    <i className="iconlogo-dienmayxanh"></i>
                   </a>
                 </li>
                 <li>
                   <a href="https://www.bachhoaxanh.com/">
-                    <i class="iconlogo-bachhoaxanh"></i>
+                    <i className="iconlogo-bachhoaxanh"></i>
                   </a>
                 </li>
                 <li>
                   <a href="https://www.topzone.vn/">
-                    <i class="iconlogo-topzone"></i>
+                    <i className="iconlogo-topzone"></i>
                   </a>
                 </li>
                 <li>
                   <a href="https://www.bachhoaxanh.com/">
-                    <i class="iconlogo-cycle"></i>
+                    <i className="iconlogo-cycle"></i>
                   </a>
                 </li>
                 <li>
                   <a href="https://www.avasport.com/">
-                    <i class="iconlogo-sport"></i>
+                    <i className="iconlogo-sport"></i>
                   </a>
                 </li>
                 <li>
                   <a href="https://www.avakids.com/">
-                    <i class="iconlogo-kids"></i>
+                    <i className="iconlogo-kids"></i>
                   </a>
                 </li>
                 <li>
                   <a href="https://www.avafashion.com/">
-                    <i class="iconlogo-fashion"></i>
+                    <i className="iconlogo-fashion"></i>
                   </a>
                 </li>
                 <li>
                   <a href="https://www.thegioididong.com/avaji">
-                    <i class="iconlogo-ji"></i>
+                    <i className="iconlogo-ji"></i>
                   </a>
                 </li>
                 <li>
                   <a href="https://www.dichvutantam.com/">
-                    <i class="iconlogo-tantam"></i>
+                    <i className="iconlogo-tantam"></i>
                   </a>
                 </li>
                 <li>
                   <a href="https://www.nhathuocankhang.com/">
-                    <i class="iconlogo-ankhang"></i>
+                    <i className="iconlogo-ankhang"></i>
                   </a>
                 </li>
                 <li>
                   <a href="https://www.4kfarm.com/">
-                    <i class="iconlogo-4kfarm"></i>
+                    <i className="iconlogo-4kfarm"></i>
                   </a>
                 </li>
                 <li>
                   <a href="https://vieclam.thegioididong.com/">
-                    <i class="iconlogo-vieclam"></i>
+                    <i className="iconlogo-vieclam"></i>
                   </a>
                 </li>
               </ul>
