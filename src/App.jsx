@@ -21,13 +21,16 @@ import ContextProvider from './componentContext/ContextProvider';
 // ================================================
 // antd import 
 import Antd from './Pages/Antd'
+//data
+import productList from './data-tinh/dataold';
+import listProductCode from './data-tinh/dataNewMix'
 
 function App() {
   const [count1, setCount1] = useState(0)
   const [dataDuy, setDataDuy] = useState([])
   const [data123, setdata123] = useState([])
   const [show, setShow] = useState([])
-  const [dataFilter, setDataFilter]= useState([])
+  const [dataFilter, setDataFilter] = useState([])
 
   //axious bài a thái
   // useEffect(() => {
@@ -53,6 +56,19 @@ function App() {
   //     })
   // }, [count1]);
 
+  //---------------------------
+  // axious project sellMobilePhone
+  // useEffect(() => {
+  //     axios.get('http://localhost:3150/admin/productcode/list?gidzl=C1YqIXSqjKmq1xHD4YczJ3OCkaeB8Ej4VGdZHbOjuH1o1kSKKoxc5I9GxnjJUkWPTGBeJ3SJ7J0t4J2qJ0')
+  //       .then(function (res) {
+  //         setDataDuy(res.data.product)
+  //         setShow(res.data.product.slice(0, 2))
+  //       })
+  //       .catch((err) => {
+  //         console.log(err)
+  //       })
+  //   }, [count1]);
+
   const filterProduct = {
     brand: ['Iphone', 'Samsung', 'Oppo', 'Vivo', 'Xiaomi', 'Realmi', 'Nokia', 'Itel', 'masstel'],
     price: ['dưới 2tr', 'từ 2- 4tr', 'từ 4-7tr', 'từ 7-13tr', 'từ 13-20tr', 'trên 20tr'],
@@ -65,259 +81,6 @@ function App() {
     design: ['Tràn viền', 'Mỏng nhẹ', 'Mặt lưng kính'],
     panel: ['nhỏ gọn dễ cầm', 'Từ 6inch trở lên', 'Màn hình gập']
   }
-  const productCode = [
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "iPhone 11 64GB I Chính hãng VN/A",
-      price: 18000000,
-      storage: 12,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_11_white_4_.png'],
-      color: 'red',
-      ram: '4GB',
-      brand: 'Iphone',
-      typePhone: 'Iphone(iOS)',
-      performance: 'Sạc pin nhanh',
-      camera: 'chụp cận cảnh(macro)',
-      special_features: 'Hỗ trợ 5g',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Apple",
-      Sale: "15%",
-      countSold: 13,
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "iPhone 12 mini 128GB I Chính hãng VN/A",
-      price: 20990000,
-      storage: 12,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_12_mini_purple.png'],
-      color: 'red',
-      ram: '2GB',
-      rom: '8GB',
-      brand: 'Iphone',
-      typePhone: 'Iphone(iOS)',
-      performance: 'Sạc pin nhanh',
-      camera: 'chụp góc rộng',
-      special_features: 'Hỗ trợ 5g',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Apple",
-      Sale: "12%",
-      countSold: 13,
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "iPhone 13 128GB - Xanh lá | Chính hãng VN/A",
-      price: 24990000,
-      storage: 12,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_13_green_pure_back_iphone_13_green_pure_front_2-up_screen__usen_1.png'],
-      color: 'red',
-      ram: '2GB',
-      rom: '8GB',
-      brand: 'iphone',
-      typePhone: 'Iphone(iOS)',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp góc rộng',
-      special_features: 'Bảo mật khuôn mặt',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Apple",
-      Sale: "11%",
-      countSold: 13,
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "Samsung Galaxy S22 Ultra (8GB - 128GB)",
-      price: 30990000,
-      storage: 12,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_phantomwhite_211119.jpg'],
-      color: 'red',
-      ram: '2GB',
-      rom: '8GB',
-      brand: 'Samsung',
-      typePhone: 'Iphone(iOS)',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp xóa phông',
-      special_features: 'Bảo mật khuôn mặt',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Samsung",
-      Sale: "25%",
-      countSold: 13,
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "iPhone 11 64GB I Chính hãng VN/A",
-      price: 18000000,
-      storage: 12,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_11_white_4_.png'],
-      color: 'red',
-      ram: '4GB',
-      rom: '8GB',
-      brand: 'Iphone',
-      typePhone: 'Iphone(iOS)',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp cận cảnh(macro)',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Apple",
-      Sale: "15%",
-      countSold: 13,
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "iPhone 12 mini 128GB I Chính hãng VN/A",
-      price: 20990000,
-      storage: 12,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_12_mini_purple.png'],
-      color: 'red',
-      ram: '2GB',
-      rom: '8GB',
-      brand: 'Iphone',
-      typePhone: 'Iphone(iOS)',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp xóa phông',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Apple",
-      Sale: "12%",
-      countSold: 13,
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "iPhone 13 128GB - Xanh lá | Chính hãng VN/A",
-      price: 24990000,
-      storage: 12,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_13_green_pure_back_iphone_13_green_pure_front_2-up_screen__usen_1.png'],
-      color: 'red',
-      ram: '2GB',
-      rom: '8GB',
-      brand: 'iphone',
-      typePhone: 'Iphone(iOS)',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp cận cảnh(macro)',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Apple",
-      Sale: "11%",
-      countSold: 13,
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "Samsung Galaxy S22 Ultra (8GB - 128GB)",
-      price: 30990000,
-      storage: 12,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_phantomwhite_211119.jpg'],
-      color: 'red',
-      ram: '2GB',
-      rom: '8GB',
-      brand: 'Samsung',
-      typePhone: 'Iphone(iOS)',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp cận cảnh(macro)',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Samsung",
-      Sale: "25%",
-      countSold: 13,
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "iPhone 11 64GB I Chính hãng VN/A",
-      price: 18000000,
-      storage: 12,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_11_white_4_.png'],
-      color: 'red',
-      ram: '4GB',
-      rom: '8GB',
-      brand: 'Iphone',
-      typePhone: 'Iphone(iOS)',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp cận cảnh(macro)',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Apple",
-      Sale: "15%",
-      countSold: 13,
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "iPhone 12 mini 128GB I Chính hãng VN/A",
-      price: 20990000,
-      storage: 12,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_12_mini_purple.png'],
-      color: 'd',
-      ram: '2GB',
-      rom: '8GB',
-      brand: 'Iphone',
-      typePhone: 'Iphone(iOS)',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp cận cảnh(macro)',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Apple",
-      Sale: "12%",
-      countSold: 13,
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "iPhone 13 128GB - Xanh lá | Chính hãng VN/A",
-      price: 24990000,
-      storage: 12,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_13_green_pure_back_iphone_13_green_pure_front_2-up_screen__usen_1.png'],
-      color: 'red',
-      ram: '2GB',
-      rom: '8GB',
-      brand: 'iphone',
-      typePhone: 'Iphone(iOS)',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp cận cảnh(macro)',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Apple",
-      Sale: "11%",
-      countSold: 13,
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "Samsung Galaxy S22 Ultra (8GB - 128GB)",
-      price: 30990000,
-      storage: 12,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_phantomwhite_211119.jpg'],
-      color: 'red',
-      ram: '2GB',
-      rom: '8GB',
-      brand: 'Samsung',
-      typePhone: 'Iphone(iOS)',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp cận cảnh(macro)',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Samsung",
-      Sale: "25%",
-      countSold: 13,
-    },
-  ];
   let product = [
     { ten: 'Bikini', gia: 300, soLuong: 13, select: false, SL: 1, },
     { ten: 'Sơ mi ', gia: 300, soLuong: 14, select: false, SL: 1 },
@@ -329,591 +92,26 @@ function App() {
     { ten: 'Hoa', gia: 10, soLuong: 8, select: false, SL: 1 },
     { ten: 'Quần âu', gia: 370, soLuong: 9, select: false, SL: 1 },
   ]
-  const productList = [
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "iPhone 11 64GB I Chính hãng VN/A",
-      price: 18000000,
-      priceReferent: 'dưới 2tr',
-      storage: 12,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_11_white_4_.png'],
-      color: 'red',
-      ram: '4GB',
-      rom: '16GB',
-      brand: 'Itel',
-      typePhone: 'Iphone(iOS)',
-      performance: 'Pin khủng trên 5000 mAh',
-      camera: 'chụp xóa phông',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Apple",
-      Sale: "15%",
-      countSold: 13,
-      date_sale: 'Thu May 19 2022 14:42:57 GMT+0700'
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "iPhone 12 mini 128GB I Chính hãng VN/A",
-      price: 20990000,
-      priceReferent: 'dưới 2tr',
-      storage: 12,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_12_mini_purple.png'],
-      color: 'red',
-      ram: '2GB',
-      rom: '8GB',
-      brand: 'Itel',
-      typePhone: 'Iphone(iOS)',
-      performance: 'Pin khủng trên 5000 mAh',
-      camera: 'chụp cận cảnh(macro)',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Apple",
-      Sale: "12%",
-      countSold: 413,
-      date_sale: 'Thu May 19 2022 14:42:57 GMT+0700'
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "Điện thoại OPPO Reno7",
-      price: 24990000,
-      priceReferent: 'dưới 2tr',
-      storage: 12,
-      productPic: ['https://cdn.tgdd.vn/Products/Images/42/274721/oppo-reno7-4g-1-1.jpg'],
-      color: 'red',
-      ram: '3GB',
-      rom: '8GB',
-      brand: 'Oppo',
-      typePhone: 'Iphone(iOS)',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp xóa phông',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Apple",
-      Sale: "11%",
-      countSold: 13,
-      date_sale: 'Thu May 19 2022 14:42:57 GMT+0700'
-    
-    }
-    ,
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "Điện thoại OPPO Reno7",
-      price: 24990000,
-      priceReferent: 'dưới 2tr',
-      storage: 12,
-      productPic: ['https://cdn.tgdd.vn/Products/Images/42/274721/oppo-reno7-4g-1-1.jpg'],
-      color: 'red',
-      ram: '4GB',
-      rom: '8GB',
-      brand: 'Oppo',
-      typePhone: 'Iphone(iOS)',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp xóa phông',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Apple",
-      Sale: "11%",
-      countSold: 13,
-      date_sale: 'Thu May 19 2022 14:42:57 GMT+0700'
-    },
-
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "Samsung Galaxy S22 Ultra (8GB - 128GB)",
-      price: 30990000,
-      priceReferent: 'dưới 2tr',
-      storage: 12,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_phantomwhite_211119.jpg'],
-      color: 'red',
-      ram: '6GB',
-      rom: '8GB',
-      brand: 'Samsung',
-      typePhone: 'android',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp cận cảnh(macro)',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Samsung",
-      Sale: "25%",
-      countSold: 13,
-      date_sale: 'Thu May 19 2022 14:42:57 GMT+0700'
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "iPhone 11 64GB I Chính hãng VN/A",
-      price: 18000000,
-      priceReferent: 'dưới 2tr',
-      storage: 12,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_11_white_4_.png'],
-      color: 'red',
-      ram: '8GB',
-      rom: '2GB',
-      brand: 'Itel',
-      typePhone: 'Iphone(iOS)',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp cận cảnh(macro)',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Apple",
-      Sale: "15%",
-      countSold: 13,
-      date_sale: 'Thu May 19 2022 14:42:57 GMT+0700'
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "iPhone 12 mini 128GB I Chính hãng VN/A",
-      price: 20990000,
-      priceReferent: 'dưới 2tr',
-      storage: 12,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_12_mini_purple.png'],
-      color: 'red',
-      ram: '4GB',
-      rom: '32GB',
-      brand: 'Itel',
-      typePhone: 'Iphone(iOS)',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp cận cảnh(macro)',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Apple",
-      Sale: "12%",
-      countSold: 13,
-      date_sale: 'Thu May 19 2022 14:42:57 GMT+0700'
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "iPhone 13 128GB - Xanh lá | Chính hãng VN/A",
-      price: 24990000,
-      priceReferent: 'dưới 2tr',
-      storage: 12,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_13_green_pure_back_iphone_13_green_pure_front_2-up_screen__usen_1.png'],
-      color: 'red',
-      ram: '8GB',
-      rom: '64GB',
-      brand: 'iphone',
-      typePhone: 'Iphone(iOS)',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp cận cảnh(macro)',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Apple",
-      Sale: "11%",
-      countSold: 13,
-      date_sale: 'Thu May 19 2022 14:42:57 GMT+0700'
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "Samsung Galaxy S22 Ultra (8GB - 128GB)",
-      price: 30990000,
-      priceReferent: 'dưới 2tr',
-      storage: 12,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_phantomwhite_211119.jpg'],
-      color: 'red',
-      ram: '4GB',
-      rom: '256GB',
-      brand: 'Samsung',
-      typePhone: 'android',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp cận cảnh(macro)',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Samsung",
-      Sale: "25%",
-      countSold: 13,
-      date_sale: 'Thu May 19 2022 14:42:57 GMT+0700'
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "iPhone 11 64GB I Chính hãng VN/A",
-      price: 18000000,
-      priceReferent: 'dưới 2tr',
-      storage: 12,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_11_white_4_.png'],
-      color: 'red',
-      ram: '12GB',
-      rom: '128GB',
-      brand: 'Iphone',
-      typePhone: 'Iphone(iOS)',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp cận cảnh(macro)',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Apple",
-      Sale: "15%",
-      countSold: 13,
-      date_sale: 'Thu May 19 2022 14:42:57 GMT+0700'
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "iPhone 12 mini 128GB I Chính hãng VN/A",
-      price: 20990000,
-      priceReferent: 'dưới 2tr',
-      storage: 12,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_12_mini_purple.png'],
-      color: 'red',
-      ram: '2GB',
-      rom: '8GB',
-      brand: 'Iphone',
-      typePhone: 'Iphone(iOS)',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp cận cảnh(macro)',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Apple",
-      Sale: "12%",
-      countSold: 13,
-      date_sale: 'Thu May 19 2022 14:42:57 GMT+0700'
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "iPhone 13 128GB - Xanh lá | Chính hãng VN/A",
-      price: 24990000,
-      priceReferent: 'dưới 2tr',
-      storage: 56,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_13_green_pure_back_iphone_13_green_pure_front_2-up_screen__usen_1.png'],
-      color: 'red',
-      ram: '2GB',
-      rom: '8GB',
-      brand: 'iphone',
-      typePhone: 'Iphone(iOS)',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp cận cảnh(macro)',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Apple",
-      Sale: "11%",
-      countSold: 13,
-      date_sale: 'Thu May 19 2022 14:42:57 GMT+0700'
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "Samsung Galaxy S22 Ultra (8GB - 128GB)",
-      price: 30990000,
-      priceReferent: 'dưới 2tr',
-      storage: 9,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_phantomwhite_211119.jpg'],
-      color: 'red',
-      ram: '2GB',
-      rom: '8GB',
-      brand: 'Samsung',
-      typePhone: 'Iphone(iOS)',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp cận cảnh(macro)',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Samsung",
-      Sale: "25%",
-      countSold: 13,
-      date_sale: 'Thu May 19 2022 10:42:50 GMT+0700'
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "iPhone 11 64GB I Chính hãng VN/A",
-      price: 18000000,
-      priceReferent: 'dưới 2tr',
-      storage: 7,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_11_white_4_.png'],
-      color: 'red',
-      ram: '4GB',
-      rom: '8GB',
-      brand: 'Iphone',
-      typePhone: 'Iphone(iOS)',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp cận cảnh(macro)',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Apple",
-      Sale: "15%",
-      countSold: 45,
-      date_sale: 'Thu May 19 2022 14:42:57 GMT+0700'
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "iPhone 12 mini 128GB I Chính hãng VN/A",
-      price: 20990000,
-      priceReferent: 'dưới 2tr',
-      storage: 2,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_12_mini_purple.png'],
-      color: 'red',
-      ram: '2GB',
-      rom: '8GB',
-      brand: 'Iphone',
-      typePhone: 'Iphone(iOS)',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp cận cảnh(macro)',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Apple",
-      Sale: "12%",
-      countSold: 45,
-      date_sale: 'Thu May 19 2022 14:42:57 GMT+0700'
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "iPhone 13 128GB - Xanh lá | Chính hãng VN/A",
-      price: 24990000,
-      priceReferent: 'dưới 2tr',
-      storage: 172,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_13_green_pure_back_iphone_13_green_pure_front_2-up_screen__usen_1.png'],
-      color: 'red',
-      ram: '2GB',
-      rom: '8GB',
-      brand: 'iphone',
-      typePhone: 'Iphone(iOS)',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp cận cảnh(macro)',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Apple",
-      Sale: "11%",
-      countSold: 73,
-      date_sale: 'Thu May 19 2022 14:42:57 GMT+0700'
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "Samsung Galaxy S22 Ultra (8GB - 128GB)",
-      price: 30990000,
-      priceReferent: 'dưới 2tr',
-      storage: 1,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_phantomwhite_211119.jpg'],
-      color: 'red',
-      ram: '2GB',
-      rom: '8GB',
-      brand: 'Samsung',
-      typePhone: 'Điện thoại phổ thông',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp cận cảnh(macro)',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Samsung",
-      Sale: "25%",
-      countSold: 4,
-      date_sale: 'Thu May 19 2022 14:42:57 GMT+0700'
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "iPhone 11 64GB I Chính hãng VN/A",
-      price: 18000000,
-      priceReferent: 'dưới 2tr',
-      storage: 122,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_11_white_4_.png'],
-      color: 'red',
-      ram: '4GB',
-      rom: '8GB',
-      brand: 'Iphone',
-      typePhone: 'Iphone(iOS)',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp cận cảnh(macro)',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Apple",
-      Sale: "15%",
-      countSold: 17,
-      date_sale: 'Thu May 19 2022 14:42:57 GMT+0700'
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "iPhone 12 mini 128GB I Chính hãng VN/A",
-      price: 20990000,
-      priceReferent: 'dưới 2tr',
-      storage: 12,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_12_mini_purple.png'],
-      color: 'red',
-      ram: '2GB',
-      rom: '8GB',
-      brand: 'Iphone',
-      typePhone: 'Iphone(iOS)',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp cận cảnh(macro)',
-      special_features: 'Bảo mật khuôn mặt',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Apple",
-      Sale: "12%",
-      countSold: 7,
-      date_sale: 'Thu May 19 2022 14:42:57 GMT+0700'
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "iPhone 13 128GB - Xanh lá | Chính hãng VN/A",
-      price: 24990000,
-      priceReferent: 'dưới 2tr',
-      storage: 12,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_13_green_pure_back_iphone_13_green_pure_front_2-up_screen__usen_1.png'],
-      color: 'red',
-      ram: '2GB',
-      rom: '8GB',
-      brand: 'iphone',
-      typePhone: 'Iphone(iOS)',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp cận cảnh(macro)',
-      special_features: 'Bảo mật khuôn mặt',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Apple",
-      Sale: "11%",
-      countSold: 6,
-      date_sale: 'Thu May 19 2022 14:42:57 GMT+0700'
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "Samsung Galaxy S22 Ultra (8GB - 128GB)",
-      price: 30990000,
-      priceReferent: 'dưới 2tr',
-      storage: 12,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_phantomwhite_211119.jpg'],
-      color: 'red',
-      ram: '2GB',
-      rom: '8GB',
-      brand: 'Samsung',
-      typePhone: 'Iphone(iOS)',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp cận cảnh(macro)',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Samsung",
-      Sale: "25%",
-      countSold: 4,
-      date_sale: 'Thu May 19 2022 14:42:57 GMT+0700'
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "iPhone 11 64GB I Chính hãng VN/A",
-      price: 18000000,
-      priceReferent: 'dưới 2tr',
-      storage: 12,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_11_white_4_.png'],
-      color: 'red',
-      ram: '4GB',
-      rom: '8GB',
-      brand: 'Iphone',
-      typePhone: 'Iphone(iOS)',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp cận cảnh(macro)',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Apple",
-      Sale: "15%",
-      countSold: 4,
-      date_sale: 'Thu May 19 2022 14:42:51 GMT+0700'
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "iPhone 12 mini 128GB I Chính hãng VN/A",
-      price: 20990000,
-      priceReferent: 'dưới 2tr',
-      storage: 12,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_12_mini_purple.png'],
-      color: 'red',
-      ram: '2GB',
-      rom: '8GB',
-      brand: 'Iphone',
-      typePhone: 'Iphone(iOS)',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp cận cảnh(macro)',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Apple",
-      Sale: "12%",
-      countSold: 3,
-      date_sale: 'Thu May 19 2022 14:42:56 GMT+0700'
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "iPhone 13 128GB - Xanh lá | Chính hãng VN/A",
-      price: 24990000,
-      priceReferent: 'từ 2-4tr',
-      storage: 12,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_13_green_pure_back_iphone_13_green_pure_front_2-up_screen__usen_1.png'],
-      color: 'red',
-      ram: '16GB',
-      rom: '16GB',
-      brand: 'iphone',
-      typePhone: 'Iphone(iOS)',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp cận cảnh(macro)',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Apple",
-      Sale: "11%",
-      countSold: 133,
-      date_sale: 'Thu May 19 2022 14:42:54 GMT+0700'
-    },
-    {
-      id: 1234325,
-      idCategory: 12355,
-      ProductName: "Samsung Galaxy S22 Ultra (8GB - 128GB)",
-      price: 30990000,
-      priceReferent: 'dưới 2tr',
-      storage: 12,
-      productPic: ['https://image.cellphones.com.vn/358x/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_phantomwhite_211119.jpg'],
-      color: 'red',
-      ram: '2GB',
-      rom: '8GB',
-      brand: 'Samsung',
-      typePhone: 'Iphone(iOS)',
-      performance: 'chơi game/cấu hình cao',
-      camera: 'chụp cận cảnh(macro)',
-      special_features: 'Tràn viền',
-      design: 'Mỏng nhẹ',
-      panel: 'nhỏ gọn dễ cầm',
-      Category: "Samsung",
-      Sale: "25%",
-      countSold: 23,
-      date_sale: 'Thu May 19 2022 14:42:23 GMT+0700'
-    },
-  ]
-
+ let productCode = []
+  // const [ProductList, setProductList] = useState(listProductCode.listProductCode)
   const [ProductList, setProductList] = useState(productList)
-
+  //---------------------------
+  // axious project sellMobilePhone
+  // useEffect(() => {
+  //     axios.get('http://localhost:3150/user/fillter?idCategories=628c8b29e8654d960a5c8983')
+  //       .then(function (res) {
+  //         // setDataDuy(res.data.product)
+  //         // setShow(res.data.product.slice(0, 2))
+  //         console.log(932,res.data.listProductCode)
+  //         setProductList(res.data.listProductCode)
+  //       })
+  //       .catch((err) => {
+  //         console.log(err)
+  //       })
+  //   }, [count1]);
   let cart = [];
   let budget = 10000000;
+
   const [data, setData] = useState(product)
   const [dataCart, setDataCart] = useState(cart)
   const [dataProduct, setDataProduce] = useState(productCode)
@@ -941,7 +139,7 @@ function App() {
   function changeWallet(newData) {
     setWallet(wallet + newData)
   }
-  function changeFilterData(dataFilter){
+  function changeFilterData(dataFilter) {
     setDataFilter(dataFilter)
   }
   function loadagain() {
@@ -950,30 +148,30 @@ function App() {
   function setagain(newab) {
     setShow(newab)
   }
-   // -------------------function biến đổi tiếng việt có dấu thành không dấu.
-   function removeAccents(str) {
+  // -------------------function biến đổi tiếng việt có dấu thành không dấu.
+  function removeAccents(str) {
     var AccentsMap = [
-        "aàảãáạăằẳẵắặâầẩẫấậ",
-        "AÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬ",
-        "dđ", "DĐ",
-        "eèẻẽéẹêềểễếệ",
-        "EÈẺẼÉẸÊỀỂỄẾỆ",
-        "iìỉĩíị",
-        "IÌỈĨÍỊ",
-        "oòỏõóọôồổỗốộơờởỡớợ",
-        "OÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢ",
-        "uùủũúụưừửữứự",
-        "UÙỦŨÚỤƯỪỬỮỨỰ",
-        "yỳỷỹýỵ",
-        "YỲỶỸÝỴ"
+      "aàảãáạăằẳẵắặâầẩẫấậ",
+      "AÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬ",
+      "dđ", "DĐ",
+      "eèẻẽéẹêềểễếệ",
+      "EÈẺẼÉẸÊỀỂỄẾỆ",
+      "iìỉĩíị",
+      "IÌỈĨÍỊ",
+      "oòỏõóọôồổỗốộơờởỡớợ",
+      "OÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢ",
+      "uùủũúụưừửữứự",
+      "UÙỦŨÚỤƯỪỬỮỨỰ",
+      "yỳỷỹýỵ",
+      "YỲỶỸÝỴ"
     ];
     for (var i = 0; i < AccentsMap.length; i++) {
-        var re = new RegExp('[' + AccentsMap[i].substr(1) + ']', 'g');
-        var char = AccentsMap[i][0];
-        str = str.replace(re, char);
+      var re = new RegExp('[' + AccentsMap[i].substr(1) + ']', 'g');
+      var char = AccentsMap[i][0];
+      str = str.replace(re, char);
     }
     return str;
-}
+  }
   return (
     <div className="App">
       <BrowserRouter>
@@ -985,57 +183,57 @@ function App() {
             <Route path="/axiosduy" element={<AxiosDuy data={dataDuy} loadagain={loadagain} show={show} setagain={setagain} />}></Route>
             {dataFilter.map((val, i) => {
               return (
-                <Route path={`/product/filter/${removeAccents(val.ProductName).split(' ').join('')}`} element={<ProductChild dataFilter = {dataFilter} chimuc={i} dataval={ProductList} data={data} up={up} changeCart2={changeCart2} changeState={changeState} changeStateProduct={changeStateProduct} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} />} />
+                <Route path={`/product/filter/${removeAccents(val.ProductName).split(' ').join('')}`} element={<ProductChild dataFilter={dataFilter} chimuc={i} dataval={ProductList} data={data} up={up} changeCart2={changeCart2} changeState={changeState} changeStateProduct={changeStateProduct} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} />} />
               )
             })}
             {/* route for filter brand */}
             {filterProduct.brand.map((val, i) => {
-              return (<Route path={`/product/filter`} element={<FilterProduct referent='brand'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />}/>)
+              return (<Route path={`/product/filter`} element={<FilterProduct referent='brand' chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />)
 
             })}
             {/* route for filter giá */}
             {filterProduct.price.map((val, i) => {
-              return (<Route path={`/product/filter`} element={<FilterProduct referent='price'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />}/>)
+              return (<Route path={`/product/filter`} element={<FilterProduct referent='price' chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />)
             })}
             {/* route for filter loại điện thoại */}
             {filterProduct.typePhone.map((val, i) => {
-                
-              return (<Route path={`/product/filter`} element={<FilterProduct referent='typePhone'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />}/>)
+
+              return (<Route path={`/product/filter`} element={<FilterProduct referent='typePhone' chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />)
 
             })}
             {/* route for filter hiệu năng và pin */}
             {filterProduct.performance.map((val, i) => {
-              return (<Route path={`/product/filter`}  element={<FilterProduct referent='performance'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />}/>)
+              return (<Route path={`/product/filter`} element={<FilterProduct referent='performance' chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />)
 
             })}
             {/* route for filter ram */}
             {filterProduct.ram.map((val, i) => {
-              return (<Route path={`/product/filter`} element={<FilterProduct referent='ram'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />}/>)
+              return (<Route path={`/product/filter`} element={<FilterProduct referent='ram' chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />)
 
             })}
-             {/* route for filter bộ nhớ trong */}
-             {filterProduct.rom.map((val, i) => {
-              return (<Route path={`/product/filter`} element={<FilterProduct referent='rom'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />}/>)
+            {/* route for filter bộ nhớ trong */}
+            {filterProduct.rom.map((val, i) => {
+              return (<Route path={`/product/filter`} element={<FilterProduct referent='rom' chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />)
 
             })}
             {/* route for filter bộ nhớ camera */}
             {filterProduct.camera.map((val, i) => {
-              return (<Route path={`/product/filter`} element={<FilterProduct referent='camera'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />)
+              return (<Route path={`/product/filter`} element={<FilterProduct referent='camera' chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />)
 
             })}
             {/* route for filter special feature */}
             {filterProduct.special_features.map((val, i) => {
-              return (<Route path={`/product/filter`}  element={<FilterProduct referent='special'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />)
+              return (<Route path={`/product/filter`} element={<FilterProduct referent='special' chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />)
 
             })}
             {/* route for filter design  */}
             {filterProduct.design.map((val, i) => {
-              return (<Route path={`/product/filter`} element={<FilterProduct referent='design'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData ={changeFilterData} />}/>)
+              return (<Route path={`/product/filter`} element={<FilterProduct referent='design' chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />)
 
             })}
             {/* route for filter panel */}
             {filterProduct.panel.map((val, i) => {
-              return (<Route path={`/product/filter`} element={<FilterProduct referent='panel'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />}/>)
+              return (<Route path={`/product/filter`} element={<FilterProduct referent='panel' chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />)
             })}
             <Route path='*' element={<>Error</>} />
           </Routes>

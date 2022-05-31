@@ -5,6 +5,7 @@ import '../asset/css/grid.css'
 import '../asset/css/responsive.css'
 import '../App.css'
 import { useNavigate } from 'react-router-dom'
+import { ConsoleSqlOutlined } from '@ant-design/icons'
 let trig = 0;
 let trig1 = 0;
 let trig2 = 0;
@@ -21,6 +22,7 @@ function FilterProduct(props) {
     // let newUpdate = props.data
     let newUpdateCart = props.dataCart
     let newUpdate = JSON.parse(JSON.stringify(props.data));
+
     function changeCart(i) {
         checka = checka + (props.data[i].gia * props.data[i].SL)
         if (checka > props.wallet) {
@@ -240,30 +242,27 @@ function FilterProduct(props) {
         })
         console.log(203, a3)
     }
-
-
-
-
-
-
-
-
-    //--------------------function xử lí lọc qua chỉ mục
-
+    //----------------------------------------------------function xử lí lọc qua chỉ mục truyền vào các chỉ mục lọc và lọc trong data những dữ liệu thỏa mãn dk
     function handleDataFollowFiler(data, ref) {
+        console.log(256, data, ref)
         let containerFilter = [];
         for (var item of ref) {
             var keyprime;
+            console.log(261, item)
             for (let key in item) {
                 keyprime = key
+                console.log(keyprime)
             }
             let temp = item[Object.keys(item)[0]]
+            console.log(263, temp)
 
             temp.forEach((val, i) => {
                 let newArray = data.filter((vallll) => {
-                    console.log(272, vallll[keyprime], keyprime)
+                    console.log(272, vallll, keyprime, vallll[keyprime], keyprime)
+                    console.log(273, val)
                     let param1 = removeAccents(vallll[keyprime])
                     let param2 = val
+                    console.log(275, param1, param2)
                     return param1.split(' ').join('') === param2
                 })
                 containerFilter.push(...newArray)
@@ -271,8 +270,8 @@ function FilterProduct(props) {
 
         }
         const uniqueSet = new Set(containerFilter);
-
         const backToArray = [...uniqueSet];
+        console.log(285, backToArray)
         return backToArray
     }
 
@@ -285,14 +284,15 @@ function FilterProduct(props) {
         commonButton.classList.add('btn--primary')
     }, [])
 
-    // xử lí sau khi lọc xong thì  sort lai
 
-    var myJSON = JSON.parse(JSON.stringify(handleDataFollowFiler(props.dataval, a3)));
-
+    // ---------------------------------------------------xử lí sau khi lọc xong thì  sort lại. trình tự là lọc xong các chỉ mục và đối chiếu sang sort
+    console.log(292, props.dataval)
+    var myJSON = JSON.parse(JSON.stringify(handleDataFollowFiler(props.dataval, a3))); //sao chép 
     myJSON.sort((a, b) => {
-        console.log(326, a, b)
-        return a.storage - b.storage
+        // console.log(326, a, b)
+        return a.storage - b.storage // tạm thời sort theo storage vì chưa có trường PHỔ BIẾN
     })
+    //-----------------------------------------------------check xem nút ở bên sort có đc on hay không để thay đổi dữ liệu render theo đúng tính chất
     useEffect(() => {
         if (newstButton.classList.contains('btn--primary')) {
             myJSON.sort((a, b) => {
@@ -309,27 +309,12 @@ function FilterProduct(props) {
 
 
     console.log(217, myJSON)
+    //--------------------------------------- sử dụng useState và useEffect để lắng nghe thay đổi phía đường dẫn rồi từ đó render lại theo trường đc sort
     const [stateSort, setStateSort] = useState(myJSON)
     useEffect(() => {
         setStateSort(myJSON)
-        // let newstButton = document.querySelector('.newestButton')
-        // console.log(204, newstButton)
-        // if (newstButton.classList.contains('btn--primary')) {
-        //     console.log(111111111111111111111111111111)
-        //     newstButton.click()
-        //     newstButton.click()
-        // }
     }, [window.location.href])
 
-    // useEffect(()=>{
-    //    let rememberStatePrev = document.querySelector(`#${window.location.href.split('?')[1].split('=')[1].split('').reverse().join('')}`)
-    // console.log(301,rememberStatePrev)
-    // rememberStatePrev.classList.add('myStyle') 
-    // },[])
-    //select các button  ở 'sắp xếp theo'
-
-
-    // console.log(311,commonButton)
     function removeClass(arr) {
         for (let i = 0; i < arr.length; i++) {
             if (arr[i].classList.contains('btn--primary')) {
@@ -348,18 +333,10 @@ function FilterProduct(props) {
         myJSON.sort((a, b) => {
             return new Date(a.date_sale).getTime() - new Date(b.date_sale).getTime()
         })
-
-        // if (trig1 === 0) {
         console.log(2222)
         setStateSort([...myJSON])
         setCount(trig + 1)
         trig1++
-        // } else {
-        //     console.log(3333)
-        //     setStateSort(handleDataFollowFiler(props.dataval, a3))
-        //     trig1 = 0;
-        //     setCount(trig - 1)
-        // }
     }
 
     function sortBestSale(e) {
@@ -373,17 +350,10 @@ function FilterProduct(props) {
         })
         console.log(329, myJSON)
         console.log(330, trig)
-        // if (trig2 === 0) {
         console.log(2222)
         setStateSort([...myJSON])
         setCount(trig + 1)
         trig2++
-        // } else {
-        //     console.log(3333)
-        //     setStateSort(handleDataFollowFiler(props.dataval, a3))
-        //     trig2 = 0;
-        //     setCount(trig - 1)
-        // }
     }
 
     function sortCommon(e) {
@@ -402,8 +372,6 @@ function FilterProduct(props) {
     function sortIncressePrice(e) {
         document.querySelector('.select-input__label').innerHTML = 'Giá:    Thấp đến cao'
         document.querySelector('.select-input__label').classList.add('select-input__label-change-color')
-
-        // e.target.classList.add('btn--primary')
         console.log(1111)
         myJSON.sort((a, b) => {
             console.log(326, a, b)
@@ -411,22 +379,14 @@ function FilterProduct(props) {
         })
         console.log(329, myJSON)
         console.log(330, trig)
-        // if (trig2 === 0) {
         console.log(2222)
         setStateSort([...myJSON])
         setCount(trig + 1)
         trig4++
-        // } else {
-        //     console.log(3333)
-        //     setStateSort(handleDataFollowFiler(props.dataval, a3))
-        //     trig2 = 0;
-        //     setCount(trig - 1)
-        // }
     }
     function sortDicreasePrice(e) {
         document.querySelector('.select-input__label').innerHTML = 'Giá:    Cao đến thấp'
         document.querySelector('.select-input__label').classList.add('select-input__label-change-color')
-        // e.target.classList.add('btn--primary')
         console.log(1111)
         myJSON.sort((a, b) => {
             console.log(326, a, b)
@@ -434,24 +394,11 @@ function FilterProduct(props) {
         })
         console.log(329, myJSON)
         console.log(330, trig)
-        // if (trig2 === 0) {
         console.log(2222)
         setStateSort([...myJSON])
         setCount(trig + 1)
         trig5++
-        // } else {
-        //     console.log(3333)
-        //     setStateSort(handleDataFollowFiler(props.dataval, a3))
-        //     trig2 = 0;
-        //     setCount(trig - 1)
-        // }
     }
-    // useEffect(() => {
-    //     newstButton = document.querySelector('.newestButton')
-    //     salestButton = document.querySelector('.salestButton')
-    //     commonButton = document.querySelector('.commonButton')
-    //     commonButton.classList.add('btn--primary')
-    // }, [])
 
     return (
         <div>
@@ -682,9 +629,6 @@ function FilterProduct(props) {
                                                         <i class="home-product-item__like-icon-empty far fa-heart"></i>
                                                         <i class="home-product-item__like-icon-fill fas fa-heart"></i>
                                                     </span>
-                                                    {/* <span class="free-shipping">
-                                                        <img src={freeShip} alt="" />
-                                                    </span> */}
                                                     <div class="home-product-item__rating">
                                                         <i class="home-product-item__star--rate far fa-star"></i>
                                                         <i class="home-product-item__star--rate far fa-star"></i>
@@ -799,7 +743,7 @@ function FilterProduct(props) {
             </tr>
 
 
-            {/* giỏ hàng */}
+            {/* giỏ hàng-bài tập cũ */}
             <div className="budget gioHang">Ngân sách: <b>{props.wallet}</b>  <button onClick={topup}>Nạp tiền </button><input id="topup" type="number" /></div>
             <div className=""><i className="fa-solid fa-cart-arrow-down"></i></div>
             <div className="">Giỏ hàng</div>
