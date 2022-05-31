@@ -11,7 +11,6 @@ import TestChild3 from './Pages/TestChild3';
 import Product from './Pages/Product';
 import ProductChild from './Pages/ProductChild';
 import FilterProduct from './Pages/FilterProduct'
-
 import 'antd/dist/antd.css'//ở trong nodemodum
 // ===============================================
 // bai duy
@@ -919,14 +918,11 @@ function App() {
 
   let cart = [];
   let budget = 10000000;
-  // let totalOrder = 0;
   const [data, setData] = useState(product)
   const [dataCart, setDataCart] = useState(cart)
   const [dataProduct, setDataProduce] = useState(productCode)
   const [count, setCount] = useState(0)
   const [filter, setFilterProduct] = useState(filterProduct)
-
-  // const [order, setOrder] = useState(totalOrder)
   const [wallet, setWallet] = useState(budget)
 
   function changeCart(newData) {
