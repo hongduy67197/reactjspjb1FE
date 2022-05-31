@@ -81,7 +81,7 @@ function Home() {
         <div className="statistical">
           <div className="table">
             <div className="icon_sale">
-              <i class="fa-solid fa-wave-square"></i>
+              <i className="fa-solid fa-wave-square"></i>
             </div>
             <div className="content_sale">
               <p className="icon_title">Sales</p>
@@ -90,7 +90,7 @@ function Home() {
           </div>
           <div className="table">
             <div className="icon_order">
-              <i class="fa-solid fa-cart-shopping"></i>
+              <i className="fa-solid fa-cart-shopping"></i>
             </div>
             <div className="content_sale">
               <p className="icon_title">Orders</p>
@@ -99,7 +99,7 @@ function Home() {
           </div>
           <div className="table">
             <div className="icon_customer">
-              <i class="fa-solid fa-user-tag"></i>
+              <i className="fa-solid fa-user-tag"></i>
             </div>
             <div className="content_sale">
               <p className="icon_title">Customers</p>
@@ -108,7 +108,7 @@ function Home() {
           </div>
           <div className="table">
             <div className="icon_Income">
-              <i class="fa-solid fa-sack-dollar"></i>
+              <i className="fa-solid fa-sack-dollar"></i>
             </div>
             <div className="content_sale">
               <p className="icon_title">Income</p>
@@ -119,7 +119,7 @@ function Home() {
 
         <div className="productNew">
           <h2>New Products</h2>
-          <Table columns={columns} dataSource={data} onChange={onchange} />;
+          <Table columns={columns} dataSource={data} onChange={onchange} />
         </div>
 
         <div className="Note">
