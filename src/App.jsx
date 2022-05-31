@@ -4,10 +4,6 @@ import Header from './component/Header'
 import Footer from './component/Footer'
 import Home from './Pages/Home';
 import React, { useState, useEffect } from 'react';
-import Test from './Pages/Test';
-import TestChild1 from './Pages/TestChild';
-import TestChild2 from './Pages/TestChild2';
-import TestChild3 from './Pages/TestChild3';
 import Product from './Pages/Product';
 import ProductChild from './Pages/ProductChild';
 import FilterProduct from './Pages/FilterProduct'
@@ -986,11 +982,6 @@ function App() {
           <Routes>
             <Route path="/" element={<Home data={data} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} />}></Route>
             <Route path="/product" element={<Product filter={filter} data={ProductList} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} />}></Route>
-            <Route path="test" element={<Test data123={data123} loadagain={loadagain} />}>
-              <Route path='test1' element={<TestChild1 />}></Route>
-              <Route path='test2' element={<TestChild2 />}></Route>
-              <Route path='test3' element={<TestChild3 />}></Route>
-            </Route>
             <Route path="/axiosduy" element={<AxiosDuy data={dataDuy} loadagain={loadagain} show={show} setagain={setagain} />}></Route>
             {dataFilter.map((val, i) => {
               return (
@@ -1046,7 +1037,6 @@ function App() {
             {filterProduct.panel.map((val, i) => {
               return (<Route path={`/product/filter`} element={<FilterProduct referent='panel'  chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />}/>)
             })}
-                <Route path='/chụpgócrộng' element={<FilterProduct referent='panel'  chimuc='chụp góc rộng' dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />
             <Route path='*' element={<>Error</>} />
           </Routes>
           <Footer />

@@ -1,14 +1,10 @@
-
 import React, { useEffect, useState } from 'react'
 import '../asset/css/base.css'
 import '../asset/css/main.css'
 import '../asset/css/grid.css'
 import '../asset/css/responsive.css'
 import '../App.css'
-
 import { useNavigate } from 'react-router-dom'
-import data from './datapagi'
-// import freeShip from '../asset/img/free-ship.jpg'
 let trig = 0;
 let trig1 = 0;
 let trig2 = 0;
@@ -25,12 +21,8 @@ function FilterProduct(props) {
     // let newUpdate = props.data
     let newUpdateCart = props.dataCart
     let newUpdate = JSON.parse(JSON.stringify(props.data));
-
-
-
     function changeCart(i) {
         checka = checka + (props.data[i].gia * props.data[i].SL)
-
         if (checka > props.wallet) {
             alert('Không đủ tiền thanh toán, Hãy nạp thêm tiền để mua thêm !!!!')
             checka = checka - (props.data[i].gia * props.data[i].SL)

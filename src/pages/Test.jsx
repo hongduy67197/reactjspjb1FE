@@ -78,7 +78,7 @@ function Test(props, children) {
                     {props.data123.map((val, i) => {
                         return (
                             <tr key={i}>
-                                <td>{i + 1}]</td>
+                                <td>{i + 1}</td>
                                 <td>{val.ProductName}</td>
                                 <td>{val.Price}</td>
                                 <td>{val.Storage}</td>
