@@ -179,7 +179,6 @@ function FilterProduct(props) {
                                 console.log(1234)
                                 return 0;
                             }
-
                         }
                     console.log(166, value)
                     return value
@@ -190,36 +189,17 @@ function FilterProduct(props) {
                 if (listKey[0] === 0) {
                     link = '/product/filter'
                 } else {
-
-
                     link = '/product/filter?' + listKey.join('&')
                     let l = link.replace('&0', '')
                     link = l;
                 }
             } else {
                 link += `&${key}=${i.split(' ').join('')}`
-                console.log('tao')
             }
         }
-
         navigate(link)
     }
-    //-------------------
-    //phân tích và lọc  diomain để tạo ra trường lọc object với các giá trị được choose  
-
-    //=====================================================
-    //     let a2 = a1.split('&')
-    // var a3 = a2.map((val, i) => {
-    //     let a4 = val.split('=')
-    //     let a6 = a4[0]
-    //     a4.shift()
-    //     console.log(203,a4)
-    //     let a7 = a4[0].split(',')
-    //     let a5 = { [a6]: a7 }
-    //     return (a5)
-    // })
-
-
+    //---------------------------------------------------------phân tích và lọc  diomain để tạo ra trường lọc object với các giá trị được choose  
     let a1 = window.location.href.replace('http://localhost:3000/product/filter?', '')
     let examine = window.location.href.replace('http://localhost:3000/product/filter', '')
     if (examine === '') {
@@ -723,8 +703,6 @@ function FilterProduct(props) {
                     </tr>
                 )
             })}
-
-
             <tr id="tfootadd">
                 <td colSpan="9"><button onClick={add} id="tfootadd_button">+</button></td>
             </tr>
@@ -741,8 +719,6 @@ function FilterProduct(props) {
             <tr id="tfootconfirm">
                 <td colSpan="9"><button onClick={confirm}>confirm</button></td>
             </tr>
-
-
             {/* giỏ hàng-bài tập cũ */}
             <div className="budget gioHang">Ngân sách: <b>{props.wallet}</b>  <button onClick={topup}>Nạp tiền </button><input id="topup" type="number" /></div>
             <div className=""><i className="fa-solid fa-cart-arrow-down"></i></div>

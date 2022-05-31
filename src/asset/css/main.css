@@ -1,16 +1,16 @@
 .header {
     height: var(--header-height);
-    /* background-image: linear-gradient(0, #fe6433, #f53e2d); */
+    background-image: linear-gradient(0, #fe6433, #f53e2d);
     /* //đổ chuyển màu từ 1 phía , 0 hướng mặc định từ trên xuống,màu dưới cùng, màu trên */
 
     /* background-image: linear-gradient(270deg, #18C729, #7FEF50) */
-    background: repeating-linear-gradient(
+    /* background: repeating-linear-gradient(
         to right,
         #f6ba52c1,
         #f6ba52c1 10px,
         #ffd080b9 10px,
         #ffd080b9 20px
-      );
+      ); */
 }
 
 .header__navbar {

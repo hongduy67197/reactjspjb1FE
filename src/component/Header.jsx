@@ -4,8 +4,6 @@ import '../asset/css/base.css'
 import '../asset/css/grid.css'
 import '../asset/css/main.css'
 import '../asset/css/responsive.css'
-
-
 function header() {
   return (
     // header 

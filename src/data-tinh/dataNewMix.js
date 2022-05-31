@@ -7,7 +7,6 @@ const listProductCode =
         "628c8b29e8654d960a5c8983"
       ],
       "productName": "iPhone 13 Pro",
-      'brand': 'Iphone',
       "thumNail": "/views\\assets\\img\\productCodeThumnail\\thumNail-1653463517056.jpg",
       "productType": "iOS",
       "performanceProduct": "3095 mAh, Sạc không dây, Sạc không dây MagSafe, Sạc pin nhanh",
@@ -202,11 +201,10 @@ const listProductCode =
         "628c8b29e8654d960a5c8983"
       ],
       "productName": "iPhone 12 Pro",
-      'brand': 'Iphone',
       "thumNail": "/views\\assets\\img\\productCodeThumnail\\thumNail-1653463626031.jpg",
       "productType": "iOS",
       "performanceProduct": "2815 mAh, Sạc không dây, Sạc không dây MagSafe,  Sạc pin nhanh",
-      "cameraProduct": "3 camera 12 MP",
+      "cameraProduct": "3 camera 12 MP",  
       "specialFeatures": "Mở khoá khuôn mặt Face ID",
       "design": "Khung thép không gỉ & Mặt lưng kính cường lực",
       "panel": "6.1\" - Tần số quét 60 Hz",
@@ -222,7 +220,6 @@ const listProductCode =
         "628c8b29e8654d960a5c8983"
       ],
       "productName": "iPhone 11",
-      'brand': 'Iphone',
       "thumNail": "/views\\assets\\img\\productCodeThumnail\\thumNail-1653464024639.jpg",
       "productType": "iOS",
       "performanceProduct": "3110 mAh, Sạc không dây, Sạc pin nhanh",
