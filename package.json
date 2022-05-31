@@ -1,5 +1,5 @@
 {
-  "name": "reactpjb1",
+  "name": "du-an",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,6 +12,7 @@
     "@fortawesome/react-fontawesome": "^0.1.18",
     "@mui/icons-material": "^5.8.0",
     "@mui/material": "^5.8.0",
+    "@ant-design/icons": "^4.7.0",
     "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
@@ -28,6 +29,11 @@
     "react-scripts": "5.0.1",
     "react-toastify": "^9.0.1",
     "sweetalert": "^2.1.2",
+    "antd": "^4.20.5",
+    "react-icons": "^4.3.1",
+    "react-slick": "^0.29.0",
+    "redux": "^4.2.0",
+    "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
