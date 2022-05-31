@@ -2,20 +2,20 @@
 import './App.css';
 import Header from './component/Header'
 import Footer from './component/Footer'
-import Home from './pages/Home';
+import Home from './Pages/Home';
 import React, { useState, useEffect } from 'react';
-import Test from './pages/Test';
-import TestChild1 from './pages/TestChild';
-import TestChild2 from './pages/TestChild2';
-import TestChild3 from './pages/TestChild3';
-import Product from './pages/Product';
-import ProductChild from './pages/ProductChild';
-import FilterProduct from './pages/FilterProduct'
+import Test from './Pages/Test';
+import TestChild1 from './Pages/TestChild';
+import TestChild2 from './Pages/TestChild2';
+import TestChild3 from './Pages/TestChild3';
+import Product from './Pages/Product';
+import ProductChild from './Pages/ProductChild';
+import FilterProduct from './Pages/FilterProduct'
 
 import 'antd/dist/antd.css'//ở trong nodemodum
 // ===============================================
 // bai duy
-import AxiosDuy from './pages/AxiosDuy'
+import AxiosDuy from './Pages/AxiosDuy'
 import {
   BrowserRouter,
   Routes,
@@ -25,10 +25,7 @@ import axios from "axios";
 import ContextProvider from './componentContext/ContextProvider';
 // ================================================
 // antd import 
-import Antd from './pages/Antd'
-
-
-var dataProducts1;
+import Antd from './Pages/Antd'
 
 function App() {
 
