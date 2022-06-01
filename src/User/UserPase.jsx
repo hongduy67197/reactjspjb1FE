@@ -38,11 +38,11 @@ function getCookie(cname) {
   }
   return "";
 }
-function UserPase(props) {
+function UserPase() {
   const userInfo = useSelector(function (state) {
     return state.user;
   });
-  console.log(45, userInfo);
+
   const [user, setUser] = useState([]);
   useEffect(() => {
     async function getUserInfo() {
@@ -57,7 +57,7 @@ function UserPase(props) {
     }
     getUserInfo();
   }, []);
-  console.log(53, user);
+
   function onof_comment() {
     document.querySelector(".comment").style.display = "block";
     document.querySelector(".mypage").style.display = "none";
@@ -235,7 +235,7 @@ function UserPase(props) {
           {/* bật tắt, chuyển trang MYPAGE */}
           <div className="onof_mypage">
             <div className="hoso">
-              <MyPage></MyPage>
+              <MyPage user={user}></MyPage>
             </div>
             <div className="bank">
               <Bank></Bank>

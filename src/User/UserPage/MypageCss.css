@@ -137,26 +137,88 @@
   width: 30%;
   border-left: 1px solid rgb(238, 230, 230);
   position: relative;
-  height: 200px;
+  height: 250px;
 }
 .mypage_conter_imager img {
-  width: 100px;
+  width: 150px;
+  min-height: 150px;
   position: absolute;
   top: 0;
   left: 26%;
+  border-radius: 50%;
 }
-.mypage_conter_imager button {
+/* .mypage_conter_imager button {
   position: absolute;
   top: 110px;
   left: 29%;
   border: 1px solid rgb(213, 204, 204);
   padding: 8px 15px;
   background-color: transparent;
+} */
+.input_file {
+  position: absolute;
+  top: 170px;
+  left: 29%;
+  color: red;
+}
+.NewPhone_,
+.newEmail_ {
+  border: 1px solid rgb(232, 219, 219);
+  border-radius: 3px;
+  background-color: #fff;
+  position: fixed;
+  top: 10px;
+  left: 45%;
+  height: 150px;
+  width: 300px;
+  padding: 10px;
+  box-sizing: border-box;
+  display: none;
+}
+.NewPhone_ span,
+.newEmail_ span {
+  font-size: 16px;
+}
+.NewPhone_ input,
+.newEmail_ input {
+  width: 93%;
+  margin: 0 auto;
+  position: absolute;
+  bottom: 60px;
+  left: 10px;
+  padding: 8px;
+}
+.close {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 6px 16px;
+  border: none;
+  font-size: 18px;
+  background-color: #ee4d2d;
+  color: #ffffff;
+  border-radius: 3px;
+}
+.update {
+  position: absolute;
+  bottom: 10px;
+  right: 120px;
+  padding: 6px 26px;
+  border: none;
+  font-size: 18px;
+  background-color: #05a;
+  color: #ffffff;
+  border-radius: 3px;
+}
+.thaydoi {
+  margin-left: 10px;
+  color: #05a;
+  cursor: pointer;
 }
 .mypage_conter_imager span {
   position: absolute;
   bottom: 0;
-  left: 20%;
+  left: 30%;
   opacity: 0.6;
 }
 .mypage_conter_imager p {

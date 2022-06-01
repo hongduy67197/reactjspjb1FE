@@ -88,22 +88,7 @@ function UserLogin(props) {
   function clean_password() {
     document.querySelector(".login_password_text").innerHTML = "";
   }
-  // Điều kiện đăng nhập Email
-  // function userFor(x, arr) {
-  //   for (let a = 0; a < arr.length; a++) {
-  //     if (x === arr[a].email) {
-  //       return true;
-  //     }
-  //   }
-  // }
-  // Điều kiện đăng nhập Password
-  // function passwordFor(y, arr) {
-  //   for (let a = 0; a < arr.length; a++) {
-  //     if (y === arr[a].password) {
-  //       return true;
-  //     }
-  //   }
-  // }
+
   function singIn_next() {
     navigate("/user/UserSingIn");
     document.querySelector(".ofcanva_modal_close").click();

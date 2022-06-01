@@ -4,8 +4,14 @@ import order from "../../assets/images/orders.png";
 import comment from "../../assets/images/comment.png";
 import voucher from "../../assets/images/voucher.png";
 import userlogo from "../../assets/images/userlogo.jpg";
+import { useSelector } from "react-redux";
 import "./MenuCss.css";
 function Menu(props) {
+  const userInfo = useSelector(function (state) {
+    return state.user;
+  });
+  const userName = userInfo.username ? userInfo.username : "hello";
+  const userAvatar = userInfo.avatar ? userInfo.avatar : userlogo;
   function onof_mypage() {
     props.onof_hoso();
     props.on_mypage();
@@ -67,8 +73,8 @@ function Menu(props) {
   return (
     <div className="menu_">
       <div className="menu_header">
-        <img src={userlogo} alt="img" />
-        <span>hello</span>
+        <img src={userAvatar} alt="img" />
+        <span>{userName}</span>
         <button onClick={onof_mypage}>
           <i className="fa-solid fa-pen"></i>Sửa Hồ Sơ
         </button>
