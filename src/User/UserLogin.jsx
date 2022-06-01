@@ -25,9 +25,7 @@ function UserLogin(props) {
   const user = useContext(Context).user;
   const id = useContext(Context).id;
   const setId = useContext(Context).setId;
-  // console.log(user);
-  // console.log(12, user.user[0]);
-  // console.log(props.user[props.user.length - 1].email);
+
   async function submit() {
     let email = document.querySelector(".login_conter_modal_email").value;
     let password = document.querySelector(".login_conter_modal_password").value;
@@ -39,7 +37,7 @@ function UserLogin(props) {
         "Vui lòng nhập Password";
     } else {
       let res = await axios.post("/user/login", { email, password });
-      console.log(42, res);
+      console.log(42, res.data.data.token);
       setCookie("user", res.data.data.token, 30);
       const action = Login({
         // username: res.data.data.user.username,
@@ -48,7 +46,7 @@ function UserLogin(props) {
         // code: res.data.data.user.code,
         // email: res.data.data.user.email,
         // phone: res.data.data.user.phone,
-        // role: res.data.data.user.role,
+        role: res.data.data.role,
       });
       console.log(53, action);
       dispatch(action);

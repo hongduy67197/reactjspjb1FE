@@ -23,7 +23,7 @@
   width: 70%;
   display: flex;
 }
-/* LEGHT */
+/* ------------------------------LEGHT --------------------------*/
 .mypage_conter_user_leght {
   width: 20%;
   margin-right: 15px;
@@ -33,41 +33,37 @@
 }
 .mypage_leght_user {
   position: absolute;
-  top: 10px;
+  top: 30px;
   right: 5px;
 }
 .mypage_leght_name {
   position: absolute;
-  top: 96px;
+  top: 125px;
   right: 5px;
 }
 .mypage_leght_email {
   position: absolute;
-  top: 150px;
+  top: 200px;
   right: 5px;
 }
 .mypage_leght_phone {
   position: absolute;
-  top: 190px;
+  top: 265px;
   right: 5px;
 }
-.mypage_leght_shopname {
-  position: absolute;
-  top: 250px;
-  right: 5px;
-}
+
 .mypage_leght_check {
   position: absolute;
-  top: 298px;
+  top: 340px;
   right: 5px;
 }
 .mypage_leght_date {
   position: absolute;
-  top: 362px;
+  top: 400px;
   right: 5px;
 }
 
-/* RIGHT */
+/* -----------------------------RIGHT---------------------- */
 .mypage_conter_user_right {
   width: 80%;
   position: relative;
@@ -75,19 +71,34 @@
 .mypage_conter_user_right label {
   margin: 0 10px 0 0;
 }
-.mypage_right_user,
-.mypage_right_name {
+.mypage_right_user {
+  position: absolute;
+  top: 20px;
   width: 400px;
-  padding: 8px;
+  padding: 10px;
+}
+.mypage_right_name {
+  position: absolute;
+  top: 120px;
+  width: 400px;
+  padding: 10px;
 }
 .mypage_right_text {
   margin: 0 0 20px;
   opacity: 0.7;
   font-size: 16px;
+  position: absolute;
+  top: 70px;
 }
 .mypage_right_email1 {
   position: absolute;
-  top: 150px;
+  top: 200px;
+  font-size: 18px;
+}
+.newEmail_text,
+.newPhone_text {
+  display: none;
+  color: #ee4d2d;
 }
 .mypage_right_email1 a,
 .mypage_right_phone1 a {
@@ -96,26 +107,29 @@
 }
 .mypage_right_phone1 {
   position: absolute;
-  top: 190px;
+  top: 265px;
+  font-size: 18px;
 }
+
 .mypage_right_shopname {
   position: absolute;
-  top: 240px;
+  top: 370px;
   left: 0;
   width: 400px;
   padding: 8px;
 }
 .mypage_right_check {
   position: absolute;
-  top: 300px;
+  top: 340px;
   left: -5px;
+  font-size: 18px;
 }
 .mypage_right_check input {
   margin: 0 5px;
 }
 .mypage_right_date {
   position: absolute;
-  top: 350px;
+  top: 390px;
   left: 0;
   display: flex;
 }
@@ -125,36 +139,32 @@
 }
 .mypage_right_update {
   position: absolute;
-  top: 440px;
+  top: 500px;
   left: 0;
-  padding: 10px 30px;
+  padding: 8px 30px;
   border: none;
+  font-size: 20px;
   background-color: #ee4d2d;
   color: #ffffff;
   border-radius: 3px;
 }
+/* ---------------------IMG------------------ */
 .mypage_conter_imager {
   width: 30%;
   border-left: 1px solid rgb(238, 230, 230);
   position: relative;
   height: 250px;
 }
-.mypage_conter_imager img {
+
+.chooseImage {
   width: 150px;
   min-height: 150px;
+  border-radius: 50%;
   position: absolute;
   top: 0;
   left: 26%;
-  border-radius: 50%;
 }
-/* .mypage_conter_imager button {
-  position: absolute;
-  top: 110px;
-  left: 29%;
-  border: 1px solid rgb(213, 204, 204);
-  padding: 8px 15px;
-  background-color: transparent;
-} */
+
 .input_file {
   position: absolute;
   top: 170px;
@@ -214,6 +224,7 @@
   margin-left: 10px;
   color: #05a;
   cursor: pointer;
+  margin-right: 10px;
 }
 .mypage_conter_imager span {
   position: absolute;

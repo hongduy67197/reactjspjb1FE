@@ -4,6 +4,7 @@ import "../../UserPage/MypageCss.css";
 import { useSelector } from "react-redux";
 import axios from "../../../axios";
 import { CloseSquareFilled } from "@ant-design/icons";
+import { render } from "@testing-library/react";
 
 function MyPage() {
   const userInfo = useSelector(function (state) {
@@ -11,11 +12,17 @@ function MyPage() {
   });
   console.log("userinfo", userInfo);
   const [image, setImage] = useState("");
-  function img_file() {
-    document.querySelector(".input_file_img").click();
-  }
+
   // ảnh đại diện
-  const avatr = userInfo.avatar ? userInfo.avatar : userlogo;
+  const avatr = userInfo.avatar
+    ? function setAvatar() {
+        if (userInfo.avatar === image) {
+          return userInfo;
+        } else {
+          return image;
+        }
+      }
+    : userlogo;
 
   // ?\
 
@@ -38,48 +45,74 @@ function MyPage() {
   //     console.log(error);
   //
 
+  // thay đổi ảnh đại diện
   function choosefile(fileinput) {
     const imager = document.querySelector(".input_file");
-    console.log(43, imager.files);
-
     const fileReader = new FileReader();
     fileReader.readAsDataURL(imager.files[0]);
     fileReader.addEventListener("load", function () {
       setImage(this.result);
       document.querySelector(".chooseImage").setAttribute("src", this.result);
-      console.log(48, this.result);
-      console.log(49, document.querySelector(".chooseImage"));
     });
 
-    // console.log(fileinput);
-
-    // if (fileinput.files && fileinput.files[0]) {
-    //   var reader = new FileReader();
-    //   reader.onload = function (e) {
-    //     document
-    //       .querySelector(".chooseImage")
-    //       .setAttribute("src", e.target.result);
-    //   };
-    //   reader.readAsDataURL(fileinput.files[0]);
-    // }
     console.log(imager);
   }
+  // đẩy dữ liệu đã thay đổi về sever
   function saveUp() {
     let avatar = document.querySelector(".input_file").value;
     let date = document.querySelector(".user_date").value;
-    let name = document.querySelector("#NewEmail").value;
-    let email = document.querySelector(".mypage_right_email").value;
-    // let name = document.querySelector('.')
+    let name = document.querySelector(".mypage_right_name").value;
+    let email = document.querySelector(".NewEmail").value;
+    let phone = document.querySelector(".NewPhone").value;
+    async function newSave() {
+      await axios.post("/user/login", {
+        avatar: avatar,
+        email: email,
+        phone: phone,
+        username: name,
+      });
+    }
+    newSave();
+    console.log("roem", avatar, date, name, email, phone);
   }
+  // bật modal thay đổi số điện thoại
   function onof_newPhone() {
-    document.querySelector(".newEmail_").style.display = "block";
-  }
-  function onof_newEmail() {
     document.querySelector(".NewPhone_").style.display = "block";
   }
+  // bật modal thay đổi email
+  function onof_newEmail() {
+    document.querySelector(".newEmail_").style.display = "block";
+  }
+  // tắt modal thay đổi số điện thoại và email
   function of_modal() {
     document.querySelector(".newEmail_").style.display = "none";
     document.querySelector(".NewPhone_").style.display = "none";
+    document.querySelector(".NewEmail").value = "";
+    document.querySelector(".NewPhone").value = "";
+  }
+  // thay đổi email
+  function update_email_form() {
+    let newEmail = document.querySelector(".NewEmail").value;
+    let email = userInfo.email;
+    if (newEmail !== email) {
+      document.querySelector(".newEmail_text").style.display = "block";
+      document.querySelector(".newEmail_render").innerHTML = newEmail;
+      document.querySelector(".close").click();
+    } else if (newEmail === "" || newEmail === email) {
+      document.querySelector(".newEmail_text").style.display = "none";
+    }
+  }
+  // thay đổi phone
+  function update_phone_form() {
+    let newPhone = document.querySelector(".NewPhone").value;
+    let phone = userInfo.phone;
+    if (newPhone !== phone) {
+      document.querySelector(".newPhone_text").style.display = "block";
+      document.querySelector(".newPhone_render").innerHTML = newPhone;
+      document.querySelector(".close").click();
+    } else if (newPhone === "" || newPhone === phone) {
+      document.querySelector(".newPhone_text").style.display = "none";
+    }
   }
   return (
     <div className="mypage_">
@@ -89,15 +122,16 @@ function MyPage() {
       </div>
       <div className="mypage_conter">
         <div className="mypage_conter_user">
+          {/* leght */}
           <div className="mypage_conter_user_leght">
             <span className="mypage_leght_user">Tên Đăng Nhập</span>
             <span className="mypage_leght_name">Tên</span>
             <span className="mypage_leght_email">Email</span>
             <span className="mypage_leght_phone">Số Điện Thoại</span>
-            <span className="mypage_leght_shopname">Tên Shop</span>
             <span className="mypage_leght_check">Giới Tính</span>
             <span className="mypage_leght_date">Ngày Sinh</span>
           </div>
+          {/* right */}
           <div className="mypage_conter_user_right">
             <input type="text" className="mypage_right_user" />
             <p className="mypage_right_text">
@@ -110,36 +144,24 @@ function MyPage() {
             />
             <div className="mypage_right_email1">
               <span className="mypage_right_email">{userInfo.email}</span>
-
               <span className="thaydoi" onClick={onof_newEmail}>
                 Thay Đổi
               </span>
-              {/* modal */}
-              <div className="newEmail_">
-                <span>Nhập Email</span>
-                <input type="text" name="" id="NewEmail" />
-                <button className="update">Lưu</button>
-                <button className="close" onClick={of_modal}>
-                  Close
-                </button>
+              <div className="newEmail_text">
+                <span>Email mới : </span>
+                <span className="newEmail_render"></span>
               </div>
             </div>
             <div className="mypage_right_phone1">
               <span>{userInfo.phone}</span>
-              {/* modal */}
-              <div className="NewPhone_">
-                <span>Nhập Số điện thoại mới</span>
-                <input type="text" name="" id="NewPhone" />
-                <button className="update">Lưu</button>
-                <button className="close" onClick={of_modal}>
-                  Close
-                </button>
-              </div>
               <span className="thaydoi" onClick={onof_newPhone}>
                 Thay Đổi
               </span>
+              <div className="newPhone_text">
+                <span>Số điện thoại mới : </span>
+                <span className="newPhone_render"></span>
+              </div>
             </div>
-            <input type="text" className="mypage_right_shopname" />
             <div className="mypage_right_check">
               <input type="checkbox" name="" id="" />
               Nam
@@ -156,9 +178,11 @@ function MyPage() {
             </button>
           </div>
         </div>
+        {/* chọn  đại diện */}
         <div className="mypage_conter_imager">
-          <img src={image} alt="" className="chooseImage" />
-          {/* <button onClick={img_file}>Chọn Ảnh</button> */}
+          <div className="mypage_conter_imager_wrap">
+            <img src={image ? image : avatr} alt="" className="chooseImage" />
+          </div>
           <input
             type="file"
             className="input_file"
@@ -170,17 +194,28 @@ function MyPage() {
           <span>Định dạng: .JPEG, .PNG</span>
         </div>
       </div>
-      {/* <form className="formlist" action="" encType="multipart/form-data">
-        <span>
-          productPic: anh
-          <input
-            className="productPic"
-            placeholder="productPic"
-            name="productPic"
-            type="file"
-          />
-        </span>
-      </form> */}
+      {/* modal Email*/}
+      <div className="newEmail_">
+        <span>Nhập Email</span>
+        <input type="text" name="" className="NewEmail" />
+        <button className="update" onClick={update_email_form}>
+          Lưu
+        </button>
+        <button className="close" onClick={of_modal}>
+          Close
+        </button>
+      </div>
+      {/* modal Phone*/}
+      <div className="NewPhone_">
+        <span>Nhập Số điện thoại mới</span>
+        <input type="text" name="" className="NewPhone" />
+        <button className="update" onClick={update_phone_form}>
+          Lưu
+        </button>
+        <button className="close" onClick={of_modal}>
+          Close
+        </button>
+      </div>
     </div>
   );
 }
