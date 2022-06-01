@@ -3,11 +3,11 @@ import "./seeMore.css";
 
 import { CaretDownOutlined } from "@ant-design/icons";
 
-const SeeMore = () => {
+const SeeMore = (props) => {
   return (
     <div className="seeMore">
-      <button className="seeMore-button">
-        Xem Thêm 82 Điện thoại
+      <button onClick={props.seeMore} className="seeMore-button">
+        Xem Thêm 20 Điện thoại
         <CaretDownOutlined />
       </button>
     </div>

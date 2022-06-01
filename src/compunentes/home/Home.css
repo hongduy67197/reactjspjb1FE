@@ -62,9 +62,11 @@
 }
 
 .box-filter-item {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
   font-size: 14px;
   line-height: 17px;
-  position: relative;
   padding-top: 10px;
   padding-bottom: 10px;
 }

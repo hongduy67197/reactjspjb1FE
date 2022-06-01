@@ -3,24 +3,22 @@ import "./App.css";
 import "antd/dist/antd.css";
 
 import Header from "./compunentes/header/Header";
-import Footer from "./compunentes/footer/Footer";
 import Slider from "./compunentes/slider/Slider";
 import Home from "./compunentes/home/Home";
-import SeeMore from "./compunentes/home/homePage/SeeMore";
-import Advertisement from "./advertisement/Advertisement";
+import Footer from "./compunentes/footer/Footer";
+
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import Cards from "./compunentes/home/homePage/Cards";
 
 function App() {
-  const [Categories, setCategories] = useState([]);
+  const [Slides, setSlides] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:3150/admin/categories")
+      .get("http://localhost:3150/user/list")
       .then(function (res) {
-        setCategories(res.data);
-        console.log(res.data);
+        setSlides(res.data.listSlide);
       })
       .catch(function (err) {
         console.log(99, err);
@@ -30,10 +28,8 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Slider Categories={Categories} />
+      <Slider Slides={Slides} />
       <Home />
-      <SeeMore />
-      <Advertisement />
       <Footer />
     </div>
   );

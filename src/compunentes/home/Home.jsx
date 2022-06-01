@@ -1,23 +1,49 @@
 import "../home/Home.css";
 import { React, useEffect, useState } from "react";
 import axios from "axios";
-
+import SeeMore from "../home/homePage/SeeMore";
+import ListProduct from "./homePage/ListProduct";
+import Advertisement from "../../advertisement/Advertisement";
 import {
   FilterOutlined,
   CaretDownOutlined,
   ThunderboltOutlined,
   WechatOutlined,
 } from "@ant-design/icons";
-import ListProduct from "./homePage/ListProduct";
+import Icon from "./homePage/Icon";
 
 const Home = () => {
   const [productCode, setProductCode] = useState([]);
+  const [numberShow, setNumberShow] = useState(20);
+
+  function seeMore() {
+    setNumberShow(numberShow + 20);
+  }
 
   useEffect(() => {
     axios
       .get("http://localhost:3150/user/list")
       .then(function (res) {
-        setProductCode(res.data);
+        res.data.dataProductCode[1].data.sort((a, b) => {
+          return a.price - b.price;
+        });
+        // console.log(55, res.data.dataProductCode);
+        // console.log(66, res.data.dataProductCode[1].data);
+
+        setProductCode(res.data.dataProductCode);
+      })
+      .catch(function (err) {
+        console.log(31, err);
+      });
+  }, []);
+
+  //======== icon ===============
+  const [NewIcon, setNewIcon] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:3150/admin/icon/list")
+      .then(function (res) {
+        setNewIcon(res.data);
       })
       .catch(function (err) {
         console.log(99, err);
@@ -185,8 +211,15 @@ const Home = () => {
         </div>
       </section>
       <div className="home-page-product">
-        <ListProduct productCode={productCode} />
+        <ListProduct
+          productCode={productCode}
+          numberShow={numberShow}
+          NewIcon={NewIcon}
+        />
       </div>
+
+      <SeeMore seeMore={seeMore} />
+      <Advertisement />
     </div>
   );
 };

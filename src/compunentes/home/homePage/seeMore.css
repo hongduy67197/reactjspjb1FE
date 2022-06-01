@@ -12,6 +12,12 @@
   margin-top: 10px;
 }
 
+.seeMore-button:hover {
+  background-color: #288ad6;
+  color: #fff;
+  border: 1px solid #288ad6;
+}
+
 .seeMore-button {
   display: block;
   overflow: hidden;
