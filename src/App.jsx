@@ -72,12 +72,12 @@ function App() {
   const filterProduct = {
     brand: ['Iphone', 'Samsung', 'Oppo', 'Vivo', 'Xiaomi', 'Realmi', 'Nokia', 'Itel', 'masstel'],
     price: ['dưới 2tr', 'từ 2- 4tr', 'từ 4-7tr', 'từ 7-13tr', 'từ 13-20tr', 'trên 20tr'],
-    typePhone: ['android', 'Iphone(iOS)', 'Điện thoại phổ thông'],
-    performance: ['chơi game/cấu hình cao', 'Pin khủng trên 5000 mAh', 'Sạc pin nhanh'],
+    productType: ['android', 'Iphone(iOS)', 'Điện thoại phổ thông'],
+    performanceProduct: ['chơi game/cấu hình cao', 'Pin khủng trên 5000 mAh', 'Sạc pin nhanh'],
     ram: ['2GB', '3GB', '4GB', '6GB', '8GB', '12GB'],
     rom: ['8GB', '16GB', '32GB', '64GB', '128GB', '256GB'],
-    camera: ['chụp cận cảnh(macro)', 'chụp góc rộng', 'chụp xóa phông', 'chụp zoom xa'],
-    special_features: ['Hỗ trợ 5g', 'Bảo mật khuôn mặt', 'bảo mật vân tay', 'Sạc không dây', 'Kháng nước , bụi'],
+    cameraProduct: ['chụp cận cảnh(macro)', 'chụp góc rộng', 'chụp xóa phông', 'chụp zoom xa'],
+    specialFeatures: ['Hỗ trợ 5g', 'Bảo mật khuôn mặt', 'bảo mật vân tay', 'Sạc không dây', 'Kháng nước , bụi'],
     design: ['Tràn viền', 'Mỏng nhẹ', 'Mặt lưng kính'],
     panel: ['nhỏ gọn dễ cầm', 'Từ 6inch trở lên', 'Màn hình gập']
   }
@@ -183,7 +183,7 @@ function App() {
             <Route path="/axiosduy" element={<AxiosDuy data={dataDuy} loadagain={loadagain} show={show} setagain={setagain} />}></Route>
             {dataFilter.map((val, i) => {
               return (
-                <Route path={`/product/filter/${removeAccents(val.ProductName).split(' ').join('')}`} element={<ProductChild dataFilter={dataFilter} chimuc={i} dataval={ProductList} data={data} up={up} changeCart2={changeCart2} changeState={changeState} changeStateProduct={changeStateProduct} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} />} />
+                <Route path={`/product/filter/${removeAccents(val.productName).split(' ').join('')}`} element={<ProductChild dataFilter={dataFilter} chimuc={i} dataval={ProductList} data={data} up={up} changeCart2={changeCart2} changeState={changeState} changeStateProduct={changeStateProduct} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} />} />
               )
             })}
             {/* route for filter brand */}
@@ -196,14 +196,14 @@ function App() {
               return (<Route path={`/product/filter`} element={<FilterProduct referent='price' chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />)
             })}
             {/* route for filter loại điện thoại */}
-            {filterProduct.typePhone.map((val, i) => {
+            {filterProduct.productType.map((val, i) => {
 
               return (<Route path={`/product/filter`} element={<FilterProduct referent='typePhone' chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />)
 
             })}
             {/* route for filter hiệu năng và pin */}
-            {filterProduct.performance.map((val, i) => {
-              return (<Route path={`/product/filter`} element={<FilterProduct referent='performance' chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />)
+            {filterProduct.performanceProduct.map((val, i) => {
+              return (<Route path={`/product/filter`} element={<FilterProduct referent='performanceProduct' chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />)
 
             })}
             {/* route for filter ram */}
@@ -216,13 +216,13 @@ function App() {
               return (<Route path={`/product/filter`} element={<FilterProduct referent='rom' chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />)
 
             })}
-            {/* route for filter bộ nhớ camera */}
-            {filterProduct.camera.map((val, i) => {
-              return (<Route path={`/product/filter`} element={<FilterProduct referent='camera' chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />)
+            {/* route for filter bộ nhớ cameraProduct */}
+            {filterProduct.cameraProduct.map((val, i) => {
+              return (<Route path={`/product/filter`} element={<FilterProduct referent='cameraProduct' chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />)
 
             })}
             {/* route for filter special feature */}
-            {filterProduct.special_features.map((val, i) => {
+            {filterProduct.specialFeatures.map((val, i) => {
               return (<Route path={`/product/filter`} element={<FilterProduct referent='special' chimuc={val} dataval={ProductList} filter={filter} data={dataProduct} up={up} changeCart2={changeCart2} changeState={changeState} changeCart={changeCart} dataCart={dataCart} wallet={wallet} changeWallet={changeWallet} changeFilterData={changeFilterData} />} />)
 
             })}

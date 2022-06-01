@@ -276,7 +276,7 @@ function FilterProduct(props) {
     useEffect(() => {
         if (newstButton.classList.contains('btn--primary')) {
             myJSON.sort((a, b) => {
-                return new Date(a.date_sale).getTime() - new Date(b.date_sale).getTime()
+                return new Date(a.createDate).getTime() - new Date(b.createDate).getTime()
             })
         }
         if (salestButton.classList.contains('btn--primary')) {
@@ -311,7 +311,7 @@ function FilterProduct(props) {
         e.target.classList.add('btn--primary')
 
         myJSON.sort((a, b) => {
-            return new Date(a.date_sale).getTime() - new Date(b.date_sale).getTime()
+            return new Date(a.createDate).getTime() - new Date(b.createDate).getTime()
         })
         console.log(2222)
         setStateSort([...myJSON])
@@ -421,8 +421,8 @@ function FilterProduct(props) {
                                         <div class="category-item_link">
                                             LOẠI ĐIỆN THOẠI
                                             <div className="category-item-detail-wrap">
-                                                {props.filter.typePhone.map((val, i) => {
-                                                    return <button key={val} onClick={(e) => { filterPages(removeAccents(val), 'typePhone', e) }} className="category-item-detail">{val}</button>
+                                                {props.filter.productType.map((val, i) => {
+                                                    return <button key={val} onClick={(e) => { filterPages(removeAccents(val), 'productType', e) }} className="category-item-detail">{val}</button>
                                                 })}
                                             </div>
                                         </div>
@@ -431,8 +431,8 @@ function FilterProduct(props) {
                                         <div class="category-item_link">
                                             HIỆU NĂNG & PIN
                                             <div className="category-item-detail-wrap">
-                                                {props.filter.performance.map((val, i) => {
-                                                    return <button key={val} onClick={(e) => { filterPages(removeAccents(val), 'performance', e) }} className="category-item-detail">{val}</button>
+                                                {props.filter.performanceProduct.map((val, i) => {
+                                                    return <button key={val} onClick={(e) => { filterPages(removeAccents(val), 'performanceProduct', e) }} className="category-item-detail">{val}</button>
                                                 })}
                                             </div>
                                         </div>
@@ -461,8 +461,8 @@ function FilterProduct(props) {
                                         <div class="category-item_link">
                                             CAMERA
                                             <div className="category-item-detail-wrap">
-                                                {props.filter.camera.map((val, i) => {
-                                                    return <button key={val} onClick={(e) => { filterPages(removeAccents(val), 'camera', e) }} className="category-item-detail">{val}</button>
+                                                {props.filter.cameraProduct.map((val, i) => {
+                                                    return <button key={val} onClick={(e) => { filterPages(removeAccents(val), 'cameraProduct', e) }} className="category-item-detail">{val}</button>
                                                 })}
                                             </div>
                                         </div>
@@ -471,8 +471,8 @@ function FilterProduct(props) {
                                         <div class="category-item_link">
                                             TÍNH NĂNG ĐẶC BIỆT
                                             <div className="category-item-detail-wrap">
-                                                {props.filter.special_features.map((val, i) => {
-                                                    return <button key={val} onClick={(e) => { filterPages(removeAccents(val), 'special_features', e) }} className="category-item-detail">{val}</button>
+                                                {props.filter.specialFeatures.map((val, i) => {
+                                                    return <button key={val} onClick={(e) => { filterPages(removeAccents(val), 'specialFeatures', e) }} className="category-item-detail">{val}</button>
                                                 })}
                                             </div>
                                         </div>
@@ -596,10 +596,10 @@ function FilterProduct(props) {
 
 
                                         return (<div class="col l-2-4 m-4 c-6">
-                                            <button onClick={() => { movePage(removeAccents(val.ProductName).split(' ').join('')) }} class="home-product-item">
+                                            <button onClick={() => { movePage(removeAccents(val.productName).split(' ').join('')) }} class="home-product-item">
 
-                                                <div class="home-product-item__img" style={{ backgroundImage: `url(${val.productPic[0]}) ` }}></div>
-                                                <h4 class="home-product-item__name">{val.ProductName}</h4>
+                                                <div class="home-product-item__img" style={{ backgroundImage: `url(${val.thumNail[0]}) ` }}></div>
+                                                <h4 class="home-product-item__name">{val.productName}</h4>
                                                 <div class="home-product-item__price">
                                                     <span class="home-product-item__price-old">{val.price.toLocaleString()} đ</span>
                                                     <span class="home-product-item__price-curr">{(val.price * (100 - (Number.parseFloat(val.Sale))) / 100).toLocaleString()}<sup> đ</sup></span>
@@ -620,7 +620,7 @@ function FilterProduct(props) {
                                                 </div>
                                                 <div class="home-product-item__origin">
                                                     <span class="home-product-item__brand">{val.productType}</span>
-                                                    <span class="home-product-item__origin-name">{val.date_sale}</span>
+                                                    <span class="home-product-item__origin-name">{val.createDate}</span>
                                                 </div>
                                                 <div class="home-product-item__favourite">
                                                     <i class="fas fa-check"></i>
