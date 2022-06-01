@@ -1,9 +1,7 @@
 import Header from "../../../Components/Header/header";
 import "./product.css";
 import { render } from "@testing-library/react";
-import React, { useState } from "react";
-import { useEffect } from "react";
-import { Pagination } from "antd";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function Trenke(props) {

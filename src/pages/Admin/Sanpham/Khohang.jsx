@@ -3,6 +3,7 @@ import Header from "../../../Components/Header/header";
 import "./khohangchinhsua.css";
 import axios from "axios";
 import { useState } from "react";
+import "./product.css";
 
 function Khohang(props) {
   const [data, setdata] = useState([]);

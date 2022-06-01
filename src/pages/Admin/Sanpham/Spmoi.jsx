@@ -3,6 +3,7 @@ import React from "react";
 import Header from "../../../Components/Header/header";
 import "./khohangchinhsua.css";
 import { useState, useEffect } from "react";
+import "./product.css";
 
 function Spmoi(props) {
   const [data, setdata] = useState([]);

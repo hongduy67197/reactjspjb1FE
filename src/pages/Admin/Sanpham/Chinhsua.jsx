@@ -3,6 +3,7 @@ import React from "react";
 import Header from "../../../Components/Header/header";
 import "./khohangchinhsua.css";
 import { useState, useEffect } from "react";
+import "./product.css";
 
 function Chinhsua(props) {
   const [count, setcount] = useState(1);
