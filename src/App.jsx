@@ -14,6 +14,7 @@ import About from "./Pages/Admin/Thongtin/About";
 import Nhanvien from "./Pages/Admin/NhanVien/Nhanvien";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Login from "./Pages/Admin/Login/login";
 
 function App() {
   const [data, setdata] = useState([]);
@@ -50,7 +51,7 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<App />} />
+          <Route path="/admin/login" element={<Login />} />
           <Route path="/admin/home" element={<Home />} />
           <Route path="/admin/qlnhanvien" element={<Nhanvien />} />
           <Route path="/admin/Xacnhan" element={<Xacnhan />} />

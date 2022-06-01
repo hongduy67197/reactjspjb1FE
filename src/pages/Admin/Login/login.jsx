@@ -3,7 +3,7 @@ import logo from "./logo.jpg";
 import "./styleLogin.css";
 import { useNavigate } from "react-router-dom";
 
-function login() {
+function Login() {
   const a = useNavigate;
   const navigate = a();
   function show() {
@@ -46,4 +46,4 @@ function login() {
   );
 }
 
-export default login;
+export default Login;
