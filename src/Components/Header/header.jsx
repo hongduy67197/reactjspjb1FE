@@ -29,9 +29,6 @@ function Header() {
   function hoanthanh() {
     navigate("/admin/Hoanthanh");
   }
-  function tongket() {
-    navigate("/admin/Tongket");
-  }
   function chinhsua() {
     navigate("/admin/Chinhsua");
   }
@@ -357,7 +354,6 @@ function Header() {
             <i className="fa-solid fa-angle-right arrow"></i>
           </div>
           <div className="staff">
-            <p>- Cap quyen</p>
             <p onClick={QLnhanvien} className="qlnv">
               - Quan ly nhan vien
             </p>
@@ -371,7 +367,6 @@ function Header() {
             <p onClick={xacnhan}>- Cho xac nhan</p>
             <p onClick={danggiao}>- Dang giao hang</p>
             <p onClick={hoanthanh}>- Da hoan thanh</p>
-            <p onClick={tongket}>- Tong ket</p>
           </div>
           <div onClick={onproduct} className="menu">
             <i className="fa-solid fa-mobile-screen vicon"></i>
