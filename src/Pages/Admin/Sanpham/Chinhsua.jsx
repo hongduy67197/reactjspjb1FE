@@ -9,7 +9,7 @@ function Chinhsua(props) {
   const [count, setcount] = useState(1);
   const [data, setdata] = useState([]);
   const [tieudiem, settieudiem] = useState([]);
-
+  const [vitri, setvitri] = useState([]);
   useEffect(() => {
     axios
       .get("http://localhost:3150/admin/categories")
@@ -22,6 +22,7 @@ function Chinhsua(props) {
   }, []);
   var modelarr = [];
   function chooseCategory(id) {
+    setcount(1);
     document.querySelector(".chonloai1").style.background = "pink";
     document.querySelector(".chonloai1").style.color = "black";
     document.querySelector(".chonloai1").style.border = "2px solid black";
@@ -54,6 +55,7 @@ function Chinhsua(props) {
     props.changesign();
   }
   function onoption() {
+    setcount(1);
     document.querySelector(".chonloai1").style.background = "rgb(255, 52, 85)";
     document.querySelector(".chonloai1").style.color = "white";
     document.querySelector(".chonloai1").style.borderRadius = "10px";
@@ -69,6 +71,7 @@ function Chinhsua(props) {
     }
   }
   function onmodel() {
+    setcount(1);
     document.querySelector(".boxoption3").style.display = "block";
     document.querySelector(".chonloai2").style.background = "rgb(255, 52, 85)";
     document.querySelector(".chonloai2").style.color = "white";
@@ -85,7 +88,6 @@ function Chinhsua(props) {
   }
   function takemodel(id) {
     settieudiem(id);
-    console.log(id);
     setcount(1);
     axios
       .get(`http://localhost:3150/admin/productcode/${id}`)
@@ -117,6 +119,7 @@ function Chinhsua(props) {
     document.querySelector(".chonloai2").style.border = "2px solid black";
   }
   function clearupdate() {
+    setcount(1);
     document.querySelector(".chonloai1").innerHTML = "Tên hãng";
     document.querySelector(".chonloai2").innerHTML = `Dòng sản phẩm`;
     document.querySelector(".productType").value = ``;
@@ -127,13 +130,14 @@ function Chinhsua(props) {
     document.querySelector(".panel").value = ``;
   }
   function update() {
+    setcount(1);
     console.log(tieudiem);
     var productType = document.querySelector(".productType").value;
     var performanceProduct = document.querySelector(
       ".performanceProduct"
     ).value;
     var cameraProduct = document.querySelector(".cameraProduct").value;
-    var productType = document.querySelector(".specialFeatures").value;
+    var specialFeatures = document.querySelector(".specialFeatures").value;
     var design = document.querySelector(".design").value;
     var panel = document.querySelector(".panel").value;
     axios
@@ -141,7 +145,7 @@ function Chinhsua(props) {
         productType: productType,
         performanceProduct: performanceProduct,
         cameraProduct: cameraProduct,
-        specialFeatures: productType,
+        specialFeatures: specialFeatures,
         design: design,
         panel: panel,
       })
@@ -154,6 +158,7 @@ function Chinhsua(props) {
     clearupdate();
   }
   function onoptionlist() {
+    setcount(1);
     document.querySelector(".boxoption4list").style.display = "none";
     document.querySelector(".chonloai1list").style.background =
       "rgb(255, 52, 85)";
@@ -171,12 +176,14 @@ function Chinhsua(props) {
     }
   }
   function chooseCategorylist(id) {
+    setcount(1);
     document.querySelector(".chonloai1list").style.background = "pink";
     document.querySelector(".chonloai1list").style.color = "black";
     document.querySelector(".chonloai1list").style.border = "2px solid black";
     setcount(1);
     document.querySelector(".boxoption2list").style.display = "none";
     document.querySelector(".chonloai2list").innerHTML = "Dòng sản phẩm";
+    document.querySelector(".chonloai3list").innerHTML = "Cấu hình";
     axios
       .get(`http://localhost:3150/admin/categories/${id}`)
       .then(function (response) {
@@ -203,6 +210,7 @@ function Chinhsua(props) {
     props.changesign();
   }
   function onmodellist() {
+    setcount(1);
     document.querySelector(".boxoption3list").style.display = "block";
     document.querySelector(".boxoption4list").style.display = "none";
     document.querySelector(".chonloai2list").style.background =
@@ -268,14 +276,96 @@ function Chinhsua(props) {
       document.querySelector(".chonloai3list").style.color = "black";
     }
   }
-  function takedtoption() {}
+  function takedtoption(id) {
+    setcount(1);
+    setvitri(id);
+    document.querySelector(".boxoption4list").style.display = "none";
+    axios
+      .get(`http://localhost:3150/admin/product/${id}`)
+      .then(function (response) {
+        console.log(response);
+        document.querySelector(".chonloai3list").innerHTML = `${
+          response.data.ram +
+          " " +
+          response.data.rom +
+          " " +
+          response.data.color
+        }`;
+        document.querySelector(".price").value = `${response.data.price}`;
+        document.querySelector(
+          ".priceRange"
+        ).value = `${response.data.priceRange}`;
+        document.querySelector(".storage").value = `${response.data.storage}`;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    document.querySelector(".chonloai3list").style.background = "pink";
+    document.querySelector(".chonloai3list").style.color = "black";
+    document.querySelector(".chonloai3list").style.border = "2px solid black";
+  }
+  function clearupdatelist() {
+    setcount(1);
+    document.querySelector(".price").value = "";
+    document.querySelector(".priceRange").value = "";
+    document.querySelector(".storage").value = "";
+  }
+  function openproductcode() {
+    setcount(1);
+    document.querySelector(".updatecode").style.display = "block";
+    document.querySelector(".updatelist").style.display = "none";
+    document.querySelector(".suadong").style.borderRadius = "unset";
+    document.querySelector(".suadong").style.height = "80px";
+    document.querySelector(".suadong").style.background = "rgb(214, 243, 255)";
+    document.querySelector(".suadong").style.borderTopRightRadius = "15px";
+    document.querySelector(".suadong").style.borderTopLeftRadius = "15px";
+    document.querySelector(".suadt").style.background = "white";
+    document.querySelector(".suadt").style.height = "60px";
+    document.querySelector(".suadt").style.borderRadius = "10px";
+  }
+  function openproductlist() {
+    setcount(1);
+    document.querySelector(".updatelist").style.display = "block";
+    document.querySelector(".updatecode").style.display = "none";
+    document.querySelector(".suadt").style.borderRadius = "unset";
+    document.querySelector(".suadt").style.height = "80px";
+    document.querySelector(".suadt").style.background = "rgb(214, 243, 255)";
+    document.querySelector(".suadt").style.borderTopRightRadius = "15px";
+    document.querySelector(".suadt").style.borderTopLeftRadius = "15px";
+    document.querySelector(".suadong").style.background = "white";
+    document.querySelector(".suadong").style.height = "60px";
+    document.querySelector(".suadong").style.borderRadius = "10px";
+  }
+  function updatelist() {
+    setcount(1);
+    var price = document.querySelector(".price").value;
+    var priceRange = document.querySelector(".priceRange").value;
+    var storage = document.querySelector(".storage").value;
+    axios
+      .put(`http://localhost:3150/admin/product/${vitri}`, {
+        price: price,
+        priceRange: priceRange,
+        storage: storage,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    clearupdatelist();
+  }
   return (
     <div>
       <Header></Header>
       <div className="chinhsua">
         <div className="action">
-          <button className="suadong">Dòng sản phẩm</button>
-          <button className="suadt">Sản phẩm</button>
+          <button onClick={openproductcode} className="suadong but">
+            Dòng sản phẩm
+          </button>
+          <button onClick={openproductlist} className="suadt but">
+            Sản phẩm
+          </button>
         </div>
         <div className="updatecode">
           <div className="pickupdate">
@@ -450,62 +540,35 @@ function Chinhsua(props) {
             </div>
           </div>
           <span>
-            Loại sản phẩm:
+            Giá sản phẩm:
             <input
-              className="productType"
-              name="productType"
-              placeholder="Loại sản phẩm"
+              className="price"
+              name="price"
+              placeholder="Giá sản phẩm"
               type="text"
             />
           </span>
           <span>
-            Hiệu năng:
+            Khoảng giá:
             <input
-              placeholder="Hiệu năng"
-              className="performanceProduct"
-              name="performanceProduct"
+              placeholder="Khoảng giá"
+              className="priceRange"
+              name="priceRange"
               type="text"
             />
           </span>
           <span>
-            Cụm Camera:
+            Số lượng kho:
             <input
-              className="cameraProduct"
-              name="cameraProduct"
-              placeholder="Cụm Camera"
-              type="text"
-            />
-          </span>
-          <span>
-            Tính năng đặc biệt:
-            <input
-              className="specialFeatures"
-              name="specialFeatures"
-              placeholder="Tính năng đặc biệt"
-              type="text"
-            />
-          </span>
-          <span>
-            Thiết kế:
-            <input
-              className="design"
-              placeholder="Thiết kế"
-              type="text"
-              name="design"
-            />
-          </span>
-          <span>
-            Màn hình:
-            <input
-              className="panel"
-              name="panel"
-              placeholder="Màn hình"
+              className="storage"
+              name="storage"
+              placeholder="Số lượng kho"
               type="text"
             />
           </span>
           <div className="addbut">
-            <button>Update</button>
-            <button>Clear</button>
+            <button onClick={updatelist}>Update</button>
+            <button onClick={clearupdatelist}>Clear</button>
           </div>
         </div>
       </div>

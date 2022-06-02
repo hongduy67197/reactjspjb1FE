@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
 }
+
 /* them san pham moi */
 .addboard {
   width: 100%;
@@ -161,13 +162,13 @@
   padding: 20px 30px;
 }
 .updatecode {
-  display: none;
   width: 100%;
   background-color: rgb(214, 243, 255);
   border-radius: 15px;
   padding: 20px 40px 25px 40px;
 }
 .updatelist {
+  display: none;
   width: 100%;
   background-color: rgb(214, 243, 255);
   border-radius: 15px;
@@ -298,4 +299,8 @@
   border-radius: 10px;
   font-weight: bold;
   font-size: 22px;
+}
+.but:hover {
+  cursor: pointer;
+  border: 2px solid black;
 }

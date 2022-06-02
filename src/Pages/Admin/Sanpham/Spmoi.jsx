@@ -68,6 +68,7 @@ function Spmoi(props) {
     document.querySelector(".addnewproductcode").style.display = "block";
     document.querySelector(".addnewproductlist").style.display = "none";
     document.querySelector(".addnewvoucher").style.display = "none";
+    document.querySelector(".addnewslide").style.display = "none";
     document.querySelector(".dongmoi").style.borderRadius = "unset";
     document.querySelector(".dongmoi").style.height = "75px";
     document.querySelector(".dongmoi").style.background = "rgb(214, 243, 255)";
@@ -83,6 +84,7 @@ function Spmoi(props) {
   function newliston() {
     document.querySelector(".addnewproductlist").style.display = "block";
     document.querySelector(".addnewproductcode").style.display = "none";
+    document.querySelector(".addnewslide").style.display = "none";
     document.querySelector(".addnewvoucher").style.display = "none";
     document.querySelector(".dtmoi").style.borderRadius = "unset";
     document.querySelector(".dtmoi").style.height = "75px";
@@ -167,13 +169,13 @@ function Spmoi(props) {
       <Header></Header>
       <div className="spmoi">
         <div className="butadd">
-          <button className="dongmoi" onClick={newcodeon}>
+          <button className="dongmoi but" onClick={newcodeon}>
             Dòng sản phẩm mới
           </button>
-          <button className="dtmoi" onClick={newliston}>
+          <button className="dtmoi but" onClick={newliston}>
             Sản phẩm mới
           </button>
-          <button className="voumoi" onClick={newvoucheron}>
+          <button className="voumoi but" onClick={newvoucheron}>
             Voucher + Slide
           </button>
         </div>
@@ -352,6 +354,15 @@ function Spmoi(props) {
               <input
                 className="vouchername"
                 placeholder="Voucher"
+                name="iconName"
+                type="text"
+              />
+            </span>
+            <span>
+              Discount:
+              <input
+                className="vouchername"
+                placeholder="Discount"
                 name="iconName"
                 type="text"
               />
