@@ -48,17 +48,29 @@
   padding: 18px 30px;
   z-index: 10;
 }
-.right1,
+
 .left1 {
   color: #494949;
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
-.left,
-.right {
+.right1 {
+  color: #494949;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.left {
   width: 8%;
   font-size: 23px;
+}
+.right {
+  width: 15%;
+  font-size: 23px;
+}
+.user_name {
+  font-size: 16px;
 }
 .mid {
   width: 40%;
@@ -98,7 +110,9 @@
   color: #5247bd;
   cursor: pointer;
 }
-
+.iconcolor {
+  margin-right: 10px;
+}
 .botside {
   padding: 30px 10px;
 }
@@ -221,12 +235,13 @@
   height: 500px;
   background-color: rgb(255, 255, 255);
   position: absolute;
-  top: 60px;
+  top: 80px;
   right: 20%;
   border-radius: 15px;
   border: 2px solid rgb(0, 0, 0);
   padding: 15px 25px;
   display: none;
+  z-index: 2;
 }
 .light {
   width: 100%;

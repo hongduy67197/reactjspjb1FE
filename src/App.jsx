@@ -12,25 +12,37 @@ import Spmoi from "./Pages/Admin/Sanpham/Spmoi";
 import Trenke from "./Pages/Admin/Sanpham/Trenke";
 import Chinhanh from "./Pages/Admin/Thongtin/Chinhanh";
 import About from "./Pages/Admin/Thongtin/About";
+import { useState } from "react";
 
 function App() {
+  const [name, setName] = useState("");
+  function changedata(newdata) {
+    setName(newdata);
+  }
+
   return (
     <div>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />} />
-          <Route path="/admin/login" element={<Login />} />
-          <Route path="/admin/home" element={<Home />} />
-          <Route path="/admin/qlnhanvien" element={<QLnhanvien />} />
-          <Route path="/admin/Xacnhan" element={<Xacnhan />} />
-          <Route path="/admin/Hoanthanh" element={<Hoanthanh />} />
-          <Route path="/admin/Danggiao" element={<Danggiao />} />
-          <Route path="/admin/Chinhsua" element={<Chinhsua />} />
-          <Route path="/admin/Khohang" element={<Khohang />} />
-          <Route path="/admin/Spmoi" element={<Spmoi />} />
-          <Route path="/admin/Trenke" element={<Trenke />} />
-          <Route path="/admin/Chinhanh" element={<Chinhanh />} />
-          <Route path="/admin/About" element={<About />} />
+          <Route
+            path="/admin/login"
+            element={<Login changedata={changedata} />}
+          />
+          <Route path="/admin/home" element={<Home name={name} />} />
+          <Route
+            path="/admin/qlnhanvien"
+            element={<QLnhanvien name={name} />}
+          />
+          <Route path="/admin/Xacnhan" element={<Xacnhan name={name} />} />
+          <Route path="/admin/Hoanthanh" element={<Hoanthanh name={name} />} />
+          <Route path="/admin/Danggiao" element={<Danggiao name={name} />} />
+          <Route path="/admin/Chinhsua" element={<Chinhsua name={name} />} />
+          <Route path="/admin/Khohang" element={<Khohang name={name} />} />
+          <Route path="/admin/Spmoi" element={<Spmoi name={name} />} />
+          <Route path="/admin/Trenke" element={<Trenke name={name} />} />
+          <Route path="/admin/Chinhanh" element={<Chinhanh name={name} />} />
+          <Route path="/admin/About" element={<About name={name} />} />
         </Routes>
       </BrowserRouter>
     </div>

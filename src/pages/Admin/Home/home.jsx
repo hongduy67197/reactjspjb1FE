@@ -7,69 +7,88 @@ import { Table } from "antd";
 import axios from "axios";
 import { useEffect } from "react";
 //npm install react-calendar
-function Home() {
-  const [state, setstate] = useState({});
-  const [date, setdate] = useState(new Date());
-  const onChange = (date) => {
-    setdate(date);
-  };
 
-  const columns = [
-    {
-      title: "Name",
-      dataIndex: "name",
-    },
-    {
-      title: "Chinese Score",
-      dataIndex: "chinese",
-      sorter: {
-        compare: (a, b) => a.chinese - b.chinese,
-        multiple: 3,
-      },
-    },
-    {
-      title: "Math Score",
-      dataIndex: "math",
-      sorter: {
-        compare: (a, b) => a.math - b.math,
-        multiple: 2,
-      },
-    },
-    {
-      title: "Name",
-      dataIndex: "name",
-    },
-    {
-      title: "Chinese Score",
-      dataIndex: "chinese",
-      sorter: {
-        compare: (a, b) => a.chinese - b.chinese,
-        multiple: 3,
-      },
-    },
-  ];
-
-  function onchange(pagination, filters, sorter, extra) {
-    console.log("params", pagination, filters, sorter, extra);
-  }
-
-  const database = [];
-
+function Home(props) {
+  const [state, setstate] = useState([]);
   useEffect(() => {
     axios
       .get("http://localhost:3150/admin/productcode/list")
       .then(function (res) {
-        setstate.push(res.data);
+        setstate(res.data);
+      })
+      .catch(function (fail) {
+        console.log(fail);
+      });
+  }, []);
+  const [state1, setstate1] = useState([]);
+
+  const [date, setdate] = useState(new Date());
+  const onChange = (date) => {
+    setdate(date);
+  };
+  const columns = [
+    {
+      title: "STT",
+      dataIndex: "index",
+    },
+    {
+      title: "ThumNail",
+      dataIndex: "thumNail",
+      sorter: false,
+      render: (thumNail) => (
+        <img src={"http://localhost:3150" + thumNail} alt="anh" />
+      ),
+    },
+    {
+      title: "Name",
+      dataIndex: "productName",
+    },
+    {
+      title: "ProductType",
+      dataIndex: "productType",
+      sortDirections: ["descend", "ascend"],
+    },
+    {
+      title: "SpecialFeatures",
+      dataIndex: "specialFeatures",
+    },
+    {
+      title: "Panel",
+      dataIndex: "panel",
+    },
+  ];
+
+  const database = [];
+  if (state.length > 0) {
+    var so = state.length - 10;
+    for (let i = so; i < state.length; i++) {
+      database.push({
+        index: i - 18,
+        productName: state[i].productName,
+        thumNail: state[i].thumNail,
+        productType: state[i].productType,
+        specialFeatures: state[i].specialFeatures,
+        panel: state[i].panel,
+      });
+    }
+  }
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3150/admin/user/")
+      .then(function (res) {
+        setstate1(res.data);
       })
       .catch(function (fail) {
         console.log(fail);
       });
   }, []);
 
-  console.log(68, database);
+  let countCustomers = state1.length;
+
   return (
     <div>
-      <Header></Header>
+      <Header tenname={props.name}></Header>
       <div className="content">
         <h3 className="content_title">Dashboard</h3>
         <div className="statistical">
@@ -97,7 +116,7 @@ function Home() {
             </div>
             <div className="content_sale">
               <p className="icon_title">Customers</p>
-              <p className="thongso">98,225</p>
+              <p className="thongso">{countCustomers}</p>
             </div>
           </div>
           <div className="table">
@@ -113,7 +132,7 @@ function Home() {
 
         <div className="productNew">
           <h2>New Products</h2>
-          <Table columns={columns} dataSource={database} onChange={onchange} />;
+          <Table columns={columns} dataSource={database} pagination={false} />;
         </div>
 
         <div className="Note">

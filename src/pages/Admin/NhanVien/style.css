@@ -21,3 +21,24 @@
   cursor: pointer;
   background-color: #0dcaf0;
 }
+
+.fromlist {
+  display: flex;
+  flex-direction: column;
+}
+.avatar {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.name,
+.address,
+.sdt,
+.role {
+  width: 100%;
+  margin: 5px 0;
+  padding: 5px 10px;
+  background-color: white;
+  outline: unset;
+  border: 1px solid #ccc;
+}
