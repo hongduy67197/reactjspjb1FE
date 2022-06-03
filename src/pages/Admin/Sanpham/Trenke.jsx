@@ -80,7 +80,7 @@ function Trenke(props) {
   }
   return (
     <div>
-      <Header tenname={props.name}></Header>
+      <Header></Header>
       <div className="newproduct">
         <h1>Sản phẩm trên kệ</h1>
         <div className="allbrand">

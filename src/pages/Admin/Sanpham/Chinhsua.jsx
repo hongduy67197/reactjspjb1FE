@@ -2,10 +2,10 @@ import React from "react";
 import Header from "../../../Components/Header/header";
 import "./product.css";
 
-function Chinhsua(props) {
+function Chinhsua() {
   return (
     <div>
-      <Header tenname={props.name}></Header>
+      <Header></Header>
       <div>
         <h1>Chinh sua</h1>
       </div>

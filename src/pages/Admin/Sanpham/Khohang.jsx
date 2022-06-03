@@ -2,11 +2,13 @@ import React from "react";
 import Header from "../../../Components/Header/header";
 import "./product.css";
 
-function Khohang(props) {
+function Khohang() {
   return (
-    <div>
-      <Header tenname={props.name}></Header>
-    </div>
+    <Header>
+      <div>
+        <h1>Kho hang</h1>
+      </div>
+    </Header>
   );
 }
 

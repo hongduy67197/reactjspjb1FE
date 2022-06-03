@@ -4,14 +4,13 @@ import Header from "../../../Components/Header/header";
 import "./product.css";
 import { useState } from "react";
 
-function Spmoi(props) {
+function Spmoi() {
   return (
-    <div>
-      <Header tenname={props.name}></Header>
+    <Header>
       <div>
         <h1>San pham moi</h1>
       </div>
-    </div>
+    </Header>
   );
 }
 
