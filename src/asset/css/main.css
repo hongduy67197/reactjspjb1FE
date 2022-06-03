@@ -1279,6 +1279,7 @@
     will-change: transform;
     border: none;
     width: 100%;
+    padding: 25px;
 }
 
 .home-product-item:hover {
@@ -1317,6 +1318,7 @@
 
 .home-product-item__price {
     display: flex;
+    flex-direction: column;
     margin: 8px 12px;
     justify-content: space-between;
     align-items: baseline;
@@ -1336,8 +1338,10 @@
 }
 
 .home-product-item__action {
-    display: flex;
-    justify-content: space-between;
+    text-align: left;
+    /* display: flex;
+    flex-direction: column; */
+    /* justify-content: space-between; */
     margin: 10px 12px;
 }
 
@@ -1372,10 +1376,10 @@ i.home-product-item__like-icon-fill {
 .home-product-item__rating {
     font-size: 1rem;
     /* zoom: 0.7; */
-    transform: scale(0.7);
-    transform-origin: right;
+    /* transform: scale(0.7); */
+    /* transform-origin: right; */
     color: var(--text-color);
-    margin: -0.2px 0px 0px auto;
+    /* margin: -0.2px 0px 0px auto; */
 
 }
 
@@ -1386,7 +1390,8 @@ i.home-product-item__like-icon-fill {
 .home-product-item_sold {
     font-size: 1.2rem;
     color: var(--text-color);
-    margin-left: 12px;
+    /* margin-left: 12px; */
+
 
 }
 
@@ -1442,16 +1447,16 @@ i.home-product-item__like-icon-fill {
     position: absolute;
     right: 0;
     top: 0;
-    width: 40px;
-    height: 36px;
+    right: 75px;
+    top: 263px;
     text-align: center;
-    background-color: rgb(246, 208, 19);
+    /* background-color: rgb(246, 208, 19); */
     padding: 4px 2px 0;
     border-top-right-radius: 2px;
 
 }
 
-.home-product-item__sale-off::after {
+/* .home-product-item__sale-off::after {
     position: absolute;
     content: "";
     bottom: -4px;
@@ -1459,7 +1464,7 @@ i.home-product-item__like-icon-fill {
     border-width: 0 20px 4px;
     border-style: solid;
     border-color: transparent rgb(246, 208, 19) transparent rgb(246, 208, 19);
-}
+} */
 
 .home-product-item__sale-off-percent {
     font-size: 1.4rem;
@@ -1478,6 +1483,16 @@ i.home-product-item__like-icon-fill {
 
 
 }
+.home-product-item-information-detail-wrap {
+    padding-left: 32px
+}
+.home-product-item-information-detail {
+    text-align: left;
+}
+.home-product-item-information-detail li span {
+    position: relative;
+    left: -9px;
+  }
 
 /* pagination */
 .home-product-pagination {

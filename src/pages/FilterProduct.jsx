@@ -502,10 +502,11 @@ function FilterProduct(props) {
                                                     <span class="home-product-item__price-curr">{(val.price * (100 - (Number.parseFloat(val.Sale))) / 100).toLocaleString()}<sup> đ</sup></span>
                                                 </div>
                                                 <div class="home-product-item__action">
-                                                    <span class="home-product-item__like home-product-item__like--liked">
+                                                    {/* icon heart like */}
+                                                    {/* <span class="home-product-item__like home-product-item__like--liked">
                                                         <i class="home-product-item__like-icon-empty far fa-heart"></i>
                                                         <i class="home-product-item__like-icon-fill fas fa-heart"></i>
-                                                    </span>
+                                                    </span> */}
                                                     <div class="home-product-item__rating">
                                                         <i class="home-product-item__star--rate far fa-star"></i>
                                                         <i class="home-product-item__star--rate far fa-star"></i>
@@ -515,18 +516,28 @@ function FilterProduct(props) {
                                                     </div>
                                                     <div class="home-product-item_sold">Đã bán {val.countSold}</div>
                                                 </div>
-                                                <div class="home-product-item__origin">
+                                                {/* <div class="home-product-item__origin">
                                                     <span class="home-product-item__brand">{val.productType}</span>
                                                     <span class="home-product-item__origin-name">{val.createDate}</span>
-                                                </div>
-                                                <div class="home-product-item__favourite">
+                                                </div> */}
+                                                {/* vị trí đặt tape yêu thích góc card */}
+                                                {/* <div class="home-product-item__favourite">
                                                     <i class="fas fa-check"></i>
                                                     <span>Yêu thích</span>
-                                                </div>
+                                                </div> */}
                                                 <div class="home-product-item__sale-off">
                                                     <span class="home-product-item__sale-off-percent">{val.Sale}</span>
                                                     <span class="home-product-item__sale-off-label">GIẢM</span>
                                                 </div>
+                                                {/* information details */}
+                                                <div className="home-product-item-information-detail-wrap">
+                                                    <ul class="home-product-item-information-detail">
+                                                    <li><span>{val.panel}</span></li>
+                                                    <li><span>{val.performanceProduct}</span></li>
+                                                    <li><span>{val.cameraProduct}</span></li>
+                                                </ul>
+                                                </div>
+                                                
                                             </button>
                                         </div>
                                         )

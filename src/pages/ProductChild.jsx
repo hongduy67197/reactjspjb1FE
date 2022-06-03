@@ -8,7 +8,7 @@ function ProductChild(props) {
         <div class="product-detail-wrap">
           <div class="image-wrap">
             <div class="image-primary">
-              <img src={props.dataFilter[props.chimuc].productPic[0]} alt=""></img>
+              <img src={props.dataFilter[props.chimuc].thumNail[0]} alt=""></img>
 
             </div>
             <div class="range-img">
@@ -23,7 +23,17 @@ function ProductChild(props) {
           <div class="content-right-wrap">
             <div class="title-wrap">
               <div class="icon"></div>
-              <h1>{props.dataFilter[props.chimuc].ProductName}</h1>
+              <h1>{props.dataFilter[props.chimuc].productName}</h1>
+            </div>
+            <div className="product-ram">
+              {props.dataFilter[props.chimuc].ramRange.map((val)=>{
+                return (<div>{val}</div>)
+              })}
+            </div>
+            <div className="product-ram">
+              {props.dataFilter[props.chimuc].romRange.map((val)=>{
+                return (<div>{val}</div>)
+              })}
             </div>
             <div class="evaluate-wrap">
               <div class="star-evaluate"> 5sao</div>
