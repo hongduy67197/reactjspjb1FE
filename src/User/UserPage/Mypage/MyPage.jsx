@@ -87,8 +87,6 @@ function MyPage() {
   function of_modal() {
     document.querySelector(".newEmail_").style.display = "none";
     document.querySelector(".NewPhone_").style.display = "none";
-    document.querySelector(".NewEmail").value = "";
-    document.querySelector(".NewPhone").value = "";
   }
   // thay đổi email
   function update_email_form() {

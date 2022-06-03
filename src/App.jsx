@@ -1,41 +1,36 @@
-import logo from "./logo.svg";
-import "./App.css";
-import "antd/dist/antd.css";
-
-import Header from "./compunentes/header/Header";
-import Footer from "./compunentes/footer/Footer";
-import Slider from "./compunentes/slider/Slider";
-import Home from "./compunentes/home/Home";
-import axios from "axios";
-import React, { useState, useEffect } from "react";
-import Cards from "./compunentes/home/homePage/Cards";
-import ContextProvider from "./Conter/ContextProvider.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+// import "./App.css";
+import Home from "./Pages/Admin/Home/home";
+import Xacnhan from "./Pages/Admin/Donhang/Xacnhan";
+import Tongket from "./Pages/Admin/Donhang/Tongket";
+import Hoanthanh from "./Pages/Admin/Donhang/Hoanthanh";
+import Danggiao from "./Pages/Admin/Donhang/Danggiao";
+import Chinhsua from "./Pages/Admin/Sanpham/Chinhsua";
+import Khohang from "./Pages/Admin/Sanpham/Khohang";
+import Spmoi from "./Pages/Admin/Sanpham/Spmoi";
+import Trenke from "./Pages/Admin/Sanpham/Trenke";
+import Chinhanh from "./Pages/Admin/Thongtin/Chinhanh";
+import Nhanvien from "./Pages/Admin/NhanVien/Nhanvien";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import Login from "./Pages/Admin/Login/login";
+import About from "./Pages/Admin/Thongtin/About";
+import Header from "./compunentes/header/Header";
+import UserLogin from "./User/UserLogin";
 import UserSingIn from "./User/UserSingIn";
 import UserPase from "./User/UserPase";
-import Login from "./Pages/Admin/Login/login";
-import QLnhanvien from "./Pages/Admin/Login/login";
-import UserLogin from "./User/UserLogin";
+import ContextProvider from "./Conter/ContextProvider";
+import Slider from "./compunentes/slider/Slider";
+import Footer from "./compunentes/footer/Footer";
+import Home1 from "./compunentes/home/Home";
 function App() {
-  const [user, setUser] = useState([
-    {
-      email: "hoang@gmail.com",
-      password: "123456789",
-    },
-    {
-      email: "hoang@gmail.com",
-      password: "123456789",
-    },
-    {
-      email: "hoang@gmail.com",
-      password: "123456789",
-    },
-  ]);
+  const [data, setdata] = useState([]);
+  const [showdata, setshowdata] = useState([]);
+  const [brand, setbrand] = useState([]);
+  const [sign, setsign] = useState(0);
+  const [model, setmodel] = useState([]);
+  const [listdt, setlistdt] = useState([]);
 
-  function addUser(newUser) {
-    setUser(...user, newUser);
-  }
   const [id, setId] = useState([]);
   function addId(newId) {
     setId(newId);
@@ -54,24 +49,6 @@ function App() {
       });
   }, []);
 
-  // tín hiệu để render
-
-  //   const [stoge, setStoge]=useState(0)
-  //   function setStoge1(){
-  //     setStoge(stoge+1)
-  //   }
-  //   // Gọi data về
-  //   useEffect(() => {
-  //     axios.get('')
-  //     .then((data)=>{
-  //       localStorage.setItem('user',JSON.stringify(data))
-  //       console.log(data)
-  //     })
-  //     .catch((arr)=>{
-  //       console.log(arr)
-  //     })
-  //   }, [stoge]);
-  // const [user, setUser]=useState([JSON.parse(localStorage.getItem('user'))])
   function of_header() {
     document.querySelector(".onof_header").style.display = "none";
   }
@@ -84,12 +61,13 @@ function App() {
   function on_slider() {
     document.querySelector(".onof_slider").style.display = "block";
   }
-
+  function changesign() {
+    setsign(sign + 1);
+  }
   return (
     <div className="App">
       <BrowserRouter>
-        <ContextProvider testContext={{ user: user, setUser: setUser }}>
-          {/* <Header></Header> */}
+        <ContextProvider>
           <div className="onof_header">
             <Header of_header={of_header} of_slider={of_slider}></Header>
           </div>
@@ -97,25 +75,50 @@ function App() {
             <Slider Categories={Categories} />
           </div>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home1 />} />
             <Route path="/admin/login" element={<Login />} />
             <Route path="/admin/home" element={<Home />} />
-            {/* <Route path="/admin/qlnhanvien" element={<QLnhanvien />} />
+            <Route path="/admin/nhanvien" element={<Nhanvien />} />
             <Route path="/admin/Xacnhan" element={<Xacnhan />} />
             <Route path="/admin/Tongket" element={<Tongket />} />
             <Route path="/admin/Hoanthanh" element={<Hoanthanh />} />
             <Route path="/admin/Danggiao" element={<Danggiao />} />
-            <Route path="/admin/Chinhsua" element={<Chinhsua />} />
+            <Route
+              path="/admin/Chinhsua"
+              element={
+                <Chinhsua
+                  model={model}
+                  setmodel={setmodel}
+                  changesign={changesign}
+                  listdt={listdt}
+                  setlistdt={setlistdt}
+                />
+              }
+            />
             <Route path="/admin/Khohang" element={<Khohang />} />
             <Route path="/admin/Spmoi" element={<Spmoi />} />
-            <Route path="/admin/Trenke" element={<Trenke />} />
+            <Route
+              path="/admin/Trenke"
+              element={
+                <Trenke
+                  data={data}
+                  brand={brand}
+                  sign={sign}
+                  changesign={changesign}
+                  setdata={setdata}
+                  showdata={showdata}
+                  setshowdata={setshowdata}
+                />
+              }
+            />
             <Route path="/admin/Chinhanh" element={<Chinhanh />} />
             <Route path="/admin/About" element={<About />} />
-            */}
+
             <Route
               path="/User/UserLogin"
               element={
                 <UserLogin
+                  number={123}
                   on_header={on_header}
                   on_slider={on_slider}
                 ></UserLogin>
@@ -134,7 +137,6 @@ function App() {
               path="/User/UserPase"
               element={<UserPase of_slider={of_slider}></UserPase>}
             />
-            {/* <Route path="/Home/Home" element={<Home></Home>} /> */}
           </Routes>
           <Footer />
         </ContextProvider>

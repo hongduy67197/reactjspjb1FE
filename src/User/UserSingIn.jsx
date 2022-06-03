@@ -11,8 +11,8 @@ import logoShopee from "../assets/images/logoShopee2.jpeg";
 import axios from "../axios";
 import "./Usersingin.css";
 function UserSingIn(props) {
-  const addUser = useContext(Context).addUser;
-  const user = useContext(Context).user;
+  // const addUser = useContext(Context).addUser;
+  // const user = useContext(Context).user;
   // console.log(props);
   const navigate = useNavigate();
   async function userSingin_next() {

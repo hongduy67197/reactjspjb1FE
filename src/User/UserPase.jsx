@@ -38,7 +38,7 @@ function getCookie(cname) {
   }
   return "";
 }
-function UserPase() {
+function UserPase(props) {
   const userInfo = useSelector(function (state) {
     return state.user;
   });

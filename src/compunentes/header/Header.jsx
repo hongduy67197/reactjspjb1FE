@@ -1,6 +1,8 @@
 import React from "react";
 import "../header/header.css";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import userlogo from "../../assets/images/userlogo.jpg";
 
 import {
   QuestionCircleOutlined,
@@ -12,10 +14,27 @@ import {
   ShoppingCartOutlined,
   SearchOutlined,
 } from "@ant-design/icons";
-
 const Header = (props) => {
   const navigate = useNavigate();
-
+  const userInfo = useSelector(function (state) {
+    return state.user;
+  });
+  // function testuser() {
+  //   if (userInfo.username) {
+  //     document.querySelector(".header_navbar_item_mypage").style.display =
+  //       "block";
+  //     document.querySelector(".header_login").style.display = "none";
+  //     document.querySelector(".header_singin").style.display = "none";
+  //   } else {
+  //     document.querySelector(".header_navbar_item_mypage").style.display =
+  //       "none";
+  //     document.querySelector(".header_login").style.display = "block";
+  //     document.querySelector(".header_singin ").style.display = "block";
+  //   }
+  // }
+  // testuser();
+  // console.log(35, "userinfo", userInfo);
+  const imager = userInfo.avatar ? userInfo.avatar : userlogo;
   function of_header() {
     props.of_header();
     props.of_slider();
@@ -137,23 +156,34 @@ const Header = (props) => {
                   <p className="header_navbar-item-language-E">English</p>
                 </div>
               </li>
-              <li className="header_navbar-item" onClick={of_header}>
-                <Link to="/User/UserSingIn">
-                  <a className="header_navbar-item-link">Đăng Ký</a>
-                </Link>
-              </li>
-              <li
-                className="header_navbar-item header_navbar-item--pillar1"
-                onClick={of_header}
-              >
-                <Link to="/User/UserLogin">
-                  <a className="header_navbar-item-link">Đăng Nhập</a>
-                </Link>
-              </li>
-              <li className="header_navbar_item_mypage" onClick={on_mypage}>
-                <img src="" alt="" />
-                <span>Trang cá nhân</span>
-              </li>
+              {userInfo.role ? (
+                <li className="header_navbar_item_mypage" onClick={on_mypage}>
+                  <div className="header_mypage">
+                    <img
+                      src={imager}
+                      alt=""
+                      className="header_navbar_item_userimager"
+                    />
+                    <span>{userInfo.username}</span>
+                  </div>
+                </li>
+              ) : (
+                <>
+                  <li className="header_navbar-item" onClick={of_header}>
+                    <Link to="/User/UserSingIn">
+                      <button className="header_singin">Đăng Ký</button>
+                    </Link>
+                  </li>
+                  <li
+                    className="header_navbar-item header_navbar-item--pillar1"
+                    onClick={of_header}
+                  >
+                    <Link to="/User/UserLogin">
+                      <button className="header_login">Đăng Nhập</button>
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
           </nav>
 

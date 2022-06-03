@@ -39,7 +39,6 @@ const Slider = (slideItem) => {
       <div className="advertisement-slider">
         <section className="container-slider">
           {slideItem.Categories.map((obj, index) => {
-            // console.log(42, process.env.PUBLIC_URL + obj.thumpNail);
             return (
               <div
                 key={obj.id}
@@ -72,6 +71,7 @@ const Slider = (slideItem) => {
             {Array.from({ length: slideItem.Categories.length }).map(
               (item, index) => (
                 <div
+                  key={index}
                   onClick={() => moveDot(index + 1)}
                   className={slideIndex === index + 1 ? "dot active" : "dot"}
                 ></div>
@@ -82,7 +82,7 @@ const Slider = (slideItem) => {
         <div className="container-slider-extra">
           {dataSliderExtra.map((objExtra, index) => {
             return (
-              <div className="full-slider-extra">
+              <div className="full-slider-extra" key={index + 1}>
                 <img
                   className="Slider-Extra-img"
                   src={

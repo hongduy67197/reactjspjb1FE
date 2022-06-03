@@ -19,12 +19,14 @@ function setCookie(cname, cvalue, exdays) {
   let expires = "expires=" + d.toUTCString();
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
+
+// ----------------------------------------------------------------------------------------------------
 function UserLogin(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useContext(Context).user;
-  const id = useContext(Context).id;
-  const setId = useContext(Context).setId;
+  // const user = useContext(Context).user;
+  // const id = useContext(Context).id;
+  // const setId = useContext(Context).setId;
 
   async function submit() {
     let email = document.querySelector(".login_conter_modal_email").value;
@@ -37,24 +39,17 @@ function UserLogin(props) {
         "Vui lòng nhập Password";
     } else {
       let res = await axios.post("/user/login", { email, password });
-      console.log(42, res.data.data.token);
+      console.log(42, res.data);
+      console.log(43, res.data.data.token);
+      console.log(44, res.data.data.userData);
       setCookie("user", res.data.data.token, 30);
-      const action = Login({
-        // username: res.data.data.user.username,
-        // address: res.data.data.user.address,
-        // avatar: res.data.data.user.avatar,
-        // code: res.data.data.user.code,
-        // email: res.data.data.user.email,
-        // phone: res.data.data.user.phone,
-        role: res.data.data.role,
-      });
-      console.log(53, action);
+      // console.log(res.data);
+      const action = Login(res.data.data.userData);
+      // console.log(53, action);
       dispatch(action);
-      // navigate("/Home/Home");
-      console.log(134);
       navigate("/compunentes/home/Home");
       props.on_header();
-      props.on_silder();
+      // props.on_silder();
     }
   }
   // kiểm tra đầu vào Email
