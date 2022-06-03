@@ -119,6 +119,8 @@ function App() {
               element={
                 <UserLogin
                   number={123}
+                  of_header={of_header}
+                  of_slider={of_slider}
                   on_header={on_header}
                   on_slider={on_slider}
                 ></UserLogin>

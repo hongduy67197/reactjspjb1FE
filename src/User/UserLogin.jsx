@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/shopee.png";
 import face from "../assets/images/logoFace.png";
@@ -27,6 +27,13 @@ function UserLogin(props) {
   // const user = useContext(Context).user;
   // const id = useContext(Context).id;
   // const setId = useContext(Context).setId;
+
+  useEffect(() => {
+    props.of_header()
+    props.of_slider()
+
+  }, [])
+  
 
   async function submit() {
     let email = document.querySelector(".login_conter_modal_email").value;
