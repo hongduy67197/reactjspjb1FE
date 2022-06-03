@@ -6,6 +6,7 @@ import google from "../assets/images/logoGoogle.jpg";
 import apple from "../assets/images/logoApple.png";
 import qr from "../assets/images/qrtest2.png";
 import Context from "../Conter/Context";
+import "../../src/App.css";
 
 function UserLogin(props) {
   const navigate = useNavigate();
@@ -83,7 +84,12 @@ function UserLogin(props) {
     <div className="login_">
       <div className="login_header">
         <Link to="App">
-          <img src={logo} alt="" className="login_header_img" style={{width: 'auto'}}/>
+          <img
+            src={logo}
+            alt=""
+            className="login_header_img"
+            style={{ width: "auto" }}
+          />
         </Link>
         <span className="login_header_text">Đăng nhập </span>
         <a href="" className="login_header_help">

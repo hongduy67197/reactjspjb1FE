@@ -26,7 +26,6 @@ function Chinhsua(props) {
     document.querySelector(".chonloai1").style.background = "pink";
     document.querySelector(".chonloai1").style.color = "black";
     document.querySelector(".chonloai1").style.border = "2px solid black";
-    setcount(1);
     document.querySelector(".boxoption2").style.display = "none";
     document.querySelector(".chonloai2").innerHTML = "Dòng sản phẩm";
     axios

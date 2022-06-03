@@ -110,3 +110,46 @@ table td {
   box-shadow: 4px 3px rgb(87, 191, 255);
   border: none;
 }
+.chonhang {
+  display: flex;
+  justify-content: space-between;
+}
+.boxbrand {
+  font-size: 28px;
+  font-weight: bold;
+  background-color: pink;
+  width: 60%;
+  border-radius: 10px;
+  text-align: center;
+}
+.boxbrand:hover {
+  cursor: pointer;
+  background-color: rgb(255, 52, 85);
+  color: white;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+.chonhang p {
+  font-size: 20px;
+  font-weight: bold;
+}
+.newboxbrand {
+  display: none;
+  top: 31%;
+  text-align: center;
+  width: 662px;
+  z-index: 1;
+  position: absolute;
+  background: pink;
+  right: 80px;
+  border-radius: 10px;
+}
+.newboxbrand p {
+  margin: 0;
+}
+.newboxbrand p:hover {
+  cursor: pointer;
+  background-color: rgb(255, 52, 85);
+  color: white;
+  border-radius: 10px;
+}
