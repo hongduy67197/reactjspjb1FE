@@ -12,6 +12,7 @@ import Context from "../Conter/Context";
 import "./Userlogin.css";
 import { useDispatch } from "react-redux";
 import { Login } from "../redux/action/userAction";
+import "../../src/App.css";
 
 function setCookie(cname, cvalue, exdays) {
   const d = new Date();

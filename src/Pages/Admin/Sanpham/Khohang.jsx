@@ -18,7 +18,7 @@ function Khohang(props) {
   }
   function takedata() {
     axios
-      .get("http://localhost:3150/admin/product/list")
+      .get("http://localhost:3150/admin/icon/list")
       .then(function (response) {
         console.log(response);
         setdata(response.data);
@@ -29,7 +29,7 @@ function Khohang(props) {
   }
   function clear(id) {
     axios
-      .delete(`http://localhost:3150/admin/product/${id}`)
+      .delete(`http://localhost:3150/admin/icon/${id}`)
       .then(function (response) {
         console.log(response);
       })
@@ -52,9 +52,7 @@ function Khohang(props) {
         {data.map(function (value, index) {
           return (
             <div key={index}>
-              <span>{value.idProductCode.productName} :</span>
-              <span>{value.color} :</span>
-              <span>{value.ram} :</span>
+              <span>{value.iconName} :</span>
               <button onClick={() => clear(value._id)}>X</button>
             </div>
           );

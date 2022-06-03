@@ -6,22 +6,14 @@ import { useState, useEffect } from "react";
 import "./product.css";
 
 function Spmoi(props) {
+  var arrproduct = [];
+  const [count, setcount] = useState(1);
   const [data, setdata] = useState([]);
   const [product, setproduct] = useState([]);
   const [sign, setsign] = useState([0]);
   function changesign() {
     setsign(sign + 1);
   }
-  useEffect(() => {
-    axios
-      .get("http://localhost:3150/admin/productcode/list")
-      .then(function (response) {
-        setproduct(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, []);
   useEffect(() => {
     axios
       .get("http://localhost:3150/admin/categories")
@@ -116,6 +108,7 @@ function Spmoi(props) {
     document.querySelector(".dtmoi").style.borderRadius = "15px";
   }
   function addnewlist() {
+    setcount(1);
     const form12 = document.querySelector(".formlist");
     const formData12 = new FormData(form12);
     axios
@@ -129,10 +122,13 @@ function Spmoi(props) {
     clearlist();
   }
   function clearvoucher() {
+    setcount(1);
     document.querySelector(".vouchername").value = "";
     document.querySelector(".voucherpic").value = "";
+    document.querySelector(".discount").value = "";
   }
   function newvoucher() {
+    setcount(1);
     const form123 = document.querySelector(".formvoucher");
     const formData123 = new FormData(form123);
     axios
@@ -147,10 +143,12 @@ function Spmoi(props) {
     clearvoucher();
   }
   function clearslide() {
+    setcount(1);
     document.querySelector(".slidename").value = "";
     document.querySelector(".slidepic").value = "";
   }
   function newslide() {
+    setcount(1);
     const form1234 = document.querySelector(".formslide");
     const formData1234 = new FormData(form1234);
     axios
@@ -163,6 +161,41 @@ function Spmoi(props) {
       });
     changesign();
     clearslide();
+  }
+  function choosebrand(id) {
+    setcount(1);
+    document.querySelector(".boxbrand").style.background = "pink";
+    document.querySelector(".boxbrand").style.color = "black";
+    document.querySelector(".boxbrand").style.border = "2px solid black";
+    document.querySelector(".newboxbrand").style.display = "none";
+    axios
+      .get("http://localhost:3150/admin/productcode/list")
+      .then(function (response) {
+        response.data.map(function (value, index) {
+          if (value.idCategories[0] == id) {
+            arrproduct.push(value);
+            setproduct(arrproduct);
+          }
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    axios
+      .get(`http://localhost:3150/admin/categories/${id}`)
+      .then(function (response) {
+        console.log(response);
+        document.querySelector(
+          ".boxbrand"
+        ).innerHTML = `${response.data.categoriesName}`;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+  function newboxbrandon() {
+    setcount(1);
+    document.querySelector(".newboxbrand").style.display = "block";
   }
   return (
     <div>
@@ -268,6 +301,21 @@ function Spmoi(props) {
           </div>
         </div>
         <div className="addnewproductlist">
+          <div className="chonhang">
+            <p>Chon hang:</p>
+            <div onClick={newboxbrandon} className="boxbrand">
+              Ten hang
+            </div>
+            <div className="newboxbrand">
+              {data.map(function (value, index) {
+                return (
+                  <p onClick={() => choosebrand(value._id)} key={index}>
+                    {value.categoriesName}
+                  </p>
+                );
+              })}
+            </div>
+          </div>
           <form className="formlist" action="" encType="multipart/form-data">
             <span>
               Dòng sản phẩm:
@@ -287,7 +335,7 @@ function Spmoi(props) {
                 className="price"
                 placeholder="Đơn giá"
                 name="price"
-                type="text"
+                type="number"
               />
             </span>
             <span>
@@ -306,10 +354,9 @@ function Spmoi(props) {
                 className="storage"
                 name="storage"
                 placeholder="Số lượng"
-                type="text"
+                type="number"
               />
             </span>
-
             <span>
               Màu sắc:
               <input
@@ -361,10 +408,10 @@ function Spmoi(props) {
             <span>
               Discount:
               <input
-                className="vouchername"
+                className="discount"
                 placeholder="Discount"
-                name="iconName"
-                type="text"
+                name="discount"
+                type="number"
               />
             </span>
             <span>

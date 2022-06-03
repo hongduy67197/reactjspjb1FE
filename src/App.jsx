@@ -41,6 +41,7 @@ function App() {
     axios
       .get("http://localhost:3150/admin/categories")
       .then(function (res) {
+        console.log(44, res.data);
         setCategories(res.data);
         // console.log(res.data);
       })
@@ -49,6 +50,30 @@ function App() {
       });
   }, []);
 
+  function changesign() {
+    setsign(sign + 1);
+  }
+  useEffect(() => {
+    axios
+      .get("http://localhost:3150/admin/productcode/list")
+      .then(function (response) {
+        setdata(response.data);
+        setshowdata(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
+  useEffect(() => {
+    axios
+      .get("http://localhost:3150/admin/categories")
+      .then(function (response) {
+        setbrand(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
   function of_header() {
     document.querySelector(".onof_header").style.display = "none";
   }
