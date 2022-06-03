@@ -8,16 +8,15 @@ import Icon from "../homePage/Icon";
 
 const Cards = ({ item, Icon, keyId }) => {
   if (!item.data.length > 0) {
-    item.data = [{ price: "chua set gia", ram: "chua set ram" }];
-    item.data[0].price = "chưa set giá";
-    item.data[0].ram = "chưa set ram";
+    item.data = [{ price: "chua set gia", ram: "chua set gia" }];
+    item.data[0].price = "chưa set giá ";
+    item.data[0].ram = "no ram";
   }
-  console.log(Icon);
 
   return (
     <div key={keyId} className="home_cards-item">
       <div className="cards">
-        {<p className="installment">{Icon[6].iconName}</p>}
+        {<p className="installment">{Icon[9].iconName}</p>}
         <div className="item_image-box">
           <div className="image_box">
             <img
@@ -26,10 +25,10 @@ const Cards = ({ item, Icon, keyId }) => {
               alt=""
             />
 
-            <img
+            {/* <img
               className="image-monopoly"
               src={"http://localhost:3150" + Icon[5].iconPic}
-            />
+            /> */}
             {/* <img
               className="image-monopoly"
               src={"http://localhost:3150" + Icon[7].iconPic}
@@ -43,20 +42,21 @@ const Cards = ({ item, Icon, keyId }) => {
         {
           <div>
             <div className="details-ram">
-              {<span className="ram1">{item.data[0].ram}</span>}
+              {/* {<span className="ram1">{item.data[0].ram}</span>} */}
             </div>
-            {<p className="price">{item.data[0].price}₫</p>}
+            {<p className="price">{item.data[0].price.toLocaleString()}₫</p>}
           </div>
         }
         <div className="details">
-          <p className="dramaticReduction">
+          {/* <p className="dramaticReduction">
             <img
               className="dramaticReduction-icon"
               src={"http://localhost:3150" + Icon[0].iconPic}
               alt=""
             />
+
             {Icon[0].iconName}
-          </p>
+          </p> */}
 
           <p className="VNPayIcon">
             <img
@@ -66,6 +66,11 @@ const Cards = ({ item, Icon, keyId }) => {
             />
             {Icon[1].iconName}
           </p>
+          <p className="productType">{item.productType}</p>
+
+          <p className="design">{item.design}</p>
+          <p className="panel">{item.panel}</p>
+          <p className="cameraProduct">{item.cameraProduct}</p>
         </div>
       </div>
     </div>

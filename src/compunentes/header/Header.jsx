@@ -11,11 +11,12 @@ import {
   ShoppingCartOutlined,
   SearchOutlined,
 } from "@ant-design/icons";
+import Search from "./Search";
 
 const Header = () => {
   return (
     <div className="app">
-      <header className="header">
+      <header className="Cuong__header">
         <div className="gird">
           <nav className="header_navbar">
             <ul className="header_navbar-list">
@@ -142,39 +143,7 @@ const Header = () => {
             </div>
             <div className="header_search-section">
               <div className="header_search">
-                <div className="header_search-input-wrap">
-                  <input
-                    type="text"
-                    name=""
-                    className="header_search-input"
-                    placeholder="Bạn đang tìm gì..."
-                  />
-
-                  {/* Search History */}
-                  <div className="header_search-history">
-                    <h3 className="header_search-history-heading">
-                      <div className="header_search-history-heading-display-flex">
-                        <span className="header_search-history-heading-span">
-                          LANEIGE - MUA 1 TẶNG 9
-                        </span>
-                        <img
-                          className="header_search-history-heading-img"
-                          src="https://cf.shopee.vn/file/54548c4a9eef8081e0bfcbe81d9eddad"
-                          height="24"
-                        ></img>
-                      </div>
-
-                      <ul className=" header_search-history-heading-text-list">
-                        <li className="header_search-history-heading-text-list-item">
-                          <a href="">iphone 13 pro max</a>
-                        </li>
-                        <li className="header_search-history-heading-text-list-item">
-                          <a href=""> iphone</a>
-                        </li>
-                      </ul>
-                    </h3>
-                  </div>
-                </div>
+                <Search />
                 <div className="header_search-button">
                   <button className="header_search-button-button">
                     <SearchOutlined

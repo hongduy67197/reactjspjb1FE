@@ -1,7 +1,6 @@
 import { React, useEffect, useState } from "react";
 import "../homePage/ListProduct.css";
 import Cards from "../homePage/Cards";
-import productList from "./ListProductData";
 import Icon from "./Icon";
 
 const ListProduct = (items) => {

@@ -11,10 +11,11 @@ import {
   WechatOutlined,
 } from "@ant-design/icons";
 import Icon from "./homePage/Icon";
-
+import Slider from "../slider/Slider";
 const Home = () => {
   const [productCode, setProductCode] = useState([]);
   const [numberShow, setNumberShow] = useState(20);
+  const [Slides, setSlides] = useState([]);
 
   function seeMore() {
     setNumberShow(numberShow + 20);
@@ -24,12 +25,22 @@ const Home = () => {
     axios
       .get("http://localhost:3150/user/list")
       .then(function (res) {
-        res.data.dataProductCode[1].data.sort((a, b) => {
-          return a.price - b.price;
-        });
+        setSlides(res.data.listSlide);
+      })
+      .catch(function (err) {
+        console.log(99, err);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3150/user/list")
+      .then(function (res) {
+        // res.data.dataProductCode.data.price.sort((a, b) => {
+        //   return a.price - b.price;
+        // });
         // console.log(55, res.data.dataProductCode);
         // console.log(66, res.data.dataProductCode[1].data);
-
         setProductCode(res.data.dataProductCode);
       })
       .catch(function (err) {
@@ -52,6 +63,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
+      <Slider Slides={Slides} />
       <div className="home_status_container-chat">
         <i title="New messages" id="unread-msg-number">
           <WechatOutlined className="WechatOutlined" />

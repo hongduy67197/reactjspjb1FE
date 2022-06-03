@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Slider.css";
-import dataSlider from "./dataSlider";
+
 import BtnSlider from "./BtnSlider";
 import dataSliderExtra from "./data.SliderExtra";
 import _debounce from "lodash/debounce";
@@ -17,7 +17,7 @@ const Slider = (slideItem) => {
       // console.log(19, slideIndex);
     }
   }
-  setTimeout(nextSlide, 1000);
+  setTimeout(nextSlide, 3000);
 
   // useEffect(() => {
   //   setInterval(nextSlide, 1000);
