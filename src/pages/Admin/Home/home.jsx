@@ -12,7 +12,7 @@ function Home(props) {
   const [state, setstate] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:3150/admin/productcode/list")
+      .get("http://localhost:3150/admin/product/list")
       .then(function (res) {
         setstate(res.data);
       })
@@ -28,15 +28,11 @@ function Home(props) {
   };
   const columns = [
     {
-      title: "STT",
-      dataIndex: "index",
-    },
-    {
       title: "ThumNail",
-      dataIndex: "thumNail",
+      dataIndex: "productPic",
       sorter: false,
-      render: (thumNail) => (
-        <img src={"http://localhost:3150" + thumNail} alt="anh" />
+      render: (productPic) => (
+        <img src={"http://localhost:3150" + productPic} alt="anh" />
       ),
     },
     {
@@ -56,21 +52,35 @@ function Home(props) {
       title: "Panel",
       dataIndex: "panel",
     },
+    {
+      title: "Price",
+      dataIndex: "price",
+    },
   ];
 
   const database = [];
+  const data = [];
+
   if (state.length > 0) {
-    var so = state.length - 10;
-    for (let i = so; i < state.length; i++) {
+    for (let i = 0; i < state.length; i++) {
       database.push({
-        index: i - 18,
-        productName: state[i].productName,
-        thumNail: state[i].thumNail,
-        productType: state[i].productType,
-        specialFeatures: state[i].specialFeatures,
-        panel: state[i].panel,
+        productName: state[i].idProductCode.productName,
+        productPic: state[i].productPic,
+        productType: state[i].idProductCode.productType,
+        specialFeatures: state[i].idProductCode.specialFeatures,
+        panel: state[i].idProductCode.panel,
+        price: state[i].price,
       });
     }
+  }
+
+  database.sort(function (a, b) {
+    return b.price - a.price;
+  });
+
+  let so = database.length - 10;
+  for (let i = so; i < database.length; i++) {
+    data.push(database[i]);
   }
 
   useEffect(() => {
@@ -131,8 +141,8 @@ function Home(props) {
         </div>
 
         <div className="productNew">
-          <h2>New Products</h2>
-          <Table columns={columns} dataSource={database} pagination={false} />;
+          <h2>Sản phẩm có giá cao</h2>
+          <Table columns={columns} dataSource={data} pagination={false} />;
         </div>
 
         <div className="Note">
