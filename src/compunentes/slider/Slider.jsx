@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from "react";
 import "./Slider.css";
-import dataSlider from "./dataSlider";
+
 import BtnSlider from "./BtnSlider";
 import dataSliderExtra from "./data.SliderExtra";
-
+import _debounce from "lodash/debounce";
 const Slider = (slideItem) => {
   const [slideIndex, setSlideIndex] = useState(1);
-  // console.log(55, slideItem.Categories.length);
-  // for (let index = 0; index < slideItem.Categories.length; index++) {
-  //   console.log(slideItem.Categories[index].thumpNail);
-  // }
+ 
 
   //nextSlide
   function nextSlide() {
-    if (slideIndex !== slideItem.Categories.length) {
+    if (slideIndex !== slideItem.Slides.length) {
+      // console.log(16, slideIndex);
       setSlideIndex(slideIndex + 1);
-    } else if (slideIndex === slideItem.Categories.length) {
+    } else if (slideIndex === slideItem.Slides.length) {
       setSlideIndex(1);
+      // console.log(19, slideIndex);
     }
   }
   setTimeout(nextSlide, 3000);
@@ -26,7 +25,7 @@ const Slider = (slideItem) => {
     if (slideIndex !== 1) {
       setSlideIndex(slideIndex - 1);
     } else if (setSlideIndex !== 1) {
-      setSlideIndex(slideItem.Categories.length);
+      setSlideIndex(slideItem.Slides.length);
     }
   };
   //moveDot
@@ -38,10 +37,10 @@ const Slider = (slideItem) => {
     <div className="full-advertisement">
       <div className="advertisement-slider">
         <section className="container-slider">
-          {slideItem.Categories.map((obj, index) => {
+          {slideItem.Slides.map((obj, index) => {
             return (
               <div
-                key={obj.id}
+                key={index}
                 className={
                   slideIndex === index + 1 ? "slide active-anim" : "slide"
                 }
@@ -50,7 +49,7 @@ const Slider = (slideItem) => {
                   src={
                     "http://localhost:3150" +
                     process.env.PUBLIC_URL +
-                    obj.thumpNail
+                    obj.slideImg
                   }
                 />
               </div>
@@ -68,7 +67,7 @@ const Slider = (slideItem) => {
             direction={"next"}
           />
           <div className="container-dots">
-            {Array.from({ length: slideItem.Categories.length }).map(
+            {Array.from({ length: slideItem.Slides.length }).map(
               (item, index) => (
                 <div
                   key={index}
@@ -82,7 +81,7 @@ const Slider = (slideItem) => {
         <div className="container-slider-extra">
           {dataSliderExtra.map((objExtra, index) => {
             return (
-              <div className="full-slider-extra" key={index + 1}>
+              <div key={index} className="full-slider-extra">
                 <img
                   className="Slider-Extra-img"
                   src={

@@ -10,6 +10,7 @@ function Chinhsua(props) {
   const [data, setdata] = useState([]);
   const [tieudiem, settieudiem] = useState([]);
   const [vitri, setvitri] = useState([]);
+
   useEffect(() => {
     axios
       .get("http://localhost:3150/admin/categories")

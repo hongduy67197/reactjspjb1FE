@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 // import Header from "../Header/Header";
+import Comment from "./UserPage/Comment";
 import Orders from "./UserPage/Orders";
 import Promotion from "./UserPage/Promotion";
 import Voucher from "./UserPage/Voucher";
@@ -203,7 +204,9 @@ function UserPase(props) {
             <button onClick={onof_voucher}>voucher</button>
           </div>
           {/* bật tắt, chuyển trang phần PAGE */}
-          <div className="comment">{/* <Comment></Comment> */}</div>
+          <div className="comment">
+            <Comment></Comment>
+          </div>
           <div className="mypage">{/* <MyPage></MyPage> */}</div>
           <div className="order">
             <Orders></Orders>

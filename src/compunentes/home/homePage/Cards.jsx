@@ -3,23 +3,20 @@ import App from "./Rate";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import React, { useState, useEffect } from "react";
 import { ExceptionMap } from "antd/lib/result";
+import axios from "axios";
+import Icon from "../homePage/Icon";
 
-const Cards = ({ item }) => {
-  // console.log(8, item.data);
-  item.data.sort((a, b) => {
-    return a.price - b.price;
-  });
-  // console.log(12, item.data);
+const Cards = ({ item, Icon, keyId }) => {
   if (!item.data.length > 0) {
-    item.data = [{ price: "chua set gia", ram: "chua set ram" }];
-    item.data[0].price = "chưa set giá";
-    item.data[0].ram = "chưa set ram";
+    item.data = [{ price: "chua set gia", ram: "chua set gia" }];
+    item.data[0].price = "chưa set giá ";
+    item.data[0].ram = "no ram";
   }
 
   return (
-    <div className="home_cards-item">
+    <div key={keyId} className="home_cards-item">
       <div className="cards">
-        {/* {installment ? <p className="installment">{installment}</p> : null} */}
+        {<p className="installment">{Icon[9].iconName}</p>}
         <div className="item_image-box">
           <div className="image_box">
             <img
@@ -28,49 +25,52 @@ const Cards = ({ item }) => {
               alt=""
             />
 
-            {/* <img className="image-warranty" src={warranty} alt="" />
-            <img className="image-monopoly" src={monopoly} /> */}
+            {/* <img
+              className="image-monopoly"
+              src={"http://localhost:3150" + Icon[5].iconPic}
+            /> */}
+            {/* <img
+              className="image-monopoly"
+              src={"http://localhost:3150" + Icon[7].iconPic}
+            /> */}
           </div>
         </div>
-        <p className="ProductName">{item.productName}</p>
-        {/* {item.data.sort((a, b) => {
-          return a.price - b.price;
-        })} */}
 
-        {/* {console.log(29, item.data)} */}
-
+        <div className="">
+          <p className="ProductName">{item.productName}</p>
+        </div>
         {
           <div>
             <div className="details-ram">
-              {<span className="ram1">{item.data[0].ram}</span>}
-              {/* {console.log(99, item.data[0].ram)} */}
+              {/* {<span className="ram1">{item.data[0].ram}</span>} */}
             </div>
             {<p className="price">{item.data[0].price.toLocaleString()}₫</p>}
           </div>
         }
         <div className="details">
-          {/* {dramaticReduction ? (
-            <p className="dramaticReduction">
-              <img className="dramaticReduction-icon" src={dramaticReduction} />{" "}
-              GIẢM KỊCH SÀN
-            </p>
-          ) : null} */}
-          {/* {VNPayIcon ? (
-            <p className="VNPayIcon">
-              <img className="VNPayIcon-icon" src={VNPayIcon} alt="" />
-              VNPAY GIẢM 500K
-            </p>
-          ) : null}{" "}
-          
-          <p className="oder">{oder}</p> */}
+          {/* <p className="dramaticReduction">
+            <img
+              className="dramaticReduction-icon"
+              src={"http://localhost:3150" + Icon[0].iconPic}
+              alt=""
+            />
 
-          {/* <p>{noTi}</p> */}
-          {/* <p className="rate-icon">
-            <App style={{ fontZie: "5px" }} /> {AppIconRating}
+            {Icon[0].iconName}
           </p> */}
-          {/* <p className="compare">
-            <PlusCircleOutlined /> {compare}
-          </p> */}
+
+          <p className="VNPayIcon">
+            <img
+              className="VNPayIcon-icon"
+              src={"http://localhost:3150" + Icon[1].iconPic}
+              alt=""
+            />
+            {Icon[1].iconName}
+          </p>
+          <p className="productType">{item.productType}</p>
+
+          <p className="design">{item.design}</p>
+          <p className="panel">{item.panel}</p>
+          <p className="cameraProduct">{item.cameraProduct}</p>
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@
   padding: 0;
 }
 
-.header {
+.Cuong__header {
   /* background-image: linear-gradient(0, #fe6433, #f53e2d); */
   background-image: linear-gradient(0, #f4ea2a, #f5a001);
 }
@@ -85,8 +85,8 @@
 .header_navbar-item--pillar2::after {
   content: "";
   display: block;
-  border-left: 1px solid #fb9086;
-  border-right: 1px solid #fb9086;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
   position: absolute;
   height: 15px;
   left: -9px;
@@ -97,7 +97,7 @@
 .header_navbar-item--pillar1::after {
   content: "";
   display: block;
-  border-left: 1px solid #fb9086;
+  border-left: 1px solid black;
   position: absolute;
   height: 15px;
   left: -9px;
@@ -180,6 +180,7 @@
 
 .header_qr-dowload-img {
   height: 25px;
+  width: initial;
 }
 
 /* Header Noti Notification */
@@ -234,6 +235,7 @@
   margin-left: 53px;
   height: 250px;
   opacity: 0.5;
+  width: inherit;
 }
 .header_noti-notification-noti {
   font-weight: 500;

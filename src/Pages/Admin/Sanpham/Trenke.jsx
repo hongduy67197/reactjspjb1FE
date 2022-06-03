@@ -54,16 +54,6 @@ function Trenke(props) {
               </div>
             );
           })}
-          {/* <div className="brand upcost" onClick={upcost}>
-            <p id="brand">
-              Tăng <i className="fa-solid fa-arrow-up-wide-short"></i>
-            </p>
-          </div> */}
-          {/* <div className="brand downcost" onClick={downcost}>
-            <p id="brand">
-              Giảm <i className="fa-solid fa-arrow-down-wide-short"></i>
-            </p>
-          </div> */}
         </div>
         <div className="boxtable">
           <table>

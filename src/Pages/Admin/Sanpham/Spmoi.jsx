@@ -16,6 +16,16 @@ function Spmoi(props) {
   }
   useEffect(() => {
     axios
+      .get("http://localhost:3150/admin/productcode/list")
+      .then(function (response) {
+        setproduct(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
+  useEffect(() => {
+    axios
       .get("http://localhost:3150/admin/categories")
       .then(function (response) {
         setdata(response.data);

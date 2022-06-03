@@ -89,7 +89,6 @@ function UserLogin(props) {
   function clean_password() {
     document.querySelector(".login_password_text").innerHTML = "";
   }
-
   function singIn_next() {
     navigate("/user/UserSingIn");
     document.querySelector(".ofcanva_modal_close").click();

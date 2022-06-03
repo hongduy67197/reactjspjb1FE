@@ -11,7 +11,7 @@ import Spmoi from "./Pages/Admin/Sanpham/Spmoi";
 import Trenke from "./Pages/Admin/Sanpham/Trenke";
 import Chinhanh from "./Pages/Admin/Thongtin/Chinhanh";
 import Nhanvien from "./Pages/Admin/NhanVien/Nhanvien";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Login from "./Pages/Admin/Login/login";
 import About from "./Pages/Admin/Thongtin/About";
@@ -23,6 +23,7 @@ import ContextProvider from "./Conter/ContextProvider";
 import Slider from "./compunentes/slider/Slider";
 import Footer from "./compunentes/footer/Footer";
 import Home1 from "./compunentes/home/Home";
+
 function App() {
   const [data, setdata] = useState([]);
   const [showdata, setshowdata] = useState([]);
@@ -64,6 +65,7 @@ function App() {
         console.log(error);
       });
   }, []);
+
   useEffect(() => {
     axios
       .get("http://localhost:3150/admin/categories")
@@ -75,16 +77,17 @@ function App() {
       });
   }, []);
   function of_header() {
+    if(document.querySelector(".onof_header"))
     document.querySelector(".onof_header").style.display = "none";
   }
   function on_header() {
-    document.querySelector(".onof_header").style.display = "block";
+    // document.querySelector(".onof_header").style.display = "block";
   }
   function of_slider() {
-    document.querySelector(".onof_slider").style.display = "none";
+    // document.querySelector(".onof_slider").style.display = "none";
   }
   function on_slider() {
-    document.querySelector(".onof_slider").style.display = "block";
+    // document.querySelector(".onof_slider").style.display = "block";
   }
   function changesign() {
     setsign(sign + 1);
@@ -92,13 +95,9 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <ContextProvider>
-          <div className="onof_header">
-            <Header of_header={of_header} of_slider={of_slider}></Header>
-          </div>
-          <div className="onof_slider">
-            <Slider Categories={Categories} />
-          </div>
+        <ContextProvider >
+          <Header />
+
           <Routes>
             <Route path="/" element={<Home1 />} />
             <Route path="/admin/login" element={<Login />} />

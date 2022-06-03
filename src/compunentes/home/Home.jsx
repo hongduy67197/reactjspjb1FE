@@ -1,7 +1,8 @@
 import "../home/Home.css";
 import { React, useEffect, useState } from "react";
 import axios from "axios";
-import SeeMore from "./homePage/SeeMore";
+import SeeMore from "../home/homePage/SeeMore";
+import ListProduct from "./homePage/ListProduct";
 import Advertisement from "../../advertisement/Advertisement";
 import {
   FilterOutlined,
@@ -9,18 +10,53 @@ import {
   ThunderboltOutlined,
   WechatOutlined,
 } from "@ant-design/icons";
-import ListProduct from "./homePage/ListProduct";
 import Header from "../header/Header";
 import Slider from "../slider/Slider";
 
+import Icon from "./homePage/Icon";
 const Home = () => {
   const [productCode, setProductCode] = useState([]);
+  const [numberShow, setNumberShow] = useState(20);
+  const [Slides, setSlides] = useState([]);
+
+  function seeMore() {
+    setNumberShow(numberShow + 20);
+  }
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3150/user/list")
+      .then(function (res) {
+        setSlides(res.data.listSlide);
+      })
+      .catch(function (err) {
+        console.log(99, err);
+      });
+  }, []);
 
   useEffect(() => {
     axios
       .get("/user/list")
       .then(function (res) {
-        setProductCode(res.data);
+        // res.data.dataProductCode.data.price.sort((a, b) => {
+        //   return a.price - b.price;
+        // });
+        // console.log(55, res.data.dataProductCode);
+        // console.log(66, res.data.dataProductCode[1].data);
+        setProductCode(res.data.dataProductCode);
+      })
+      .catch(function (err) {
+        console.log(31, err);
+      });
+  }, []);
+
+  //======== icon ===============
+  const [NewIcon, setNewIcon] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:3150/admin/icon/list")
+      .then(function (res) {
+        setNewIcon(res.data);
       })
       .catch(function (err) {
         console.log(99, err);
@@ -28,73 +64,30 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
-      {/* {/* <Header /> */}
-      {/* <Slider Categories={Categories} /> */}
-      <div className="home-container">
-        <div className="home_status_container-chat">
-          <i title="New messages" id="unread-msg-number">
-            <WechatOutlined className="WechatOutlined" />
-          </i>
-          <a href="#" id="status-icon"></a>
-        </div>
-        <div className="home-container-filter">
-          <div className="box-filter-item">
-            <ul className="box-filter-ul">
-              <li className="box-filter-ul-li">
-                <FilterOutlined />
-                Bộ Lọc
-              </li>
-              <li className="box-filter-ul-li">
-                Hãng <CaretDownOutlined className="box-filter-ul-li-icon" />
-              </li>
-              <li className="box-filter-ul-li">
-                Giá <CaretDownOutlined className="box-filter-ul-li-icon" />
-              </li>
-              <li className="box-filter-ul-li">
-                Loại Điện Thoại{" "}
-                <CaretDownOutlined className="box-filter-ul-li-icon" />
-              </li>
-              <li className="box-filter-ul-li">
-                Hiệu Năng & Pin{" "}
-                <CaretDownOutlined className="box-filter-ul-li-icon" />
-              </li>
-              <li className="box-filter-ul-li">
-                RAM
-                <CaretDownOutlined className="box-filter-ul-li-icon" />
-              </li>
-              <li className="box-filter-ul-li">
-                Bộ Nhớ Trong
-                <CaretDownOutlined className="box-filter-ul-li-icon" />
-              </li>
-              <li className="box-filter-ul-li">
-                Camera
-                <CaretDownOutlined className="box-filter-ul-li-icon" />
-              </li>
-              <li className="box-filter-ul-li">
-                Tính Năng Đặc Biệt
-                <CaretDownOutlined className="box-filter-ul-li-icon" />
-              </li>
-              <li className="box-filter-ul-li">
-                Thiết Kế
-                <CaretDownOutlined className="box-filter-ul-li-icon" />
-              </li>
-              <li className="box-filter-ul-li">
-                Màn Hình
-                <CaretDownOutlined className="box-filter-ul-li-icon" />
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className="home-container-list-logo">
-          <ul className="box-list-logo-ul">
-            <li className="list-logo">
-              <a className="list-logo-a">
-                <img
-                  src="https://cdn.tgdd.vn/Brand/1/logo-iphone-220x48.png"
-                  alt=""
-                />
-              </a>
+    <div className="home-container">
+      <Slider Slides={Slides} />
+      <div className="home_status_container-chat">
+        <i title="New messages" id="unread-msg-number">
+          <WechatOutlined className="WechatOutlined" />
+        </i>
+        <a href="#" id="status-icon"></a>
+      </div>
+      <div className="home-container-filter">
+        <div className="box-filter-item">
+          <ul className="box-filter-ul">
+            <li className="box-filter-ul-li">
+              <FilterOutlined />
+              Bộ Lọc
+            </li>
+            <li className="box-filter-ul-li">
+              Hãng <CaretDownOutlined className="box-filter-ul-li-icon" />
+            </li>
+            <li className="box-filter-ul-li">
+              Giá <CaretDownOutlined className="box-filter-ul-li-icon" />
+            </li>
+            <li className="box-filter-ul-li">
+              Loại Điện Thoại{" "}
+              <CaretDownOutlined className="box-filter-ul-li-icon" />
             </li>
             <li className="list-logo">
               <a className="list-logo-a">
@@ -202,9 +195,10 @@ const Home = () => {
         <div className="home-page-product">
           <ListProduct productCode={productCode} />
         </div>
-        <SeeMore />
-        <Advertisement />
       </div>
+
+      <SeeMore seeMore={seeMore} />
+      <Advertisement />
     </div>
   );
 };

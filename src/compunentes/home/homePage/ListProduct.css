@@ -41,8 +41,8 @@
 .image-monopoly {
   position: absolute;
   width: 45px;
-  bottom: 0;
-  left: 0;
+  bottom: 20px;
+  left: 0px;
   transition-delay: 0.1s;
   font-size: 12px;
   transition-duration: 0.5s;
@@ -51,7 +51,7 @@
 .image-warranty {
   position: absolute;
   width: 45px;
-  bottom: 0;
+  bottom: 20px;
   left: 0;
   transition-delay: 0.1s;
   font-size: 12px;
@@ -60,7 +60,7 @@
 
 .image_box-image {
   position: relative;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   display: block;
   overflow: hidden;
   width: 100%;
@@ -150,9 +150,9 @@
 .dramaticReduction {
   max-height: 25px;
   position: absolute;
-  top: 285px;
+  top: 280px;
   border-radius: 10px;
-  width: 110px;
+  width: 100px;
   font-size: 11px;
   background: linear-gradient(to right, #faab08, #d42611);
   color: #fff;
@@ -168,11 +168,12 @@
 }
 
 .VNPayIcon {
-  top: 285px;
+  margin-top: 10px;
+  top: 280px;
   position: absolute;
   text-align: center;
   border-radius: 10px;
-  width: 121px;
+  width: 118px;
   font-size: 11px;
   background-image: linear-gradient(#33bce6, #1161f5);
   color: #fff;
@@ -197,6 +198,7 @@
 .price {
   font-weight: 500;
   font-size: 18px;
+  text-decoration-line: line-through;
 }
 
 .details .compare {
@@ -235,4 +237,40 @@
   white-space: nowrap;
   max-width: 90%;
   margin-bottom: 5px;
+}
+
+.productType::before {
+  content: "●";
+  margin-right: 4px;
+  margin-bottom: 2px;
+  margin-top: -1px;
+  color: #333;
+  font-size: 10px;
+}
+
+.cameraProduct::before {
+  content: "●";
+  margin-right: 4px;
+  margin-bottom: 2px;
+  margin-top: -1px;
+  color: #333;
+  font-size: 10px;
+}
+
+.design::before {
+  content: "●";
+  margin-right: 4px;
+  margin-bottom: 2px;
+  margin-top: -1px;
+  color: #333;
+  font-size: 10px;
+}
+
+.panel::before {
+  content: "●";
+  margin-right: 4px;
+  margin-bottom: 2px;
+  margin-top: -1px;
+  color: #333;
+  font-size: 10px;
 }
