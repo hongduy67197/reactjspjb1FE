@@ -16,7 +16,7 @@ function Spmoi(props) {
   }
   useEffect(() => {
     axios
-      .get("http://localhost:3150/admin/productcode/list")
+      .get("/admin/productcode/list")
       .then(function (response) {
         setproduct(response.data);
       })
@@ -26,7 +26,7 @@ function Spmoi(props) {
   }, []);
   useEffect(() => {
     axios
-      .get("http://localhost:3150/admin/categories")
+      .get("/admin/categories")
       .then(function (response) {
         setdata(response.data);
       })
@@ -56,7 +56,7 @@ function Spmoi(props) {
     const form = document.querySelector("form");
     const formData = new FormData(form);
     axios
-      .post("http://localhost:3150/admin/productcode", formData)
+      .post("/admin/productcode", formData)
       .then(function (response) {
         console.log(response);
       })
@@ -122,7 +122,7 @@ function Spmoi(props) {
     const form12 = document.querySelector(".formlist");
     const formData12 = new FormData(form12);
     axios
-      .post("http://localhost:3150/admin/product", formData12)
+      .post("/admin/product", formData12)
       .then(function (response) {
         console.log(response);
       })
@@ -142,7 +142,7 @@ function Spmoi(props) {
     const form123 = document.querySelector(".formvoucher");
     const formData123 = new FormData(form123);
     axios
-      .post("http://localhost:3150/admin/icon/", formData123)
+      .post("/admin/icon/", formData123)
       .then(function (response) {
         console.log(response);
       })
@@ -162,7 +162,7 @@ function Spmoi(props) {
     const form1234 = document.querySelector(".formslide");
     const formData1234 = new FormData(form1234);
     axios
-      .post("http://localhost:3150/admin/slide/", formData1234)
+      .post("/admin/slide/", formData1234)
       .then(function (response) {
         console.log(response);
       })
@@ -179,7 +179,7 @@ function Spmoi(props) {
     document.querySelector(".boxbrand").style.border = "2px solid black";
     document.querySelector(".newboxbrand").style.display = "none";
     axios
-      .get("http://localhost:3150/admin/productcode/list")
+      .get("/admin/productcode/list")
       .then(function (response) {
         response.data.map(function (value, index) {
           if (value.idCategories[0] == id) {
@@ -192,7 +192,7 @@ function Spmoi(props) {
         console.log(error);
       });
     axios
-      .get(`http://localhost:3150/admin/categories/${id}`)
+      .get(`/admin/categories/${id}`)
       .then(function (response) {
         console.log(response);
         document.querySelector(

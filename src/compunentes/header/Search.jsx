@@ -1,6 +1,6 @@
 import "../header/header.css";
 import { React, useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../../axios";
 
 const Search = () => {
   const [loading, setLoading] = useState(false);
@@ -10,7 +10,7 @@ const Search = () => {
   useEffect(() => {
     const loadPosts = async () => {
       setLoading(true);
-      const response = await axios.get("http://localhost:3150/user/list");
+      const response = await axios.get("/user/list");
       setPost(response.data.dataProductCode);
       console.log(15, response.data.dataProductCode);
       setLoading(false);

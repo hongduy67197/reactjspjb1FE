@@ -37,7 +37,7 @@ function MyPage() {
 
   // }
   // axios
-  //   .post("http://localhost:3150/admin/product", formData12)
+  //   .post("/admin/product", formData12)
   //   .then(function (response) {
   //     console.log(response);
   //   })

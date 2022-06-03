@@ -1,3 +1,6 @@
+
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import "./App.css";
 import Home from "./Pages/Admin/Home/home";
@@ -12,7 +15,7 @@ import Trenke from "./Pages/Admin/Sanpham/Trenke";
 import Chinhanh from "./Pages/Admin/Thongtin/Chinhanh";
 import Nhanvien from "./Pages/Admin/NhanVien/Nhanvien";
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "./axios";
 import Login from "./Pages/Admin/Login/login";
 import About from "./Pages/Admin/Thongtin/About";
 import Header from "./compunentes/header/Header";
@@ -23,6 +26,7 @@ import ContextProvider from "./Conter/ContextProvider";
 import Slider from "./compunentes/slider/Slider";
 import Footer from "./compunentes/footer/Footer";
 import Home1 from "./compunentes/home/Home";
+import CreateOrder from "./Pages/CreateOrder";
 
 function App() {
   const [data, setdata] = useState([]);
@@ -40,7 +44,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3150/admin/categories")
+      .get("/admin/categories")
       .then(function (res) {
         console.log(44, res.data);
         setCategories(res.data);
@@ -56,7 +60,7 @@ function App() {
   }
   useEffect(() => {
     axios
-      .get("http://localhost:3150/admin/productcode/list")
+      .get("/admin/productcode/list")
       .then(function (response) {
         setdata(response.data);
         setshowdata(response.data);
@@ -68,7 +72,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3150/admin/categories")
+      .get("/admin/categories")
       .then(function (response) {
         setbrand(response.data);
       })
@@ -163,7 +167,9 @@ function App() {
               path="/User/UserPase"
               element={<UserPase of_slider={of_slider}></UserPase>}
             />
+              <Route path="/createorder" element={<CreateOrder />}></Route>
           </Routes>
+          <ToastContainer />
           <Footer />
         </ContextProvider>
       </BrowserRouter>

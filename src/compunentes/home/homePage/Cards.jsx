@@ -3,10 +3,10 @@ import App from "./Rate";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import React, { useState, useEffect } from "react";
 import { ExceptionMap } from "antd/lib/result";
-import axios from "axios";
-import Icon from "../homePage/Icon";
+import axios from "../../../axios";
 
-const Cards = ({ item, Icon, keyId }) => {
+
+const Cards = ({ item, keyId }) => {
   if (!item.data.length > 0) {
     item.data = [{ price: "chua set gia", ram: "chua set gia" }];
     item.data[0].price = "chưa set giá ";
@@ -16,7 +16,7 @@ const Cards = ({ item, Icon, keyId }) => {
   return (
     <div key={keyId} className="home_cards-item">
       <div className="cards">
-        {<p className="installment">{Icon[9].iconName}</p>}
+        {/* {<p className="installment">{Icon[9].iconName}</p>} */}
         <div className="item_image-box">
           <div className="image_box">
             <img
@@ -58,14 +58,14 @@ const Cards = ({ item, Icon, keyId }) => {
             {Icon[0].iconName}
           </p> */}
 
-          <p className="VNPayIcon">
+          {/* <p className="VNPayIcon">
             <img
               className="VNPayIcon-icon"
               src={"http://localhost:3150" + Icon[1].iconPic}
               alt=""
             />
             {Icon[1].iconName}
-          </p>
+          </p> */}
           <p className="productType">{item.productType}</p>
 
           <p className="design">{item.design}</p>

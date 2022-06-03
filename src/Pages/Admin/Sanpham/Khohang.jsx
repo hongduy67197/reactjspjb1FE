@@ -11,14 +11,14 @@ function Khohang(props) {
     const form = document.querySelector("form");
     const formData = new FormData(form);
     const res = await axios.post(
-      "http://localhost:3150/admin/categories",
+      "/admin/categories",
       formData
     );
     console.log(res);
   }
   function takedata() {
     axios
-      .get("http://localhost:3150/admin/icon/list")
+      .get("/admin/icon/list")
       .then(function (response) {
         console.log(response);
         setdata(response.data);
@@ -29,7 +29,7 @@ function Khohang(props) {
   }
   function clear(id) {
     axios
-      .delete(`http://localhost:3150/admin/icon/${id}`)
+      .delete(`/admin/icon/${id}`)
       .then(function (response) {
         console.log(response);
       })

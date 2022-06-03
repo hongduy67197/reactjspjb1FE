@@ -4,6 +4,8 @@
   padding: 0;
 }
 
+
+
 .Cuong__header {
   /* background-image: linear-gradient(0, #fe6433, #f53e2d); */
   background-image: linear-gradient(0, #f4ea2a, #f5a001);
@@ -22,6 +24,7 @@
 
 .header_navbar-list {
   list-style: none;
+  padding: 0;
 }
 
 .header_navbar-item {

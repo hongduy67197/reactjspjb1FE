@@ -18,7 +18,7 @@ const Slider = (slideItem) => {
       // console.log(19, slideIndex);
     }
   }
-  setTimeout(nextSlide, 3000);
+ setTimeout(nextSlide, 3000);
 
   //prevSlide
   const prevSlide = () => {

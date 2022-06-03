@@ -13,7 +13,7 @@ function Chinhsua(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3150/admin/categories")
+      .get("/admin/categories")
       .then(function (response) {
         setdata(response.data);
       })
@@ -30,7 +30,7 @@ function Chinhsua(props) {
     document.querySelector(".boxoption2").style.display = "none";
     document.querySelector(".chonloai2").innerHTML = "Dòng sản phẩm";
     axios
-      .get(`http://localhost:3150/admin/categories/${id}`)
+      .get(`/admin/categories/${id}`)
       .then(function (response) {
         document.querySelector(
           ".chonloai1"
@@ -40,7 +40,7 @@ function Chinhsua(props) {
         console.log(error);
       });
     axios
-      .get(`http://localhost:3150/admin/productcode/list`)
+      .get(`/admin/productcode/list`)
       .then(function (response) {
         response.data.map(function (value, index) {
           if (value.idCategories[0] == id) {
@@ -90,7 +90,7 @@ function Chinhsua(props) {
     settieudiem(id);
     setcount(1);
     axios
-      .get(`http://localhost:3150/admin/productcode/${id}`)
+      .get(`/admin/productcode/${id}`)
       .then(function (response) {
         document.querySelector(
           ".chonloai2"
@@ -141,7 +141,7 @@ function Chinhsua(props) {
     var design = document.querySelector(".design").value;
     var panel = document.querySelector(".panel").value;
     axios
-      .put(`http://localhost:3150/admin/productcode/${tieudiem}`, {
+      .put(`/admin/productcode/${tieudiem}`, {
         productType: productType,
         performanceProduct: performanceProduct,
         cameraProduct: cameraProduct,
@@ -185,7 +185,7 @@ function Chinhsua(props) {
     document.querySelector(".chonloai2list").innerHTML = "Dòng sản phẩm";
     document.querySelector(".chonloai3list").innerHTML = "Cấu hình";
     axios
-      .get(`http://localhost:3150/admin/categories/${id}`)
+      .get(`/admin/categories/${id}`)
       .then(function (response) {
         document.querySelector(
           ".chonloai1list"
@@ -195,7 +195,7 @@ function Chinhsua(props) {
         console.log(error);
       });
     axios
-      .get(`http://localhost:3150/admin/productcode/list`)
+      .get(`/admin/productcode/list`)
       .then(function (response) {
         response.data.map(function (value, index) {
           if (value.idCategories[0] == id) {
@@ -231,7 +231,7 @@ function Chinhsua(props) {
   function takemodellist(id) {
     setcount(1);
     axios
-      .get(`http://localhost:3150/admin/productcode/${id}`)
+      .get(`/admin/productcode/${id}`)
       .then(function (response) {
         document.querySelector(
           ".chonloai2list"
@@ -245,7 +245,7 @@ function Chinhsua(props) {
     document.querySelector(".chonloai2list").style.color = "black";
     document.querySelector(".chonloai2list").style.border = "2px solid black";
     axios
-      .get("http://localhost:3150/admin/product/list")
+      .get("/admin/product/list")
       .then(function (response) {
         response.data.map(function (value, index) {
           if (value.idProductCode._id == id) {
@@ -281,7 +281,7 @@ function Chinhsua(props) {
     setvitri(id);
     document.querySelector(".boxoption4list").style.display = "none";
     axios
-      .get(`http://localhost:3150/admin/product/${id}`)
+      .get(`/admin/product/${id}`)
       .then(function (response) {
         console.log(response);
         document.querySelector(".chonloai3list").innerHTML = `${
@@ -342,7 +342,7 @@ function Chinhsua(props) {
     var priceRange = document.querySelector(".priceRange").value;
     var storage = document.querySelector(".storage").value;
     axios
-      .put(`http://localhost:3150/admin/product/${vitri}`, {
+      .put(`/admin/product/${vitri}`, {
         price: price,
         priceRange: priceRange,
         storage: storage,
