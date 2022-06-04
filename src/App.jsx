@@ -23,18 +23,6 @@ function App() {
   const [count1, setCount1] = useState(0)
   const [dataFilter, setDataFilter] = useState([])
 
-  //axious bài a thái
-  // useEffect(() => {
-  //   axios.get('https://www.nodemy.vn/api/bootcamp-1-s')
-  //     .then(function (res) {
-  //       // console.log(res.data)
-  //       setdata123(res.data)
-  //     })
-  //     .catch((err) => {
-  //       console.log(err)
-  //     })
-  // }, [count1]);
-
   //axious bài duy
   // useEffect(() => {
   //   axios.get('http://localhost:3100/product')

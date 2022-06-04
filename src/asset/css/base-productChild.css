@@ -103,3 +103,7 @@ body {
 .add-to-cart {}
 
 .buy-now {}
+.onButton {
+    background-color: orange;
+    color: white;
+}
