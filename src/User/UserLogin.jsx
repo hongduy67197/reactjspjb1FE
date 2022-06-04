@@ -35,7 +35,7 @@ function UserLogin(props) {
             document.querySelector('.login_password_text').innerHTML = 'Vui lòng nhập Password';
         } else {
             let res = await axios.post('/user/login', { email, password });
-
+            console.log(res.data);
             if (res.data.status === 'undifind password') {
                 alert(res.data.status);
             } else {

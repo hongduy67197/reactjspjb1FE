@@ -24,6 +24,7 @@ function UserSingIn(props) {
             document.querySelector('.singin_again_text').innerHTML = 'Mật khẩu không khớp';
         } else {
             const res = await axios.post('/user/register', { password, email });
+            console.log(res);
             document.querySelector('.singIn_ofcanva_modal').style.display = 'block';
             document.querySelector('.singin_').style.background = '#EBEBEB';
             document.querySelector('.login_header').style.display = 'none';
