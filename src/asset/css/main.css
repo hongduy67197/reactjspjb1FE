@@ -1279,7 +1279,7 @@
     will-change: transform;
     border: none;
     width: 100%;
-    padding: 25px;
+    min-height: 550px;
 }
 
 .home-product-item:hover {
@@ -1289,7 +1289,6 @@
 }
 
 .home-product-item__img {
-    padding-top: 100%;
     width: 100%;
     background-repeat: no-repeat;
     background-size: cover;

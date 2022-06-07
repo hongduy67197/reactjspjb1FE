@@ -163,7 +163,6 @@ function FilterProduct(props) {
 
 
     // ---------------------------------------------------xử lí sau khi lọc xong thì  sort lại. trình tự là lọc xong các chỉ mục và đối chiếu sang sort
-    console.log(292, props.dataval)
     var myJSON = JSON.parse(JSON.stringify(handleDataFollowFiler(props.dataval, a3))); //sao chép 
     myJSON.sort((a, b) => {
         // console.log(326, a, b)
@@ -284,7 +283,7 @@ function FilterProduct(props) {
                 {/* <!-- phần container items --> */}
                 <div class="grid wide">
                     <div class="row sm-gutter app__content">
-                        <div class="col l-2 m-0 c-0">
+                        <div class="col l-2 m-0 c-12">
                             <nav class="category">
                                 <h4 class="category__heading">
                                     <i class="category__heading-icon fa-solid fa-filter"></i>
@@ -492,14 +491,19 @@ function FilterProduct(props) {
 
 
 
-                                        return (<div class="col l-2-4 m-4 c-6">
+                                        return (<div class="col l-2-4 m-4 c-12">
                                             <button onClick={() => { movePage(removeAccents(val.productName).split(' ').join('')) }} class="home-product-item">
-
-                                                <div class="home-product-item__img" style={{ backgroundImage: `url(${val.thumNail[0]}) ` }}></div>
+                                                <div >
+                                                    <img class="home-product-item__img" src={`http://localhost:3150${val.thumNail}`} alt="" />
+                                                </div>
                                                 <h4 class="home-product-item__name">{val.productName}</h4>
                                                 <div class="home-product-item__price">
                                                     <span class="home-product-item__price-old">{val.price.toLocaleString()} đ</span>
                                                     <span class="home-product-item__price-curr">{(val.price * (100 - (Number.parseFloat(val.Sale))) / 100).toLocaleString()}<sup> đ</sup></span>
+                                                    <div class="home-product-item__sale-off">
+                                                        <span class="home-product-item__sale-off-percent">{val.Sale}</span>
+                                                        <span class="home-product-item__sale-off-label">GIẢM</span>
+                                                    </div>
                                                 </div>
                                                 <div class="home-product-item__action">
                                                     {/* icon heart like */}
@@ -525,19 +529,16 @@ function FilterProduct(props) {
                                                     <i class="fas fa-check"></i>
                                                     <span>Yêu thích</span>
                                                 </div> */}
-                                                <div class="home-product-item__sale-off">
-                                                    <span class="home-product-item__sale-off-percent">{val.Sale}</span>
-                                                    <span class="home-product-item__sale-off-label">GIẢM</span>
-                                                </div>
+
                                                 {/* information details */}
                                                 <div className="home-product-item-information-detail-wrap">
                                                     <ul class="home-product-item-information-detail">
-                                                    <li><span>{val.panel}</span></li>
-                                                    <li><span>{val.performanceProduct}</span></li>
-                                                    <li><span>{val.cameraProduct}</span></li>
-                                                </ul>
+                                                        <li><span>{val.panel}</span></li>
+                                                        <li><span>{val.performanceProduct}</span></li>
+                                                        <li><span>{val.cameraProduct}</span></li>
+                                                    </ul>
                                                 </div>
-                                                
+
                                             </button>
                                         </div>
                                         )

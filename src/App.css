@@ -6,7 +6,7 @@
 
 /* HEADER */
 .header {
-  width: 100%;
+  width: 100vw;
   height: 100px;
   background-color: #f94f30;
   color: #ffffff;

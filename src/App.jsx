@@ -35,18 +35,7 @@ function App() {
   //     })
   // }, [count1]);
 
-  //---------------------------
-  // axious project sellMobilePhone
-  // useEffect(() => {
-  //     axios.get('http://localhost:3150/admin/productcode/list?gidzl=C1YqIXSqjKmq1xHD4YczJ3OCkaeB8Ej4VGdZHbOjuH1o1kSKKoxc5I9GxnjJUkWPTGBeJ3SJ7J0t4J2qJ0')
-  //       .then(function (res) {
-  //         setDataDuy(res.data.product)
-  //         setShow(res.data.product.slice(0, 2))
-  //       })
-  //       .catch((err) => {
-  //         console.log(err)
-  //       })
-  //   }, [count1]);
+ 
 
   const filterProduct = {
     brand: ['Iphone', 'Samsung', 'Oppo', 'Vivo', 'Xiaomi', 'Realmi', 'Nokia', 'Itel', 'masstel'],
@@ -63,21 +52,29 @@ function App() {
  let productCode = []
   // const [ProductList, setProductList] = useState(listProductCode.listProductCode)
   const [ProductList, setProductList] = useState(productList)
-  //---------------------------
+   //---------------------------
   // axious project sellMobilePhone
-  // useEffect(() => {
-  //     axios.get('http://localhost:3150/user/fillter?idCategories=628c8b29e8654d960a5c8983')
-  //       .then(function (res) {
-  //         // setDataDuy(res.data.product)
-  //         // setShow(res.data.product.slice(0, 2))
-  //         console.log(932,res.data.listProductCode)
-  //         setProductList(res.data.listProductCode)
-  //       })
-  //       .catch((err) => {
-  //         console.log(err)
-  //       })
-  //   }, [count1]);
-
+  useEffect(() => {
+    axios.get('http://localhost:3150/user/fillter?idCategories=28c8b40e8654d960a5c898b')
+      .then(function (res) {
+        // setDataDuy(res.data.product)
+        // setShow(res.data.product.slice(0, 2))
+        console.log(45, res.data.listData)
+        const ListData= res.data.listProductCode.map((val)=>{
+          val.price = 180000000;
+          val.storage = 12;
+          val.ram='8GB';
+          val.rom='12GB';
+          val.Sale = '15%';
+          return val
+        })
+        console.log(4556, ListData)
+        setProductList([...ListData])
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, []);
 
   const [dataProduct, setDataProduce] = useState(productCode)
   const [count, setCount] = useState(0)
