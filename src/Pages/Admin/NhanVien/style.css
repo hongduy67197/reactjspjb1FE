@@ -42,3 +42,17 @@
   outline: unset;
   border: 1px solid #ccc;
 }
+
+.Not {
+  color: red;
+}
+.anh {
+  width: 50px;
+  height: 50px;
+}
+.anhAvatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}

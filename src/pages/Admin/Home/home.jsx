@@ -7,8 +7,20 @@ import { Table } from 'antd';
 import axios from 'axios';
 import { useEffect } from 'react';
 //npm install react-calendar
-function Home() {
-    const [state, setstate] = useState({});
+function Home(props) {
+    const [state, setstate] = useState([]);
+    useEffect(() => {
+        axios
+            .get('http://localhost:3150/admin/product/list')
+            .then(function (res) {
+                setstate(res.data);
+            })
+            .catch(function (fail) {
+                console.log(fail);
+            });
+    }, []);
+    const [state1, setstate1] = useState([]);
+
     const [date, setdate] = useState(new Date());
     const onChange = (date) => {
         setdate(date);
@@ -16,60 +28,68 @@ function Home() {
 
     const columns = [
         {
-            title: 'Name',
-            dataIndex: 'name',
+            title: 'ProductName',
+            dataIndex: 'productName',
         },
         {
-            title: 'Chinese Score',
-            dataIndex: 'chinese',
-            sorter: {
-                compare: (a, b) => a.chinese - b.chinese,
-                multiple: 3,
-            },
+            title: 'ProductPic',
+            dataIndex: 'productPic',
+            sorter: false,
+            render: (thumNail) => <img src={'http://localhost:3150' + thumNail} alt="anh" />,
         },
         {
-            title: 'Math Score',
-            dataIndex: 'math',
-            sorter: {
-                compare: (a, b) => a.math - b.math,
-                multiple: 2,
-            },
+            title: 'ProductType',
+            dataIndex: 'productType',
+            sortDirections: ['descend', 'ascend'],
         },
         {
-            title: 'Name',
-            dataIndex: 'name',
+            title: 'PerformanceProduct',
+            dataIndex: 'performanceProduct',
         },
         {
-            title: 'Chinese Score',
-            dataIndex: 'chinese',
-            sorter: {
-                compare: (a, b) => a.chinese - b.chinese,
-                multiple: 3,
-            },
+            title: 'Panel',
+            dataIndex: 'panel',
+        },
+        {
+            title: 'Storage',
+            dataIndex: 'storage',
+        },
+        {
+            title: 'Price',
+            dataIndex: 'price',
         },
     ];
-
-    function onchange(pagination, filters, sorter, extra) {
-        console.log('params', pagination, filters, sorter, extra);
-    }
-
     const database = [];
+    if (state.length > 0) {
+        var so = state.length - 10;
+        for (let i = so; i < state.length; i++) {
+            database.push({
+                productName: state[i].idProductCode.productName,
+                productPic: state[i].productPic,
+                productType: state[i].idProductCode.productType,
+                performanceProduct: state[i].idProductCode.performanceProduct,
+                panel: state[i].idProductCode.panel,
+                storage: state[i].storage,
+                price: state[i].price,
+            });
+        }
+    }
 
     useEffect(() => {
         axios
-            .get('http://localhost:3150/admin/productcode/list')
+            .get('http://localhost:3150/admin/user/')
             .then(function (res) {
-                setstate.push(res.data);
+                setstate1(res.data);
             })
             .catch(function (fail) {
                 console.log(fail);
             });
     }, []);
+    let countCustomers = state1.length;
 
-    console.log(68, database);
     return (
         <div>
-            <Header></Header>
+            <Header tenname={props.name}></Header>
             <div className="content">
                 <h3 className="content_title">Dashboard</h3>
                 <div className="statistical">
@@ -97,7 +117,7 @@ function Home() {
                         </div>
                         <div className="content_sale">
                             <p className="icon_title">Customers</p>
-                            <p className="thongso">98,225</p>
+                            <p className="thongso">{countCustomers}</p>
                         </div>
                     </div>
                     <div className="table">
@@ -113,7 +133,7 @@ function Home() {
 
                 <div className="productNew">
                     <h2>New Products</h2>
-                    <Table columns={columns} dataSource={database} onChange={onchange} />;
+                    <Table columns={columns} dataSource={database} pagination={false} />
                 </div>
 
                 <div className="Note">
