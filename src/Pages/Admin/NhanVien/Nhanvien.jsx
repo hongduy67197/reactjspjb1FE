@@ -66,10 +66,12 @@ function Nhanvien(props) {
   const columns = [
     {
       title: "STT",
+      align: "center",
       dataIndex: "index",
     },
     {
       title: "Ảnh",
+      align: "center",
       dataIndex: "avatar",
       render: (avatar) => (
         // <img src={"http://localhost:3150" + avatar} alt="anh" />
@@ -80,24 +82,27 @@ function Nhanvien(props) {
     },
     {
       title: "Name",
+      align: "center",
       dataIndex: "username",
       sorter: {
         compare: (a, b) => a.username.localeCompare(b.username),
       },
     },
-    { title: "Email", dataIndex: "email" },
+    { title: "Email", dataIndex: "email", align: "center" },
     {
       title: "Địa chỉ",
+      align: "center",
       dataIndex: "address",
       sorter: {
         compare: (a, b) => a.address.localeCompare(b.address),
       },
     },
-    { title: "Số điện thoại", dataIndex: "phone" },
-    { title: "Quyền", dataIndex: "role" },
+    { title: "Số điện thoại", dataIndex: "phone", align: "center" },
+    { title: "Quyền", dataIndex: "role", align: "center" },
     {
       title: "Action",
       dataIndex: "",
+      align: "center",
       key: "x",
       render: (record) => (
         <>
