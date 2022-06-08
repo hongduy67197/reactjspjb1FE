@@ -18,25 +18,9 @@ import ContextProvider from './componentContext/ContextProvider';
 //data
 import productList from './data-tinh/dataold';
 import listProductCode from './data-tinh/dataNewMix'
-
 function App() {
   const [count1, setCount1] = useState(0)
   const [dataFilter, setDataFilter] = useState([])
-
-  //axious bài duy
-  // useEffect(() => {
-  //   axios.get('http://localhost:3100/product')
-  //     .then(function (res) {
-  //       setDataDuy(res.data.product)
-  //       setShow(res.data.product.slice(0, 2))
-  //     })
-  //     .catch((err) => {
-  //       console.log(err)
-  //     })
-  // }, [count1]);
-
- 
-
   const filterProduct = {
     brand: ['Iphone', 'Samsung', 'Oppo', 'Vivo', 'Xiaomi', 'Realmi', 'Nokia', 'Itel', 'masstel'],
     price: ['dưới 2tr', 'từ 2- 4tr', 'từ 4-7tr', 'từ 7-13tr', 'từ 13-20tr', 'trên 20tr'],
