@@ -16,8 +16,12 @@ function Header(props) {
   var countstaff = 0;
   var countinfor = 0;
 
+  function Home() {
+    navigate("/admin/home");
+  }
+
   function QLnhanvien() {
-    navigate("/admin/qlnhanvien");
+    navigate("/admin/nhanvien");
   }
 
   function xacnhan() {
@@ -347,7 +351,9 @@ function Header(props) {
         <div className="botside">
           <div className="dashbar">
             <i className="fa-solid fa-tv tv "></i>
-            <p>Dashboard</p>
+            <p className="opt" onClick={Home}>
+              Dashboard
+            </p>
           </div>
           <div onClick={onstaff} className="menu">
             <i className="fa-solid fa-users vicon"></i>
