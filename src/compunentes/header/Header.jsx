@@ -21,7 +21,7 @@ const Header = (props) => {
         return state.user;
     });
 
-    const imager = userInfo.avatar ? userInfo.avatar : userlogo;
+    const imager = userInfo.avatar ? process.env.REACT_APP_CLIENT_URL + userInfo.avatar : userlogo;
 
     function on_mypage() {
         navigate('/User/UserPase');
