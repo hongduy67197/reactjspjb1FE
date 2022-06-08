@@ -22,6 +22,8 @@ function setCookie(cname, cvalue, exdays) {
     document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
 }
 
+export const getUserCookie = getCookie
+
 export async function refreshToken (){
     let res = await axios.post('/user/refreshToken', {}, {
         headers: {

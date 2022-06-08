@@ -9,7 +9,6 @@ import './MenuCss.css';
 import { useNavigate } from 'react-router-dom';
 function Menu(props) {
     const navigate = useNavigate();
-
     const userInfo = useSelector(function (state) {
         return state.user;
     });
@@ -77,7 +76,7 @@ function Menu(props) {
     return (
         <div className="menu_">
             <div className="menu_header">
-                <img src={userAvatar} alt="img" />
+                <img src={process.env.REACT_APP_CLIENT_URL+userAvatar} alt="img" />
                 <span>{userName}</span>
                 <button onClick={onof_mypage}>
                     <i className="fa-solid fa-pen"></i>Sửa Hồ Sơ

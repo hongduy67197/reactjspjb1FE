@@ -30,35 +30,31 @@
   opacity: 0.8;
   font-size: 17px;
 }
-.mypage_leght_user {
-  position: absolute;
-  top: 30px;
-  right: 5px;
-}
+
 .mypage_leght_name {
   position: absolute;
-  top: 125px;
+  top: 52px;
   right: 5px;
 }
 .mypage_leght_email {
   position: absolute;
-  top: 200px;
+  top: 123px;
   right: 5px;
 }
 .mypage_leght_phone {
   position: absolute;
-  top: 265px;
+  top: 192px;
   right: 5px;
 }
 
 .mypage_leght_check {
   position: absolute;
-  top: 340px;
+  top: 262px;
   right: 5px;
 }
 .mypage_leght_date {
   position: absolute;
-  top: 400px;
+  top: 345px;
   right: 5px;
 }
 
@@ -70,17 +66,17 @@
 .mypage_conter_user_right label {
   margin: 0 10px 0 0;
 }
-.mypage_right_user {
-  position: absolute;
-  top: 20px;
-  width: 400px;
-  padding: 10px;
-}
+
 .mypage_right_name {
   position: absolute;
-  top: 120px;
+  top: 38px;
   width: 400px;
   padding: 10px;
+  border: none;
+  font-size: 20px;
+}
+.mypage_right_name:focus{
+  outline: none;
 }
 .mypage_right_text {
   margin: 0 0 20px;
@@ -92,7 +88,7 @@
 }
 .mypage_right_email1 {
   position: absolute;
-  top: 200px;
+  top: 120px;
   font-size: 18px;
   width: 400px;
 
@@ -109,21 +105,15 @@
 }
 .mypage_right_phone1 {
   position: absolute;
-  top: 265px;
+  top: 190px;
   font-size: 18px;
   width: 400px;
 }
 
-.mypage_right_shopname {
-  position: absolute;
-  top: 370px;
-  left: 0;
-  width: 400px;
-  padding: 8px;
-}
+
 .mypage_right_check {
   position: absolute;
-  top: 340px;
+  top: 260px;
   left: -5px;
   font-size: 18px;
   width: 400px;
@@ -133,7 +123,7 @@
 }
 .mypage_right_date {
   position: absolute;
-  top: 390px;
+  top: 335px;
   left: 0;
   display: flex;
 }
@@ -143,9 +133,9 @@
 }
 .mypage_right_update {
   position: absolute;
-  top: 500px;
+  top: 480px;
   left: 0;
-  padding: 8px 30px;
+  padding: 8px 40px;
   border: none;
   font-size: 20px;
   background-color: #ee4d2d;
@@ -154,15 +144,16 @@
 }
 /* ---------------------IMG------------------ */
 .mypage_conter_imager {
-  width: 35%;
+  width: 300px;
   border-left: 1px solid rgb(238, 230, 230);
-  position: relative;
+  position: absolute;
   height: 250px;
+  left: 500px;
 }
 
 .chooseImage {
   width: 150px;
-  min-height: 150px;
+  height: 150px ;
   border-radius: 50%;
   position: absolute;
   top: 0;
