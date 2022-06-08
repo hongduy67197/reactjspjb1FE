@@ -1,579 +1,505 @@
-import axios from "axios";
-import React from "react";
-import Header from "../../../Components/Header/header";
-import "./khohangchinhsua.css";
-import { useState, useEffect } from "react";
-import "./product.css";
+import axios from 'axios';
+import React from 'react';
+import Header from '../../../Components/Header/header';
+import './khohangchinhsua.css';
+import { useState, useEffect } from 'react';
+import './product.css';
 
 function Chinhsua(props) {
-  const [count, setcount] = useState(1);
-  const [data, setdata] = useState([]);
-  const [tieudiem, settieudiem] = useState([]);
-  const [vitri, setvitri] = useState([]);
+    const [count, setcount] = useState(1);
+    const [data, setdata] = useState([]);
+    const [tieudiem, settieudiem] = useState([]);
+    const [vitri, setvitri] = useState([]);
 
-  useEffect(() => {
-    axios
-      .get("/admin/categories")
-      .then(function (response) {
-        setdata(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, []);
-  var modelarr = [];
-  function chooseCategory(id) {
-    setcount(1);
-    document.querySelector(".chonloai1").style.background = "pink";
-    document.querySelector(".chonloai1").style.color = "black";
-    document.querySelector(".chonloai1").style.border = "2px solid black";
-    document.querySelector(".boxoption2").style.display = "none";
-    document.querySelector(".chonloai2").innerHTML = "Dòng sản phẩm";
-    axios
-      .get(`/admin/categories/${id}`)
-      .then(function (response) {
-        document.querySelector(
-          ".chonloai1"
-        ).innerHTML = `${response.data.categoriesName}`;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    axios
-      .get(`/admin/productcode/list`)
-      .then(function (response) {
-        response.data.map(function (value, index) {
-          if (value.idCategories[0] == id) {
-            modelarr.push(value);
-            props.setmodel(modelarr);
-          }
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    props.changesign();
-  }
-  function onoption() {
-    setcount(1);
-    document.querySelector(".chonloai1").style.background = "rgb(255, 52, 85)";
-    document.querySelector(".chonloai1").style.color = "white";
-    document.querySelector(".chonloai1").style.borderRadius = "10px";
-    document.querySelector(".boxoption3").style.display = "none";
-    setcount(count + 1);
-    if (count % 2 !== 0) {
-      document.querySelector(".boxoption2").style.display = "block";
+    useEffect(() => {
+        axios
+            .get('http://localhost:3150/admin/categories')
+            .then(function (response) {
+                setdata(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }, []);
+    var modelarr = [];
+    function chooseCategory(id) {
+        setcount(1);
+        document.querySelector('.chonloai1').style.background = 'black';
+        document.querySelector('.chonloai1').style.color = 'white';
+        document.querySelector('.chonloai1').style.border = '2px solid black';
+        document.querySelector('.boxoption2').style.display = 'none';
+        document.querySelector('.chonloai2').innerHTML = 'Dòng sản phẩm';
+        axios
+            .get(`http://localhost:3150/admin/categories/${id}`)
+            .then(function (response) {
+                document.querySelector('.chonloai1').innerHTML = `${response.data.categoriesName}`;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        axios
+            .get(`http://localhost:3150/admin/productcode/list`)
+            .then(function (response) {
+                response.data.map(function (value, index) {
+                    if (value.idCategories[0] == id) {
+                        modelarr.push(value);
+                        props.setmodel(modelarr);
+                    }
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        props.changesign();
     }
-    if (count % 2 == 0) {
-      document.querySelector(".boxoption2").style.display = "none";
-      document.querySelector(".chonloai1").style.background = "pink";
-      document.querySelector(".chonloai1").style.color = "black";
+    function onoption() {
+        setcount(1);
+        document.querySelector('.chonloai1').style.background = 'black';
+        document.querySelector('.chonloai1').style.color = 'white';
+        document.querySelector('.chonloai1').style.borderRadius = '10px';
+        document.querySelector('.boxoption3').style.display = 'none';
+        setcount(count + 1);
+        if (count % 2 !== 0) {
+            document.querySelector('.boxoption2').style.display = 'block';
+        }
+        if (count % 2 == 0) {
+            document.querySelector('.boxoption2').style.display = 'none';
+            document.querySelector('.chonloai1').style.background = 'black';
+            document.querySelector('.chonloai1').style.color = 'white';
+        }
     }
-  }
-  function onmodel() {
-    setcount(1);
-    document.querySelector(".boxoption3").style.display = "block";
-    document.querySelector(".chonloai2").style.background = "rgb(255, 52, 85)";
-    document.querySelector(".chonloai2").style.color = "white";
-    document.querySelector(".chonloai2").style.borderRadius = "10px";
-    setcount(count + 1);
-    if (count % 2 !== 0) {
-      document.querySelector(".boxoption3").style.display = "block";
+    function onmodel() {
+        setcount(1);
+        document.querySelector('.boxoption3').style.display = 'block';
+        document.querySelector('.chonloai2').style.background = 'black';
+        document.querySelector('.chonloai2').style.color = 'white';
+        document.querySelector('.chonloai2').style.borderRadius = '10px';
+        setcount(count + 1);
+        if (count % 2 !== 0) {
+            document.querySelector('.boxoption3').style.display = 'block';
+        }
+        if (count % 2 == 0) {
+            document.querySelector('.boxoption3').style.display = 'none';
+            document.querySelector('.chonloai2').style.background = 'black';
+            document.querySelector('.chonloai2').style.color = 'white';
+        }
     }
-    if (count % 2 == 0) {
-      document.querySelector(".boxoption3").style.display = "none";
-      document.querySelector(".chonloai2").style.background = "pink";
-      document.querySelector(".chonloai2").style.color = "black";
+    function takemodel(id) {
+        settieudiem(id);
+        setcount(1);
+        axios
+            .get(`http://localhost:3150/admin/productcode/${id}`)
+            .then(function (response) {
+                document.querySelector('.chonloai2').innerHTML = `${response.data.productName}`;
+                document.querySelector('.productType').value = `${response.data.productType}`;
+                document.querySelector('.performanceProduct').value = `${response.data.performanceProduct}`;
+                document.querySelector('.cameraProduct').value = `${response.data.cameraProduct}`;
+                document.querySelector('.specialFeatures').value = `${response.data.specialFeatures}`;
+                document.querySelector('.design').value = `${response.data.design}`;
+                document.querySelector('.panel').value = `${response.data.panel}`;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        document.querySelector('.boxoption3').style.display = 'none';
+        document.querySelector('.chonloai2').style.background = 'black';
+        document.querySelector('.chonloai2').style.color = 'white';
+        document.querySelector('.chonloai2').style.border = '2px solid black';
     }
-  }
-  function takemodel(id) {
-    settieudiem(id);
-    setcount(1);
-    axios
-      .get(`/admin/productcode/${id}`)
-      .then(function (response) {
-        document.querySelector(
-          ".chonloai2"
-        ).innerHTML = `${response.data.productName}`;
-        document.querySelector(
-          ".productType"
-        ).value = `${response.data.productType}`;
-        document.querySelector(
-          ".performanceProduct"
-        ).value = `${response.data.performanceProduct}`;
-        document.querySelector(
-          ".cameraProduct"
-        ).value = `${response.data.cameraProduct}`;
-        document.querySelector(
-          ".specialFeatures"
-        ).value = `${response.data.specialFeatures}`;
-        document.querySelector(".design").value = `${response.data.design}`;
-        document.querySelector(".panel").value = `${response.data.panel}`;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    document.querySelector(".boxoption3").style.display = "none";
-    document.querySelector(".chonloai2").style.background = "pink";
-    document.querySelector(".chonloai2").style.color = "black";
-    document.querySelector(".chonloai2").style.border = "2px solid black";
-  }
-  function clearupdate() {
-    setcount(1);
-    document.querySelector(".chonloai1").innerHTML = "Tên hãng";
-    document.querySelector(".chonloai2").innerHTML = `Dòng sản phẩm`;
-    document.querySelector(".productType").value = ``;
-    document.querySelector(".performanceProduct").value = ``;
-    document.querySelector(".cameraProduct").value = ``;
-    document.querySelector(".specialFeatures").value = ``;
-    document.querySelector(".design").value = ``;
-    document.querySelector(".panel").value = ``;
-  }
-  function update() {
-    setcount(1);
-    console.log(tieudiem);
-    var productType = document.querySelector(".productType").value;
-    var performanceProduct = document.querySelector(
-      ".performanceProduct"
-    ).value;
-    var cameraProduct = document.querySelector(".cameraProduct").value;
-    var specialFeatures = document.querySelector(".specialFeatures").value;
-    var design = document.querySelector(".design").value;
-    var panel = document.querySelector(".panel").value;
-    axios
-      .put(`/admin/productcode/${tieudiem}`, {
-        productType: productType,
-        performanceProduct: performanceProduct,
-        cameraProduct: cameraProduct,
-        specialFeatures: specialFeatures,
-        design: design,
-        panel: panel,
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    clearupdate();
-  }
-  function onoptionlist() {
-    setcount(1);
-    document.querySelector(".boxoption4list").style.display = "none";
-    document.querySelector(".chonloai1list").style.background =
-      "rgb(255, 52, 85)";
-    document.querySelector(".chonloai1list").style.color = "white";
-    document.querySelector(".chonloai1list").style.borderRadius = "10px";
-    document.querySelector(".boxoption3list").style.display = "none";
-    setcount(count + 1);
-    if (count % 2 !== 0) {
-      document.querySelector(".boxoption2list").style.display = "block";
+    function clearupdate() {
+        setcount(1);
+        document.querySelector('.chonloai1').innerHTML = 'Tên hãng';
+        document.querySelector('.chonloai2').innerHTML = `Dòng sản phẩm`;
+        document.querySelector('.productType').value = ``;
+        document.querySelector('.performanceProduct').value = ``;
+        document.querySelector('.cameraProduct').value = ``;
+        document.querySelector('.specialFeatures').value = ``;
+        document.querySelector('.design').value = ``;
+        document.querySelector('.panel').value = ``;
     }
-    if (count % 2 == 0) {
-      document.querySelector(".boxoption2list").style.display = "none";
-      document.querySelector(".chonloai1list").style.background = "pink";
-      document.querySelector(".chonloai1list").style.color = "black";
+    function update() {
+        setcount(1);
+        console.log(tieudiem);
+        var productType = document.querySelector('.productType').value;
+        var performanceProduct = document.querySelector('.performanceProduct').value;
+        var cameraProduct = document.querySelector('.cameraProduct').value;
+        var specialFeatures = document.querySelector('.specialFeatures').value;
+        var design = document.querySelector('.design').value;
+        var panel = document.querySelector('.panel').value;
+        axios
+            .put(`http://localhost:3150/admin/productcode/${tieudiem}`, {
+                productType: productType,
+                performanceProduct: performanceProduct,
+                cameraProduct: cameraProduct,
+                specialFeatures: specialFeatures,
+                design: design,
+                panel: panel,
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        clearupdate();
     }
-  }
-  function chooseCategorylist(id) {
-    setcount(1);
-    document.querySelector(".chonloai1list").style.background = "pink";
-    document.querySelector(".chonloai1list").style.color = "black";
-    document.querySelector(".chonloai1list").style.border = "2px solid black";
-    setcount(1);
-    document.querySelector(".boxoption2list").style.display = "none";
-    document.querySelector(".chonloai2list").innerHTML = "Dòng sản phẩm";
-    document.querySelector(".chonloai3list").innerHTML = "Cấu hình";
-    axios
-      .get(`/admin/categories/${id}`)
-      .then(function (response) {
-        document.querySelector(
-          ".chonloai1list"
-        ).innerHTML = `${response.data.categoriesName}`;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    axios
-      .get(`/admin/productcode/list`)
-      .then(function (response) {
-        response.data.map(function (value, index) {
-          if (value.idCategories[0] == id) {
-            modelarr.push(value);
-            props.setmodel(modelarr);
-          }
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    props.changesign();
-  }
-  function onmodellist() {
-    setcount(1);
-    document.querySelector(".boxoption3list").style.display = "block";
-    document.querySelector(".boxoption4list").style.display = "none";
-    document.querySelector(".chonloai2list").style.background =
-      "rgb(255, 52, 85)";
-    document.querySelector(".chonloai2list").style.color = "white";
-    document.querySelector(".chonloai2list").style.borderRadius = "10px";
-    setcount(count + 1);
-    if (count % 2 !== 0) {
-      document.querySelector(".boxoption3list").style.display = "block";
+    function onoptionlist() {
+        setcount(1);
+        document.querySelector('.boxoption4list').style.display = 'none';
+        document.querySelector('.chonloai1list').style.background = 'black';
+        document.querySelector('.chonloai1list').style.color = 'white';
+        document.querySelector('.chonloai1list').style.borderRadius = '10px';
+        document.querySelector('.boxoption3list').style.display = 'none';
+        setcount(count + 1);
+        if (count % 2 !== 0) {
+            document.querySelector('.boxoption2list').style.display = 'block';
+        }
+        if (count % 2 == 0) {
+            document.querySelector('.boxoption2list').style.display = 'none';
+            document.querySelector('.chonloai1list').style.background = 'black';
+            document.querySelector('.chonloai1list').style.color = 'white';
+        }
     }
-    if (count % 2 == 0) {
-      document.querySelector(".boxoption3list").style.display = "none";
-      document.querySelector(".chonloai2list").style.background = "pink";
-      document.querySelector(".chonloai2list").style.color = "black";
+    function chooseCategorylist(id) {
+        setcount(1);
+        document.querySelector('.chonloai1list').style.background = 'black';
+        document.querySelector('.chonloai1list').style.color = 'white';
+        document.querySelector('.chonloai1list').style.border = '2px solid black';
+        setcount(1);
+        document.querySelector('.boxoption2list').style.display = 'none';
+        document.querySelector('.chonloai2list').innerHTML = 'Dòng sản phẩm';
+        document.querySelector('.chonloai3list').innerHTML = 'Cấu hình';
+        axios
+            .get(`http://localhost:3150/admin/categories/${id}`)
+            .then(function (response) {
+                document.querySelector('.chonloai1list').innerHTML = `${response.data.categoriesName}`;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        axios
+            .get(`http://localhost:3150/admin/productcode/list`)
+            .then(function (response) {
+                response.data.map(function (value, index) {
+                    if (value.idCategories[0] == id) {
+                        modelarr.push(value);
+                        props.setmodel(modelarr);
+                    }
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        props.changesign();
     }
-  }
-  var listarr = [];
-  function takemodellist(id) {
-    setcount(1);
-    axios
-      .get(`/admin/productcode/${id}`)
-      .then(function (response) {
-        document.querySelector(
-          ".chonloai2list"
-        ).innerHTML = `${response.data.productName}`;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    document.querySelector(".boxoption3list").style.display = "none";
-    document.querySelector(".chonloai2list").style.background = "pink";
-    document.querySelector(".chonloai2list").style.color = "black";
-    document.querySelector(".chonloai2list").style.border = "2px solid black";
-    axios
-      .get("/admin/product/list")
-      .then(function (response) {
-        response.data.map(function (value, index) {
-          if (value.idProductCode._id == id) {
-            listarr.push(value);
-            props.setlistdt(listarr);
-          }
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    props.changesign();
-  }
-  function picklistdt() {
-    setcount(1);
-    document.querySelector(".boxoption4list").style.display = "block";
-    document.querySelector(".chonloai3list").style.background =
-      "rgb(255, 52, 85)";
-    document.querySelector(".chonloai3list").style.color = "white";
-    document.querySelector(".chonloai3list").style.borderRadius = "10px";
-    setcount(count + 1);
-    if (count % 2 !== 0) {
-      document.querySelector(".boxoption4list").style.display = "block";
+    function onmodellist() {
+        setcount(1);
+        document.querySelector('.boxoption3list').style.display = 'block';
+        document.querySelector('.boxoption4list').style.display = 'none';
+        document.querySelector('.chonloai2list').style.background = 'black';
+        document.querySelector('.chonloai2list').style.color = 'white';
+        document.querySelector('.chonloai2list').style.borderRadius = '10px';
+        setcount(count + 1);
+        if (count % 2 !== 0) {
+            document.querySelector('.boxoption3list').style.display = 'block';
+        }
+        if (count % 2 == 0) {
+            document.querySelector('.boxoption3list').style.display = 'none';
+            document.querySelector('.chonloai2list').style.background = 'black';
+            document.querySelector('.chonloai2list').style.color = 'white';
+        }
     }
-    if (count % 2 == 0) {
-      document.querySelector(".boxoption4list").style.display = "none";
-      document.querySelector(".chonloai3list").style.background = "pink";
-      document.querySelector(".chonloai3list").style.color = "black";
+    var listarr = [];
+    function takemodellist(id) {
+        setcount(1);
+        axios
+            .get(`http://localhost:3150/admin/productcode/${id}`)
+            .then(function (response) {
+                document.querySelector('.chonloai2list').innerHTML = `${response.data.productName}`;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        document.querySelector('.boxoption3list').style.display = 'none';
+        document.querySelector('.chonloai2list').style.background = 'black';
+        document.querySelector('.chonloai2list').style.color = 'white';
+        document.querySelector('.chonloai2list').style.border = '2px solid black';
+        axios
+            .get('http://localhost:3150/admin/product/list')
+            .then(function (response) {
+                response.data.map(function (value, index) {
+                    if (value.idProductCode._id == id) {
+                        listarr.push(value);
+                        props.setlistdt(listarr);
+                    }
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        props.changesign();
     }
-  }
-  function takedtoption(id) {
-    setcount(1);
-    setvitri(id);
-    document.querySelector(".boxoption4list").style.display = "none";
-    axios
-      .get(`/admin/product/${id}`)
-      .then(function (response) {
-        console.log(response);
-        document.querySelector(".chonloai3list").innerHTML = `${
-          response.data.ram +
-          " " +
-          response.data.rom +
-          " " +
-          response.data.color
-        }`;
-        document.querySelector(".price").value = `${response.data.price}`;
-        document.querySelector(
-          ".priceRange"
-        ).value = `${response.data.priceRange}`;
-        document.querySelector(".storage").value = `${response.data.storage}`;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    document.querySelector(".chonloai3list").style.background = "pink";
-    document.querySelector(".chonloai3list").style.color = "black";
-    document.querySelector(".chonloai3list").style.border = "2px solid black";
-  }
-  function clearupdatelist() {
-    setcount(1);
-    document.querySelector(".price").value = "";
-    document.querySelector(".priceRange").value = "";
-    document.querySelector(".storage").value = "";
-  }
-  function openproductcode() {
-    setcount(1);
-    document.querySelector(".updatecode").style.display = "block";
-    document.querySelector(".updatelist").style.display = "none";
-    document.querySelector(".suadong").style.borderRadius = "unset";
-    document.querySelector(".suadong").style.height = "80px";
-    document.querySelector(".suadong").style.background = "rgb(214, 243, 255)";
-    document.querySelector(".suadong").style.borderTopRightRadius = "15px";
-    document.querySelector(".suadong").style.borderTopLeftRadius = "15px";
-    document.querySelector(".suadt").style.background = "white";
-    document.querySelector(".suadt").style.height = "60px";
-    document.querySelector(".suadt").style.borderRadius = "10px";
-  }
-  function openproductlist() {
-    setcount(1);
-    document.querySelector(".updatelist").style.display = "block";
-    document.querySelector(".updatecode").style.display = "none";
-    document.querySelector(".suadt").style.borderRadius = "unset";
-    document.querySelector(".suadt").style.height = "80px";
-    document.querySelector(".suadt").style.background = "rgb(214, 243, 255)";
-    document.querySelector(".suadt").style.borderTopRightRadius = "15px";
-    document.querySelector(".suadt").style.borderTopLeftRadius = "15px";
-    document.querySelector(".suadong").style.background = "white";
-    document.querySelector(".suadong").style.height = "60px";
-    document.querySelector(".suadong").style.borderRadius = "10px";
-  }
-  function updatelist() {
-    setcount(1);
-    var price = document.querySelector(".price").value;
-    var priceRange = document.querySelector(".priceRange").value;
-    var storage = document.querySelector(".storage").value;
-    axios
-      .put(`/admin/product/${vitri}`, {
-        price: price,
-        priceRange: priceRange,
-        storage: storage,
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    clearupdatelist();
-  }
-  return (
-    <div>
-      <Header></Header>
-      <div className="chinhsua">
-        <div className="action">
-          <button onClick={openproductcode} className="suadong but">
-            Dòng sản phẩm
-          </button>
-          <button onClick={openproductlist} className="suadt but">
-            Sản phẩm
-          </button>
+    function picklistdt() {
+        setcount(1);
+        document.querySelector('.boxoption4list').style.display = 'block';
+        document.querySelector('.chonloai3list').style.background = 'black';
+        document.querySelector('.chonloai3list').style.color = 'white';
+        document.querySelector('.chonloai3list').style.borderRadius = '10px';
+        setcount(count + 1);
+        if (count % 2 !== 0) {
+            document.querySelector('.boxoption4list').style.display = 'block';
+        }
+        if (count % 2 == 0) {
+            document.querySelector('.boxoption4list').style.display = 'none';
+            document.querySelector('.chonloai3list').style.background = 'black';
+            document.querySelector('.chonloai3list').style.color = 'white';
+        }
+    }
+    function takedtoption(id) {
+        setcount(1);
+        setvitri(id);
+        document.querySelector('.boxoption4list').style.display = 'none';
+        axios
+            .get(`http://localhost:3150/admin/product/${id}`)
+            .then(function (response) {
+                console.log(response);
+                document.querySelector('.chonloai3list').innerHTML = `${
+                    response.data.ram + ' ' + response.data.rom + ' ' + response.data.color
+                }`;
+                document.querySelector('.pricevinh').value = `${response.data.price}`;
+                document.querySelector('.priceRange').value = `${response.data.priceRange}`;
+                document.querySelector('.storage').value = `${response.data.storage}`;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        document.querySelector('.chonloai3list').style.background = 'black';
+        document.querySelector('.chonloai3list').style.color = 'white';
+        document.querySelector('.chonloai3list').style.border = '2px solid black';
+    }
+    function clearupdatelist() {
+        setcount(1);
+        document.querySelector('.pricevinh').value = '';
+        document.querySelector('.priceRange').value = '';
+        document.querySelector('.storage').value = '';
+    }
+    function openproductcode() {
+        setcount(1);
+        document.querySelector('.updatecode').style.display = 'block';
+        document.querySelector('.updatelist').style.display = 'none';
+        document.querySelector('.suadong').style.borderRadius = 'unset';
+        document.querySelector('.suadong').style.height = '80px';
+        document.querySelector('.suadong').style.background = 'white';
+        document.querySelector('.suadong').style.borderTopRightRadius = '15px';
+        document.querySelector('.suadong').style.borderTopLeftRadius = '15px';
+        document.querySelector('.suadt').style.background = 'white';
+        document.querySelector('.suadt').style.height = '60px';
+        document.querySelector('.suadt').style.borderRadius = '10px';
+    }
+    function openproductlist() {
+        setcount(1);
+        document.querySelector('.updatelist').style.display = 'block';
+        document.querySelector('.updatecode').style.display = 'none';
+        document.querySelector('.suadt').style.borderRadius = 'unset';
+        document.querySelector('.suadt').style.height = '80px';
+        document.querySelector('.suadt').style.background = 'white';
+        document.querySelector('.suadt').style.borderTopRightRadius = '15px';
+        document.querySelector('.suadt').style.borderTopLeftRadius = '15px';
+        document.querySelector('.suadong').style.background = 'white';
+        document.querySelector('.suadong').style.height = '60px';
+        document.querySelector('.suadong').style.borderRadius = '10px';
+    }
+    function updatelist() {
+        setcount(1);
+        var price = document.querySelector('.pricevinh').value;
+        var priceRange = document.querySelector('.priceRange').value;
+        var storage = document.querySelector('.storage').value;
+        axios
+            .put(`http://localhost:3150/admin/product/${vitri}`, {
+                price: price,
+                priceRange: priceRange,
+                storage: storage,
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        clearupdatelist();
+    }
+    return (
+        <div>
+            <Header></Header>
+            <div className="chinhsua">
+                <div className="action">
+                    <button onClick={openproductcode} className="suadong but">
+                        Dòng sản phẩm
+                    </button>
+                    <button onClick={openproductlist} className="suadt but">
+                        Sản phẩm
+                    </button>
+                </div>
+                <div className="updatecode">
+                    <div className="pickupdate">
+                        Chọn hãng:
+                        <div className="boxoption">
+                            <p className="chonloai1" onClick={onoption}>
+                                Tên hãng
+                            </p>
+                        </div>
+                        <div className="boxoption2">
+                            {data.map(function (value, index) {
+                                return (
+                                    <p onClick={() => chooseCategory(value._id)} className="optionupdate" key={index}>
+                                        {value.categoriesName}
+                                    </p>
+                                );
+                            })}
+                        </div>
+                    </div>
+                    <div className="pickupdate">
+                        Dòng sản phẩm:
+                        <div className="boxoption">
+                            <p className="chonloai2" onClick={onmodel}>
+                                Dòng sản phẩm
+                            </p>
+                        </div>
+                        <div className="boxoption3">
+                            {props.model.map(function (value, index) {
+                                return (
+                                    <p onClick={() => takemodel(value._id)} className="optionupdate" key={index}>
+                                        {value.productName}
+                                    </p>
+                                );
+                            })}
+                        </div>
+                    </div>
+                    <span>
+                        Loại sản phẩm:
+                        <input className="productType" name="productType" placeholder="Loại sản phẩm" type="text" />
+                    </span>
+                    <span>
+                        Hiệu năng:
+                        <input
+                            placeholder="Hiệu năng"
+                            className="performanceProduct"
+                            name="performanceProduct"
+                            type="text"
+                        />
+                    </span>
+                    <span>
+                        Cụm Camera:
+                        <input className="cameraProduct" name="cameraProduct" placeholder="Cụm Camera" type="text" />
+                    </span>
+                    <span>
+                        Tính năng đặc biệt:
+                        <input
+                            className="specialFeatures"
+                            name="specialFeatures"
+                            placeholder="Tính năng đặc biệt"
+                            type="text"
+                        />
+                    </span>
+                    <span>
+                        Thiết kế:
+                        <input className="design" placeholder="Thiết kế" type="text" name="design" />
+                    </span>
+                    <span>
+                        Màn hình:
+                        <input className="panel" name="panel" placeholder="Màn hình" type="text" />
+                    </span>
+                    <div className="addbut">
+                        <button onClick={update}>Update</button>
+                        <button onClick={clearupdate}>Clear</button>
+                    </div>
+                </div>
+                <div className="updatelist">
+                    <div className="pickupdatelist">
+                        Chọn hãng:
+                        <div className="boxoptionlist">
+                            <p className="chonloai1list" onClick={onoptionlist}>
+                                Tên hãng
+                            </p>
+                        </div>
+                        <div className="boxoption2list">
+                            {data.map(function (value, index) {
+                                return (
+                                    <p
+                                        onClick={() => chooseCategorylist(value._id)}
+                                        className="optionupdatelist"
+                                        key={index}
+                                    >
+                                        {value.categoriesName}
+                                    </p>
+                                );
+                            })}
+                        </div>
+                    </div>
+                    <div className="pickupdatelist">
+                        Dòng sản phẩm:
+                        <div className="boxoptionlist">
+                            <p className="chonloai2list" onClick={onmodellist}>
+                                Dòng sản phẩm
+                            </p>
+                        </div>
+                        <div className="boxoption3list">
+                            {props.model.map(function (value, index) {
+                                return (
+                                    <p
+                                        onClick={() => takemodellist(value._id)}
+                                        className="optionupdatelist"
+                                        key={index}
+                                    >
+                                        {value.productName}
+                                    </p>
+                                );
+                            })}
+                        </div>
+                    </div>
+                    <div className="pickupdatelist">
+                        Chọn cấu hình:
+                        <div className="boxoptionlist">
+                            <p className="chonloai3list" onClick={picklistdt}>
+                                Cấu hình
+                            </p>
+                        </div>
+                        <div className="boxoption4list">
+                            {props.listdt.map(function (value, index) {
+                                return (
+                                    <p onClick={() => takedtoption(value._id)} className="optionupdatelist" key={index}>
+                                        {value.idProductCode.productName +
+                                            ' ' +
+                                            value.ram +
+                                            ' ' +
+                                            value.rom +
+                                            ' ' +
+                                            value.color}
+                                    </p>
+                                );
+                            })}
+                        </div>
+                    </div>
+                    <span>
+                        Giá sản phẩm:
+                        <input className="pricevinh" name="price" placeholder="Giá sản phẩm" type="text" />
+                    </span>
+                    <span>
+                        Khoảng giá:
+                        <input placeholder="Khoảng giá" className="priceRange" name="priceRange" type="text" />
+                    </span>
+                    <span>
+                        Số lượng kho:
+                        <input className="storage" name="storage" placeholder="Số lượng kho" type="text" />
+                    </span>
+                    <div className="addbut">
+                        <button onClick={updatelist}>Update</button>
+                        <button onClick={clearupdatelist}>Clear</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div className="updatecode">
-          <div className="pickupdate">
-            Chọn hãng:
-            <div className="boxoption">
-              <p className="chonloai1" onClick={onoption}>
-                Tên hãng
-              </p>
-            </div>
-            <div className="boxoption2">
-              {data.map(function (value, index) {
-                return (
-                  <p
-                    onClick={() => chooseCategory(value._id)}
-                    className="optionupdate"
-                    key={index}
-                  >
-                    {value.categoriesName}
-                  </p>
-                );
-              })}
-            </div>
-          </div>
-          <div className="pickupdate">
-            Dòng sản phẩm:
-            <div className="boxoption">
-              <p className="chonloai2" onClick={onmodel}>
-                Dòng sản phẩm
-              </p>
-            </div>
-            <div className="boxoption3">
-              {props.model.map(function (value, index) {
-                return (
-                  <p
-                    onClick={() => takemodel(value._id)}
-                    className="optionupdate"
-                    key={index}
-                  >
-                    {value.productName}
-                  </p>
-                );
-              })}
-            </div>
-          </div>
-          <span>
-            Loại sản phẩm:
-            <input
-              className="productType"
-              name="productType"
-              placeholder="Loại sản phẩm"
-              type="text"
-            />
-          </span>
-          <span>
-            Hiệu năng:
-            <input
-              placeholder="Hiệu năng"
-              className="performanceProduct"
-              name="performanceProduct"
-              type="text"
-            />
-          </span>
-          <span>
-            Cụm Camera:
-            <input
-              className="cameraProduct"
-              name="cameraProduct"
-              placeholder="Cụm Camera"
-              type="text"
-            />
-          </span>
-          <span>
-            Tính năng đặc biệt:
-            <input
-              className="specialFeatures"
-              name="specialFeatures"
-              placeholder="Tính năng đặc biệt"
-              type="text"
-            />
-          </span>
-          <span>
-            Thiết kế:
-            <input
-              className="design"
-              placeholder="Thiết kế"
-              type="text"
-              name="design"
-            />
-          </span>
-          <span>
-            Màn hình:
-            <input
-              className="panel"
-              name="panel"
-              placeholder="Màn hình"
-              type="text"
-            />
-          </span>
-          <div className="addbut">
-            <button onClick={update}>Update</button>
-            <button onClick={clearupdate}>Clear</button>
-          </div>
-        </div>
-        <div className="updatelist">
-          <div className="pickupdatelist">
-            Chọn hãng:
-            <div className="boxoptionlist">
-              <p className="chonloai1list" onClick={onoptionlist}>
-                Tên hãng
-              </p>
-            </div>
-            <div className="boxoption2list">
-              {data.map(function (value, index) {
-                return (
-                  <p
-                    onClick={() => chooseCategorylist(value._id)}
-                    className="optionupdatelist"
-                    key={index}
-                  >
-                    {value.categoriesName}
-                  </p>
-                );
-              })}
-            </div>
-          </div>
-          <div className="pickupdatelist">
-            Dòng sản phẩm:
-            <div className="boxoptionlist">
-              <p className="chonloai2list" onClick={onmodellist}>
-                Dòng sản phẩm
-              </p>
-            </div>
-            <div className="boxoption3list">
-              {props.model.map(function (value, index) {
-                return (
-                  <p
-                    onClick={() => takemodellist(value._id)}
-                    className="optionupdatelist"
-                    key={index}
-                  >
-                    {value.productName}
-                  </p>
-                );
-              })}
-            </div>
-          </div>
-          <div className="pickupdatelist">
-            Chọn cấu hình:
-            <div className="boxoptionlist">
-              <p className="chonloai3list" onClick={picklistdt}>
-                Cấu hình
-              </p>
-            </div>
-            <div className="boxoption4list">
-              {props.listdt.map(function (value, index) {
-                return (
-                  <p
-                    onClick={() => takedtoption(value._id)}
-                    className="optionupdatelist"
-                    key={index}
-                  >
-                    {value.idProductCode.productName +
-                      " " +
-                      value.ram +
-                      " " +
-                      value.rom +
-                      " " +
-                      value.color}
-                  </p>
-                );
-              })}
-            </div>
-          </div>
-          <span>
-            Giá sản phẩm:
-            <input
-              className="price"
-              name="price"
-              placeholder="Giá sản phẩm"
-              type="text"
-            />
-          </span>
-          <span>
-            Khoảng giá:
-            <input
-              placeholder="Khoảng giá"
-              className="priceRange"
-              name="priceRange"
-              type="text"
-            />
-          </span>
-          <span>
-            Số lượng kho:
-            <input
-              className="storage"
-              name="storage"
-              placeholder="Số lượng kho"
-              type="text"
-            />
-          </span>
-          <div className="addbut">
-            <button onClick={updatelist}>Update</button>
-            <button onClick={clearupdatelist}>Clear</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default Chinhsua;
