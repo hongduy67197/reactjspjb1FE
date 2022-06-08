@@ -30,35 +30,17 @@ function App() {
     const [data, setdata] = useState([]);
     const [showdata, setshowdata] = useState([]);
     const [brand, setbrand] = useState([]);
-    const [sign, setsign] = useState(0);
+    const [sign, setsign] = useState(1);
     const [model, setmodel] = useState([]);
     const [listdt, setlistdt] = useState([]);
-
-    const [id, setId] = useState([]);
-    function addId(newId) {
-        setId(newId);
-    }
-    const [Categories, setCategories] = useState([]);
-
-    useEffect(() => {
-        axios
-            .get('/admin/categories')
-            .then(function (res) {
-                console.log(44, res.data);
-                setCategories(res.data);
-                // console.log(res.data);
-            })
-            .catch(function (err) {
-                console.log(99, err);
-            });
-    }, []);
+    // const [triger, setTriger] = useState(1);
 
     function changesign() {
         setsign(sign + 1);
     }
     useEffect(() => {
         axios
-            .get('/admin/productcode/list')
+            .get('http://localhost:3150/admin/productcode/list')
             .then(function (response) {
                 setdata(response.data);
                 setshowdata(response.data);
@@ -66,22 +48,19 @@ function App() {
             .catch(function (error) {
                 console.log(error);
             });
-    }, []);
+    }, [sign]);
 
     useEffect(() => {
         axios
-            .get('/admin/categories')
+            .get('http://localhost:3150/admin/categories')
             .then(function (response) {
                 setbrand(response.data);
             })
             .catch(function (error) {
                 console.log(error);
             });
-    }, []);
+    }, [sign]);
 
-    function changesign() {
-        setsign(sign + 1);
-    }
     return (
         <div className="App">
             <BrowserRouter>
@@ -109,14 +88,13 @@ function App() {
                             }
                         />
                         <Route path="/admin/Khohang" element={<Khohang />} />
-                        <Route path="/admin/Spmoi" element={<Spmoi />} />
+                        <Route path="/admin/Spmoi" element={<Spmoi showdata={showdata} changesign={changesign} />} />
                         <Route
                             path="/admin/Trenke"
                             element={
                                 <Trenke
                                     data={data}
                                     brand={brand}
-                                    sign={sign}
                                     changesign={changesign}
                                     setdata={setdata}
                                     showdata={showdata}
