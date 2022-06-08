@@ -9,7 +9,7 @@ import React from "react";
 import anh1 from "./aaa.png";
 import { useNavigate } from "react-router-dom";
 
-function Header() {
+function Header(props) {
   const navigate = useNavigate();
   var countproduct = 0;
   var countselect = 0;
@@ -28,9 +28,6 @@ function Header() {
   }
   function hoanthanh() {
     navigate("/admin/Hoanthanh");
-  }
-  function tongket() {
-    navigate("/admin/Tongket");
   }
   function chinhsua() {
     navigate("/admin/Chinhsua");
@@ -333,6 +330,7 @@ function Header() {
     }
     document.querySelector(".header ").style.background = "rgb(0, 101, 0)";
   }
+
   return (
     <div className="admin">
       <div className="sidebar">
@@ -353,13 +351,8 @@ function Header() {
           </div>
           <div onClick={onstaff} className="menu">
             <i className="fa-solid fa-users vicon"></i>
-            <p className="opt">Nhan vien</p>
-            <i className="fa-solid fa-angle-right arrow"></i>
-          </div>
-          <div className="staff">
-            <p>- Cap quyen</p>
-            <p onClick={QLnhanvien} className="qlnv">
-              - Quan ly nhan vien
+            <p className="opt" onClick={QLnhanvien}>
+              Nhan vien
             </p>
           </div>
           <div onClick={onselect} className="menu">
@@ -371,7 +364,6 @@ function Header() {
             <p onClick={xacnhan}>- Cho xac nhan</p>
             <p onClick={danggiao}>- Dang giao hang</p>
             <p onClick={hoanthanh}>- Da hoan thanh</p>
-            <p onClick={tongket}>- Tong ket</p>
           </div>
           <div onClick={onproduct} className="menu">
             <i className="fa-solid fa-mobile-screen vicon"></i>
@@ -429,6 +421,7 @@ function Header() {
             <BgColorsOutlined onClick={onchangecolor} className="iconcolor" />
 
             <i className="fa-solid fa-circle-user iconuser"></i>
+            <p className="user_name">{props.tenname}</p>
           </div>
         </div>
       </div>
