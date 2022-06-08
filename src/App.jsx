@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import "./App.css";
 import Home from './Pages/Admin/Home/home';
 import Xacnhan from './Pages/Admin/Donhang/Xacnhan';
-import Tongket from './Pages/Admin/Donhang/Tongket';
 import Hoanthanh from './Pages/Admin/Donhang/Hoanthanh';
 import Danggiao from './Pages/Admin/Donhang/Danggiao';
 import Chinhsua from './Pages/Admin/Sanpham/Chinhsua';
@@ -94,7 +93,7 @@ function App() {
                         <Route path="/admin/home" element={<Home />} />
                         <Route path="/admin/nhanvien" element={<Nhanvien />} />
                         <Route path="/admin/Xacnhan" element={<Xacnhan />} />
-                        <Route path="/admin/Tongket" element={<Tongket />} />
+                        {/* <Route path="/admin/Tongket" element={<Tongket />} /> */}
                         <Route path="/admin/Hoanthanh" element={<Hoanthanh />} />
                         <Route path="/admin/Danggiao" element={<Danggiao />} />
                         <Route
