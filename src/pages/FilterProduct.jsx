@@ -63,9 +63,7 @@ function FilterProduct(props) {
                     } else
                         if (key === keyItem && value.split('%20').join('').includes(i.split(' ').join(''))) {
                             console.log(163, value, i)
-
                             if (value.includes(`,${i}`) || value.includes(`,`)) {
-
                                 let a = value.split('%20').join('').replace(`,${i.split(' ').join('')}`, ``)
                                 console.log(163, value, i)
                                 value = a;
@@ -96,6 +94,7 @@ function FilterProduct(props) {
         }
         navigate(link)
     }
+    
     //---------------------------------------------------------phân tích và lọc  diomain để tạo ra trường lọc object với các giá trị được choose  
     let a1 = window.location.href.replace('http://localhost:3000/product/filter?', '')
     let examine = window.location.href.replace('http://localhost:3000/product/filter', '')
@@ -288,13 +287,15 @@ function FilterProduct(props) {
                                 <h4 class="category__heading">
                                     <i class="category__heading-icon fa-solid fa-filter"></i>
                                     BỘ LỌC TÌM KIẾM
+                                    <div class='title-filter'></div>
                                 </h4>
                                 <ul class="category-list">
 
                                     {/* category-item--active */}
                                     <li class="category-item ">
                                         <div class="category-item_link">
-                                            BRAND
+                                            
+                                            <div class='title-filter'>BRAND</div>
                                             <div className="category-item-detail-wrap">
                                                 {props.filter.brand.map((val, i) => {
                                                     return <button key={val} onClick={(e) => { filterPages(removeAccents(val), 'brand', e) }} className="category-item-detail">{val}</button>
@@ -304,7 +305,8 @@ function FilterProduct(props) {
                                     </li>
                                     <li class="category-item ">
                                         <div class="category-item_link">
-                                            GIÁ
+                                            
+                                            <div class='title-filter'>GIÁ</div>
                                             <div className="category-item-detail-wrap">
                                                 {props.filter.price.map((val, i) => {
                                                     return <button key={val} onClick={(e) => { filterPages(removeAccents(val), 'priceReferent', e) }} className="category-item-detail">{val}</button>
@@ -315,7 +317,8 @@ function FilterProduct(props) {
                                     </li>
                                     <li class="category-item ">
                                         <div class="category-item_link">
-                                            LOẠI ĐIỆN THOẠI
+                                           
+                                            <div class='title-filter'>LOẠI ĐIỆN THOẠI</div>
                                             <div className="category-item-detail-wrap">
                                                 {props.filter.productType.map((val, i) => {
                                                     return <button key={val} onClick={(e) => { filterPages(removeAccents(val), 'productType', e) }} className="category-item-detail">{val}</button>
@@ -325,7 +328,7 @@ function FilterProduct(props) {
                                     </li>
                                     <li class="category-item ">
                                         <div class="category-item_link">
-                                            HIỆU NĂNG & PIN
+                                            <div class='title-filter'>HIỆU NĂNG & PIN</div>
                                             <div className="category-item-detail-wrap">
                                                 {props.filter.performanceProduct.map((val, i) => {
                                                     return <button key={val} onClick={(e) => { filterPages(removeAccents(val), 'performanceProduct', e) }} className="category-item-detail">{val}</button>
@@ -335,7 +338,7 @@ function FilterProduct(props) {
                                     </li>
                                     <li class="category-item ">
                                         <div class="category-item_link">
-                                            RAM
+                                            <div class='title-filter'>RAM</div>
                                             <div className="category-item-detail-wrap">
                                                 {props.filter.ram.map((val, i) => {
                                                     return <button onClick={(e) => { filterPages(removeAccents(val), 'ram', e) }} className="category-item-detail">{val}</button>
@@ -345,7 +348,7 @@ function FilterProduct(props) {
                                     </li>
                                     <li class="category-item ">
                                         <div class="category-item_link">
-                                            BỘ NHỚ TRONG
+                                            <div class='title-filter'>BỘ NHỚ TRONG</div>
                                             <div className="category-item-detail-wrap">
                                                 {props.filter.rom.map((val, i) => {
                                                     return <button key={val} onClick={(e) => { filterPages(removeAccents(val), 'rom', e) }} className="category-item-detail">{val}</button>
@@ -355,7 +358,7 @@ function FilterProduct(props) {
                                     </li>
                                     <li class="category-item ">
                                         <div class="category-item_link">
-                                            CAMERA
+                                            <div class='title-filter'> CAMERA</div>
                                             <div className="category-item-detail-wrap">
                                                 {props.filter.cameraProduct.map((val, i) => {
                                                     return <button key={val} onClick={(e) => { filterPages(removeAccents(val), 'cameraProduct', e) }} className="category-item-detail">{val}</button>
@@ -365,7 +368,7 @@ function FilterProduct(props) {
                                     </li>
                                     <li class="category-item ">
                                         <div class="category-item_link">
-                                            TÍNH NĂNG ĐẶC BIỆT
+                                            <div class='title-filter'> TÍNH NĂNG ĐẶC BIỆT</div>
                                             <div className="category-item-detail-wrap">
                                                 {props.filter.specialFeatures.map((val, i) => {
                                                     return <button key={val} onClick={(e) => { filterPages(removeAccents(val), 'specialFeatures', e) }} className="category-item-detail">{val}</button>
@@ -375,7 +378,7 @@ function FilterProduct(props) {
                                     </li>
                                     <li class="category-item ">
                                         <div class="category-item_link">
-                                            THIẾT KẾ
+                                            <div class='title-filter'>THIẾT KẾ</div>
                                             <div className="category-item-detail-wrap">
                                                 {props.filter.design.map((val, i) => {
                                                     return <button key={val} onClick={(e) => { filterPages(removeAccents(val), 'design', e) }} className="category-item-detail">{val}</button>
@@ -385,7 +388,7 @@ function FilterProduct(props) {
                                     </li>
                                     <li class="category-item ">
                                         <div class="category-item_link">
-                                            MÀN HÌNH
+                                            <div class='title-filter'> MÀN HÌNH</div>
                                             <div className="category-item-detail-wrap">
                                                 {props.filter.panel.map((val, i) => {
                                                     return <button key={val} onClick={(e) => { filterPages(removeAccents(val), 'panel', e) }} className="category-item-detail">{val}</button>
@@ -436,46 +439,7 @@ function FilterProduct(props) {
 
                             </div>
 
-                            {/* <!-- apply mobile--> */}
-                            <nav class="mobile-category">
-                                <ul class="mobile-category__list">
-                                    <li class="mobile-category__item">
-                                        <a class="mobile-category__link">
-                                            Dụng cụ & Thiết bị tiện ích cho bếp Mẹ nấu
-                                        </a>
-                                    </li>
-                                    <li class="mobile-category__item">
-                                        <a class="mobile-category__link">
-                                            Giặt giũ & Chăm sóc nhà cửa
-                                        </a>
-                                    </li>
-                                    <li class="mobile-category__item">
-                                        <a class="mobile-category__link">
-                                            Dụng cụ nhà bếp
-                                        </a>
-                                    </li>
-                                    <li class="mobile-category__item">
-                                        <a class="mobile-category__link">
-                                            Dụng cụ & Thiết bị tiện ích
-                                        </a>
-                                    </li>
-                                    <li class="mobile-category__item">
-                                        <a class="mobile-category__link">
-                                            Dụng cụ nhà bếp
-                                        </a>
-                                    </li>
-                                    <li class="mobile-category__item">
-                                        <a class="mobile-category__link">
-                                            Giặt giũ & Chăm sóc nhà cửa
-                                        </a>
-                                    </li>
-                                    <li class="mobile-category__item">
-                                        <a class="mobile-category__link">
-                                            Dụng cụ & Thiết bị tiện ích
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
+                            
 
                             {/* <!-- home product --> */}
                             <div class="home-product">
@@ -498,10 +462,12 @@ function FilterProduct(props) {
                                                 </div>
                                                 <h4 class="home-product-item__name">{val.productName}</h4>
                                                 <div class="home-product-item__price">
+                                                    <div className="home-product-item__price-wrap">
                                                     <span class="home-product-item__price-old">{val.price.toLocaleString()} đ</span>
                                                     <span class="home-product-item__price-curr">{(val.price * (100 - (Number.parseFloat(val.Sale))) / 100).toLocaleString()}<sup> đ</sup></span>
+                                                    </div>
                                                     <div class="home-product-item__sale-off">
-                                                        <span class="home-product-item__sale-off-percent">{val.Sale}</span>
+                                                        <span class="home-product-item__sale-off-percent">-{val.Sale}</span>
                                                         <span class="home-product-item__sale-off-label">GIẢM</span>
                                                     </div>
                                                 </div>
@@ -533,7 +499,7 @@ function FilterProduct(props) {
                                                 {/* information details */}
                                                 <div className="home-product-item-information-detail-wrap">
                                                     <ul class="home-product-item-information-detail">
-                                                        <li><span>{val.panel}</span></li>
+                                                        {/* <li><span>{val.panel}</span></li> */}
                                                         <li><span>{val.performanceProduct}</span></li>
                                                         <li><span>{val.cameraProduct}</span></li>
                                                     </ul>

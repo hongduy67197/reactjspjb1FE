@@ -49,23 +49,22 @@ function App() {
     design: ['Tràn viền', 'Mỏng nhẹ', 'Mặt lưng kính'],
     panel: ['nhỏ gọn dễ cầm', 'Từ 6inch trở lên', 'Màn hình gập']
   }
+  // color: Xanh , Đỏ , Tím , Hồng, Đen
  let productCode = []
   // const [ProductList, setProductList] = useState(listProductCode.listProductCode)
   const [ProductList, setProductList] = useState(productList)
    //---------------------------
   // axious project sellMobilePhone
   useEffect(() => {
-    axios.get('http://localhost:3150/user/fillter?idCategories=28c8b40e8654d960a5c898b')
+    axios.get('http://localhost:3150/user/fillter?idCategories=628c8b29e8654d960a5c8983')
       .then(function (res) {
         // setDataDuy(res.data.product)
         // setShow(res.data.product.slice(0, 2))
         console.log(45, res.data.listData)
         const ListData= res.data.listProductCode.map((val)=>{
-          val.price = 180000000;
-          val.storage = 12;
-          val.ram='8GB';
-          val.rom='12GB';
-          val.Sale = '15%';
+          val.storage =Math.floor(Math.random() * 100);
+          val.ram=val.ramRange[0];
+          val.rom=val.romRange[0];
           return val
         })
         console.log(4556, ListData)
@@ -75,7 +74,6 @@ function App() {
         console.log(err)
       })
   }, []);
-
   const [dataProduct, setDataProduce] = useState(productCode)
   const [count, setCount] = useState(0)
   const [filter, setFilterProduct] = useState(filterProduct)

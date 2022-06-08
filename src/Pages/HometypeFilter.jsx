@@ -152,7 +152,7 @@ function HometypeFilter(props) {
 
     let navigate = useNavigate();
     function movePage(i) {
-        console.log(155,i)
+        console.log(155, i)
         // navigate(`/product/filter/home/${i}`)
     }
     function filterPages(i, key, e) {
@@ -208,7 +208,7 @@ function HometypeFilter(props) {
                 console.log('tao')
             }
         }
-        console.log(211,link)
+        console.log(211, link)
         navigate(link)
     }
     //-------------------
@@ -242,8 +242,8 @@ function HometypeFilter(props) {
             let a4 = val.split('=')
             let a6 = a4[0]
             a4.shift()
-            console.log(244,a4)
-            let a7 = a4[0].split(',')   
+            console.log(244, a4)
+            let a7 = a4[0].split(',')
             let a5 = { [a6]: a7 }
             return (a5)
         })
@@ -469,7 +469,7 @@ function HometypeFilter(props) {
                 {/* <!-- phần container items --> */}
                 <div class="grid wide">
                     <div class="row sm-gutter app__content">
-                        
+
 
                         <div class="col l-12 m-12 c-12">
                             <div class="home-filter hide-on-moble-tablet">
@@ -566,18 +566,24 @@ function HometypeFilter(props) {
 
 
                                         return (<div class="col l-2-4 m-4 c-6" key={i}>
-                                            <button onClick={() => { 
+                                            <button onClick={() => {
                                                 props.updateChimuc(i)
                                                 console.log(571, i)
-                                                movePage(removeAccents(val.ProductName).split(' ').join('')) 
-                                            }} 
+                                                movePage(removeAccents(val.ProductName).split(' ').join(''))
+                                            }}
                                                 className="home-product-item">
 
                                                 <div class="home-product-item__img" style={{ backgroundImage: `url(${val.productPic[0]}) ` }}></div>
                                                 <h4 class="home-product-item__name">{val.ProductName}</h4>
                                                 <div class="home-product-item__price">
-                                                    <span class="home-product-item__price-old">{val.price.toLocaleString()} đ</span>
-                                                    <span class="home-product-item__price-curr">{(val.price * (100 - (Number.parseFloat(val.Sale))) / 100).toLocaleString()}<sup> đ</sup></span>
+                                                    <div className="home-product-item__price-wrap">
+                                                        <span class="home-product-item__price-old">{val.price.toLocaleString()} đ</span>
+                                                        <span class="home-product-item__price-curr">{(val.price * (100 - (Number.parseFloat(val.Sale))) / 100).toLocaleString()}<sup> đ</sup></span>
+                                                    </div>
+                                                    {/* <div class="home-product-item__sale-off">
+                                                        <span class="home-product-item__sale-off-percent">-{val.Sale}</span>
+                                                        <span class="home-product-item__sale-off-label">GIẢM</span>
+                                                    </div> */}
                                                 </div>
                                                 <div class="home-product-item__action">
                                                     <span class="home-product-item__like home-product-item__like--liked">
@@ -604,10 +610,7 @@ function HometypeFilter(props) {
                                                     <i class="fas fa-check"></i>
                                                     <span>Yêu thích</span>
                                                 </div>
-                                                <div class="home-product-item__sale-off">
-                                                    <span class="home-product-item__sale-off-percent">{val.Sale}</span>
-                                                    <span class="home-product-item__sale-off-label">GIẢM</span>
-                                                </div>
+
                                             </button>
                                         </div>
                                         )
