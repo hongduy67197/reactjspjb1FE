@@ -6,6 +6,7 @@ import Promotion from './UserPage/Promotion';
 import Voucher from './UserPage/Voucher';
 import Menu from './UserPage/Menu';
 import { Link } from 'react-router-dom';
+
 // import Comment from './UserPage/'
 // COMMENT
 import CapNhat from './UserPage/Comment/CapNhat';
@@ -25,6 +26,7 @@ import axios from '../axios';
 import { useSelector } from 'react-redux';
 // HEADER
 import Header from '../compunentes/header/Header';
+import { refreshToken } from '../refreshToken';
 
 function getCookie(cname) {
     let name = cname + '=';
@@ -41,6 +43,12 @@ function getCookie(cname) {
     }
     return '';
 }
+function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+    let expires = 'expires=' + d.toUTCString();
+    document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
+}
 function UserPase(props) {
     const userInfo = useSelector(function (state) {
         return state.user;
@@ -55,6 +63,12 @@ function UserPase(props) {
                     Authorization: token,
                 },
             });
+            if(res.data.message === 'jwt expired'){
+                await refreshToken()
+            }
+            // if(res.data.token){
+            //     setCookie('user', res.data.token, 7)
+            // }
             window.localStorage.setItem('user', JSON.stringify(res.data));
             setUser(JSON.parse(localStorage.getItem('user')));
         }

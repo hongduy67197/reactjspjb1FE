@@ -5,7 +5,7 @@ import React from 'react';
 import anh1 from './aaa.png';
 import { useNavigate } from 'react-router-dom';
 
-function Header() {
+function Header(props) {
     const navigate = useNavigate();
     var countproduct = 0;
     var countselect = 0;

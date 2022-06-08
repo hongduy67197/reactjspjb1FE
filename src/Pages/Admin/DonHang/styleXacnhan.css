@@ -1,14 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 .table_xacnhan {
-  width: 83%;
-  height: 100vh;
-  background-color: #e9ecef;
-  float: right;
-  padding: 20px 30px;
-  margin-top: 60px;
+    width: 83%;
+    height: 100vh;
+    background-color: #e9ecef;
+    float: right;
+    padding: 20px 30px;
+    margin-top: 60px;
 }
 
 .title_xacnhan {
-  padding-bottom: 20px;
-  font-size: 25px;
-  font-weight: 600;
+    padding-bottom: 20px;
+    font-size: 25px;
+    font-weight: 600;
 }

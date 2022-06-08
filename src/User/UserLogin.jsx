@@ -68,9 +68,13 @@ function UserLogin(props) {
     function clean_email() {
         // document.querySelector(".login_conter_modal_email").value = "";
         document.querySelector('.login_email_text').innerHTML = '';
+        document.querySelector('.login_phone_userName_text').innerHTML = '';
+
     }
     function clean_password() {
         document.querySelector('.login_password_text').innerHTML = '';
+        document.querySelector('.login_phone_password_text').innerHTML = '';
+
     }
     function singIn_next() {
         navigate('/user/UserSingIn');
@@ -80,6 +84,46 @@ function UserLogin(props) {
         document.querySelector('.login_ofcanva_modal').style.display = 'none';
     }
     function on_home() {}
+    // PHONE
+    async function phone_login(){
+        let email = document.querySelector('.login_phone_userName').value;
+        let password = document.querySelector('.login_phone_password').value;
+        if (email === '' || testEmail1(email)) {
+            document.querySelector('.login_phone_userName_text').innerHTML = 'Vui lòng nhập Email';
+        } else if (password === '' || testPassword1(password)) {
+            document.querySelector('.login_phone_password_text').innerHTML = 'Vui lòng nhập Password';
+        } else {
+            console.log(email, password)
+            // let res = await axios.post('/user/login', { email, password });
+            // console.log(res.data);
+            // if (res.data.status === 'undifind password') {
+            //     alert(res.data.status);
+            // } else {
+            //     setCookie('user', res.data.data.token, 30);
+            //     const action = Login(res.data.data.userData);
+            //     dispatch(action);
+            //     navigate('/compunentes/home/Home');
+            // }
+        }
+    }
+       // kiểm tra đầu vào Email
+       function testEmail1(email) {
+        var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/;
+        if (mailformat.test(email)) {
+            document.querySelector('.login_phone_userName_text').innerHTML = '';
+        } else {
+            document.querySelector('.login_phone_userName_text').innerHTML = 'Email không hợp lệ';
+        }
+    }
+       // kiểm tra đầu vào password
+       function testPassword1(pass) {
+        var arr = /^(?=.*[a-zA-Z0-9](?=.*\d)[A-Za-z0-9]{8,})$/;
+        if (arr.test(pass) || pass.length < 8) {
+            document.querySelector('.login_phone_password_text').innerHTML = 'Mật khẩu phải có ít nhất 8 ký tự';
+        } else {
+            document.querySelector('.login_phone_password_text').innerHTML = '';
+        }
+    }
     return (
         <>
             <div className="login_">
@@ -172,16 +216,18 @@ function UserLogin(props) {
                 </div>
                 <div className="login_phone_conter">
                     <img src={logoShopee} alt="img" />
-                    <input type="text" className="login_phone_userName" placeholder="Email\Phone\UserName" />
+                    <input type="text" className="login_phone_userName" placeholder="Email\Phone\UserName" onClick={clean_email}/>
+                    <span className='login_phone_userName_text'>user</span>
                     <div className="login_phone_password_">
                         <input type="text" className="login_phone_password" placeholder="Password" />
                         <a href="" className="login_phone_forgot">
                             Forgot ?
                         </a>
                     </div>
-                    <button className="login_phone_login">Login</button>
+                    <span className='login_phone_password_text'>password</span>
+                    <button className="login_phone_login" onClick={phone_login}>Login</button>
                     <div className="login_phone_a">
-                        <a href="">Sign Up</a>
+                        <Link to="/User/UserSingIn">Sign Up</Link>
                         <a href="" className="login_phone_a1">
                             Log In With Phone Number{' '}
                         </a>
