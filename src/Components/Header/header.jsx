@@ -33,6 +33,9 @@ function Header(props) {
   function hoanthanh() {
     navigate("/admin/Hoanthanh");
   }
+  function tongket() {
+    navigate("/admin/Tongket");
+  }
   function chinhsua() {
     navigate("/admin/Chinhsua");
   }
@@ -108,7 +111,7 @@ function Header(props) {
     document.querySelector(".logo ").style.background = "rgb(255, 101, 155)";
     document.querySelector(".mid input").style.background =
       "rgb(255, 227, 231)";
-    var x = document.querySelectorAll(".menu");
+    var x = document.querySelectorAll(".menu1");
     for (var i = 0; i < x.length; i++) {
       x[i].style.color = "black";
     }
@@ -148,7 +151,7 @@ function Header(props) {
     document.querySelector(".logo ").style.background = "rgb(92, 165, 255)";
     document.querySelector(".mid input").style.background =
       "rgb(209, 230, 255)";
-    var x = document.querySelectorAll(".menu");
+    var x = document.querySelectorAll(".menu1");
     for (var i = 0; i < x.length; i++) {
       x[i].style.color = "black";
     }
@@ -188,7 +191,7 @@ function Header(props) {
     document.querySelector(".logo ").style.background = "rgb(143, 143, 143)";
     document.querySelector(".mid input").style.background =
       "rgb(226, 226, 226)";
-    var x = document.querySelectorAll(".menu");
+    var x = document.querySelectorAll(".menu1");
     for (var i = 0; i < x.length; i++) {
       x[i].style.color = "black";
     }
@@ -228,7 +231,7 @@ function Header(props) {
     document.querySelector(".logo ").style.background = "black";
     document.querySelector(".mid input").style.background =
       "rgb(103, 103, 103)";
-    var x = document.querySelectorAll(".menu");
+    var x = document.querySelectorAll(".menu1");
     for (var i = 0; i < x.length; i++) {
       x[i].style.color = "white";
     }
@@ -268,7 +271,7 @@ function Header(props) {
     document.querySelector(".logo ").style.background = "rgb(196, 0, 196)";
     document.querySelector(".mid input").style.background =
       "rgb(218, 127, 218)";
-    var x = document.querySelectorAll(".menu");
+    var x = document.querySelectorAll(".menu1");
     for (var i = 0; i < x.length; i++) {
       x[i].style.color = "white";
     }
@@ -308,7 +311,7 @@ function Header(props) {
     document.querySelector(".logo ").style.background = "rgb(87, 187, 67)";
     document.querySelector(".mid input").style.background =
       "rgb(117, 203, 117)";
-    var x = document.querySelectorAll(".menu");
+    var x = document.querySelectorAll(".menu1");
     for (var i = 0; i < x.length; i++) {
       x[i].style.color = "white";
     }
@@ -334,7 +337,6 @@ function Header(props) {
     }
     document.querySelector(".header ").style.background = "rgb(0, 101, 0)";
   }
-
   return (
     <div className="admin">
       <div className="sidebar">
@@ -355,27 +357,39 @@ function Header(props) {
               Dashboard
             </p>
           </div>
-          <div onClick={onstaff} className="menu">
-            <i className="fa-solid fa-users vicon"></i>
-            <p className="opt" onClick={QLnhanvien}>
-              Nhan vien
+          <div onClick={onstaff} className="menu1">
+            <div>
+              <i className="fa-solid fa-users vicon"></i>
+              <p className="opt">Nhan vien</p>
+            </div>
+            <i className="fa-solid fa-angle-right arrow"></i>
+          </div>
+          <div className="staff">
+            <p>- Cap quyen</p>
+            <p onClick={QLnhanvien} className="qlnv">
+              - Quan ly nhan vien
             </p>
           </div>
-          <div onClick={onselect} className="menu">
-            <i className="fa-solid fa-truck-ramp-box vicon"></i>
-            <p className="opt">Don hang</p>
+          <div onClick={onselect} className="menu1">
+            <div>
+              <i className="fa-solid fa-truck-ramp-box vicon"></i>
+              <p className="opt">Don hang</p>
+            </div>
             <i className="fa-solid fa-angle-right arrow"></i>
           </div>
           <div className="select">
             <p onClick={xacnhan}>- Cho xac nhan</p>
             <p onClick={danggiao}>- Dang giao hang</p>
             <p onClick={hoanthanh}>- Da hoan thanh</p>
+            <p onClick={tongket}>- Tong ket</p>
           </div>
-          <div onClick={onproduct} className="menu">
-            <i className="fa-solid fa-mobile-screen vicon"></i>
-            <p className="opt" style={{ marginLeft: "18px" }}>
-              San pham
-            </p>
+          <div onClick={onproduct} className="menu1">
+            <div>
+              <i className="fa-solid fa-mobile-screen vicon"></i>
+              <p className="opt" style={{ marginLeft: "18px" }}>
+                San pham
+              </p>
+            </div>
             <i className="fa-solid fa-angle-right arrow"></i>
           </div>
           <div className="product">
@@ -392,11 +406,13 @@ function Header(props) {
               - Kho hàng
             </p>
           </div>
-          <div onClick={oninfor} className="menu">
-            <i className="fa-solid fa-pen-fancy vicon"></i>
-            <p className="opt thongtin" style={{ marginLeft: "15px" }}>
-              Thông tin
-            </p>
+          <div onClick={oninfor} className="menu1">
+            <div>
+              <i className="fa-solid fa-pen-fancy vicon"></i>
+              <p className="opt thongtin" style={{ marginLeft: "15px" }}>
+                Thông tin
+              </p>
+            </div>
             <i className="fa-solid fa-angle-right arrow"></i>
           </div>
           <div className="infor">
@@ -409,7 +425,7 @@ function Header(props) {
           </div>
         </div>
       </div>
-      <div className="header">
+      <div className="headervinh">
         <div className="left">
           <div className="left1">
             <MailOutlined className="iconmail" />
@@ -427,7 +443,6 @@ function Header(props) {
             <BgColorsOutlined onClick={onchangecolor} className="iconcolor" />
 
             <i className="fa-solid fa-circle-user iconuser"></i>
-            <p className="user_name">{props.tenname}</p>
           </div>
         </div>
       </div>

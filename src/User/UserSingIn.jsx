@@ -32,7 +32,7 @@ function UserSingIn(props) {
             document.querySelector('.singin_conter_modal').style.display = 'none';
         }
     }
-    // kiểm tra đầu vào password
+    // kiểm tra đầu vào password laptop
     function testPassword(pass) {
         var arr = /^(?=.*[a-zA-Z0-9](?=.*\d)[A-Za-z0-9]{8,})$/;
         if (arr.test(pass) || pass.length < 8) {
@@ -41,7 +41,16 @@ function UserSingIn(props) {
             document.querySelector('.singin_password_text').innerHTML = '';
         }
     }
-    // kiểm tra đầu vào Email
+    // kiểm tra đầu vào password phone
+    function testPasswordPhone(pass) {
+        var arr = /^(?=.*[a-zA-Z0-9](?=.*\d)[A-Za-z0-9]{8,})$/;
+        if (arr.test(pass) || pass.length < 8) {
+            document.querySelector('.singin_phone_conter_password_text').innerHTML = 'Mật khẩu phải có ít nhất 8 ký tự';
+        } else {
+            document.querySelector('.singin_phone_conter_password_text').innerHTML = '';
+        }
+    }
+    // kiểm tra đầu vào Email laptop
     function testEmail(email) {
         var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/;
         if (mailformat.test(email)) {
@@ -50,7 +59,15 @@ function UserSingIn(props) {
             document.querySelector('.singin_mail_text').innerHTML = 'Email không hợp lệ';
         }
     }
-
+    // kiểm tra đầu vào Email phone
+    function testEmailPhone(email) {
+        var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/;
+        if (mailformat.test(email)) {
+            document.querySelector('.singin_phone_conter_name_text').innerHTML = '';
+        } else {
+            document.querySelector('.singin_phone_conter_name_text').innerHTML = 'Email không hợp lệ';
+        }
+    }
     // reset input email
     function reset_email() {
         document.querySelector('.singin_mail_text').innerHTML = '';
@@ -71,13 +88,45 @@ function UserSingIn(props) {
         document.querySelector('.login_header').style.display = 'block';
         document.querySelector('.login_conter').style.display = 'block';
         document.querySelector('.singin_conter_modal').style.display = 'block';
+        document.querySelector('.singIn_ofcanva_modal1').style.display = 'none';
+        document.querySelector('.login_phone_header').style.display = 'block';
+        document.querySelector('.singin_phone_conter').style.display = 'block';
     }
     // chuyển đến trang LOGIN
     function login_next() {
         navigate('/user/UserLogin');
         document.querySelector('.ofcanva_modal_close').click();
     }
+    // phone
+    function singUp_phone() {
+        let email1 = document.querySelector('.singin_phone_userName').value;
+        let password1 = document.querySelector('.singin_phone_password').value;
+        let password11 = document.querySelector('.singin_phone_password1').value;
+        console.log(password11, email1, password1);
+        if (email1 === '' || testEmailPhone(email1)) {
+            document.querySelector('.singin_phone_conter_name_text').innerHTML = 'Vui lòng nhập email';
+        } else if (password1 === '' || testPasswordPhone(password1)) {
+            document.querySelector('.singin_phone_conter_password_text').innerHTML = 'Vui lòng nhập mật khẩu';
+        } else if (password11 === '' || password1 !== password11) {
+            document.querySelector('.singin_phone_conter_password1_text').innerHTML = 'Mật khẩu không khớp';
+        } else {
+            // const res = await axios.post('/user/register', { password, email });
 
+            document.querySelector('.singIn_ofcanva_modal1').style.display = 'block';
+            // document.querySelector('.singIn_phone').style.display = 'none';
+            document.querySelector('.login_phone_header').style.display = 'none';
+            document.querySelector('.singin_phone_conter').style.display = 'none';
+        }
+    }
+    function reset_nameText() {
+        document.querySelector('.singin_phone_conter_name_text').innerHTML = '';
+    }
+    function reset_passwordText() {
+        document.querySelector('.singin_phone_conter_password_text').innerHTML = '';
+    }
+    function reset_password1Text() {
+        document.querySelector('.singin_phone_conter_password1_text').innerHTML = '';
+    }
     return (
         <>
             <div className="singin_">
@@ -142,10 +191,6 @@ function UserSingIn(props) {
                 </div>
                 <div className="singIn_ofcanva_modal" style={{ display: 'none' }}>
                     <p>Vui lòng check email, xác nhận tài khoản !</p>
-                    {/* <p>Chào mừng {} đến với SHOPEE !</p>
-        <button className="ofcanva_modal_login" onClick={login_next}>
-          Đến trang đăng nhập
-        </button> */}
                     <button className="ofcanva_modal_close" onClick={of_ofcanva_modal}>
                         Close
                     </button>
@@ -163,10 +208,30 @@ function UserSingIn(props) {
                     <a href="">Need help ?</a>
                 </div>
                 <div className="singin_phone_conter">
-                    <input type="text" className="singin_phone_userName" placeholder="Email\Phone\UserName" />
-                    <input type="text" className="singin_phone_password" placeholder=" Password" />
-                    <input type="text" className="singin_phone_password1" placeholder="Enter the Password" />
-                    <button className="singin_phone_singin">Sing Up</button>
+                    <input
+                        type="text"
+                        className="singin_phone_userName"
+                        placeholder="Email\Phone\UserName"
+                        onClick={reset_nameText}
+                    />
+                    <span className="singin_phone_conter_name_text">a</span>
+                    <input
+                        type="text"
+                        className="singin_phone_password"
+                        placeholder=" Password"
+                        onClick={reset_passwordText}
+                    />
+                    <span className="singin_phone_conter_password_text">b</span>
+                    <input
+                        type="text"
+                        className="singin_phone_password1"
+                        placeholder="Enter the Password"
+                        onClick={reset_password1Text}
+                    />
+                    <span className="singin_phone_conter_password1_text">c</span>
+                    <button className="singin_phone_singin" onClick={singUp_phone}>
+                        Sing Up
+                    </button>
                     <hr className="singin_phone_hr"></hr>
                     <span className="singin_phone_OR">OR</span>
                     <div className="singin_phone_button_grup">
@@ -182,6 +247,12 @@ function UserSingIn(props) {
                             Continue with Apple
                         </button>
                     </div>
+                </div>
+                <div className="singIn_ofcanva_modal1" style={{ display: 'none' }}>
+                    <p>Vui lòng check email, xác nhận tài khoản !</p>
+                    <button className="ofcanva_modal_close" onClick={of_ofcanva_modal}>
+                        Close
+                    </button>
                 </div>
             </div>
         </>
