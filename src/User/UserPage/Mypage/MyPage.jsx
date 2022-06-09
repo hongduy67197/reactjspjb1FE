@@ -5,8 +5,9 @@ import { useSelector } from "react-redux";
 import axios from "../../../axios";
 import { CloseSquareFilled } from "@ant-design/icons";
 import { render } from "@testing-library/react";
-
-function MyPage() {
+import { getUserCookie, refreshToken } from "../../../refreshToken"
+function MyPage(props) {
+  console.log(10,props)
   const userInfo = useSelector(function (state) {
     return state.user;
   });
@@ -15,35 +16,8 @@ function MyPage() {
 
   // ảnh đại diện
   const avatr = userInfo.avatar
-    ? function setAvatar() {
-        if (userInfo.avatar === image) {
-          return userInfo;
-        } else {
-          return image;
-        }
-      }
+    ? process.env.REACT_APP_CLIENT_URL + userInfo.avatar
     : userlogo;
-
-  // ?\
-
-  // const form12 = document.querySelector(".formlist");
-  // console.log(form12);
-
-  // const formData12 = new FormData(form12);
-  // console.log(27, formData12.entries());
-  // for (var pair of formData12.entries()) {
-  //   axios.post("/user/login", { formData12 });
-  // }
-
-  // }
-  // axios
-  //   .post("/admin/product", formData12)
-  //   .then(function (response) {
-  //     console.log(response);
-  //   })
-  //   .catch(function (error) {
-  //     console.log(error);
-  //
 
   // thay đổi ảnh đại diện
   function choosefile(fileinput) {
@@ -55,25 +29,46 @@ function MyPage() {
       document.querySelector(".chooseImage").setAttribute("src", this.result);
     });
 
-    console.log(imager);
+    console.log(58,imager);
   }
   // đẩy dữ liệu đã thay đổi về sever
-  function saveUp() {
-    let avatar = document.querySelector(".input_file").value;
-    let date = document.querySelector(".user_date").value;
-    let name = document.querySelector(".mypage_right_name").value;
-    let email = document.querySelector(".NewEmail").value;
-    let phone = document.querySelector(".NewPhone").value;
-    async function newSave() {
-      await axios.post("/user/login", {
-        avatar: avatar,
-        email: email,
-        phone: phone,
-        username: name,
+  async function saveUp() {
+    try {
+      console.log(123,)
+      // let avatar = document.querySelector(".input_file").value;
+      // let date = document.getElementById("user_date").value;
+      // let name = document.querySelector(".mypage_right_name").value;
+      // let email = document.querySelector(".NewEmail").value;
+      // let phone = document.querySelector(".NewPhone").value;
+      const form = document.querySelector(".myPageForm");
+      const formData = new FormData(form);
+      for(const pair of formData.entries()) {
+        console.log(43, pair[0], pair[1]);
+      }
+      let cookie = getUserCookie('user')
+
+      let res = await axios.put(`/user`, formData, {
+        headers: {
+          'Authorization': cookie
+        }
       });
+      console.log(54, res);
+
+      if(res.data.message === 'jwt expired'){
+        await refreshToken()
+        cookie = getUserCookie('user')
+        res = await axios.put(`/user`, formData, {
+          headers: {
+            'Authorization': cookie
+          }
+        });
+        console.log(61, res);
+      }
+      props.newColor()
+      // console.log("roem", avatar, date, name, email, phone);
+    } catch (error) {
+      console.log(error);
     }
-    newSave();
-    console.log("roem", avatar, date, name, email, phone);
   }
   // bật modal thay đổi số điện thoại
   function onof_newPhone() {
@@ -122,7 +117,7 @@ function MyPage() {
         <div className="mypage_conter_user">
           {/* leght */}
           <div className="mypage_conter_user_leght">
-            <span className="mypage_leght_user">Tên Đăng Nhập</span>
+      
             <span className="mypage_leght_name">Tên</span>
             <span className="mypage_leght_email">Email</span>
             <span className="mypage_leght_phone">Số Điện Thoại</span>
@@ -130,21 +125,20 @@ function MyPage() {
             <span className="mypage_leght_date">Ngày Sinh</span>
           </div>
           {/* right */}
-          <div className="mypage_conter_user_right">
-            <input type="text" className="mypage_right_user" />
-            <p className="mypage_right_text">
-              Tên Đăng Nhập chỉ có thể thay đổi một lần
-            </p>
-            <input
-              type="text"
-              className="mypage_right_name"
-              defaultValue={userInfo.username}
-            />
-            <div className="mypage_right_email1">
-              <span className="mypage_right_email">{userInfo.email}</span>
-              <span className="thaydoi" onClick={onof_newEmail}>
-                Thay Đổi
-              </span>
+          <form className="myPageForm" action="" encType="multipart/form-data">
+            <div className="mypage_conter_user_right">
+        
+              <input
+                type="text"
+                className="mypage_right_name"
+                defaultValue={userInfo.username}
+                name="username"
+               />
+              <div className="mypage_right_email1">
+                <span className="mypage_right_email">{userInfo.email}</span>
+                <span className="thaydoi" onClick={onof_newEmail}>
+                 Thay Đổi
+                </span>
               <div className="newEmail_text">
                 <span>Email mới : </span>
                 <span className="newEmail_render"></span>
@@ -169,28 +163,31 @@ function MyPage() {
               Khác
             </div>
             <div className="mypage_right_date">
-              <input type="date" className="user_date" />
+              <input type="date" id="user_date" name="birthDay" />
             </div>
-            <button className="mypage_right_update" onClick={saveUp}>
+            <div className="mypage_conter_imager">
+              <div className="mypage_conter_imager_wrap">
+                <img src={image ? image : avatr} alt="" className="chooseImage" />
+              </div>
+              <input
+                type="file"
+                name="avatar"
+                className="input_file"
+                id="imagerFile"
+                accept="image/gif, image/jpg, image/pdg"
+                onChange={choosefile}
+              />              
+              <p>Dung lượng file tối đa 1 MB </p>
+              <span>Định dạng: .JPEG, .PNG</span>
+            </div>
+            <button className="mypage_right_update" type="button" onClick={saveUp}>
               Lưu
             </button>
-          </div>
+            </div>
+          </form>
         </div>
         {/* chọn  đại diện */}
-        <div className="mypage_conter_imager">
-          <div className="mypage_conter_imager_wrap">
-            <img src={image ? image : avatr} alt="" className="chooseImage" />
-          </div>
-          <input
-            type="file"
-            className="input_file"
-            id="imagerFile"
-            accept="image/gif, image/jpg, image/pdg"
-            onChange={choosefile}
-          />
-          <p>Dung lượng file tối đa 1 MB </p>
-          <span>Định dạng: .JPEG, .PNG</span>
-        </div>
+        
       </div>
       {/* modal Email*/}
       <div className="newEmail_">

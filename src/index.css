@@ -23,3 +23,6 @@ code {
 a {
     text-decoration: none;
 }
+#root {
+  margin: auto;
+}
