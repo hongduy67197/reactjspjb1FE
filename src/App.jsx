@@ -62,7 +62,7 @@ const App = props => {
           return val
         })
         console.log(4556, ListData)
-        setProductList([...ListData])
+        setProductList(ListData)
       })
       .catch((err) => {
         console.log(err)
