@@ -32,8 +32,7 @@ const Header = (props) => {
         window.location.reload(true);
         // navigate('/');
     }
-    function navigateToProduct (e){
-        console.log(36,e.target.innerHTML)
+    function navigateToProduct (){
         navigate('/product/filter')
     }
     function navigateToProduct2 (e){

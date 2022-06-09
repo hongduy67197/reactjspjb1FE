@@ -32,7 +32,7 @@ const App = props => {
   const [count1, setCount1] = useState(0)
   const [dataFilter, setDataFilter] = useState([])
   const filterProduct = {
-    brand: ['Iphone', 'Samsung', 'Oppo', 'Vivo', 'Xiaomi', 'Realmi', 'Nokia', 'Itel', 'masstel'],
+    brand: ['Iphone', 'Samsung', 'Oppo', 'Vivo', 'Xiaomi', 'Realmi', 'Nokia', 'Itel', 'Masstel'],
     price: ['dưới 2tr', 'từ 2- 4tr', 'từ 4-7tr', 'từ 7-13tr', 'từ 13-20tr', 'trên 20tr'],
     productType: ['android', 'Iphone(iOS)', 'Điện thoại phổ thông'],
     performanceProduct: ['chơi game/cấu hình cao', 'Pin khủng trên 5000 mAh', 'Sạc pin nhanh'],
