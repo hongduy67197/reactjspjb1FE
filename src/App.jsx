@@ -1,7 +1,6 @@
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import "./App.css";
 import Home from "./Pages/Admin/Home/home";
 import Xacnhan from "./Pages/Admin/Donhang/Xacnhan";
 import Hoanthanh from "./Pages/Admin/Donhang/Hoanthanh";
@@ -48,9 +47,7 @@ function App() {
     axios
       .get("/admin/categories")
       .then(function (res) {
-        console.log(44, res.data);
         setCategories(res.data);
-        // console.log(res.data);
       })
       .catch(function (err) {
         console.log(99, err);

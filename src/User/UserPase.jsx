@@ -81,14 +81,13 @@ function UserPase(props) {
                 });
                 
             }
-            console.log(75, res.data);
             window.localStorage.setItem('user', JSON.stringify(res.data));
             let action = Login(res.data)
             dispatch(action)
             setUser(JSON.parse(localStorage.getItem('user')));
         }
         getUserInfo();
-    }, [userInfo,color]);
+    }, [color]);
 
     function onof_comment() {
         document.querySelector('.comment').style.display = 'block';
