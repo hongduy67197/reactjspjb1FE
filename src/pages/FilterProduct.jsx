@@ -246,7 +246,7 @@ function FilterProduct(props) {
                 {/* <!-- phần container items --> */}
                 <div className="grid wide">
                     <div className="row sm-gutter app__content">
-                        <div className="col l-2 m-0 c-12">
+                        <div className="col1 l-2 m-0 c-12">
                             <nav className="category">
                                 <h4 className="category__heading">
                                     <i className="category__heading-icon fa-solid fa-filter"></i>
@@ -364,7 +364,7 @@ function FilterProduct(props) {
                             </nav>
                         </div>
 
-                        <div className="col l-10 m-12 c-12">
+                        <div className="col1 l-10 m-12 c-12">
                             <div className="home-filter hide-on-moble-tablet">
 
                                 <span className="home-filter__label">Sắp xếp theo</span>
@@ -419,7 +419,7 @@ function FilterProduct(props) {
 
 
 
-                                        return (<div className="col l-2-4 m-4 c-12">
+                                        return (<div className="col1 l-2-4 m-4 c-12">
                                             <button onClick={() => { movePage(removeAccents(val.productName).split(' ').join('')) }} className="home-product-item">
                                                 <div >
                                                     <img className="home-product-item__img" src={`http://localhost:3150${val.thumNail}`} alt="" />
@@ -475,7 +475,7 @@ function FilterProduct(props) {
 
 
 
-                                    <div className="col l-2-4 m-4 c-6">
+                                    <div className="col1 l-2-4 m-4 c-6">
                                     </div>
                                 </div>
                             </div>
