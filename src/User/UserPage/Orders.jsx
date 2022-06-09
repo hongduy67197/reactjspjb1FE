@@ -6,6 +6,7 @@ import OrderDaGiao from "./Order/OrderDaGiao";
 import OrderDaHuy from "./Order/OrderDaHuy";
 import OrderDangGiao from "./Order/OrderDangGiao";
 import OrderWaiting from "./Order/OrderWaiting";
+import "./OrderCss.css";
 
 function Orders() {
   function onofAll() {

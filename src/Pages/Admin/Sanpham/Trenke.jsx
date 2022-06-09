@@ -1,168 +1,263 @@
-import Header from "../../../Components/Header/header";
-import "./product.css";
-import { render } from "@testing-library/react";
-import React from "react";
-import { useState } from "react";
-import { Pagination } from "antd";
+import Header from '../../../Components/Header/header';
+import './product.css';
+import { render } from '@testing-library/react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-var countup = 0;
-var countdown = 0;
-var countbrand = 0;
+var vitri;
+var maso;
+var vitriup;
+var masoup;
 function Trenke(props) {
-  // var kodoi;
-  var newarr = [];
-  props.productList.map(function (value, index) {
-    if (newarr.indexOf(value.brand) == -1) {
-      newarr.push(value.brand);
+    const [hien, sethien] = useState([]);
+    useEffect(() => {
+        axios
+            .get('http://localhost:3150/admin/productcode/list')
+            .then(function (response) {
+                sethien(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }, []);
+    var abcarr;
+    function choosebrand(id) {
+        let listBrand = document.querySelectorAll('.brand');
+        for (let i = 0; i < listBrand.length; i++) {
+            listBrand[i].setAttribute('style', '');
+        }
+        document.querySelector(`[value="${id}"]`).style.background = 'black';
+        document.querySelector(`[value="${id}"]`).style.color = 'white';
+        abcarr = [];
+        props.data.map(function (value, index) {
+            if (value.idCategories[0] === id) {
+                abcarr.push(value);
+                sethien(abcarr);
+            }
+        });
     }
-  });
-  var kodoi = newarr.sort();
-  console.log(kodoi);
-  var arr;
-  function chooseBrand(val) {
-    arr = [];
-    props.productList.map(function (value, index) {
-      if (val == value.brand) {
-        arr = [...arr, value];
-        props.setbrand(arr);
-      }
-    });
-    props.changesign();
-  }
-  function allbrand() {
-    props.setbrand(props.productList);
-    props.changesign();
-  }
+    function showall() {
+        let listBrand = document.querySelectorAll('.brand');
+        for (let i = 0; i < listBrand.length; i++) {
+            listBrand[i].setAttribute('style', '');
+        }
+        document.querySelector('#tatca').style.background = 'black';
+        document.querySelector('#tatca').style.color = 'white';
+        props.setshowdata(props.data);
+    }
+    function onclear(id, index) {
+        vitri = index;
+        maso = id;
+        axios
+            .get(`http://localhost:3150/admin/productcode/${id}`)
+            .then(function (response) {
+                console.log(response);
+                document.querySelector('.tendt').innerHTML = response.data.productName;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
 
-  function upcost() {
-    countdown = 0;
-    countup++;
-    if (countup % 2 != 0) {
-      document.querySelector(".upcost").style.color = "white";
-      document.querySelector(".upcost").style.background = "black";
-      document.querySelector(".downcost").style.color = "black";
-      document.querySelector(".downcost").style.background =
-        "rgb(220, 220, 220)";
-      props.productList.sort(function (a, b) {
-        return a.price - b.price;
-      });
-      props.setbrand(props.productList);
-      props.changesign();
+        document.querySelector('.boxclear').style.display = 'block';
     }
-    if (countup % 2 == 0) {
-      document.querySelector(".upcost").style.color = "black";
-      document.querySelector(".upcost").style.background = "rgb(220, 220, 220)";
-      props.setbrand(props.origin);
-      props.changesign();
+    function accept() {
+        console.log(vitri, maso);
+        axios
+            .delete(`http://localhost:3150/admin/productcode/${maso}`)
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        hien.splice(vitri, 1);
+        console.log(hien);
+        props.changesign();
+        closeclear();
     }
-  }
-  function downcost() {
-    countup = 0;
-    countdown++;
-    if (countdown % 2 != 0) {
-      document.querySelector(".downcost").style.color = "white";
-      document.querySelector(".downcost").style.background = "black";
-      document.querySelector(".upcost").style.color = "black";
-      document.querySelector(".upcost").style.background = "rgb(220, 220, 220)";
-      props.productList.sort(function (a, b) {
-        return b.price - a.price;
-      });
-      props.setbrand(props.productList);
-      props.changesign();
+    function closeclear() {
+        document.querySelector('.boxclear').style.display = 'none';
     }
-    if (countdown % 2 == 0) {
-      document.querySelector(".downcost").style.color = "black";
-      document.querySelector(".downcost").style.background =
-        "rgb(220, 220, 220)";
-      props.setbrand(props.origin);
-      props.changesign();
+    function onupdate(id, index) {
+        vitriup = index;
+        masoup = id;
+        document.querySelector('.boxfix').style.display = 'block';
+        axios
+            .get(`http://localhost:3150/admin/productcode/${id}`)
+            .then(function (response) {
+                document.querySelector('.productName').value = response.data.productName;
+                document.querySelector('.productType').value = response.data.productType;
+                document.querySelector('.performanceProduct').value = response.data.performanceProduct;
+                document.querySelector('.cameraProduct').value = response.data.cameraProduct;
+                document.querySelector('.specialFeatures').value = response.data.specialFeatures;
+                document.querySelector('.design').value = response.data.design;
+                document.querySelector('.panel').value = response.data.panel;
+                document.querySelector('.countSold').value = response.data.countSold;
+                document.querySelector('.Sale').value = response.data.Sale;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
-  }
-  return (
-    <div>
-      <Header></Header>
-      <div className="newproduct">
-        <h1>Sản phẩm trên kệ</h1>
-        <div className="allbrand">
-          <div className="brand" onClick={allbrand}>
-            <p id="brand">Tất cả</p>
-          </div>
-          {kodoi.map(function (val, index) {
-            return (
-              <div
-                onClick={() => chooseBrand(val)}
-                className="brand"
-                key={index}
-              >
-                <p id="brand">{val}</p>
-              </div>
-            );
-          })}
-          <div className="brand upcost" onClick={upcost}>
-            <p id="brand">
-              Tăng <i class="fa-solid fa-arrow-up-wide-short"></i>
-            </p>
-          </div>
-          <div className="brand downcost" onClick={downcost}>
-            <p id="brand">
-              Giảm <i className="fa-solid fa-arrow-down-wide-short"></i>
-            </p>
-          </div>
-        </div>
-        <table>
-          <thead>
-            <tr>
-              <th>STT</th>
-              <th>Tên sản phẩm</th>
-              <th>Hình ảnh</th>
-              <th>Giá sản phẩm</th>
-              <th>Màu sắc</th>
-              <th>Tồn kho</th>
-              <th>Thông tin sản phẩm</th>
-            </tr>
-          </thead>
-          <tbody>
-            {props.brand.map(function (value, index) {
-              return (
-                <tr key={index}>
-                  <td>{index + 1}</td>
-                  <td style={{ fontSize: "17px", fontWeight: "bold" }}>
-                    {value.ProductName}
-                  </td>
-                  <td>
-                    <img src={value.productPic} alt="" />
-                  </td>
-                  <td>{value.price.toLocaleString()}</td>
-                  <td>
-                    {value.color.map(function (val, i) {
-                      return (
-                        <div
-                          key={i}
-                          className="color"
-                          style={{ background: `${val}` }}
-                        ></div>
-                      );
+    function closeupdate() {
+        document.querySelector('.boxfix').style.display = 'none';
+    }
+    function update() {
+        var productName = document.querySelector('.productName').value;
+        var productType = document.querySelector('.productType').value;
+        var performanceProduct = document.querySelector('.performanceProduct').value;
+        var cameraProduct = document.querySelector('.cameraProduct').value;
+        var specialFeatures = document.querySelector('.specialFeatures').value;
+        var design = document.querySelector('.design').value;
+        var panel = document.querySelector('.panel').value;
+        var countSold = document.querySelector('.countSold').value;
+        var Sale = document.querySelector('.Sale').value;
+        hien[vitriup].productName = document.querySelector('.productName').value;
+        hien[vitriup].productType = document.querySelector('.productType').value;
+        hien[vitriup].performanceProduct = document.querySelector('.performanceProduct').value;
+        hien[vitriup].cameraProduct = document.querySelector('.cameraProduct').value;
+        hien[vitriup].specialFeatures = document.querySelector('.specialFeatures').value;
+        hien[vitriup].design = document.querySelector('.design').value;
+        hien[vitriup].panel = document.querySelector('.panel').value;
+        hien[vitriup].countSold = document.querySelector('.countSold').value;
+        hien[vitriup].Sale = document.querySelector('.Sale').value;
+        axios
+            .put(`http://localhost:3150/admin/productcode/${masoup}`, {
+                productName,
+                productType,
+                performanceProduct,
+                cameraProduct,
+                specialFeatures,
+                design,
+                panel,
+                countSold,
+                Sale,
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        closeupdate();
+        props.changesign();
+    }
+    return (
+        <div>
+            <Header></Header>
+            <div className="newproduct">
+                <h1 className="sptk">Sản phẩm trên kệ</h1>
+                <div className="allbrand">
+                    <div className="brand tatca123" id="tatca">
+                        <p id="tatca" className="tatca" onClick={showall}>
+                            Tất cả
+                        </p>
+                    </div>
+                    {props.brand.map(function (value, index) {
+                        return (
+                            <div className="brand" value={value._id} key={index} onClick={() => choosebrand(value._id)}>
+                                <p id="brand">{value.categoriesName}</p>
+                            </div>
+                        );
                     })}
-                  </td>
-                  <td>{value.storage}</td>
-                  <td>
-                    RAM {value.ram}, ROM {value.rom}
-                    <br />
-                    {value.performance}
-                    <br />
-                    {value.camera}
-                    <br />
-                    {value.special_features},{value.design},{value.panel}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-        <Pagination defaultCurrent={6} total={500} />
-      </div>
-    </div>
-  );
+                </div>
+                <div className="boxtable">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Hình ảnh</th>
+                                <th>Loại sản phẩm</th>
+                                <th>Thông tin sản phẩm</th>
+                                <th>Số lượng bán</th>
+                                <th>Sale</th>
+                                <th>Chỉnh sửa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {hien.map(function (value, index) {
+                                return (
+                                    <tr key={index}>
+                                        <td>{index + 1}</td>
+                                        <td>{value.productName}</td>
+                                        <td>
+                                            <img src={'http://localhost:3150' + value.thumNail} alt="" />
+                                        </td>
+                                        <td>{value.productType}</td>
+                                        <td>
+                                            {value.performanceProduct} <br />
+                                            {value.cameraProduct} <br />
+                                            {value.specialFeatures} <br />
+                                            {value.design} <br />
+                                            {value.panel}
+                                        </td>
+                                        <td>{value.countSold}</td>
+                                        <td>{value.Sale}</td>
+                                        <td>
+                                            <button className="stockbut">
+                                                <i className="fa-solid fa-bars"></i>
+                                            </button>
+                                            <button onClick={() => onupdate(value._id, index)} className="stockbut">
+                                                <i className="fa-solid fa-repeat"></i>
+                                            </button>
+                                            <button onClick={() => onclear(value._id, index)} className="stockbut">
+                                                <i className="fa-solid fa-xmark"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                </div>
+                <div className="boxclear">
+                    <h1>Chắc chắn muốn xóa</h1>
+                    <div>
+                        <span className="tendt"></span>
+                    </div>
+                    <div className="boxaccept">
+                        <button onClick={accept}>Accept</button>
+                        <button onClick={closeclear}>Close</button>
+                    </div>
+                </div>
+                <div className="boxfix">
+                    <h3>Bảng thông tin chỉnh sửa</h3>
+                    <div className="inboxfix">
+                        <span>productName:</span> <input className="productName" type="text" />
+                    </div>
+                    <div className="inboxfix">
+                        <span>productType:</span> <input className="productType" type="text" />
+                    </div>
+                    <div className="inboxfix">
+                        <span>performanceProduct:</span> <input className="performanceProduct" type="text" />
+                    </div>
+                    <div className="inboxfix">
+                        <span>cameraProduct:</span> <input className="cameraProduct" type="text" />
+                    </div>
+                    <div className="inboxfix">
+                        <span>specialFeatures:</span> <input className="specialFeatures" type="text" />
+                    </div>
+                    <div className="inboxfix">
+                        <span>design:</span> <input className="design" type="text" />
+                    </div>
+                    <div className="inboxfix">
+                        <span>panel:</span> <input className="panel" type="text" />
+                    </div>
+                    <div className="inboxfix">
+                        <span>countSold:</span> <input className="countSold" type="text" />
+                    </div>
+                    <div className="inboxfix">
+                        <span>Sale:</span> <input className="Sale" type="text" />
+                    </div>
+                    <div className="boxfixbut">
+                        <button onClick={update}>Update</button>
+                        <button onClick={closeupdate}>Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default Trenke;
