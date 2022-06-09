@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import '../App.css'
 import '../asset/css/base-productChild.css'
+import Header from '../compunentes/header/Header';
+import Footer from '../compunentes/footer/Footer';
 let countproduct = 1;
 function ProductChild(props) {
   let arrayOrigin = props.dataFilter[props.chimuc].products
@@ -150,6 +152,7 @@ function ProductChild(props) {
     
   return (
     <>
+    <Header></Header>
       <div class="container">
         <div class="product-detail-wrap">
           <div class="image-wrap">
@@ -220,6 +223,7 @@ function ProductChild(props) {
         </div>
 
       </div>
+      <Footer></Footer>
     </>
 
 

@@ -7,7 +7,8 @@ import '../asset/css/responsive.css'
 
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { ConsoleSqlOutlined } from '@ant-design/icons'
-// import Header from '../ ';
+import Header from '../compunentes/header/Header';
+import Footer from '../compunentes/footer/Footer';
 
 
 let trig = 0;
@@ -252,6 +253,7 @@ function FilterProduct(props) {
     }
     return (
         <div>
+            <Header></Header>
             {/* <!-- phần body--> */}
             <div className="app__container">
                 {/* <!-- phần container items --> */}
@@ -531,7 +533,7 @@ function FilterProduct(props) {
 
             </div>
 
-
+<Footer></Footer>
         </div>
     )
 }
