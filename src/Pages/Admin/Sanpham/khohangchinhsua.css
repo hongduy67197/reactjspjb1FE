@@ -1,36 +1,36 @@
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 /* them san pham moi */
 .addboard {
-  width: 100%;
-  border: 1px solid rgb(66, 66, 66);
-  background-color: rgb(152, 152, 152);
-  border-radius: 10px;
-  padding: 30px 40px;
+    width: 100%;
+    border: 1px solid rgb(66, 66, 66);
+    background-color: rgb(152, 152, 152);
+    border-radius: 10px;
+    padding: 30px 40px;
 }
 .addbut {
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-  margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20px;
 }
 .addbut button {
-  width: 30%;
-  height: 50px;
-  border-radius: 10px;
-  background-color: rgb(255, 171, 185);
-  border: none;
-  font-weight: bold;
-  font-size: 25px;
+    width: 30%;
+    height: 50px;
+    border-radius: 10px;
+    background-color: rgb(184, 184, 184);
+    border: none;
+    font-weight: bold;
+    font-size: 25px;
 }
 .addbut button:hover {
-  background-color: rgb(255, 58, 91);
-  color: white;
-  cursor: pointer;
+    background-color: black;
+    color: white;
+    cursor: pointer;
 }
 .form,
 .formlist,
@@ -38,9 +38,9 @@
 .updatecode,
 .updatelist,
 .formslide {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
 }
 .form span,
 .formlist span,
@@ -50,12 +50,12 @@
 .pickupdatelist,
 .updatecode span,
 .updatelist span {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-  font-size: 21px;
-  font-weight: bold;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-size: 21px;
+    font-weight: bold;
 }
 .form input,
 .form select,
@@ -69,13 +69,13 @@
 .updatecode select,
 .updatelist input,
 .updatelist select {
-  width: 60%;
-  background-color: rgb(255, 255, 255);
-  border: none;
-  border-radius: 10px;
-  height: 50px;
-  font-size: 15px;
-  padding: 5px 20px;
+    width: 60%;
+    background-color: rgb(232, 232, 232);
+    border: none;
+    border-radius: 10px;
+    height: 50px;
+    font-size: 15px;
+    padding: 5px 20px;
 }
 .form select,
 .formlist select,
@@ -83,124 +83,124 @@
 .formslide select,
 .updatecode select,
 .updatelist select {
-  text-align: center;
-  background-color: pink;
-  font-weight: bold;
-  font-size: 25px;
-  color: black;
+    text-align: center;
+    background-color: grey;
+    font-weight: bold;
+    font-size: 25px;
+    color: white;
 }
 .addnewproductcode {
-  width: 100%;
-  background-color: rgb(214, 243, 255);
-  border-radius: 15px;
-  padding: 20px 40px 25px 40px;
+    width: 100%;
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px 40px 25px 40px;
 }
 .addnewproductlist {
-  display: none;
-  width: 100%;
-  background-color: rgb(214, 243, 255);
-  border-radius: 15px;
-  padding: 20px 40px 25px 40px;
+    display: none;
+    width: 100%;
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px 40px 25px 40px;
 }
 .addnewvoucher {
-  display: none;
-  width: 100%;
-  background-color: rgb(214, 243, 255);
-  border-radius: 15px;
-  padding: 20px 40px 25px 40px;
+    display: none;
+    width: 100%;
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px 40px 25px 40px;
 }
 .addnewslide {
-  display: none;
-  margin-top: 20px;
-  width: 100%;
-  background-color: rgb(214, 243, 255);
-  border-radius: 15px;
-  padding: 20px 40px 25px 40px;
+    display: none;
+    margin-top: 20px;
+    width: 100%;
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px 40px 25px 40px;
 }
 .butadd {
-  width: 90%;
-  display: flex;
-  justify-content: space-between;
-  margin-left: 60px;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 60px;
 }
 .dongmoi {
-  height: 75px;
-  width: 30%;
-  background-color: rgb(214, 243, 255);
-  border: none;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-  font-weight: bold;
-  font-size: 22px;
+    height: 75px;
+    width: 30%;
+    background-color: white;
+    border: none;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    font-weight: bold;
+    font-size: 22px;
 }
 .dtmoi {
-  height: 60px;
-  width: 30%;
-  background-color: white;
-  border: none;
-  border-radius: 15px;
-  font-weight: bold;
-  font-size: 22px;
+    height: 60px;
+    width: 30%;
+    background-color: white;
+    border: none;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 22px;
 }
 .voumoi {
-  height: 60px;
-  width: 30%;
-  background-color: white;
-  border: none;
-  border-radius: 15px;
-  font-weight: bold;
-  font-size: 22px;
+    height: 60px;
+    width: 30%;
+    background-color: white;
+    border: none;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 22px;
 }
 
 /* Chinh sua  */
 .chinhsua {
-  width: 83%;
-  background-color: #e9ecef;
-  float: right;
-  margin-top: 60px;
-  padding: 20px 30px;
+    width: 83%;
+    background-color: #e9ecef;
+    float: right;
+    margin-top: 60px;
+    padding: 20px 30px;
 }
 .updatecode {
-  width: 100%;
-  background-color: rgb(214, 243, 255);
-  border-radius: 15px;
-  padding: 20px 40px 25px 40px;
+    width: 100%;
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px 40px 25px 40px;
 }
 .updatelist {
-  display: none;
-  width: 100%;
-  background-color: rgb(214, 243, 255);
-  border-radius: 15px;
-  padding: 20px 40px 25px 40px;
+    display: none;
+    width: 100%;
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px 40px 25px 40px;
 }
 .boxoption,
 .boxoptionlist {
-  position: absolute;
-  right: 80px;
-  height: fit-content;
-  text-align: center;
-  width: 43.5%;
-  background-color: pink;
-  border-radius: 10px;
-  font-weight: bold;
-  font-size: 25px;
+    position: absolute;
+    right: 80px;
+    height: fit-content;
+    text-align: center;
+    width: 43.5%;
+    background-color: grey;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 25px;
 }
 .boxoption2,
 .boxoption2list {
-  z-index: 1;
-  display: none;
-  position: absolute;
-  top: 257px;
-  right: 80px;
-  z-index: 1;
-  height: fit-content;
-  text-align: center;
-  width: 43.5%;
-  background-color: pink;
-  border-radius: 10px;
-  font-weight: bold;
-  font-size: 25px;
-  border: 1px solid rgb(160, 91, 104);
+    z-index: 1;
+    display: none;
+    position: absolute;
+    top: 250px;
+    right: 80px;
+    z-index: 1;
+    height: fit-content;
+    text-align: center;
+    width: 43.5%;
+    background-color: grey;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 25px;
+    border: 1px solid rgb(160, 91, 104);
 }
 .boxoption p,
 .boxoption2 p,
@@ -210,96 +210,96 @@
 .boxoption2list p,
 .boxoption3list p,
 .boxoption4list p {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 .optionupdate:hover,
 .optionupdatelist:hover {
-  cursor: pointer;
-  background-color: rgb(255, 52, 85);
-  color: white;
-  border-radius: 10px;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
 }
 .chonloai1,
 .chonloai2,
 .chonloai1list,
 .chonloai2list,
 .chonloai3list {
-  padding: 4px 20px;
+    padding: 4px 20px;
 }
 .pickupdate,
 .pickupdatelist {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 .chonloai1:hover,
 .chonloai2:hover,
 .chonloai1list:hover,
 .chonloai2list:hover {
-  cursor: pointer;
-  background-color: rgb(255, 52, 85);
-  color: white;
-  border-radius: 10px;
-  border: 1px solid black;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    border: 1px solid white;
 }
 .boxoption3,
 .boxoption3list {
-  z-index: 1;
-  display: none;
-  position: absolute;
-  top: 320px;
-  right: 80px;
-  z-index: 1;
-  height: fit-content;
-  text-align: center;
-  width: 43.5%;
-  background-color: pink;
-  border-radius: 10px;
-  font-weight: bold;
-  font-size: 25px;
+    z-index: 1;
+    display: none;
+    position: absolute;
+    top: 315px;
+    right: 80px;
+    z-index: 1;
+    height: fit-content;
+    text-align: center;
+    width: 43.5%;
+    background-color: grey;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 25px;
 }
 .boxoption4,
 .boxoption4list {
-  z-index: 1;
-  display: none;
-  position: absolute;
-  top: 376px;
-  right: 80px;
-  z-index: 1;
-  height: fit-content;
-  text-align: center;
-  width: 43.5%;
-  background-color: pink;
-  border-radius: 10px;
-  font-weight: bold;
-  font-size: 20px;
+    z-index: 1;
+    display: none;
+    position: absolute;
+    top: 355px;
+    right: 80px;
+    z-index: 1;
+    height: fit-content;
+    text-align: center;
+    width: 43.5%;
+    background-color: grey;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 20px;
 }
 .action {
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
 }
 .action button {
-  width: 35%;
+    width: 35%;
 }
 .suadong {
-  height: 80px;
-  width: 30%;
-  background-color: rgb(214, 243, 255);
-  border: none;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-  font-weight: bold;
-  font-size: 22px;
+    height: 80px;
+    width: 30%;
+    background-color: white;
+    border: none;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    font-weight: bold;
+    font-size: 22px;
 }
 .suadt {
-  height: 60px;
-  width: 30%;
-  background-color: white;
-  border: none;
-  border-radius: 10px;
-  font-weight: bold;
-  font-size: 22px;
+    height: 60px;
+    width: 30%;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 22px;
 }
 .but:hover {
-  cursor: pointer;
-  border: 2px solid black;
+    cursor: pointer;
+    border: 2px solid white;
 }

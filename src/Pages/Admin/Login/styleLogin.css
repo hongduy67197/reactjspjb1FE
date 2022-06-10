@@ -18,7 +18,8 @@
   transform: translate(-50%, -50%);
 }
 
-.title {
+.title_lo {
+  width: 100%;
   display: flex;
   justify-content: center;
 }
@@ -37,7 +38,7 @@
   margin-bottom: 8px;
 }
 
-.username {
+.Email {
   margin-bottom: 24px;
   padding: 3px;
   width: 100%;
@@ -62,7 +63,7 @@
   color: #888ea8;
   font-size: 19px;
   border-bottom: 1px solid #ccc;
-  padding-bottom: 6px;
+  padding-bottom: 8px;
   cursor: pointer;
 }
 
@@ -71,11 +72,11 @@
   color: #888ea8;
   font-size: 19px;
   border-bottom: 1px solid #ccc;
-  padding-bottom: 6px;
+  padding-bottom: 8px;
   cursor: pointer;
 }
 
-.note {
+.notte {
   color: red;
   font-size: 18px;
 }

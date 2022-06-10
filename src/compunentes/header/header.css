@@ -89,6 +89,7 @@
 }
 .header_navbar_item_userimager {
     width: 25px;
+    height: 25px;
     margin-right: 5px;
     border-radius: 50%;
 }
