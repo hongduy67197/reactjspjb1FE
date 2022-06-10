@@ -7,6 +7,9 @@ import '../asset/css/responsive.css'
 
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { ConsoleSqlOutlined } from '@ant-design/icons'
+import Header from '../compunentes/header/Header';
+import Footer from '../compunentes/footer/Footer';
+
 
 let trig = 0;
 let trig1 = 0;
@@ -19,7 +22,11 @@ let newstButton
 let salestButton
 function FilterProduct(props) {
     console.log(20, props.dataval.length)
-   
+    console.log(8)
+    const [resetPage, setResetPage]  = useState(props.dataval)
+    useEffect(()=>{
+        setResetPage([...props.dataval])
+    },[props.dataval.length])
     //giữ lại các chõ đã choose khi load lại trang.
     const [searchParams, setSearchParams] = useSearchParams();
     useEffect(() => {
@@ -157,7 +164,9 @@ function FilterProduct(props) {
         commonButton.classList.add('btn--primary')
     }, [])
     // ---------------------------------------------------xử lí sau khi lọc xong thì  sort lại. trình tự là lọc xong các chỉ mục và đối chiếu sang sort
-    var myJSON = JSON.parse(JSON.stringify(handleDataFollowFiler(props.dataval, a3))); //sao chép 
+    // var myJSON = JSON.parse(JSON.stringify(handleDataFollowFiler(props.dataval, a3))); //sao chép 
+    var myJSON = JSON.parse(JSON.stringify(handleDataFollowFiler(resetPage, a3))); //sao chép 
+    console.log(168,myJSON)
     myJSON.sort((a, b) => {
         return a.storage - b.storage // tạm thời sort theo storage vì chưa có trường PHỔ BIẾN
     })
@@ -177,8 +186,11 @@ function FilterProduct(props) {
     //--------------------------------------- sử dụng useState và useEffect để lắng nghe thay đổi phía đường dẫn rồi từ đó render lại theo trường đc sort
     const [stateSort, setStateSort] = useState(myJSON)
     useEffect(() => {
-        setStateSort(myJSON)
-    }, [window.location.href])
+        setStateSort([...myJSON])
+    }, [window.location.href,myJSON.length])
+    // if(props.dataval.length>4 ){
+    //     console.log(1234)
+    // }
     function removeClass(arr) {
         for (let i = 0; i < arr.length; i++) {
             if (arr[i].classList.contains('btn--primary')) {
@@ -241,6 +253,7 @@ function FilterProduct(props) {
     }
     return (
         <div>
+            <Header></Header>
             {/* <!-- phần body--> */}
             <div className="app__container">
                 {/* <!-- phần container items --> */}
@@ -520,7 +533,7 @@ function FilterProduct(props) {
 
             </div>
 
-
+<Footer></Footer>
         </div>
     )
 }

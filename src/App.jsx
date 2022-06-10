@@ -34,49 +34,17 @@ const App = (props) => {
   const [count1, setCount1] = useState(0);
   const [dataFilter, setDataFilter] = useState([]);
   const filterProduct = {
-    brand: [
-      "Iphone",
-      "Samsung",
-      "Oppo",
-      "Vivo",
-      "Xiaomi",
-      "Realmi",
-      "Nokia",
-      "Itel",
-      "masstel",
-    ],
-    price: [
-      "dưới 2tr",
-      "từ 2- 4tr",
-      "từ 4-7tr",
-      "từ 7-13tr",
-      "từ 13-20tr",
-      "trên 20tr",
-    ],
-    productType: ["android", "Iphone(iOS)", "Điện thoại phổ thông"],
-    performanceProduct: [
-      "chơi game/cấu hình cao",
-      "Pin khủng trên 5000 mAh",
-      "Sạc pin nhanh",
-    ],
-    ram: ["2GB", "3GB", "4GB", "6GB", "8GB", "12GB"],
-    rom: ["8GB", "16GB", "32GB", "64GB", "128GB", "256GB"],
-    cameraProduct: [
-      "chụp cận cảnh(macro)",
-      "chụp góc rộng",
-      "chụp xóa phông",
-      "chụp zoom xa",
-    ],
-    specialFeatures: [
-      "Hỗ trợ 5g",
-      "Bảo mật khuôn mặt",
-      "bảo mật vân tay",
-      "Sạc không dây",
-      "Kháng nước , bụi",
-    ],
-    design: ["Tràn viền", "Mỏng nhẹ", "Mặt lưng kính"],
-    panel: ["nhỏ gọn dễ cầm", "Từ 6inch trở lên", "Màn hình gập"],
-  };
+    brand: ['Iphone', 'Samsung', 'Oppo', 'Vivo', 'Xiaomi', 'Realmi', 'Nokia', 'Itel', 'Masstel'],
+    price: ['dưới 2tr', 'từ 2- 4tr', 'từ 4-7tr', 'từ 7-13tr', 'từ 13-20tr', 'trên 20tr'],
+    productType: ['android', 'Iphone(iOS)', 'Điện thoại phổ thông'],
+    performanceProduct: ['chơi game/cấu hình cao', 'Pin khủng trên 5000 mAh', 'Sạc pin nhanh'],
+    ram: ['2GB', '3GB', '4GB', '6GB', '8GB', '12GB'],
+    rom: ['8GB', '16GB', '32GB', '64GB', '128GB', '256GB'],
+    cameraProduct: ['chụp cận cảnh(macro)', 'chụp góc rộng', 'chụp xóa phông', 'chụp zoom xa'],
+    specialFeatures: ['Hỗ trợ 5g', 'Bảo mật khuôn mặt', 'bảo mật vân tay', 'Sạc không dây', 'Kháng nước , bụi'],
+    design: ['Tràn viền', 'Mỏng nhẹ', 'Mặt lưng kính'],
+    panel: ['nhỏ gọn dễ cầm', 'Từ 6inch trở lên', 'Màn hình gập']
+  }
   // color: Xanh , Đỏ , Tím , Hồng, Đen
   let productCode = [];
   // const [ProductList, setProductList] = useState(listProductCode.listProductCode)
@@ -91,15 +59,15 @@ const App = (props) => {
       .then(function (res) {
         // setDataDuy(res.data.product)
         // setShow(res.data.product.slice(0, 2))
-        console.log(45, res.data.listData);
-        const ListData = res.data.listProductCode.map((val) => {
-          val.storage = Math.floor(Math.random() * 100);
-          val.ram = val.ramRange[0];
-          val.rom = val.romRange[0];
-          return val;
-        });
-        console.log(4556, ListData);
-        setProductList([...ListData]);
+        console.log(45, res.data.listData)
+        const ListData= res.data.listProductCode.map((val)=>{
+          val.storage =Math.floor(Math.random() * 100);
+          val.ram=val.ramRange[0];
+          val.rom=val.romRange[0];
+          return val
+        })
+        console.log(4556, ListData)
+        setProductList(ListData)
       })
       .catch((err) => {
         console.log(err);
