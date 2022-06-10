@@ -3,10 +3,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import "./App.css";
 import Home from './Pages/Admin/Home/home';
-import Xacnhan from './Pages/Admin/Donhang/Xacnhan';
-import Tongket from './Pages/Admin/Donhang/Tongket';
-import Hoanthanh from './Pages/Admin/Donhang/Hoanthanh';
-import Danggiao from './Pages/Admin/Donhang/Danggiao';
+import Xacnhan from './Pages/Admin/DonHang/Xacnhan';
+import Tongket from './Pages/Admin/DonHang/Tongket';
+import Hoanthanh from './Pages/Admin/DonHang/Hoanthanh';
+import Danggiao from './Pages/Admin/DonHang/Danggiao';
 import Chinhsua from './Pages/Admin/Sanpham/Chinhsua';
 import Khohang from './Pages/Admin/Sanpham/Khohang';
 import Spmoi from './Pages/Admin/Sanpham/Spmoi';
@@ -45,7 +45,6 @@ function App() {
         axios
             .get('/admin/categories')
             .then(function (res) {
-                console.log(44, res.data);
                 setCategories(res.data);
                 // console.log(res.data);
             })

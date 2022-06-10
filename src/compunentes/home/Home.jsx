@@ -5,15 +5,17 @@ import SeeMore from '../home/homePage/SeeMore';
 import ListProduct from './homePage/ListProduct';
 import Advertisement from '../../advertisement/Advertisement';
 
-import { FilterOutlined, CaretDownOutlined, ThunderboltOutlined, WechatOutlined } from '@ant-design/icons';
+import { WechatOutlined } from '@ant-design/icons';
 import Header from '../header/Header';
 import Slider from '../slider/Slider';
 import Footer from '../footer/Footer';
+import Categories from '../categories/Categories';
 
 const Home = () => {
     const [productCode, setProductCode] = useState([]);
     const [numberShow, setNumberShow] = useState(20);
     const [Slides, setSlides] = useState([]);
+    const [categories, setCategories] = useState([]);
 
     function seeMore() {
         setNumberShow(numberShow + 20);
@@ -30,20 +32,27 @@ const Home = () => {
             });
     }, []);
 
+    // Product Code
     useEffect(() => {
         axios
             .get('/user/list')
             .then(function (res) {
-                // res.data.dataProductCode.data.price.sort((a, b) => {
-                //   return a.price - b.price;
-                // });
-                // console.log(55, res.data.dataProductCode);
-                // console.log(66, res.data.dataProductCode[1].data);
-                console.log(46, res.data.dataProductCode);
                 setProductCode(res.data.dataProductCode);
             })
             .catch(function (err) {
-                console.log(31, err);
+                console.log(43, err);
+            });
+    }, []);
+
+    //========= categories =============
+    useEffect(() => {
+        axios
+            .get('/admin/categories')
+            .then(function (res) {
+                setCategories(res.data);
+            })
+            .catch(function (err) {
+                console.log(55, err);
             });
     }, []);
 
@@ -64,6 +73,7 @@ const Home = () => {
         <div className="home-container">
             <Header></Header>
             <Slider Slides={Slides} />
+            <Categories categories={categories} />
             <div className="home_status_container-chat">
                 <i title="New messages" id="unread-msg-number">
                     <WechatOutlined className="WechatOutlined" />
@@ -72,7 +82,7 @@ const Home = () => {
             </div>
             <div className="home-container-filter">
                 <div className="home-page-product">
-                    <ListProduct productCode={productCode} numberShow={numberShow} />
+                    <ListProduct productCode={productCode} numberShow={numberShow} NewIcon={NewIcon} />
                 </div>
             </div>
 
