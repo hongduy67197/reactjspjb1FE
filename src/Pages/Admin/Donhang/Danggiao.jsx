@@ -3,7 +3,6 @@ import Header from "../../../Components/Header/header";
 import "./Donhang.css";
 
 function Danggiao() {
-<<<<<<< HEAD
   const [state, setstate] = useState([]);
   const [state1, setstate1] = useState([]);
   const [state2, setstate2] = useState([]);
@@ -221,13 +220,6 @@ function Danggiao() {
           onChange={onChange}
           className="doing"
         />
-=======
-  return (
-    <div>
-      <Header></Header>
-      <div className="danggiao">
-        <h1>Dang giao</h1>
->>>>>>> f1e7f1bab4012784b2824a0f60fb7622617d7941
       </div>
     </div>
   );
