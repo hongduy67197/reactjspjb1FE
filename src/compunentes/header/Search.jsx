@@ -27,22 +27,13 @@ const Search = () => {
       />
       {/* Search History */}
       <div className="header_search-history">
-        <h3 className="header_search-history-heading">
+        <h5 className="header_search-history-heading">
           <div className="header_search-history-heading-display-flex">
             <span className="header_search-history-heading-span">
-              iphone 13 promax
+              <p>{post.length > 0 ? <p> {post[0].panel}</p> : null}</p>
             </span>
           </div>
-
-          <ul className=" header_search-history-heading-text-list">
-            <li className="header_search-history-heading-text-list-item">
-              <tr>{post.length > 0 ? <td> {post[0].panel}</td> : null}</tr>
-            </li>
-            {/* <li className="header_search-history-heading-text-list-item">
-              <a href=""> iphone</a>
-            </li> */}
-          </ul>
-        </h3>
+        </h5>
       </div>
     </div>
   );

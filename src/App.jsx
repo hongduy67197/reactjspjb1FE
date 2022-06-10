@@ -203,7 +203,6 @@ const App = (props) => {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header />
         <ContextProvider>
           <Routes>
             {dataFilter.map((val, i) => {
@@ -458,7 +457,6 @@ const App = (props) => {
           </Routes>
           <ToastContainer />
         </ContextProvider>
-        <Footer />
       </BrowserRouter>
     </div>
   );

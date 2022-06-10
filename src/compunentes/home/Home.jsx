@@ -70,30 +70,32 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="home-container">
-      {/* <Header></Header> */}
-      <Slider Slides={Slides} />
-      <Categories categories={categories} />
-      <div className="home_status_container-chat">
-        <i title="New messages" id="unread-msg-number">
-          <WechatOutlined className="WechatOutlined" />
-        </i>
-        <a href="#" id="status-icon"></a>
-      </div>
-      <div className="home-container-filter">
-        <div className="home-page-product">
-          <ListProduct
-            productCode={productCode}
-            numberShow={numberShow}
-            NewIcon={NewIcon}
-          />
+    <>
+      <Header></Header>
+      <div className="home-container">
+        <Slider Slides={Slides} />
+        <Categories categories={categories} />
+        <div className="home_status_container-chat">
+          <i title="New messages" id="unread-msg-number">
+            <WechatOutlined className="WechatOutlined" />
+          </i>
+          <a href="#" id="status-icon"></a>
         </div>
-      </div>
+        <div className="home-container-filter">
+          <div className="home-page-product">
+            <ListProduct
+              productCode={productCode}
+              numberShow={numberShow}
+              NewIcon={NewIcon}
+            />
+          </div>
+        </div>
 
-      <SeeMore seeMore={seeMore} />
-      <Advertisement />
-      {/* <Footer /> */}
-    </div>
+        <SeeMore seeMore={seeMore} />
+        <Advertisement />
+      </div>
+      <Footer />
+    </>
   );
 };
 
