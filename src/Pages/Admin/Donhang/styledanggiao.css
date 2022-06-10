@@ -12,11 +12,3 @@
   font-size: 25px;
   font-weight: 600;
 }
-
-.doing {
-  border-radius: 20px;
-  box-shadow: #7e8eb1 0px 1px 2px 0px;
-  background-color: white;
-  overflow: hidden;
-  padding: 10px;
-}
