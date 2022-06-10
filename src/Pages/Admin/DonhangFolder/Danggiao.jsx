@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import Header from "../../../Components/Header/header";
-import "./styledanggiao.css";
-import axios from "axios";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Table } from "antd";
-import { Modal } from "antd";
-import { useEffect } from "react";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { Modal } from "bootstrap";
+import React, { useEffect, useState } from "react";
+import axios from "../../../axios";
+import Header from "../../../Components/Header/header";
+import "./Donhang.css";
 
 function Danggiao() {
   const [state, setstate] = useState([]);
@@ -17,7 +16,6 @@ function Danggiao() {
 
   const database = [];
   const data = [];
-
   useEffect(() => {
     axios
       .get("http://localhost:3150/admin/order/")
@@ -226,17 +224,6 @@ function Danggiao() {
           className="doing"
         />
       </div>
-      <Modal
-        title="Quản lý đơn hàng"
-        visible={isModalVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
-      >
-        <input type="text" placeholder="phone" className="phone" />
-        <input type="text" placeholder="Địa chỉ" className="address" />
-        <input type="text" placeholder="status" className="status" />
-        <p className="Not"></p>
-      </Modal>
     </div>
   );
 }
