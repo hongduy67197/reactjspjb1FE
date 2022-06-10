@@ -23,10 +23,12 @@ import MyPage from './UserPage/Mypage/MyPage';
 import './Userpage.css';
 import './UserPage/CommentCss.css';
 import axios from '../axios';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // HEADER
 import Header from '../compunentes/header/Header';
 import { refreshToken } from '../refreshToken';
+import { color } from '@mui/system';
+import { Login } from '../redux/action/userAction';
 
 function getCookie(cname) {
     let name = cname + '=';
@@ -50,6 +52,12 @@ function setCookie(cname, cvalue, exdays) {
     document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
 }
 function UserPase(props) {
+    const dispatch = useDispatch()
+    const [color,setColor]= useState(0)
+    function newColor(){
+        console.log(56, color);
+        setColor(color+1)
+    }
     const userInfo = useSelector(function (state) {
         return state.user;
     });
@@ -57,23 +65,30 @@ function UserPase(props) {
     const [user, setUser] = useState([]);
     useEffect(() => {
         async function getUserInfo() {
-            const token = getCookie('user');
-            const res = await axios.get('/user', {
+            let token = getCookie('user');
+            let res = await axios.get('/user', {
                 headers: {
                     Authorization: token,
                 },
             });
             if(res.data.message === 'jwt expired'){
                 await refreshToken()
+                token = getCookie('user');
+                res = await axios.get('/user', {
+                    headers: {
+                        Authorization: token,
+                    },
+                });
+                
             }
-            // if(res.data.token){
-            //     setCookie('user', res.data.token, 7)
-            // }
+            console.log(75, res.data);
             window.localStorage.setItem('user', JSON.stringify(res.data));
+            let action = Login(res.data)
+            dispatch(action)
             setUser(JSON.parse(localStorage.getItem('user')));
         }
         getUserInfo();
-    }, []);
+    }, [userInfo,color]);
 
     function onof_comment() {
         document.querySelector('.comment').style.display = 'block';
@@ -254,7 +269,7 @@ function UserPase(props) {
                     {/* bật tắt, chuyển trang MYPAGE */}
                     <div className="onof_mypage">
                         <div className="hoso">
-                            <MyPage user={user}></MyPage>
+                            <MyPage user={user} newColor={newColor} color={color}></MyPage>
                         </div>
                         <div className="bank">
                             <Bank></Bank>
