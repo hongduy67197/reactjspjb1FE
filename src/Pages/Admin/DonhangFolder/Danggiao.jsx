@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import Header from "../../../Components/Header/header";
-import "./styleHT.css";
+import "./styledanggiao.css";
 import axios from "axios";
 import { Table } from "antd";
 import { Modal } from "antd";
 import { useEffect } from "react";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
-function Hoanthanh() {
+function Danggiao() {
   const [state, setstate] = useState([]);
   const [state1, setstate1] = useState([]);
   const [state2, setstate2] = useState([]);
@@ -17,10 +17,6 @@ function Hoanthanh() {
 
   const database = [];
   const data = [];
-
-  function count() {
-    setIsin(isin + 1);
-  }
 
   useEffect(() => {
     axios
@@ -54,7 +50,7 @@ function Hoanthanh() {
   for (let i = 0; i < state1.length; i++) {
     for (let j = 0; j < state.length; j++) {
       if (state1[i]._id === state[j].idUser) {
-        if (state[j].status === "done") {
+        if (state[j].status === "doing") {
           database.push({
             idUser: state1[i].username,
             address: state[j].address,
@@ -64,7 +60,10 @@ function Hoanthanh() {
               let a = val.idProduct;
               return a;
             }),
-            quantity: state[j].listProduct[0].quantity,
+            quantity: state[j].listProduct.map(function (val) {
+              let b = val.quantity + "\n";
+              return b;
+            }),
             status: state[j].status,
           });
         }
@@ -148,6 +147,12 @@ function Hoanthanh() {
     },
   ];
 
+  function onChange(pagination, filters, sorter, extra) {
+    console.log("params", pagination, filters, sorter, extra);
+  }
+  function count() {
+    setIsin(isin + 1);
+  }
   const showModal = (id) => {
     setIsIndex(id);
     count();
@@ -208,16 +213,17 @@ function Hoanthanh() {
       },
     });
   }
+
   return (
     <div>
       <Header></Header>
-      <div className="table_ht">
-        <h1 className="title_ht">Đơn hàng hoàn thành</h1>
+      <div className="table_giao">
+        <h1 className="title_giao">Đơn hàng đang giao</h1>
         <Table
           columns={columns}
           dataSource={data}
-          pagination={false}
-          className="done"
+          onChange={onChange}
+          className="doing"
         />
       </div>
       <Modal
@@ -235,4 +241,4 @@ function Hoanthanh() {
   );
 }
 
-export default Hoanthanh;
+export default Danggiao;
