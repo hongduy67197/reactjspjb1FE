@@ -13,6 +13,7 @@ import './Userlogin.css';
 import { useDispatch } from 'react-redux';
 import { Login } from '../redux/action/userAction';
 import '../../src/App.css';
+import { postApi } from '../api/config';
 
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();
@@ -34,11 +35,13 @@ function UserLogin(props) {
         } else if (password === '' || testPassword(password)) {
             document.querySelector('.login_password_text').innerHTML = 'Vui lòng nhập Password';
         } else {
-            let res = await axios.post('/user/login', { email, password });
-            console.log(res.data);
+            // let res = await axios.post('/user/login', { email, password });
+            let res = await postApi('/user/login', { email, password });
+            console.log(40, res.data);
             if (res.data.status === 'undifind password') {
                 alert(res.data.status);
             } else {
+                console.log(42, res.data);
                 setCookie('user', res.data.data.token, 30);
                 const action = Login(res.data.data.userData);
                 dispatch(action);

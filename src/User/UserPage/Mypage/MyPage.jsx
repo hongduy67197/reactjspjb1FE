@@ -7,11 +7,10 @@ import { CloseSquareFilled } from "@ant-design/icons";
 import { render } from "@testing-library/react";
 import { getUserCookie, refreshToken } from "../../../refreshToken"
 function MyPage(props) {
-  console.log(10,props)
   const userInfo = useSelector(function (state) {
     return state.user;
   });
-  console.log("userinfo", userInfo);
+
   const [image, setImage] = useState("");
 
   // ảnh đại diện
