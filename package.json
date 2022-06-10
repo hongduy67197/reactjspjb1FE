@@ -1,27 +1,17 @@
 {
-<<<<<<< HEAD
-  "name": "reactjs",
-=======
   "name": "reactpjb1",
->>>>>>> 6cf91d61482043e6c9a49dd1bfa0c5cf2af8b484
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
-<<<<<<< HEAD
-=======
     "@reduxjs/toolkit": "^1.8.1",
->>>>>>> 6cf91d61482043e6c9a49dd1bfa0c5cf2af8b484
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
     "antd": "^4.20.5",
     "axios": "^0.27.2",
     "react": "^18.1.0",
-<<<<<<< HEAD
-=======
     "react-calendar": "^3.7.0",
->>>>>>> 6cf91d61482043e6c9a49dd1bfa0c5cf2af8b484
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",

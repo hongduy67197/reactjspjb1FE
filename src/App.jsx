@@ -44,7 +44,7 @@ function App() {
       password: "123456789",
     },
   ]);
-   const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0);
   const [Payment, SetPayment] = useState([]);
   const [ChangeCart, SetChangeCart] = useState(0);
   function ChangedataCart() {
@@ -102,16 +102,16 @@ function App() {
             />
             <Route path="/User/UserPase" element={<UserPase></UserPase>} />
             <Route
-            path="/Cart"
-            element={
-              <Cart
-                ChangedataCart={ChangedataCart}
-                Store={Store}
-                Change={Change}
-              />
-            }
-          />
-          <Route path="/Comment" element={<Comment1 />} />
+              path="/Cart"
+              element={
+                <Cart
+                  ChangedataCart={ChangedataCart}
+                  Store={Store}
+                  Change={Change}
+                />
+              }
+            />
+            <Route path="/Comment" element={<Comment1 />} />
             <Route
               path="/admin/Chinhsua"
               element={
@@ -142,7 +142,6 @@ function App() {
             />
             <Route path="/admin/Chinhanh" element={<Chinhanh />} />
             <Route path="/admin/About" element={<About />} />
-
           </Routes>
         </ContextProvider>
       </BrowserRouter>
