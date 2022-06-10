@@ -70,8 +70,9 @@ const Home = () => {
   }, []);
 
   return (
+    <>
+    <Header></Header>
     <div className="home-container">
-      {/* <Header></Header> */}
       <Slider Slides={Slides} />
       <Categories categories={categories} />
       <div className="home_status_container-chat">
@@ -92,8 +93,10 @@ const Home = () => {
 
       <SeeMore seeMore={seeMore} />
       <Advertisement />
-      {/* <Footer /> */}
     </div>
+    <Footer></Footer>
+    </>
+    
   );
 };
 

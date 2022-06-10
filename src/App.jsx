@@ -2,9 +2,9 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Admin/Home/home";
-import Xacnhan from "./Pages/Admin/DonHang/Xacnhan";
-import Hoanthanh from "./Pages/Admin/DonHang/Hoanthanh";
-import Danggiao from "./Pages/Admin/DonHang/Danggiao";
+import Xacnhan from "./Pages/Admin/DonhangFolder/Xacnhan"
+import Hoanthanh from "./Pages/Admin/DonhangFolder/Hoanthanh";
+import Danggiao from "./Pages/Admin/DonhangFolder/Danggiao";
 import Chinhsua from "./Pages/Admin/Sanpham/Chinhsua";
 import Khohang from "./Pages/Admin/Sanpham/Khohang";
 import Spmoi from "./Pages/Admin/Sanpham/Spmoi";
@@ -171,7 +171,6 @@ const App = (props) => {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header />
         <ContextProvider>
           <Routes>
             {dataFilter.map((val, i) => {
@@ -426,7 +425,6 @@ const App = (props) => {
           </Routes>
           <ToastContainer />
         </ContextProvider>
-        <Footer />
       </BrowserRouter>
     </div>
   );

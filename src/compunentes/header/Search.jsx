@@ -10,7 +10,8 @@ const Search = () => {
   function SearchTitle(e) {
     console.log(13, e);
     const loadPosts = async () => {
-      const response = await axios.get("/user/list");
+      const response =  axios.get("/user/list");
+      
       setPost(response.data.dataProductCode);
     };
     loadPosts();
@@ -22,7 +23,7 @@ const Search = () => {
         type="text"
         name=""
         className="header_search-input"
-        placeholder="Tạo Nghiện..."
+        placeholder="Nhập vào từ khóa muốn tìm kiếm ... "
         onChange={(e) => SearchTitle(e.target.value)}
       />
       {/* Search History */}
