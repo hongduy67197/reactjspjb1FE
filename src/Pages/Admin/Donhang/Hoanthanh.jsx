@@ -13,9 +13,14 @@ function Hoanthanh() {
   const [state2, setstate2] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isindex, setIsIndex] = useState(0);
+  const [isin, setIsin] = useState(0);
 
   const database = [];
   const data = [];
+
+  function count() {
+    setIsin(isin + 1);
+  }
 
   useEffect(() => {
     axios
@@ -44,18 +49,21 @@ function Hoanthanh() {
       .catch(function (fail) {
         console.log(fail);
       });
-  }, [state]);
+  }, [isin]);
 
   for (let i = 0; i < state1.length; i++) {
     for (let j = 0; j < state.length; j++) {
       if (state1[i]._id === state[j].idUser) {
-        if (state[j].status === "cancel") {
+        if (state[j].status === "done") {
           database.push({
             idUser: state1[i].username,
             address: state[j].address,
             phone: state[j].phone,
             total: state[j].total,
-            idProduct: state[j].listProduct[0].idProduct,
+            idProduct: state[j].listProduct.map(function (val) {
+              let a = val.idProduct;
+              return a;
+            }),
             quantity: state[j].listProduct[0].quantity,
             status: state[j].status,
           });
@@ -66,7 +74,7 @@ function Hoanthanh() {
 
   for (let i = 0; i < state2.length; i++) {
     for (let j = 0; j < database.length; j++) {
-      if (state2[i]._id === database[j].idProduct) {
+      if (state2[i]._id === database[j].idProduct[0]) {
         data.push({
           idUser: database[j].idUser,
           address: database[j].address,
@@ -102,7 +110,7 @@ function Hoanthanh() {
       dataIndex: "total",
     },
     {
-      title: "idProduct",
+      title: "Name Product",
       align: "center",
       dataIndex: "idProduct",
     },
@@ -142,7 +150,15 @@ function Hoanthanh() {
 
   const showModal = (id) => {
     setIsIndex(id);
+    count();
     setIsModalVisible(true);
+    data.map(function (val) {
+      if (val._id == id) {
+        document.querySelector(".phone").value = val.phone;
+        document.querySelector(".address").value = val.address;
+        document.querySelector(".status").value = val.status;
+      }
+    });
   };
 
   const handleOk = () => {
@@ -163,6 +179,7 @@ function Hoanthanh() {
         .catch(function (fail) {
           console.log(fail);
         });
+      count();
       setIsModalVisible(false);
     } else {
       document.querySelector(".Not").innerHTML = "Vui lòng không được để trống";
@@ -187,6 +204,7 @@ function Hoanthanh() {
           .catch(function (err) {
             console.log(err);
           });
+        count();
       },
     });
   }
@@ -195,7 +213,12 @@ function Hoanthanh() {
       <Header></Header>
       <div className="table_ht">
         <h1 className="title_ht">Đơn hàng hoàn thành</h1>
-        <Table columns={columns} dataSource={database} pagination={false} />
+        <Table
+          columns={columns}
+          dataSource={data}
+          pagination={false}
+          className="done"
+        />
       </div>
       <Modal
         title="Quản lý đơn hàng"

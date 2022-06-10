@@ -12,11 +12,17 @@ function Nhanvien(props) {
   const [state, setstate] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isindex, setIsIndex] = useState(0);
-  // const [changedata, setChangedata] = useState(null);
+  const [isin, setIsin] = useState(0);
+
   const data = [];
+
+  function count() {
+    setIsin(isin + 1);
+  }
 
   const showModal = (id) => {
     setIsIndex(id);
+    count();
     setIsModalVisible(true);
     data.map(function (val) {
       if (val._id == id) {
@@ -53,6 +59,7 @@ function Nhanvien(props) {
         .catch(function (fail) {
           console.log(fail);
         });
+      count();
       setIsModalVisible(false);
     } else {
       document.querySelector(".Not").innerHTML = "Vui lòng không được để trống";
@@ -74,10 +81,7 @@ function Nhanvien(props) {
       align: "center",
       dataIndex: "avatar",
       render: (avatar) => (
-        // <img src={"http://localhost:3150" + avatar} alt="anh" />
-        <div className="anhAvatar">
-          <img src={avatar} alt="anh" className="anh" />
-        </div>
+        <img src={"http://localhost:3150" + avatar} alt="anh" />
       ),
     },
     {
@@ -145,7 +149,7 @@ function Nhanvien(props) {
       .catch(function (fail) {
         console.log(fail);
       });
-  }, [state]);
+  }, [isin]);
 
   function onChange(pagination, filters, sorter, extra) {
     console.log("params", pagination, filters, sorter, extra);
@@ -165,35 +169,22 @@ function Nhanvien(props) {
           .catch(function (err) {
             console.log(err);
           });
+        count();
       },
     });
   }
-  // function add() {
-  //   let em = document.querySelector("#em").value;
-  //   let pas = document.querySelector("#pas").value;
-  //   console.log(em, pas);
-  //   axios
-  //     .post(`http://localhost:3150/admin/user/`, {
-  //       email: em,
-  //       password: pas,
-  //     })
-  //     .then(function (res) {
-  //       // setChangedata();
-  //     })
-  //     .catch(function (fail) {
-  //       console.log(fail);
-  //     });
-  // }
 
   return (
     <div>
       <Header tenname={props.name}></Header>
       <div className="table_nv">
         <h2 className="title_nv">Nhân Viên</h2>
-        {/* <input type="text" id="em" />
-        <input type="text" id="pas" />
-        <button onClick={add}>Click</button> */}
-        <Table columns={columns} dataSource={data} onChange={onChange} />
+        <Table
+          columns={columns}
+          dataSource={data}
+          onChange={onChange}
+          className="nv"
+        />
       </div>
       <Modal
         title="Quản lý nhân Viên"
@@ -201,8 +192,6 @@ function Nhanvien(props) {
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        {/* <from action="" className="fromlist" encType="multipart/form-data"> */}
-        {/* <input type="text" placeholder="ảnh" name="avatar" className="avatar" /> */}
         <input
           type="text"
           placeholder="Name"
@@ -218,7 +207,6 @@ function Nhanvien(props) {
         <input type="text" placeholder="sdt" className="sdt" name="phone" />
         <input type="text" placeholder="quyền" className="role" name="role" />
         <p className="Not"></p>
-        {/* </from> */}
       </Modal>
     </div>
   );

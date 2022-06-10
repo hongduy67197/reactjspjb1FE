@@ -73,7 +73,6 @@ function Home(props) {
   const database = [];
   if (state.length > 0) {
     var so = state.length - 10;
-    console.log(68, state);
     for (let i = 0; i < state.length; i++) {
       database.push({
         productName: state[i].idProductCode.productName,
@@ -109,18 +108,16 @@ function Home(props) {
 
   let sumOrder = 0;
   for (let i = 0; i < state2.length; i++) {
-    if (state2[i].status === "cancel") {
-      sumOrder++;
+    if (state2[i].status === "done") {
+      sumOrder = sumOrder + 1;
     }
-    // return sumTotal;
   }
 
   let sumTotal = 0;
   for (let i = 0; i < state2.length; i++) {
-    if (state2[i].status === "cancel") {
+    if (state2[i].status === "done") {
       sumTotal += state2[i].total;
     }
-    // return sumTotal;
   }
   let countCustomers = state1.length;
   let countSale = state2.length;

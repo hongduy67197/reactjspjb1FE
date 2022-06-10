@@ -13,6 +13,7 @@ function Danggiao() {
   const [state2, setstate2] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isindex, setIsIndex] = useState(0);
+  const [isin, setIsin] = useState(0);
 
   const database = [];
   const data = [];
@@ -44,12 +45,12 @@ function Danggiao() {
       .catch(function (fail) {
         console.log(fail);
       });
-  }, [state]);
+  }, [isin]);
 
   for (let i = 0; i < state1.length; i++) {
     for (let j = 0; j < state.length; j++) {
       if (state1[i]._id === state[j].idUser) {
-        if (state[j].status === "done") {
+        if (state[j].status === "doing") {
           database.push({
             idUser: state1[i].username,
             address: state[j].address,
@@ -72,13 +73,13 @@ function Danggiao() {
 
   for (let i = 0; i < state2.length; i++) {
     for (let j = 0; j < database.length; j++) {
-      if (state2[i]._id === database[j].idProduct) {
+      if (state2[i]._id === database[j].idProduct[0]) {
         data.push({
           idUser: database[j].idUser,
           address: database[j].address,
           phone: database[j].phone,
           total: database[j].total,
-          // idProduct: state2[i].idProductCode.productName,
+          idProduct: state2[i].idProductCode.productName,
           quantity: database[j].quantity,
           status: database[j].status,
         });
@@ -108,7 +109,7 @@ function Danggiao() {
       dataIndex: "total",
     },
     {
-      title: "idProduct",
+      title: "Name Product",
       align: "center",
       dataIndex: "idProduct",
     },
@@ -149,10 +150,20 @@ function Danggiao() {
   function onChange(pagination, filters, sorter, extra) {
     console.log("params", pagination, filters, sorter, extra);
   }
-
+  function count() {
+    setIsin(isin + 1);
+  }
   const showModal = (id) => {
     setIsIndex(id);
+    count();
     setIsModalVisible(true);
+    data.map(function (val) {
+      if (val._id == id) {
+        document.querySelector(".phone").value = val.phone;
+        document.querySelector(".address").value = val.address;
+        document.querySelector(".status").value = val.status;
+      }
+    });
   };
 
   const handleOk = () => {
@@ -173,6 +184,7 @@ function Danggiao() {
         .catch(function (fail) {
           console.log(fail);
         });
+      count();
       setIsModalVisible(false);
     } else {
       document.querySelector(".Not").innerHTML = "Vui lòng không được để trống";
@@ -197,6 +209,7 @@ function Danggiao() {
           .catch(function (err) {
             console.log(err);
           });
+        count();
       },
     });
   }
@@ -206,7 +219,12 @@ function Danggiao() {
       <Header></Header>
       <div className="table_giao">
         <h1 className="title_giao">Đơn hàng đang giao</h1>
-        <Table columns={columns} dataSource={database} onChange={onChange} />
+        <Table
+          columns={columns}
+          dataSource={data}
+          onChange={onChange}
+          className="doing"
+        />
       </div>
       <Modal
         title="Quản lý đơn hàng"
