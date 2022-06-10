@@ -490,6 +490,7 @@
     border-radius: 3px;
     cursor: pointer;
     display: none;
+    z-index: 10000;
 }
 
 .header_search-history-heading-display-flex {
@@ -500,7 +501,9 @@
 }
 
 .header_search-history-heading-text-list {
+    position: relative;
     display: block;
+    z-index: 10000;
 }
 
 .header_search-history-heading-text-list-item {

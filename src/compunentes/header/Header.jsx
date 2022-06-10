@@ -13,8 +13,10 @@ import {
     FacebookFilled,
     ShoppingCartOutlined,
     SearchOutlined,
+    ConsoleSqlOutlined,
 } from '@ant-design/icons';
 import axios from '../../axios';
+import { SmokingRoomsOutlined } from '@mui/icons-material';
 const Header = (props) => {
     const navigate = useNavigate();
     const userInfo = useSelector(function (state) {
@@ -32,12 +34,31 @@ const Header = (props) => {
         window.location.reload(true);
         navigate('/');
     }
+    let variableTemp=0;
+    function getValue(value){
+        variableTemp= value;
+        console.log(45, value)
+    }
     function navigateToProduct (){
-        navigate('/product/filter')
+        console.log(43, variableTemp)
+        let link = window.location.href
+        link += variableTemp
+        console.log(46,link)
+        if(variableTemp== '0')  {         
+        navigate(`/product/filter`)   
+        }else{
+            navigate(`/user/fillter?productName=${variableTemp}`)
+        }
+
+        // navigate('/product/filter')
     }
     function navigateToProduct2 (e){
+        
+       
         navigate(`/product/filter?brand=${e.target.innerHTML}`)
     }
+
+    
     return (
         <div className="app">
             <header className="Cuong__header">
@@ -168,6 +189,7 @@ const Header = (props) => {
                             )}
                         </ul>
                     </nav>
+                    
 
                     {/* Header Search */}
                     <div className="header-with-search">
@@ -182,7 +204,7 @@ const Header = (props) => {
                         </Link>
                         <div className="header_search-section">
                             <div className="header_search">
-                                <Search />
+                                <Search getValue={getValue}/>
                                 <div className="header_search-button">
                                     <button onClick = {()=>{navigateToProduct()}} className="header_search-button-button">
                                         <SearchOutlined
