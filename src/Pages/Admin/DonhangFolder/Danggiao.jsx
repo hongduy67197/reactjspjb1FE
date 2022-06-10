@@ -143,7 +143,7 @@ function Danggiao() {
         <>
           <EditOutlined
             onClick={() => {
-              showModal(record._id);
+              showModal(record);
             }}
             style={{ fontSize: 20 }}
           />
@@ -165,6 +165,7 @@ function Danggiao() {
     setIsin(isin + 1);
   }
   const showModal = (id) => {
+    console.log(168, id);
     setIsIndex(id);
     count();
     setIsModalVisible(true);
