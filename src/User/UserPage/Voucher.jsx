@@ -4,7 +4,7 @@ import DichVu from "./Voucher/DichVu";
 import DoiTac from "./Voucher/DoiTac";
 import Scan from "./Voucher/Scan";
 import Shopee from "./Voucher/Shopee";
-
+import "./VoucherCss.css";
 function Voucher() {
   function voucher_all() {
     document.querySelector(".voucher_comment_all").style.display = "block";
@@ -54,7 +54,7 @@ function Voucher() {
           <div className="voucher_header_seach">
             <span>Mã Voucher</span>
             <input type="text" placeholder="Nhập mã voucher tại đây" />
-            <button>Lưu</button>
+            <button className="voucher_header_seach_button1">Lưu</button>
           </div>
         </div>
         <div className="voucher_conter">

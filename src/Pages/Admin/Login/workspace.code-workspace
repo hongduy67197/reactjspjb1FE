@@ -1,12 +1,12 @@
 {
   "folders": [
-	{
-		"path": "..\\..\\..\\..\\.."
-	},
-	{
-		"path": "c:\\laragon\\www"
-	}
-],
+    {
+      "path": "..\\..\\..\\..\\.."
+    },
+    {
+      "path": "c:\\laragon\\www"
+    }
+  ],
   "settings": {
     "liveServer.settings.multiRootWorkspaceName": "Hoc_JS",
     "cSpell.words": [

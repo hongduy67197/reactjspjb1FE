@@ -29,7 +29,11 @@
 }
 
 .table {
+<<<<<<< HEAD
   width: 259px;
+=======
+  width: 259px !important;
+>>>>>>> 64af3a06a3dff8397ffe85bafb16ca7d93d1f094
   padding: 20px 30px;
   background-color: white;
   box-shadow: #7e8eb1 0px 1px 2px 0px;
@@ -38,6 +42,13 @@
   justify-content: space-between;
 }
 
+<<<<<<< HEAD
+=======
+.content_sale {
+  border-top: none !important;
+}
+
+>>>>>>> 64af3a06a3dff8397ffe85bafb16ca7d93d1f094
 .icon_sale {
   width: 50px;
   height: 50px;
@@ -52,13 +63,21 @@
 
 .icon_title {
   font-size: 22px;
+<<<<<<< HEAD
   font-weight: 600;
+=======
+  font-weight: 500;
+>>>>>>> 64af3a06a3dff8397ffe85bafb16ca7d93d1f094
   text-align: right;
   margin-bottom: 0;
 }
 
 .thongso {
   font-size: 22px;
+<<<<<<< HEAD
+=======
+  text-align: center;
+>>>>>>> 64af3a06a3dff8397ffe85bafb16ca7d93d1f094
 }
 
 .icon_order {
