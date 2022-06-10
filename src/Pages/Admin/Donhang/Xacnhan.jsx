@@ -6,6 +6,7 @@ import { Table } from "antd";
 import { Modal } from "antd";
 import { useEffect } from "react";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { ClassSharp } from "@mui/icons-material";
 
 function Xacnhan() {
   const [state, setstate] = useState([]);
@@ -13,9 +14,14 @@ function Xacnhan() {
   const [state2, setstate2] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isindex, setIsIndex] = useState(0);
+  const [isin, setIsin] = useState(0);
 
   const database = [];
   const data = [];
+
+  function count() {
+    setIsin(isin + 1);
+  }
 
   useEffect(() => {
     axios
@@ -44,7 +50,7 @@ function Xacnhan() {
       .catch(function (fail) {
         console.log(fail);
       });
-  }, [state]);
+  }, [isin]);
 
   for (let i = 0; i < state1.length; i++) {
     for (let j = 0; j < state.length; j++) {
@@ -73,17 +79,14 @@ function Xacnhan() {
 
   for (let i = 0; i < state2.length; i++) {
     for (let j = 0; j < database.length; j++) {
-      console.log(68, state2[i]._id);
-      console.log(69, database[j].idProduct);
-
-      if (state2[i]._id === database[j].idProduct) {
+      if (state2[i]._id === database[j].idProduct[0]) {
         data.push({
           _id: database[j]._id,
           idUser: database[j].idUser,
           address: database[j].address,
           phone: database[j].phone,
           total: database[j].total,
-          // idProduct: state2[i].idProductCode.productName,
+          idProduct: state2[i].idProductCode.productName,
           quantity: database[j].quantity,
           status: database[j].status,
         });
@@ -113,7 +116,7 @@ function Xacnhan() {
       dataIndex: "total",
     },
     {
-      title: "idProduct",
+      title: "Name Product",
       align: "center",
       dataIndex: "idProduct",
     },
@@ -156,16 +159,21 @@ function Xacnhan() {
 
   const showModal = (id) => {
     setIsIndex(id);
+    count();
     setIsModalVisible(true);
+    data.map(function (val) {
+      if (val._id == id) {
+        document.querySelector(".phone").value = val.phone;
+        document.querySelector(".address").value = val.address;
+        document.querySelector(".status").value = val.status;
+      }
+    });
   };
 
-  console.log(137, isindex);
   const handleOk = () => {
     let phone = document.querySelector(".phone").value;
     let diachi = document.querySelector(".address").value;
     let status = document.querySelector(".status").value;
-
-    console.log(147, phone, diachi, status, isindex);
     if (phone !== "" && diachi !== "" && status !== "") {
       axios
         .put(`http://localhost:3150/admin/order/${isindex}`, {
@@ -179,6 +187,7 @@ function Xacnhan() {
         .catch(function (fail) {
           console.log(fail);
         });
+      count();
       setIsModalVisible(false);
     } else {
       document.querySelector(".Not").innerHTML = "Vui lòng không được để trống";
@@ -204,6 +213,7 @@ function Xacnhan() {
           .catch(function (err) {
             console.log(err);
           });
+        count();
       },
     });
   }
@@ -213,7 +223,12 @@ function Xacnhan() {
       <Header></Header>
       <div className="table_xacnhan ">
         <h1 className="title_xacnhan">Đơn hàng chờ xác nhận</h1>
-        <Table columns={columns} dataSource={database} onChange={onChange} />
+        <Table
+          columns={columns}
+          dataSource={data}
+          onChange={onChange}
+          className="pending"
+        />
       </div>
       <Modal
         title="Quản lý đơn hàng"
