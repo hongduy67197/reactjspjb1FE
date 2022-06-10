@@ -239,7 +239,7 @@ function UserPase(props) {
                     </div>
                     <div className="mypage">{/* <MyPage></MyPage> */}</div>
                     <div className="order">
-                        <Orders></Orders>
+                        <Orders  newColor={newColor} color={color}></Orders>
                     </div>
                     <div className="promotion">
                         <Promotion></Promotion>

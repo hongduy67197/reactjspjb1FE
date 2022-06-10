@@ -30,7 +30,7 @@ const Header = (props) => {
         await axios.post('/user/logOut');
         window.localStorage.removeItem('user');
         window.location.reload(true);
-        // navigate('/');
+        navigate('/');
     }
     return (
         <div className="app">
