@@ -1,4 +1,4 @@
-import Header from '../../../Components/Header/header';
+import Header from '../../../components/Header/header';
 import './product.css';
 import { render } from '@testing-library/react';
 import React, { useState, useEffect } from 'react';

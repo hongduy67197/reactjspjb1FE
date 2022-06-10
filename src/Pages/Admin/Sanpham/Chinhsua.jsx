@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React from 'react';
-import Header from '../../../Components/Header/header';
+import Header from '../../../components/Header/header';
 import './khohangchinhsua.css';
 import { useState, useEffect } from 'react';
 import './product.css';

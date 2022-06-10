@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Header from "../../../Components/Header/header";
+import Header from "../../../components/Header/header";
 import "./styleHT.css";
 import axios from "axios";
 import { Table } from "antd";

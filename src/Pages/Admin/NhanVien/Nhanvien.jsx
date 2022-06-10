@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Header from "../../../Components/Header/header";
+import Header from "../../../components/Header/header";
 import { Table } from "antd";
 import { Modal } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
