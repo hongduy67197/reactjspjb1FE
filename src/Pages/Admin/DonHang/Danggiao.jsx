@@ -86,7 +86,7 @@ function Danggiao() {
       }
     }
   }
-  console.log(73, data);
+
   const columns = [
     {
       title: "Name",
@@ -157,6 +157,13 @@ function Danggiao() {
     setIsIndex(id);
     count();
     setIsModalVisible(true);
+    data.map(function (val) {
+      if (val._id == id) {
+        document.querySelector(".phone").value = val.phone;
+        document.querySelector(".address").value = val.address;
+        document.querySelector(".status").value = val.status;
+      }
+    });
   };
 
   const handleOk = () => {
@@ -177,7 +184,7 @@ function Danggiao() {
         .catch(function (fail) {
           console.log(fail);
         });
-    count();
+      count();
       setIsModalVisible(false);
     } else {
       document.querySelector(".Not").innerHTML = "Vui lòng không được để trống";
