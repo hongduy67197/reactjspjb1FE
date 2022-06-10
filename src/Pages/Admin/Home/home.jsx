@@ -7,18 +7,26 @@ import { Table } from "antd";
 import axios from "axios";
 import { useEffect } from "react";
 import { FortRounded } from "@mui/icons-material";
+import {getApi} from '../../../api/config'
+import { getUserCookie, refreshToken } from "../../../refreshToken";
+
 //npm install react-calendar
 function Home(props) {
   const [state, setstate] = useState([]);
   useEffect(() => {
-    axios
-      .get("http://localhost:3150/admin/product/list")
-      .then(function (res) {
-        setstate(res.data);
-      })
-      .catch(function (fail) {
-        console.log(fail);
-      });
+    async function getAllproduct (){
+      let token = getUserCookie('user')
+      console.log(147, token);
+      try {
+        const res = await getApi('/admin/product/list')
+        setstate(res.data)
+      } catch (error) {
+        console.log(168, error);
+      }
+    }
+    getAllproduct()
+
+ 
   }, []);
   const [state1, setstate1] = useState([]);
   const [state2, setstate2] = useState([]);
@@ -87,23 +95,30 @@ function Home(props) {
   }
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3150/admin/user/")
-      .then(function (res) {
-        setstate1(res.data);
-      })
-      .catch(function (fail) {
-        console.log(fail);
-      });
+    async function getAllUser (){
+      let token = getUserCookie('user')
+      console.log(147, token);
+      try {
+        const res = await getApi('/admin/user/')
+        setstate1(res.data)
+      } catch (error) {
+        console.log(168, error);
+      }
+    }
+    getAllUser()
 
-    axios
-      .get("http://localhost:3150/admin/order/")
-      .then(function (res) {
-        setstate2(res.data);
-      })
-      .catch(function (fail) {
-        console.log(fail);
-      });
+    async function getAllorder (){
+      let token = getUserCookie('user')
+      console.log(147, token);
+      try {
+        const res = await getApi('/admin/order/')
+        setstate2(res.data)
+      } catch (error) {
+        console.log(168, error);
+      }
+    }
+    getAllorder()
+
   }, []);
 
   let sumOrder = 0;

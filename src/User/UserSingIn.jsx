@@ -7,7 +7,6 @@ import apple from '../assets/images/logoApple.png';
 import Context from '../Conter/Context';
 import { useContext } from 'react';
 import logoShopee from '../assets/images/logoShopee2.jpeg';
-
 import axios from '../axios';
 import './Usersingin.css';
 function UserSingIn(props) {
@@ -24,7 +23,7 @@ function UserSingIn(props) {
             document.querySelector('.singin_again_text').innerHTML = 'Mật khẩu không khớp';
         } else {
             const res = await axios.post('/user/register', { password, email });
-            console.log(res);
+            console.log(26,res);
             document.querySelector('.singIn_ofcanva_modal').style.display = 'block';
             document.querySelector('.singin_').style.background = '#EBEBEB';
             document.querySelector('.login_header').style.display = 'none';
@@ -74,9 +73,9 @@ function UserSingIn(props) {
         document.querySelector('.singin_conter_modal_email').value = '';
     }
     // reset input password
-    function reset_password() {
-        document.querySelector('.singin_password_text').innerHTML = '';
-    }
+    // function reset_password() {
+    //     document.querySelector('.singin_password_text').innerHTML = '';
+    // }
     // reset input againpass
     function reset_againpass() {
         document.querySelector('.singin_again_text').innerHTML = '';
@@ -150,10 +149,11 @@ function UserSingIn(props) {
                         />
                         <span className="singin_mail_text"></span>
                         <input
-                            onClick={reset_password}
+                            // onClick={reset_password}
                             type="password"
                             placeholder="Mật khẩu"
                             className="singin_conter_modal_password"
+                       
                         />
                         <span className="singin_password_text"></span>
 
