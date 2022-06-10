@@ -1,11 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import Header from "../../../Components/Header/header";
-import "./styleHT.css";
-import axios from "axios";
-import { Table } from "antd";
-import { Modal } from "antd";
-import { useEffect } from "react";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
 function Hoanthanh() {
   const [state, setstate] = useState([]);
@@ -220,18 +214,7 @@ function Hoanthanh() {
           className="done"
         />
       </div>
-      <Modal
-        title="Quản lý đơn hàng"
-        visible={isModalVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
-      >
-        <input type="text" placeholder="phone" className="phone" />
-        <input type="text" placeholder="Địa chỉ" className="address" />
-        <input type="text" placeholder="status" className="status" />
-        <p className="Not"></p>
-      </Modal>
-    </div>
+    </Header>
   );
 }
 

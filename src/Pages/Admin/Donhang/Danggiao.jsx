@@ -1,13 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import Header from "../../../Components/Header/header";
-import "./styledanggiao.css";
-import axios from "axios";
-import { Table } from "antd";
-import { Modal } from "antd";
-import { useEffect } from "react";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import "./Donhang.css";
 
 function Danggiao() {
+<<<<<<< HEAD
   const [state, setstate] = useState([]);
   const [state1, setstate1] = useState([]);
   const [state2, setstate2] = useState([]);
@@ -225,18 +221,14 @@ function Danggiao() {
           onChange={onChange}
           className="doing"
         />
+=======
+  return (
+    <div>
+      <Header></Header>
+      <div className="danggiao">
+        <h1>Dang giao</h1>
+>>>>>>> f1e7f1bab4012784b2824a0f60fb7622617d7941
       </div>
-      <Modal
-        title="Quản lý đơn hàng"
-        visible={isModalVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
-      >
-        <input type="text" placeholder="phone" className="phone" />
-        <input type="text" placeholder="Địa chỉ" className="address" />
-        <input type="text" placeholder="status" className="status" />
-        <p className="Not"></p>
-      </Modal>
     </div>
   );
 }
