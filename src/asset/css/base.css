@@ -14,14 +14,7 @@
 *{
     box-sizing: inherit;/*  inherits : mang ý nghĩa kế thừa từ box chứa nó có thuộc tính box-sizing; */
 }
-html {
-    /* 16px */
-    font-size: 62.5%;
-    line-height: 1.6rem;
-    font-family: 'Roboto', sans-serif;
-    box-sizing: border-box;
-    /* padding: 0 16px; */
-}
+
 /* responsive */
 .grid__row {
     display: flex; /* Nhũng thẻ nằm trong cái class này sẽ cùng nằm trên 1 hàng ngang */
