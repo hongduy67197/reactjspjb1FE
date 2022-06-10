@@ -14,9 +14,10 @@
   --star-gold-color: #ffce3d;
   --header-sort-bar-height: 46px;
 }
-* {
-  box-sizing: inherit; /*  inherits : mang ý nghĩa kế thừa từ box chứa nó có thuộc tính box-sizing; */
+*{
+    box-sizing: inherit;/*  inherits : mang ý nghĩa kế thừa từ box chứa nó có thuộc tính box-sizing; */
 }
+
 
 /* responsive */
 .grid__row {
