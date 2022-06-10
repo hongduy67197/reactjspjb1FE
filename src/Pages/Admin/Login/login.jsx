@@ -1,15 +1,5 @@
-<<<<<<< HEAD
-import React from "react";
-import logo from "./logo.jpg";
-import "./styleLogin.css";
-import { useNavigate } from "react-router-dom";
-
-function Login() {
-  const a = useNavigate;
-  const navigate = a();
-=======
 import React, { useState } from "react";
-import logo from "./logo.jpg";
+import logo from "../../../Cart/logo.jpg";
 import "./styleLogin.css";
 import { useNavigate } from "react-router-dom";
 import axios from "../../../axios";
@@ -25,7 +15,6 @@ function setCookie(cname, cvalue, exdays) {
 function Login(props) {
   const dispatch = useDispatch();
   let navigate = useNavigate();
->>>>>>> 64af3a06a3dff8397ffe85bafb16ca7d93d1f094
   function show() {
     document.querySelector(".password").type = "text";
     document.querySelector(".eye_show").style.display = "inline-block";
@@ -38,31 +27,6 @@ function Login(props) {
     document.querySelector(".eye_hiden").style.display = "inline-block";
   }
 
-<<<<<<< HEAD
-  let data = [
-    { username: "Dat", password: 12345678, quyen: "admin" },
-    { username: "nhanvien", password: 12345678, quyen: "nhanvien" },
-  ];
-
-  function Login() {
-    let user = document.querySelector(".username").value;
-    let pass = document.querySelector(".password").value;
-
-    for (let i = 0; i < data.length; i++) {
-      if (user === "") {
-        document.querySelector(".note").innerHTML = "Vui lòng nhập UserName";
-      } else if (pass === "") {
-        document.querySelector(".note").innerHTML = "Vui lòng nhập PassWord";
-      } else if (
-        data[i].username == user &&
-        data[i].password == pass &&
-        data[i].quyen === "admin"
-      ) {
-        navigate("/admin/home");
-      } else {
-        document.querySelector(".note").innerHTML = "Tài khoản không chính xác";
-      }
-=======
   async function dangnhap() {
     let email = document.querySelector(".Email").value;
     let password = document.querySelector(".password").value;
@@ -87,32 +51,12 @@ function Login(props) {
       // const action = Login(res.data.data.userData);
       // dispatch(action);
       // }
->>>>>>> 64af3a06a3dff8397ffe85bafb16ca7d93d1f094
     }
   }
 
   return (
     <div className="Login">
       <div className="formLogin">
-<<<<<<< HEAD
-        <div className="title">
-          <img src={logo} alt="" className="title_logo" />
-        </div>
-        <p className="title_user">Username</p>
-        <input type="text" className="username" />
-        <p className="title_pass">Password</p>
-        <input type="password" className="password" />
-        <i class="fa-solid fa-eye-slash eye_hiden" onClick={show}></i>
-        <i class="fa-solid fa-eye eye_show" onClick={hiden}></i>
-        <p className="note"></p>
-        <button className="btnLogin" onClick={Login}>
-          LOGIN
-        </button>
-        <div className="logo-info">
-          <i class="fa-brands fa-facebook logo_fb"></i>
-          <i class="fa-brands fa-google-plus-g logo_google"></i>
-          <i class="fa-brands fa-twitter logo_twitter"></i>
-=======
         <div className="title_lo">
           <img src={logo} alt="" className="title_logo" />
         </div>
@@ -130,7 +74,6 @@ function Login(props) {
           <i className="fa-brands fa-facebook logo_fb"></i>
           <i className="fa-brands fa-google-plus-g logo_google"></i>
           <i className="fa-brands fa-twitter logo_twitter"></i>
->>>>>>> 64af3a06a3dff8397ffe85bafb16ca7d93d1f094
         </div>
       </div>
     </div>

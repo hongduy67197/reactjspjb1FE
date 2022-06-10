@@ -33,6 +33,7 @@ body {
   margin-bottom: 15px;
   height: 150px;
   padding: 0 155px;
+  background-image: linear-gradient(0, #f4ea2a, #f5a001);
 }
 .border-title {
   height: 100px;
@@ -42,6 +43,10 @@ body {
 .letf-title {
   display: flex;
   align-items: center;
+}
+.title {
+  background: none !important;
+  padding: 0 0 0 0 !important;
 }
 .right-title {
   /* height: 40px;

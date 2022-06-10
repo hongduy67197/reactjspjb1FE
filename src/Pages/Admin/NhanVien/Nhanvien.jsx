@@ -2,23 +2,6 @@ import React, { useState } from "react";
 import Header from "../../../Components/Header/header";
 import { Table } from "antd";
 import { Modal } from "antd";
-<<<<<<< HEAD
-import { EditOutlined } from "@ant-design/icons";
-
-import "./style.css";
-
-function Nhanvien() {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [isindex, setIsIndex] = useState(null);
-  const showModal = (id) => {
-    setIsIndex(id);
-    console.log(14, id);
-    setIsModalVisible(true);
-  };
-
-  const handleOk = () => {
-    setIsModalVisible(false);
-=======
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useEffect } from "react";
@@ -81,7 +64,6 @@ function Nhanvien(props) {
     } else {
       document.querySelector(".Not").innerHTML = "Vui lòng không được để trống";
     }
->>>>>>> 64af3a06a3dff8397ffe85bafb16ca7d93d1f094
   };
 
   const handleCancel = () => {
@@ -90,29 +72,6 @@ function Nhanvien(props) {
 
   const columns = [
     {
-<<<<<<< HEAD
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
-      sorter: {
-        compare: (a, b) => a.name - b.name,
-        multiple: 3,
-      },
-    },
-    {
-      title: "Age",
-      dataIndex: "age",
-      key: "age",
-      sorter: {
-        compare: (a, b) => a.age - b.age,
-        multiple: 2,
-      },
-    },
-    { title: "Address", dataIndex: "address", key: "address" },
-    {
-      title: "Action",
-      dataIndex: "",
-=======
       title: "STT",
       align: "center",
       dataIndex: "index",
@@ -148,17 +107,11 @@ function Nhanvien(props) {
       title: "Action",
       dataIndex: "",
       align: "center",
->>>>>>> 64af3a06a3dff8397ffe85bafb16ca7d93d1f094
       key: "x",
       render: (record) => (
         <>
           <EditOutlined
             onClick={() => {
-<<<<<<< HEAD
-              showModal(record.id);
-            }}
-            style={{ fontSize: 20, marginLeft: 20 }}
-=======
               showModal(record._id);
             }}
             style={{ fontSize: 20 }}
@@ -168,42 +121,12 @@ function Nhanvien(props) {
               ondelete(record._id);
             }}
             style={{ color: "red", fontSize: 20, marginLeft: 20 }}
->>>>>>> 64af3a06a3dff8397ffe85bafb16ca7d93d1f094
           />
         </>
       ),
     },
   ];
 
-<<<<<<< HEAD
-  const data = [
-    {
-      key: 1,
-      id: 123,
-      name: "John Brown",
-      age: 32,
-      address: "admin",
-    },
-    {
-      key: 2,
-      name: "Jim Green",
-      age: 42,
-      address: "admin",
-    },
-    {
-      key: 3,
-      name: "Not Expandable",
-      age: 29,
-      address: "nhan vien",
-    },
-    {
-      key: 4,
-      name: "Joe Black",
-      age: 32,
-      address: "nhan vien",
-    },
-  ];
-=======
   for (let i = 0; i < state.length; i++) {
     data.push({
       index: i + 1,
@@ -228,19 +151,10 @@ function Nhanvien(props) {
       });
   }, [isin]);
 
->>>>>>> 64af3a06a3dff8397ffe85bafb16ca7d93d1f094
   function onChange(pagination, filters, sorter, extra) {
     console.log("params", pagination, filters, sorter, extra);
   }
 
-<<<<<<< HEAD
-  return (
-    <div>
-      <Header></Header>
-      <div className="table_nv">
-        <h2 className="title_nv">Nhân Viên</h2>
-        <Table columns={columns} dataSource={data} onChange={onChange} />;
-=======
   function ondelete(id) {
     Modal.confirm({
       title: "Bạn có chắc muốn xóa không",
@@ -271,7 +185,6 @@ function Nhanvien(props) {
           onChange={onChange}
           className="nv"
         />
->>>>>>> 64af3a06a3dff8397ffe85bafb16ca7d93d1f094
       </div>
       <Modal
         title="Quản lý nhân Viên"
@@ -279,11 +192,6 @@ function Nhanvien(props) {
         onOk={handleOk}
         onCancel={handleCancel}
       >
-<<<<<<< HEAD
-        <input type="text" />
-        <input type="text" />
-        <input type="text" />
-=======
         <input
           type="text"
           placeholder="Name"
@@ -299,7 +207,6 @@ function Nhanvien(props) {
         <input type="text" placeholder="sdt" className="sdt" name="phone" />
         <input type="text" placeholder="quyền" className="role" name="role" />
         <p className="Not"></p>
->>>>>>> 64af3a06a3dff8397ffe85bafb16ca7d93d1f094
       </Modal>
     </div>
   );
