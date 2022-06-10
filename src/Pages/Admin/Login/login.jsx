@@ -7,7 +7,6 @@ import { useDispatch } from "react-redux";
 import { Loginadmin } from "../../../redux/action/userAction";
 import { postApi } from "../../../api/config";
 
-
 function setCookie(cname, cvalue, exdays) {
   const d = new Date();
   d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
@@ -42,10 +41,10 @@ function Login(props) {
       //   email,
       //   password,
       // });
-      let res = await postApi("/admin/auth", {email, password})
+      let res = await postApi("/admin/auth", { email, password });
       console.log(46, res);
-      const action = Loginadmin(res.data.data.userData)
-      dispatch(action)
+      const action = Loginadmin(res.data.data.userData);
+      dispatch(action);
       setCookie("user", res.data.data.token, 30);
       if (res.data.data.role == "admin") {
         props.changedata(res.data.data.userData.username);
