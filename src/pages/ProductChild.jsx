@@ -3,6 +3,7 @@ import '../App.css'
 import '../asset/css/base-productChild.css'
 import Header from '../compunentes/header/Header';
 import Footer from '../compunentes/footer/Footer';
+import axios from 'axios';
 let countproduct = 1;
 function ProductChild(props) {
   let arrayOrigin = props.dataFilter[props.chimuc].products
@@ -148,7 +149,30 @@ function ProductChild(props) {
   function changeImageDetail(index) {
     setCurrentIMG(arrayOriginImg[index])
   }
-  
+  function sendCart (){
+    let countProduct = document.querySelector('.number-plus-subtract').innerHTML*1
+    console.log(153,countProduct*1)
+    console.log(123,props.dataFilter )
+    console.log(152,props.dataFilter[props.chimuc])
+    let ram = document.getElementsByClassName('onButton')[0].innerHTML
+    let rom = document.getElementsByClassName('onButton')[1].innerHTML
+    let color = document.getElementsByClassName('onButton')[2].innerHTML
+    let productCart = props.dataFilter[props.chimuc].products.filter((val)=>{
+      console.log(161, ram, rom , color)
+      return val.color ===color && val.ram ===ram && val.rom === rom;
+    })[0]._id
+    console.log(163,productCart)
+    axios.patch('http://localhost:3150/user/carts/',{
+      idUser: '628b58c4ea09208e34d8ca5a', 
+      quantity: countProduct,
+      idProduct:productCart
+    })
+      .then(function (res) {
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
     
   return (
     <>
@@ -215,18 +239,14 @@ function ProductChild(props) {
               <div class="available-product">{countStorage} sản phẩm có sẵn</div>
             </div>
             <div class="add-to-cart-wrap">
-              <button class="add-to-cart button-add-cart">thêm vào giỏ hàng</button>
+              <button class=" add-to-cart button-add-cart" onClick={()=>{sendCart()}} >thêm vào giỏ hàng</button>
               <button class="buy-now button-add-cart">mua ngay</button>
             </div>
           </div>
-
         </div>
-
       </div>
       <Footer></Footer>
     </>
-
-
   )
 }
 
