@@ -121,44 +121,44 @@ const App = props => {
   }
   const [Categories, setCategories] = useState([]);
 
-  useEffect(() => {
-    axios
-      .get("/admin/categories")
-      .then(function (res) {
-        console.log(44, res.data);
-        setCategories(res.data);
-        // console.log(res.data);
-      })
-      .catch(function (err) {
-        console.log(99, err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("/admin/categories")
+  //     .then(function (res) {
+  //       console.log(44, res.data);
+  //       setCategories(res.data);
+  //       // console.log(res.data);
+  //     })
+  //     .catch(function (err) {
+  //       console.log(99, err);
+  //     });
+  // }, []);
 
   function changesign() {
     setsign(sign + 1);
   }
-  useEffect(() => {
-    axios
-      .get("/admin/productcode/list")
-      .then(function (response) {
-        setdata(response.data);
-        setshowdata(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("/admin/productcode/list")
+  //     .then(function (response) {
+  //       setdata(response.data);
+  //       setshowdata(response.data);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // }, []);
 
-  useEffect(() => {
-    axios
-      .get("/admin/categories")
-      .then(function (response) {
-        setbrand(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("/admin/categories")
+  //     .then(function (response) {
+  //       setbrand(response.data);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // }, []);
 
   function changesign() {
     setsign(sign + 1);

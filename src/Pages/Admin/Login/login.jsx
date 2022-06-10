@@ -2,11 +2,18 @@ import React, { useState } from "react";
 import logo from "./logo.jpg";
 import "./styleLogin.css";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useEffect } from "react";
+import axios from "../../../axios";
+import { useDispatch } from "react-redux";
+
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+  let expires = "expires=" + d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
 
 function Login(props) {
-  const [state, setstate] = useState([]);
+  const dispatch = useDispatch();
   let navigate = useNavigate();
   function show() {
     document.querySelector(".password").type = "text";
@@ -20,38 +27,30 @@ function Login(props) {
     document.querySelector(".eye_hiden").style.display = "inline-block";
   }
 
-  let data = [...state];
-  useEffect(() => {
-    axios
-      .get("http://localhost:3150/admin/user/")
-      .then(function (res) {
-        setstate(res.data);
-      })
-      .catch(function (fail) {
-        console.log(fail);
-      });
-  }, []);
-
-  function dangnhap() {
+  async function dangnhap() {
     let email = document.querySelector(".Email").value;
-    let pass = document.querySelector(".password").value;
-
-    for (let i = 0; i < data.length; i++) {
-      if (email === "") {
-        document.querySelector(".notte").innerHTML = "Vui lòng nhập email";
-      } else if (pass === "") {
-        document.querySelector(".notte").innerHTML = "Vui lòng nhập PassWord";
-      } else if (
-        data[i].email === email &&
-        data[i].password === pass &&
-        data[i].role === "admin"
-      ) {
-        props.changedata(data[i].username);
+    let password = document.querySelector(".password").value;
+    if (email === "") {
+      document.querySelector(".notte").innerHTML = "Vui lòng nhập email";
+    } else if (password === "") {
+      document.querySelector(".notte").innerHTML = "Vui lòng nhập PassWord";
+    } else {
+      console.log(38, email, password);
+      let res = await axios.post("/admin/auth", {
+        email,
+        password,
+      });
+      setCookie("user", res.data.data.token, 30);
+      if (res.data.data.role == "admin") {
+        props.changedata(res.data.data.userData.username);
         navigate("/admin/home");
       } else {
         document.querySelector(".notte").innerHTML =
           "Tài khoản không chính xác";
       }
+      // const action = Login(res.data.data.userData);
+      // dispatch(action);
+      // }
     }
   }
 

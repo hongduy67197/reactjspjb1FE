@@ -381,7 +381,6 @@ function Header(props) {
             <p onClick={xacnhan}>- Cho xac nhan</p>
             <p onClick={danggiao}>- Dang giao hang</p>
             <p onClick={hoanthanh}>- Da hoan thanh</p>
-            <p onClick={tongket}>- Tong ket</p>
           </div>
           <div onClick={onproduct} className="menu1">
             <div>
@@ -444,6 +443,7 @@ function Header(props) {
 
             <i className="fa-solid fa-circle-user iconuser"></i>
           </div>
+          <p className="tenuser">{props.tenname}</p>
         </div>
       </div>
       <div className="changecolor">
