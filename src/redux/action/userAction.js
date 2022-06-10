@@ -4,3 +4,9 @@ export const Login = function (userInfo) {
     payload: { ...userInfo },
   };
 };
+export const Loginadmin = function (userInfo) {
+  return {
+    type: "admin/login",
+    payload: { ...userInfo },
+  };
+};

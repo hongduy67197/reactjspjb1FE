@@ -13,6 +13,14 @@
   font-weight: 600;
 }
 
+.nv {
+  border-radius: 20px;
+  box-shadow: #7e8eb1 0px 1px 2px 0px;
+  background-color: white;
+  overflow: hidden;
+  padding: 10px;
+}
+
 .update {
   padding: 5px 20px;
   border-radius: 10px;
@@ -32,6 +40,7 @@
 }
 
 .name,
+.avatar,
 .address,
 .sdt,
 .role {
@@ -45,14 +54,4 @@
 
 .Not {
   color: red;
-}
-.anh {
-  width: 50px;
-  height: 50px;
-}
-.anhAvatar {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  overflow: hidden;
 }

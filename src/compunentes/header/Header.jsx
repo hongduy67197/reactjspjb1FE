@@ -21,7 +21,7 @@ const Header = (props) => {
         return state.user;
     });
 
-    const imager = userInfo.avatar ? userInfo.avatar : userlogo;
+    const imager = userInfo.avatar ? process.env.REACT_APP_CLIENT_URL + userInfo.avatar : userlogo;
 
     function on_mypage() {
         navigate('/User/UserPase');
@@ -30,7 +30,13 @@ const Header = (props) => {
         await axios.post('/user/logOut');
         window.localStorage.removeItem('user');
         window.location.reload(true);
-        // navigate('/');
+        navigate('/');
+    }
+    function navigateToProduct (){
+        navigate('/product/filter')
+    }
+    function navigateToProduct2 (e){
+        navigate(`/product/filter?brand=${e.target.innerHTML}`)
     }
     return (
         <div className="app">
@@ -178,7 +184,7 @@ const Header = (props) => {
                             <div className="header_search">
                                 <Search />
                                 <div className="header_search-button">
-                                    <button className="header_search-button-button">
+                                    <button onClick = {()=>{navigateToProduct()}} className="header_search-button-button">
                                         <SearchOutlined
                                             style={{ fontSize: '18px' }}
                                             className="header_search-button-icon "
@@ -188,15 +194,15 @@ const Header = (props) => {
                             </div>
                             <div className="header-with-search-product">
                                 <ul className="header-with-search-product-ul">
-                                    <li>Iphnoe</li>
-                                    <li>Samsung</li>
-                                    <li>Oppo</li>
-                                    <li>Vivo</li>
-                                    <li>Xiaomi</li>
-                                    <li>Realmi</li>
-                                    <li>Nokia</li>
-                                    <li>Itel</li>
-                                    <li>Masstel</li>
+                                    <li  onClick = {(e)=>{navigateToProduct2(e)}}>Iphone</li>
+                                    <li onClick = {(e)=>{navigateToProduct2(e)}} >Samsung</li>
+                                    <li onClick = {(e)=>{navigateToProduct2(e)}} >Oppo</li>
+                                    <li onClick = {(e)=>{navigateToProduct2(e)}} >Vivo</li>
+                                    <li onClick = {(e)=>{navigateToProduct2(e)}} >Xiaomi</li>
+                                    <li onClick = {(e)=>{navigateToProduct2(e)}} >Realmi</li>
+                                    <li onClick = {(e)=>{navigateToProduct2(e)}} >Nokia</li>
+                                    <li onClick = {(e)=>{navigateToProduct2(e)}} >Itel</li>
+                                    <li onClick = {(e)=>{navigateToProduct2(e)}} >Masstel</li>
                                 </ul>
                             </div>
                         </div>
