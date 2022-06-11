@@ -13,8 +13,10 @@ import {
     FacebookFilled,
     ShoppingCartOutlined,
     SearchOutlined,
+    ConsoleSqlOutlined,
 } from '@ant-design/icons';
 import axios from '../../axios';
+import { SmokingRoomsOutlined } from '@mui/icons-material';
 const Header = (props) => {
     const navigate = useNavigate();
     const userInfo = useSelector(function (state) {
@@ -30,8 +32,33 @@ const Header = (props) => {
         await axios.post('/user/logOut');
         window.localStorage.removeItem('user');
         window.location.reload(true);
-        // navigate('/');
+        navigate('/');
     }
+    let variableTemp=0;
+    function getValue(value){
+        variableTemp= value;
+        console.log(45, value)
+    }
+    function navigateToProduct (){
+        console.log(43, variableTemp)
+        let link = window.location.href
+        link += variableTemp
+        console.log(46,link)
+        if(variableTemp== '0')  {         
+        navigate(`/product/filter`)   
+        }else{
+            navigate(`/user/fillter?productName=${variableTemp}`)
+        }
+
+        // navigate('/product/filter')
+    }
+    function navigateToProduct2 (e){
+        
+       
+        navigate(`/product/filter?brand=${e.target.innerHTML}`)
+    }
+
+    
     return (
         <div className="app">
             <header className="Cuong__header">
@@ -162,6 +189,7 @@ const Header = (props) => {
                             )}
                         </ul>
                     </nav>
+                    
 
                     {/* Header Search */}
                     <div className="header-with-search">
@@ -176,9 +204,9 @@ const Header = (props) => {
                         </Link>
                         <div className="header_search-section">
                             <div className="header_search">
-                                <Search />
+                                <Search getValue={getValue}/>
                                 <div className="header_search-button">
-                                    <button className="header_search-button-button">
+                                    <button onClick = {()=>{navigateToProduct()}} className="header_search-button-button">
                                         <SearchOutlined
                                             style={{ fontSize: '18px' }}
                                             className="header_search-button-icon "
@@ -188,15 +216,15 @@ const Header = (props) => {
                             </div>
                             <div className="header-with-search-product">
                                 <ul className="header-with-search-product-ul">
-                                    <li>Iphnoe</li>
-                                    <li>Samsung</li>
-                                    <li>Oppo</li>
-                                    <li>Vivo</li>
-                                    <li>Xiaomi</li>
-                                    <li>Realmi</li>
-                                    <li>Nokia</li>
-                                    <li>Itel</li>
-                                    <li>Masstel</li>
+                                    <li  onClick = {(e)=>{navigateToProduct2(e)}}>Iphone</li>
+                                    <li onClick = {(e)=>{navigateToProduct2(e)}} >Samsung</li>
+                                    <li onClick = {(e)=>{navigateToProduct2(e)}} >Oppo</li>
+                                    <li onClick = {(e)=>{navigateToProduct2(e)}} >Vivo</li>
+                                    <li onClick = {(e)=>{navigateToProduct2(e)}} >Xiaomi</li>
+                                    <li onClick = {(e)=>{navigateToProduct2(e)}} >Realmi</li>
+                                    <li onClick = {(e)=>{navigateToProduct2(e)}} >Nokia</li>
+                                    <li onClick = {(e)=>{navigateToProduct2(e)}} >Itel</li>
+                                    <li onClick = {(e)=>{navigateToProduct2(e)}} >Masstel</li>
                                 </ul>
                             </div>
                         </div>

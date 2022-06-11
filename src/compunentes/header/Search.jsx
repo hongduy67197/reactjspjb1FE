@@ -1,75 +1,70 @@
-import '../header/header.css';
-import { React, useEffect, useState } from 'react';
-import axios from '../../axios';
+import "../header/header.css";
+import { React, useEffect, useState } from "react";
+import axios from "../../axios";
+import Cards from "../home/homePage/Cards";
+let tempAddToSearchBar ;
 
-const Search = () => {
-    const [loading, setLoading] = useState(false);
-    const [post, setPost] = useState([]);
-    const [searchTitle, setSearchTitle] = useState('');
+const Search = (props) => {
+  const [post, setPost] = useState([]);
+  // const [searchTitle, setSearchTitle] = useState('');
+  let setTime;
+  
+  function SearchTitle(e) {
+    let getInputSearch = document.querySelector('.header_search-input').value
+    tempAddToSearchBar= getInputSearch;
+    props.getValue(getInputSearch)
+    clearTimeout(setTime)
+    setTime = setTimeout(()=>{
+      axios.get( "http://localhost:3150/user/fillter?idCategories=628c8b29e8654d960a5c8983")
+      .then(function (res){
+        console.log(14,res.data)
+        setPost(res.data.listProductCode)
+        clearTimeout(setTime)
+      })
+      .catch((err) => {
+        console.log(err);
+        clearTimeout(setTime)
+      });
+    },[1000]) 
+    };
+    console.log(24,post)
+    
+    // props.getValue(122424234234)
+  //   if(tempAddToSearchBar ===0 ){
+  //   document.querySelector('.header_search-input').innerHTML= ''
+  // }else {
+  //   document.querySelector('.header_search-input').innerHTML= tempAddToSearchBar
 
-    useEffect(() => {
-        const loadPosts = async () => {
-            setLoading(true);
-            const response = await axios.get('/user/list');
-            setPost(response.data.dataProductCode);
-            console.log(15, response.data.dataProductCode);
-            setLoading(false);
-        };
-        loadPosts();
-    }, []);
+  // }
 
-    return (
-        <div className="header_search-input-wrap">
-            <input
-                type="text"
-                name=""
-                className="header_search-input"
-                placeholder="Bạn đang tìm gì..."
-                onChange={(e) => setSearchTitle(e.target.value)}
-            />
-
-            {/* {loading ? (
-        <h4>loading...</h4>
-      ) : (
-        post
-          .filter((value) => {
-            if (searchTitle === "") {
-              return value.productName;
-            } else if (
-              value.productName.title.toLowerCase().includes(searchTitle.toLowerCase())
-            ) {
-              return value;
-            }
-          })
-          .map((item) => <h5 key={item.id}>{item.title}</h5>)
-      )} */}
-
-            {/* Search History */}
-            {/* <div className="header_search-history">
+  return (
+    <div className="header_search-input-wrap">
+      <input
+        type="text"
+        name=""
+        className="header_search-input"
+        placeholder="Nhập vào từ khóa muốn tìm kiếm ... "
+        onChange={(e) => SearchTitle(e.target.value)}
+      />
+      {/* Search History */}
+      <div className="header_search-history">
         <h3 className="header_search-history-heading">
-          <div className="header_search-history-heading-display-flex">
+          {/* <div className="header_search-history-heading-display-flex">
             <span className="header_search-history-heading-span">
-              LANEIGE - MUA 1 TẶNG 9
+              iphone 13 promax
             </span>
-            <img
-              className="header_search-history-heading-img"
-              src="https://cf.shopee.vn/file/54548c4a9eef8081e0bfcbe81d9eddad"
-              height="24"
-            ></img>
-          </div>
+          </div> */}
 
           <ul className=" header_search-history-heading-text-list">
-            <li className="header_search-history-heading-text-list-item">
-              <a href="">iphone 13 pro max</a>
-            </li>
-            <li className="header_search-history-heading-text-list-item">
+              <li className="header_search-history-heading-text-list-item">{post.length > 0 ? <td> {post[0].panel}</td> : null}</li>
+            {/* <li className="header_search-history-heading-text-list-item">
               <a href=""> iphone</a>
-            </li>
+            </li> */}
           </ul>
         </h3>
-      </div> */}
-        </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Search;
