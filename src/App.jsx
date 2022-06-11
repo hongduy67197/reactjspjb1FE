@@ -1,4 +1,6 @@
 import { ToastContainer } from "react-toastify";
+import Cart from "./Cart/Cart";
+import Comment1 from "./Comment/Comment";
 import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Admin/Home/home";
@@ -149,25 +151,31 @@ const App = (props) => {
   const [sign, setsign] = useState(0);
   const [model, setmodel] = useState([]);
   const [listdt, setlistdt] = useState([]);
-
-  const [id, setId] = useState([]);
-  function addId(newId) {
-    setId(newId);
+  const [user, setUser] = useState([
+    {
+      email: "hoang@gmail.com",
+      password: "123456789",
+    },
+    {
+      email: "hoang@gmail.com",
+      password: "123456789",
+    },
+    {
+      email: "hoang@gmail.com",
+      password: "123456789",
+    },
+  ]);
+  const [Payment, SetPayment] = useState([]);
+  const [ChangeCart, SetChangeCart] = useState(0);
+  function ChangedataCart() {
+    SetChangeCart(ChangeCart + 1);
   }
-  const [Categories, setCategories] = useState([]);
-
-  // useEffect(() => {
-  //   axios
-  //     .get("/admin/categories")
-  //     .then(function (res) {
-  //       console.log(44, res.data);
-  //       setCategories(res.data);
-  //       // console.log(res.data);
-  //     })
-  //     .catch(function (err) {
-  //       console.log(99, err);
-  //     });
-  // }, []);
+  function Change(newData) {
+    SetPayment(newData);
+  }
+  function Store(newData) {
+    setCount(newData);
+  }
 
   function changesign() {
     setsign(sign + 1);
@@ -415,6 +423,17 @@ const App = (props) => {
               element={<Hoanthanh name={name} />}
             />
             <Route path="/admin/Danggiao" element={<Danggiao name={name} />} />
+            <Route
+              path="/Cart"
+              element={
+                <Cart
+                  ChangedataCart={ChangedataCart}
+                  Store={Store}
+                  Change={Change}
+                />
+              }
+            />
+            <Route path="/Comment" element={<Comment1 />} />
             <Route
               path="/admin/Chinhsua"
               element={
