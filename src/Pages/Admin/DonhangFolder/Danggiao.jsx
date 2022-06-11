@@ -215,14 +215,8 @@ function Danggiao() {
   return (
     <div>
       <Header></Header>
-      <div className="table_giao">
-        <h1 className="title_giao">Đơn hàng đang giao</h1>
-        <Table
-          columns={columns}
-          dataSource={data}
-          onChange={onChange}
-          className="doing"
-        />
+      <div className="danggiao">
+        <h1>Dang giao</h1>
       </div>
     </div>
   );
