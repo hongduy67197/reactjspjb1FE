@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../advertisement/Advertisement.css";
 
 const Advertisement = () => {
+  useEffect(() => {
+    setTimeout(() => {
+      document
+        .querySelector(".Advertisement")
+        .classList.remove("Advertisement");
+    }, 5000);
+  }, []);
+
   return (
     <div className="Advertisement">
       <div className="Advertisement-container">

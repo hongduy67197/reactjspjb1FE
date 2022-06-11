@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+.Advertisement {
+  display: none;
+}
+
 .Advertisement-container {
   margin: auto;
   max-width: 1200px;
@@ -22,6 +26,10 @@
   border: 6px solid #008847;
   border-top: 0;
   background: #008847;
+}
+
+.text img {
+  width: auto;
 }
 
 ._voucher {

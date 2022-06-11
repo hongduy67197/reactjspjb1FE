@@ -33,7 +33,7 @@ const Home = () => {
         setNewIcon(res.data.dataProductCode[0].data[0].icon);
       })
       .catch(function (err) {
-        console.log(43, err);
+        console.log(36, err);
       });
   }, []);
 
@@ -58,7 +58,6 @@ const Home = () => {
             />
           </div>
         </div>
-
         <SeeMore seeMore={seeMore} />
         <Advertisement />
       </div>
