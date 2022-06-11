@@ -4,13 +4,14 @@ import { PlusCircleOutlined } from '@ant-design/icons';
 import React, { useState, useEffect } from 'react';
 import { ExceptionMap } from 'antd/lib/result';
 import axios from '../../../axios';
+import { useNavigate } from 'react-router-dom';
 
 const Cards = ({ item, searchTitle, keyId }) => {
     if (!item.data.length > 0) {
         item.data = [{ minPrice: 'chua set gia' }];
         item.minPrice = 'chưa set giá ';
     }
-
+let navigate = useNavigate()
     if (item.data[0].icon == null) {
         item.data[0].icon = [{ iconName: 'not icon' }];
         item.data[0].icon.iconName = 'not icon';
@@ -24,9 +25,14 @@ const Cards = ({ item, searchTitle, keyId }) => {
 
     const NewSale = item.Sale.replace('%', '') * 1;
     const NewPrice = item.minPrice - (NewSale * item.minPrice) / 100;
+    function moveToProduct(id){
+    // console.log(9, item._id)
+    navigate(`/product/filter?id=${id}`)
+    // /admin/productcode/:idProductcode
 
+    }
     return (
-        <div key={keyId} className="home_cards-itm">
+        <div key={keyId} onClick= {()=>{moveToProduct(item._id)}} className="home_cards-itm">
             <div className="cards">
                 {/* <p className="installment">{icon[0].iconName}</p> */}
                 <div className="item_image-box">
