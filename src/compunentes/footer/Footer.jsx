@@ -167,15 +167,15 @@ const Footer = () => {
       <div className="copyright">
         <section>
           <p>
-            © 2018. Công ty cổ phần Thế Giới Di Động. GPDKKD: 0303217354 do sở
-            KH & ĐT TP.HCM cấp ngày 02/01/2007. GPMXH: 238/GP-BTTTT do Bộ Thông
-            Tin và Truyền Thông cấp ngày 04/06/2020.
+            © 2022. Công ty cổ phần Cường Đặng. GPDKKD: 0303217354 do{" "}
+            <a href="nondemy.vn">Nodemy</a> cung cấp ngày 10/06/2022 . GPMXH:
+            238/GP-BTTTT do Bộ Thông Tin và Truyền Thông cấp ngày 10/06/2022.
             <br />
-            Địa chỉ: 128 Trần Quang Khải, P. Tân Định, Q.1, TP.Hồ Chí Minh. Điện
-            thoại: 028 38125960. Email: cskh@thegioididong.com. Chịu trách nhiệm
-            nội dung: Huỳnh Văn Tốt.
-            <a href="https://www.thegioididong.com/thoa-thuan-su-dung-trang-mxh">
-              Xem chính sách sử dụng
+            Địa chỉ: 250 Kim Giang, Quận Thanh Xuân, Hà Nội. Điện thoại:
+            0967721996 . Email: vanlytuongtuluv@gmail.com. Chịu trách nhiệm nội
+            dung: Cường Đặng.
+            <a href="https://www.facebook.com/messages/t/100052709747902">
+              Hỗ Trợ 24/24
             </a>
           </p>
         </section>

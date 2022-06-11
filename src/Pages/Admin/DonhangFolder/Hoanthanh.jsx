@@ -219,7 +219,7 @@ function Hoanthanh() {
           className="done"
         />
       </div>
-    <Footer/>
+      <Footer />
     </div>
   );
 }
