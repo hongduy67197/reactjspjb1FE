@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React,{useState} from "react";
 import Header from "../../../Components/Header/header";
 import "./styleHT.css";
 import axios from "axios";
@@ -27,7 +27,7 @@ function Hoanthanh() {
   useEffect(() => {
     async function getAllorder (){
       let token = getUserCookie('user')
-      console.log(147, token);
+      // console.log(147, token);
       try {
         const res = await getApi('/admin/order/')
         setstate(res.data)
@@ -40,7 +40,7 @@ function Hoanthanh() {
    
  async function getAllUser (){
       let token = getUserCookie('user')
-      console.log(147, token);
+      // console.log(147, token);
       try {
         const res = await getApi('/admin/user/')
         setstate1(res.data)
@@ -52,7 +52,7 @@ function Hoanthanh() {
    
     async function getAllproduct (){
       let token = getUserCookie('user')
-      console.log(147, token);
+      // console.log(147, token);
       try {
         const res = await getApi('/admin/product/list')
         setstate2(res.data)
@@ -250,7 +250,7 @@ function Hoanthanh() {
         <input type="text" placeholder="status" className="status" />
         <p className="Not"></p>
       </Modal>
-    </div>
+      </div>
   );
 }
 

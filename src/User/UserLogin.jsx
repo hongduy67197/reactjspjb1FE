@@ -14,7 +14,8 @@ import { useDispatch } from 'react-redux';
 import { Login } from '../redux/action/userAction';
 import '../../src/App.css';
 import { postApi } from '../api/config';
-
+import showPass2 from '../assets/images/showpass.png'
+import showPass1 from '../assets/images/showpass2.png'
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();
     d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
@@ -127,6 +128,12 @@ function UserLogin(props) {
             document.querySelector('.login_phone_password_text').innerHTML = '';
         }
     }
+    // showpass
+    function showPass(){
+        document.querySelector('.singin_conter_modal_password').setAttribute("type",'text')
+        document.querySelector('.singin_password_show3').style.display = 'block'
+        document.querySelector('.singin_password_show1').style.display = 'none'
+    }
     return (
         <>
             <div className="login_">
@@ -162,6 +169,9 @@ function UserLogin(props) {
                             className="login_conter_modal_password"
                         />
                         <span className="login_password_text"></span>
+                        <img src={showPass2} alt="img" className='singin_password_show1' onClick={showPass} />
+                        {/* <img src={showPass1} alt="img" className='singin_password_show3' onClick={NoShowPass} /> */}
+
                         <button className="login_conter_modal_button" onClick={submit}>
                             ĐĂNG NHẬP
                         </button>

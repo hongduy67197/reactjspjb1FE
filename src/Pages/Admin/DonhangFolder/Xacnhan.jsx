@@ -29,9 +29,9 @@ function Xacnhan() {
   useEffect(() => {
     async function getAllorder (){
       let token = getUserCookie('user')
-      console.log(147, token);
       try {
         const res = await getApi('/admin/order/')
+        console.log(35,res)
         setstate(res.data)
       } catch (error) {
         console.log(168, error);
@@ -41,7 +41,6 @@ function Xacnhan() {
 
     async function getAllUser (){
       let token = getUserCookie('user')
-      console.log(147, token);
       try {
         const res = await getApi('/admin/user/')
         setstate1(res.data)
@@ -53,9 +52,9 @@ function Xacnhan() {
 
     async function getAllproduct (){
       let token = getUserCookie('user')
-      console.log(147, token);
       try {
         const res = await getApi('/admin/product/list')
+        console.log(62,res)
         setstate2(res.data)
       } catch (error) {
         console.log(168, error);

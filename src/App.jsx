@@ -57,16 +57,12 @@ const App = (props) => {
         "http://localhost:3150/user/fillter?idCategories=628c8b29e8654d960a5c8983"
       )
       .then(function (res) {
-        // setDataDuy(res.data.product)
-        // setShow(res.data.product.slice(0, 2))
-        console.log(45, res.data.listData)
         const ListData= res.data.listProductCode.map((val)=>{
           val.storage =Math.floor(Math.random() * 100);
           val.ram=val.ramRange[0];
           val.rom=val.romRange[0];
           return val
         })
-        console.log(4556, ListData)
         setProductList(ListData)
       })
       .catch((err) => {

@@ -8,25 +8,38 @@ import OrderDaHuy from "./Order/OrderDaHuy";
 import OrderDangGiao from "./Order/OrderDangGiao";
 import OrderWaiting from "./Order/OrderWaiting";
 import "./OrderCss.css";
-
+import {getApi,deleteApi, putApi,getAllUser} from '../../api/config'
+import { getUserCookie, refreshToken } from "../../refreshToken";
 function Orders(props) {
-console.log(12,props)
+
 //  url: '/admin/order/user/:idUer' type: GET tác dụng:  Hiển thị danh sách Order theo idUser
 useEffect(() => {
-  async function oder(){
-    // await axios.get('/admin/order/user/:idUer')
-    await axios.get('/admin/order/user/:idUer')
-    .then(function(data){
-      console.log(19,data)
-    }
-    )
-    .catch((orr)=>{
-      console.log(23,orr)
-    }
-    )
+//   async function oder(){
+//     // await axios.get('/admin/order/user/:idUer')
+//     await axios.get('/admin/order/user/:idUer')
+//     .then(function(data){
+//       console.log(19,data)
+//     }
+//     )
+//     .catch((orr)=>{
+//       console.log(23,orr)
+//     }
+//     )
+//   }
+// oder()
+async function getAllUser (){
+  let token = getUserCookie('user')
+  // console.log(147, token);
+  try {
+    const res = await getApi('/admin/user/')
+    console.log(48,res)
+    // setstate1(res.data)
+  } catch (error) {
+    console.log(168, error);
   }
-oder()
- 
+}
+getAllUser()
+
 }, [])
 
 

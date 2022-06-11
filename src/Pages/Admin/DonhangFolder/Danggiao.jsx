@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React ,{useState} from "react";
 import Header from "../../../Components/Header/header";
 import "./styledanggiao.css";
 import axios from "axios";
@@ -23,7 +23,7 @@ function Danggiao() {
   useEffect(() => {
     async function getAllorder (){
       let token = getUserCookie('user')
-      console.log(147, token);
+      // console.log(147, token);
       try {
         const res = await getApi('/admin/order/')
         setstate(res.data)
@@ -36,7 +36,7 @@ function Danggiao() {
 
     async function getAllUser (){
       let token = getUserCookie('user')
-      console.log(147, token);
+      // console.log(147, token);
       try {
         const res = await getApi('/admin/user/')
         setstate1(res.data)
@@ -50,7 +50,7 @@ function Danggiao() {
 
     async function getAllproduct (){
       let token = getUserCookie('user')
-      console.log(147, token);
+      // console.log(147, token);
       try {
         const res = await getApi('/admin/product/list')
         setstate2(res.data)
@@ -170,6 +170,7 @@ function Danggiao() {
     setIsin(isin + 1);
   }
   const showModal = (id) => {
+    console.log(173, id);
     setIsIndex(id);
     count();
     setIsModalVisible(true);
@@ -183,6 +184,7 @@ function Danggiao() {
   };
 
   const handleOk = () => {
+    console.log(187);
     let phone = document.querySelector(".phone").value;
     let diachi = document.querySelector(".address").value;
     let status = document.querySelector(".status").value;
@@ -191,7 +193,7 @@ function Danggiao() {
       console.log(phone,diachi,status)
       async function getAllorder1 (){
         let token = getUserCookie('user')
-        console.log(147, token);
+        console.log(147, isindex);
         try {
           const res = await putApi(`/admin/order/${isindex}`,{
             address: diachi,
