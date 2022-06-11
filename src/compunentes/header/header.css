@@ -508,7 +508,7 @@
   box-shadow: 0 0 3px #999;
   border-radius: 3px;
   cursor: pointer;
-  display: none;
+  /* display: none; */
   z-index: 10000;
 }
 
@@ -523,25 +523,22 @@
   position: relative;
   display: block;
   z-index: 10000;
+  list-style-position: inside;
 }
 
 .header_search-history-heading-text-list-item {
   list-style: none;
+  font-size: 16px;
   color: black;
-  padding: 10px;
+  padding: 2px;
 }
 
-.header_search-history-heading-text-list-item a {
-  color: black;
-  font-weight: 400;
-  text-decoration: none;
-}
 
-.header_search-history-heading-text-list-item a:hover {
+
+.header_search-history-heading-text-list-item:hover {
   color: black;
   font-weight: 400;
-  list-style: none;
-  background-color: #999;
+  background-color: red;
 }
 
 /* Header Search Button */
