@@ -16,21 +16,11 @@ const Home = () => {
   const [numberShow, setNumberShow] = useState(20);
   const [Slides, setSlides] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [NewIcon, setNewIcon] = useState([]);
 
   function seeMore() {
     setNumberShow(numberShow + 20);
   }
-
-  useEffect(() => {
-    axios
-      .get("/user/list")
-      .then(function (res) {
-        setSlides(res.data.listSlide);
-      })
-      .catch(function (err) {
-        console.log(99, err);
-      });
-  }, []);
 
   // Product Code
   useEffect(() => {
@@ -38,65 +28,42 @@ const Home = () => {
       .get("/user/list")
       .then(function (res) {
         setProductCode(res.data.dataProductCode);
+        setSlides(res.data.listSlide);
+        setCategories(res.data.listCategories);
+        setNewIcon(res.data.dataProductCode[0].data[0].icon);
       })
       .catch(function (err) {
         console.log(43, err);
       });
   }, []);
 
-  //========= categories =============
-  useEffect(() => {
-    axios
-      .get("/admin/categories")
-      .then(function (res) {
-        setCategories(res.data);
-      })
-      .catch(function (err) {
-        console.log(55, err);
-      });
-  }, []);
-
-  //======== icon ===============
-  const [NewIcon, setNewIcon] = useState([]);
-  useEffect(() => {
-    axios
-      .get("/admin/icon/list")
-      .then(function (res) {
-        setNewIcon(res.data);
-      })
-      .catch(function (err) {
-        console.log(99, err);
-      });
-  }, []);
-
   return (
     <>
-    <Header></Header>
-    <div className="home-container">
-      <Slider Slides={Slides} />
-      <Categories categories={categories} />
-      <div className="home_status_container-chat">
-        <i title="New messages" id="unread-msg-number">
-          <WechatOutlined className="WechatOutlined" />
-        </i>
-        <a href="#" id="status-icon"></a>
-      </div>
-      <div className="home-container-filter">
-        <div className="home-page-product">
-          <ListProduct
-            productCode={productCode}
-            numberShow={numberShow}
-            NewIcon={NewIcon}
-          />
+      <Header></Header>
+      <div className="home-container">
+        <Slider Slides={Slides} />
+        <Categories categories={categories} />
+        <div className="home_status_container-chat">
+          <i title="New messages" id="unread-msg-number">
+            <WechatOutlined className="WechatOutlined" />
+          </i>
+          <a href="#" id="status-icon"></a>
         </div>
-      </div>
+        <div className="home-container-filter">
+          <div className="home-page-product">
+            <ListProduct
+              productCode={productCode}
+              numberShow={numberShow}
+              NewIcon={NewIcon}
+            />
+          </div>
+        </div>
 
-      <SeeMore seeMore={seeMore} />
-      <Advertisement />
-    </div>
-    <Footer></Footer>
+        <SeeMore seeMore={seeMore} />
+        <Advertisement />
+      </div>
+      <Footer />
     </>
-    
   );
 };
 

@@ -6,19 +6,16 @@ import dataSliderExtra from "./data.SliderExtra";
 import _debounce from "lodash/debounce";
 const Slider = (slideItem) => {
   const [slideIndex, setSlideIndex] = useState(1);
- 
 
   //nextSlide
   function nextSlide() {
     if (slideIndex !== slideItem.Slides.length) {
-      // console.log(16, slideIndex);
       setSlideIndex(slideIndex + 1);
     } else if (slideIndex === slideItem.Slides.length) {
       setSlideIndex(1);
-      // console.log(19, slideIndex);
     }
   }
- setTimeout(nextSlide, 3000);
+  // setTimeout(nextSlide, 3000);
 
   //prevSlide
   const prevSlide = () => {
