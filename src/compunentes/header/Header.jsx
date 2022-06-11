@@ -111,13 +111,19 @@ const Header = (props) => {
               <li className="header_navbar-item header_navbar-item--pillar2 ">
                 Kết Nối
                 <span className="header_navbar-item-icon-fb-ig">
-                  <a className="header_navbar-item-icon">
+                  <a
+                    href="https://www.facebook.com/MrCuong1996/"
+                    className="header_navbar-item-icon"
+                  >
                     <FacebookFilled
                       className=" header_navbar-icon "
                       style={{ borderRadius: "20px" }}
                     />
                   </a>
-                  <a className="header_navbar-item-icon">
+                  <a
+                    href="https://www.instagram.com/cuongdang1996/"
+                    className="header_navbar-item-icon"
+                  >
                     <InstagramFilled className=" header_navbar-icon header_navbar-icon-instagram" />
                   </a>
                 </span>

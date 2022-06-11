@@ -20,7 +20,6 @@ const Search = (props) => {
           "http://localhost:3150/user/fillter?idCategories=628c8b29e8654d960a5c8983"
         )
         .then(function (res) {
-          console.log(14, res.data);
           setPost(res.data.listProductCode);
           clearTimeout(setTime);
         })
@@ -30,7 +29,6 @@ const Search = (props) => {
         });
     }, [1000]);
   }
-  console.log(24, post);
 
   // props.getValue(122424234234)
   //   if(tempAddToSearchBar ===0 ){
