@@ -43,7 +43,24 @@ const Advertisement = () => {
             </span>
           </div>
           <div className="voucherproduct-bhx">
-            <div className="_voucher"></div>
+            <div className="_voucher">
+              <div className="_voucher-title">Tặng thêm mã giảm 10%</div>
+              <div className="_voucher-content">
+                <div className="_voucher-input-email">
+                  <input type="text" placeholder="Nhập email*" />
+                </div>
+                <div className="input-phone">
+                  <input type="text" placeholder="Nhập SĐT*" />
+                </div>
+                <div className="dcap">
+                  <button className="submit">NHẬN MÃ</button>
+                </div>
+              </div>
+              <div className="_voucher-error hiden"></div>
+              <div className="_voucher-note">
+                *Áp dụng cho khách lần đầu mua hàng tại BackhoaXanh
+              </div>
+            </div>
             <div className="_product">
               <aside>
                 <div className="_product-stage">
@@ -92,7 +109,7 @@ const Advertisement = () => {
                       <div className="stage-item">
                         <a href="https://www.bachhoaxanh.com/nuoc-hoa-hong-kem-duong-mat-na?utm_source=refferal&utm_medium=bhx_box&utm_campaign=tgdd&utm_id=refferal&utm_content=bhx_box_damat_020622">
                           <img
-                            src="https://cdn.tgdd.vn/2022/06/banner/Thiet-ke-chua-co-ten-(24)-280x440.png"
+                            src="https://cdn.tgdd.vn/2022/06/banner/Thiet-ke-chua-co-ten-(12)-280x440.png"
                             alt=""
                           />
                         </a>
