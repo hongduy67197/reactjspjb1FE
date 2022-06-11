@@ -5,8 +5,9 @@ import { Modal } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useEffect } from "react";
-
+import {getApi} from '../../../api/config'
 import "./style.css";
+import { getUserCookie, refreshToken } from "../../../refreshToken";
 
 function Nhanvien(props) {
   const [state, setstate] = useState([]);
@@ -141,14 +142,17 @@ function Nhanvien(props) {
   }
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3150/admin/user/")
-      .then(function (res) {
-        setstate(res.data);
-      })
-      .catch(function (fail) {
-        console.log(fail);
-      });
+    async function getAllUser (){
+      let token = getUserCookie('user')
+      console.log(147, token);
+      try {
+        const res = await getApi('/admin/user')
+        setstate(res.data)
+      } catch (error) {
+        console.log(168, error);
+      }
+    }
+    getAllUser()
   }, [isin]);
 
   function onChange(pagination, filters, sorter, extra) {

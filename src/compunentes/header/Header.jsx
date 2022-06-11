@@ -13,8 +13,10 @@ import {
   FacebookFilled,
   ShoppingCartOutlined,
   SearchOutlined,
+  ConsoleSqlOutlined,
 } from "@ant-design/icons";
 import axios from "../../axios";
+import { SmokingRoomsOutlined } from "@mui/icons-material";
 const Header = (props) => {
   const navigate = useNavigate();
   const userInfo = useSelector(function (state) {
@@ -32,8 +34,30 @@ const Header = (props) => {
     await axios.post("/user/logOut");
     window.localStorage.removeItem("user");
     window.location.reload(true);
-    // navigate('/');
+    navigate("/");
   }
+  let variableTemp = 0;
+  function getValue(value) {
+    variableTemp = value;
+    console.log(45, value);
+  }
+  function navigateToProduct() {
+    console.log(43, variableTemp);
+    let link = window.location.href;
+    link += variableTemp;
+    console.log(46, link);
+    if (variableTemp == "0") {
+      navigate(`/product/filter`);
+    } else {
+      navigate(`/user/fillter?productName=${variableTemp}`);
+    }
+
+    // navigate('/product/filter')
+  }
+  function navigateToProduct2(e) {
+    navigate(`/product/filter?brand=${e.target.innerHTML}`);
+  }
+
   return (
     <div className="app">
       <header className="Cuong__header">
@@ -57,31 +81,31 @@ const Header = (props) => {
                     alt="QR code"
                     className="header_qr-img"
                   />
-                  {/* <div className="header_qr-apps">
-                                        <div className="header_qr_display-flex">
-                                            <a className="header_qr-link">
-                                                <img
-                                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/1024px-Google_Play_Store_badge_EN.svg.png"
-                                                    alt="Google Play"
-                                                    className="header_qr-dowload-img"
-                                                />
-                                            </a>
-                                            <a className="header_qr-link">
-                                                <img
-                                                    src="https://cics.com.vn/wp-content/uploads/2020/12/AppStore..png"
-                                                    alt="App Store"
-                                                    className="header_qr-dowload-img"
-                                                />
-                                            </a>
-                                        </div>
-                                        <a className="header_qr-link App-Gallery">
-                                            <img
-                                                src="https://gofitify.com/img/appgallery.png"
-                                                alt="App Gallery"
-                                                className="header_qr-dowload-img"
-                                            />
-                                        </a>
-                                    </div> */}
+                  <div className="header_qr-apps">
+                    <div className="header_qr_display-flex">
+                      <a className="header_qr-link">
+                        <img
+                          src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/1024px-Google_Play_Store_badge_EN.svg.png"
+                          alt="Google Play"
+                          className="header_qr-dowload-img"
+                        />
+                      </a>
+                      <a className="header_qr-link">
+                        <img
+                          src="https://cics.com.vn/wp-content/uploads/2020/12/AppStore..png"
+                          alt="App Store"
+                          className="header_qr-dowload-img"
+                        />
+                      </a>
+                    </div>
+                    <a className="header_qr-link App-Gallery">
+                      <img
+                        src="https://gofitify.com/img/appgallery.png"
+                        alt="App Gallery"
+                        className="header_qr-dowload-img"
+                      />
+                    </a>
+                  </div>
                 </div>
               </li>
               <li className="header_navbar-item header_navbar-item--pillar2 ">
@@ -192,9 +216,14 @@ const Header = (props) => {
             </Link>
             <div className="header_search-section">
               <div className="header_search">
-                <Search />
+                <Search getValue={getValue} />
                 <div className="header_search-button">
-                  <button className="header_search-button-button">
+                  <button
+                    onClick={() => {
+                      navigateToProduct();
+                    }}
+                    className="header_search-button-button"
+                  >
                     <SearchOutlined
                       style={{ fontSize: "18px" }}
                       className="header_search-button-icon "
@@ -204,15 +233,69 @@ const Header = (props) => {
               </div>
               <div className="header-with-search-product">
                 <ul className="header-with-search-product-ul">
-                  <li>Iphnoe</li>
-                  <li>Samsung</li>
-                  <li>Oppo</li>
-                  <li>Vivo</li>
-                  <li>Xiaomi</li>
-                  <li>Realmi</li>
-                  <li>Nokia</li>
-                  <li>Itel</li>
-                  <li>Masstel</li>
+                  <li
+                    onClick={(e) => {
+                      navigateToProduct2(e);
+                    }}
+                  >
+                    Iphone
+                  </li>
+                  <li
+                    onClick={(e) => {
+                      navigateToProduct2(e);
+                    }}
+                  >
+                    Samsung
+                  </li>
+                  <li
+                    onClick={(e) => {
+                      navigateToProduct2(e);
+                    }}
+                  >
+                    Oppo
+                  </li>
+                  <li
+                    onClick={(e) => {
+                      navigateToProduct2(e);
+                    }}
+                  >
+                    Vivo
+                  </li>
+                  <li
+                    onClick={(e) => {
+                      navigateToProduct2(e);
+                    }}
+                  >
+                    Xiaomi
+                  </li>
+                  <li
+                    onClick={(e) => {
+                      navigateToProduct2(e);
+                    }}
+                  >
+                    Realmi
+                  </li>
+                  <li
+                    onClick={(e) => {
+                      navigateToProduct2(e);
+                    }}
+                  >
+                    Nokia
+                  </li>
+                  <li
+                    onClick={(e) => {
+                      navigateToProduct2(e);
+                    }}
+                  >
+                    Itel
+                  </li>
+                  <li
+                    onClick={(e) => {
+                      navigateToProduct2(e);
+                    }}
+                  >
+                    Masstel
+                  </li>
                 </ul>
               </div>
             </div>

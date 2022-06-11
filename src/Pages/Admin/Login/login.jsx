@@ -4,6 +4,9 @@ import "./styleLogin.css";
 import { useNavigate } from "react-router-dom";
 import axios from "../../../axios";
 import { useDispatch } from "react-redux";
+import { Loginadmin } from "../../../redux/action/userAction";
+import { postApi } from "../../../api/config";
+
 
 function setCookie(cname, cvalue, exdays) {
   const d = new Date();
@@ -35,11 +38,14 @@ function Login(props) {
     } else if (password === "") {
       document.querySelector(".notte").innerHTML = "Vui lòng nhập PassWord";
     } else {
-      console.log(38, email, password);
-      let res = await axios.post("/admin/auth", {
-        email,
-        password,
-      });
+      // let res = await axios.post("/admin/auth", {
+      //   email,
+      //   password,
+      // });
+      let res = await postApi("/admin/auth", {email, password})
+      console.log(46, res);
+      const action = Loginadmin(res.data.data.userData)
+      dispatch(action)
       setCookie("user", res.data.data.token, 30);
       if (res.data.data.role == "admin") {
         props.changedata(res.data.data.userData.username);

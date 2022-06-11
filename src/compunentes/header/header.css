@@ -489,15 +489,16 @@
 /* Header Search History */
 .header_search-history {
   position: absolute;
-  top: 45px;
+  top: 50px;
   left: 0;
   width: 754px;
-  z-index: 999;
+  z-index: 10;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 0 3px #999;
   border-radius: 3px;
   cursor: pointer;
   display: none;
+  z-index: 10000;
 }
 
 .header_search-history-heading-display-flex {
@@ -508,7 +509,9 @@
 }
 
 .header_search-history-heading-text-list {
+  position: relative;
   display: block;
+  z-index: 10000;
 }
 
 .header_search-history-heading-text-list-item {

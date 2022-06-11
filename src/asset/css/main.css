@@ -1209,8 +1209,8 @@
   transition: transform linear 0.1s;
   will-change: transform;
   border: none;
+  padding-top: 8px;
   width: 100%;
-  min-height: 550px;
 }
 
 .home-product-item:hover {

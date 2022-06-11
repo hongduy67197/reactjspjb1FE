@@ -2,9 +2,9 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Admin/Home/home";
-import Xacnhan from "./Pages/Admin/DonHang/Xacnhan";
-import Hoanthanh from "./Pages/Admin/DonHang/Hoanthanh";
-import Danggiao from "./Pages/Admin/DonHang/Danggiao";
+import Xacnhan from "./Pages/Admin/DonhangFolder/Xacnhan";
+import Hoanthanh from "./Pages/Admin/DonhangFolder/Hoanthanh";
+import Danggiao from "./Pages/Admin/DonhangFolder/Danggiao";
 import Chinhsua from "./Pages/Admin/Sanpham/Chinhsua";
 import Khohang from "./Pages/Admin/Sanpham/Khohang";
 import Spmoi from "./Pages/Admin/Sanpham/Spmoi";
@@ -43,7 +43,7 @@ const App = (props) => {
       "Realmi",
       "Nokia",
       "Itel",
-      "masstel",
+      "Masstel",
     ],
     price: [
       "dưới 2tr",
@@ -91,15 +91,13 @@ const App = (props) => {
       .then(function (res) {
         // setDataDuy(res.data.product)
         // setShow(res.data.product.slice(0, 2))
-        console.log(45, res.data.listData);
         const ListData = res.data.listProductCode.map((val) => {
           val.storage = Math.floor(Math.random() * 100);
           val.ram = val.ramRange[0];
           val.rom = val.romRange[0];
           return val;
         });
-        console.log(4556, ListData);
-        setProductList([...ListData]);
+        setProductList(ListData);
       })
       .catch((err) => {
         console.log(err);
