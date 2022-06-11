@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../categories/categories.css';
 
 const Categories = (item) => {
-    // console.log(5,item)
+    console.log(5,item)
     // onClick={()=>{}}
     let navigate = useNavigate();
     function movePage(val){

@@ -38,11 +38,9 @@ function UserLogin(props) {
         } else {
             // let res = await axios.post('/user/login', { email, password });
             let res = await postApi('/user/login', { email, password });
-            console.log(40, res.data);
             if (res.data.status === 'undifind password') {
                 alert(res.data.status);
             } else {
-                console.log(42, res.data);
                 setCookie('user', res.data.data.token, 30);
                 const action = Login(res.data.data.userData);
                 dispatch(action);
@@ -97,7 +95,6 @@ function UserLogin(props) {
         } else if (password === '' || testPassword1(password)) {
             document.querySelector('.login_phone_password_text').innerHTML = 'Vui lòng nhập Password';
         } else {
-            console.log(email, password)
             // let res = await axios.post('/user/login', { email, password });
             // console.log(res.data);
             // if (res.data.status === 'undifind password') {
@@ -129,10 +126,16 @@ function UserLogin(props) {
         }
     }
     // showpass
-    function showPass(){
-        document.querySelector('.singin_conter_modal_password').setAttribute("type",'text')
-        document.querySelector('.singin_password_show3').style.display = 'block'
-        document.querySelector('.singin_password_show1').style.display = 'none'
+    function loginShowPass(){
+        document.querySelector('.login_conter_modal_password').setAttribute("type",'text')
+        document.querySelector('.login_password_show3').style.display = 'block'
+        document.querySelector('.login_password_show1').style.display = 'none'
+    }
+    // no showpass
+    function loginNoShowPass(){
+        document.querySelector('.login_conter_modal_password').setAttribute("type",'password')
+        document.querySelector('.login_password_show3').style.display = 'none'
+        document.querySelector('.login_password_show1').style.display = 'block'
     }
     return (
         <>
@@ -169,8 +172,8 @@ function UserLogin(props) {
                             className="login_conter_modal_password"
                         />
                         <span className="login_password_text"></span>
-                        <img src={showPass2} alt="img" className='singin_password_show1' onClick={showPass} />
-                        {/* <img src={showPass1} alt="img" className='singin_password_show3' onClick={NoShowPass} /> */}
+                        <img src={showPass2} alt="img" className='login_password_show1' onClick={loginShowPass} />
+                        <img src={showPass1} alt="img" className='login_password_show3' onClick={loginNoShowPass} />
 
                         <button className="login_conter_modal_button" onClick={submit}>
                             ĐĂNG NHẬP

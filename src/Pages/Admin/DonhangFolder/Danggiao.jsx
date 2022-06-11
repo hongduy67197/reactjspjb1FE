@@ -1,11 +1,11 @@
-import React ,{useState} from "react";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { Table } from "antd";
+import { Modal } from "bootstrap";
+import React, { useEffect, useState } from "react";
+import axios from "../../../axios";
 import Header from "../../../Components/Header/header";
 import "./styledanggiao.css";
-import axios from "axios";
-import { Table } from "antd";
-import { Modal } from "antd";
-import { useEffect } from "react";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+// import axios from "axios";
 import {getApi,deleteApi, putApi} from '../../../api/config'
 import { getUserCookie, refreshToken } from "../../../refreshToken";
 
@@ -19,7 +19,6 @@ function Danggiao() {
 
   const database = [];
   const data = [];
-
   useEffect(() => {
     async function getAllorder (){
       let token = getUserCookie('user')
