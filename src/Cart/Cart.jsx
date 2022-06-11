@@ -173,7 +173,7 @@ function Cart(props) {
     }
   }
   function Home() {
-    // Navigate("/")
+    Navigate("/");
   }
   return (
     <div className="main-giohang">
@@ -181,7 +181,7 @@ function Cart(props) {
         <div className="title">
           <div className="title-chil">
             <div className="letf-title">
-              <img className="logo_shop" src={Logo} alt="" />
+              <img className="logo_shop" onClick={Home} src={Logo} alt="" />
               <div className="border-title"></div>
               <div className="name-title">Giỏ Hàng</div>
             </div>
