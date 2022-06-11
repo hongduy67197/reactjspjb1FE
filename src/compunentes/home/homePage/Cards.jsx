@@ -7,6 +7,7 @@ import axios from '../../../axios';
 import { useNavigate } from 'react-router-dom';
 
 const Cards = ({ item, searchTitle, keyId }) => {
+    console.log(10,item,searchTitle, keyId)
     if (!item.data.length > 0) {
         item.data = [{ minPrice: 'chua set gia' }];
         item.minPrice = 'chưa set giá ';
@@ -22,17 +23,38 @@ let navigate = useNavigate()
     //     item.data = [{ iconName: 'not icon' }];
     //     item.data[0].icon.iconName = 'not icon';
     // }
-
+    function RemoveAccents(str) {
+        var AccentsMap = [
+          "aàảãáạăằẳẵắặâầẩẫấậ",
+          "AÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬ",
+          "dđ",
+          "DĐ",
+          "eèẻẽéẹêềểễếệ",
+          "EÈẺẼÉẸÊỀỂỄẾỆ",
+          "iìỉĩíị",
+          "IÌỈĨÍỊ",
+          "oòỏõóọôồổỗốộơờởỡớợ",
+          "OÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢ",
+          "uùủũúụưừửữứự",
+          "UÙỦŨÚỤƯỪỬỮỨỰ",
+          "yỳỷỹýỵ",
+          "YỲỶỸÝỴ",
+        ];
+        for (var i = 0; i < AccentsMap.length; i++) {
+          var re = new RegExp("[" + AccentsMap[i].substr(1) + "]", "g");
+          var char = AccentsMap[i][0];
+          str = str.replace(re, char);
+        }
+        return str;
+      }
     const NewSale = item.Sale.replace('%', '') * 1;
     const NewPrice = item.minPrice - (NewSale * item.minPrice) / 100;
-    function moveToProduct(id){
-    // console.log(9, item._id)
-    navigate(`/product/filter?id=${id}`)
-    // /admin/productcode/:idProductcode
+    function moveToProduct(Name){
+    navigate(`/product/filter/${Name}`)
 
     }
     return (
-        <div key={keyId} onClick= {()=>{moveToProduct(item._id)}} className="home_cards-itm">
+        <div key={keyId} onClick= {()=>{moveToProduct(RemoveAccents(item.productName).split(' ').join(''))}} className="home_cards-itm">
             <div className="cards">
                 {/* <p className="installment">{icon[0].iconName}</p> */}
                 <div className="item_image-box">

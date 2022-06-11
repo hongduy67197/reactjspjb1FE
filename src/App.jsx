@@ -68,6 +68,7 @@ const App = (props) => {
         })
         console.log(4556, ListData)
         setProductList(ListData)
+        setDataFilter(ListData)
       })
       .catch((err) => {
         console.log(err);
@@ -174,8 +175,11 @@ const App = (props) => {
         <ContextProvider>
           <Routes>
             {dataFilter.map((val, i) => {
+              console.log(177,`/product/filter?id=${val._id}`)
+              console.log(178,val)
               return (
                 <Route
+                  // path={`/product/filter?id=${val._id}`}    
                   path={`/product/filter/${RemoveAccents(val.productName)
                     .split(" ")
                     .join("")}`}

@@ -21,16 +21,16 @@ const Home = () => {
     setNumberShow(numberShow + 20);
   }
 
-  useEffect(() => {
-    axios
-      .get("/user/list")
-      .then(function (res) {
-        setSlides(res.data.listSlide);
-      })
-      .catch(function (err) {
-        console.log(99, err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("/user/list")
+  //     .then(function (res) {
+  //       setSlides(res.data.listSlide);
+  //     })
+  //     .catch(function (err) {
+  //       console.log(99, err);
+  //     });
+  // }, []);
 
   // Product Code
   useEffect(() => {
@@ -38,6 +38,8 @@ const Home = () => {
       .get("/user/list")
       .then(function (res) {
         setProductCode(res.data.dataProductCode);
+        setSlides(res.data.listSlide);
+
       })
       .catch(function (err) {
         console.log(43, err);

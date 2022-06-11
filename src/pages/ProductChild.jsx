@@ -6,6 +6,7 @@ import Footer from '../compunentes/footer/Footer';
 import axios from 'axios';
 let countproduct = 1;
 function ProductChild(props) {
+  console.log(9, props)
   let arrayOrigin = props.dataFilter[props.chimuc].products
   const [dem, setDem] = useState(0)
   const [count, setCount] = useState(countproduct)
@@ -28,9 +29,7 @@ function ProductChild(props) {
     return val.color
   }))]
   const [filterColor, setFilterColor]= useState(arrayOriginColor)
-
   console.log(21, arrayOriginColor)
-
   // img product 
   let arrayOriginImg = []
   for(let i = 0; i<arrayOrigin.length; i++){
