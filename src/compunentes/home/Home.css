@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-=======
->>>>>>> 8697b96dfd89f00d9cf8ab5c81e84cb62baf3c10
 /* chat */
 .home_status_container-chat {
   margin-right: 20px;
@@ -56,11 +47,7 @@
 .home-container {
   position: relative;
   width: 100%;
-<<<<<<< HEAD
-  /* max-width: 1200px; */
-=======
   max-width: 1200px;
->>>>>>> 8697b96dfd89f00d9cf8ab5c81e84cb62baf3c10
   margin-left: auto;
   margin-right: auto;
 }
