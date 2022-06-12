@@ -5,7 +5,6 @@ import Home from "./Pages/Admin/Home/home";
 import Xacnhan from "./Pages/Admin/DonhangFolder/Xacnhan";
 import Hoanthanh from "./Pages/Admin/DonhangFolder/Hoanthanh";
 import Danggiao from "./Pages/Admin/DonhangFolder/Danggiao";
-import Chinhsua from "./Pages/Admin/Sanpham/Chinhsua";
 import Khohang from "./Pages/Admin/Sanpham/Khohang";
 import Spmoi from "./Pages/Admin/Sanpham/Spmoi";
 import Trenke from "./Pages/Admin/Sanpham/Trenke";
@@ -417,19 +416,6 @@ const App = (props) => {
               element={<Hoanthanh name={name} />}
             />
             <Route path="/admin/Danggiao" element={<Danggiao name={name} />} />
-            <Route
-              path="/admin/Chinhsua"
-              element={
-                <Chinhsua
-                  model={model}
-                  setmodel={setmodel}
-                  changesign={changesign}
-                  listdt={listdt}
-                  setlistdt={setlistdt}
-                  name={name}
-                />
-              }
-            />
             <Route path="/admin/Khohang" element={<Khohang name={name} />} />
             <Route path="/admin/Spmoi" element={<Spmoi name={name} />} />
             <Route
