@@ -37,10 +37,6 @@ function Login(props) {
     } else if (password === "") {
       document.querySelector(".notte").innerHTML = "Vui lòng nhập PassWord";
     } else {
-      // let res = await axios.post("/admin/auth", {
-      //   email,
-      //   password,
-      // });
       let res = await postApi("/admin/auth", { email, password });
       console.log(46, res);
       const action = Loginadmin(res.data.data.userData);
@@ -53,9 +49,6 @@ function Login(props) {
         document.querySelector(".notte").innerHTML =
           "Tài khoản không chính xác";
       }
-      // const action = Login(res.data.data.userData);
-      // dispatch(action);
-      // }
     }
   }
 
