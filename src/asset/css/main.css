@@ -953,6 +953,7 @@
   border-bottom: 1px solid #f5f5f5;
   margin-bottom: 0;
   margin-top: 0;
+  text-align: center;
 }
 
 .category__heading-icon {
@@ -1127,7 +1128,7 @@
 }
 
 .select-input__label {
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bolder;
   padding-left: 16px;
   background-color: white;
@@ -1139,10 +1140,10 @@
 }
 
 .home-filter-select-icon {
-  font-size: 1.4rem;
+  font-size: 1rem;
   color: #d3d0d0;
   position: relative;
-  top: 2px;
+  top: -1px;
 }
 
 .home-filter__page {
@@ -1211,6 +1212,7 @@
   border: none;
   padding-top: 8px;
   width: 100%;
+  /* min-height: 570px; */
 }
 
 .home-product-item:hover {
@@ -1228,10 +1230,10 @@
 }
 
 .home-product-item__name {
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   color: var(--text-color);
-  height: 3.6rem;
-  margin: 10px 10px;
+  /* height: 3.6rem; */
+  margin-top: 10px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -1243,7 +1245,7 @@
 
 .home-product-item__price {
   display: flex;
-  margin: 8px 12px;
+  margin: 8px 12px 0px 12px;
   align-items: baseline;
   flex-wrap: wrap;
 }
@@ -1252,13 +1254,13 @@
   flex-direction: column;
 }
 .home-product-item__price-old {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   color: var(--text-color);
   text-decoration: line-through;
 }
 
 .home-product-item__price-curr {
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   font-weight: 500;
   color: var(--primary-color);
 }
@@ -1268,7 +1270,7 @@
   /* display: flex;
     flex-direction: column; */
   /* justify-content: space-between; */
-  margin: 10px 12px;
+  margin: 2px 12px;
 }
 
 .free-shipping {
@@ -1297,7 +1299,7 @@ i.home-product-item__like-icon-fill {
 }
 
 .home-product-item__rating {
-  font-size: 1rem;
+  font-size: 0.8rem;
   /* zoom: 0.7; */
   /* transform: scale(0.7); */
   /* transform-origin: right; */
@@ -1310,7 +1312,7 @@ i.home-product-item__like-icon-fill {
 }
 
 .home-product-item_sold {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: var(--text-color);
   /* margin-left: 12px; */
 }
@@ -1386,7 +1388,7 @@ i.home-product-item__like-icon-fill {
 .home-product-item__sale-off-percent {
   position: absolute;
   top: -3px;
-  font-size: 1.4rem;
+  font-size: 1.1em;
   font-weight: bolder;
   color: var(--primary-color);
   line-height: 1.3rem;
@@ -1399,12 +1401,14 @@ i.home-product-item__like-icon-fill {
   font-size: 1.4rem;
 }
 .home-product-item-information-detail-wrap {
-  padding-left: 32px;
+  padding-left: 2px;
 }
 .home-product-item-information-detail {
   text-align: left;
 }
 .home-product-item-information-detail li span {
+  font-size: 0.9rem;
+
   position: relative;
   left: -9px;
 }

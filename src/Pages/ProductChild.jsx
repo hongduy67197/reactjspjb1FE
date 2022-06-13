@@ -6,6 +6,7 @@ import Footer from '../compunentes/footer/Footer';
 import axios from 'axios';
 let countproduct = 1;
 function ProductChild(props) {
+  console.log(9, props)
   let arrayOrigin = props.dataFilter[props.chimuc].products
   const [dem, setDem] = useState(0)
   const [count, setCount] = useState(countproduct)
@@ -28,9 +29,7 @@ function ProductChild(props) {
     return val.color
   }))]
   const [filterColor, setFilterColor]= useState(arrayOriginColor)
-
   console.log(21, arrayOriginColor)
-
   // img product 
   let arrayOriginImg = []
   for(let i = 0; i<arrayOrigin.length; i++){
@@ -217,9 +216,12 @@ function ProductChild(props) {
               <div class="number-comment">5090 đánh giá</div> */}
               <div class="sold"> Đã bán: {props.dataFilter[props.chimuc].countSold}</div>
             </div>
-            <div class="price-wrap">
+            <div class="price-wrap-productChild">
+              <div className="price-wrap-newPrice">
               <div class="price"><h1>{priceProduct.toLocaleString()}</h1></div>
               <div class="discount">-{props.dataFilter[props.chimuc].Sale}</div>
+              </div>
+              <div class="new-price"><h1>{(priceProduct*(100-((props.dataFilter[props.chimuc].Sale.replace('%','')*1)))/100).toLocaleString()}</h1></div>
             </div>
             {/* <div class="product-color-wrap">
               <div class="product-color-tittle">Màu sắc:</div>

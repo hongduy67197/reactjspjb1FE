@@ -22,7 +22,6 @@ let newstButton
 let salestButton
 function FilterProduct(props) {
     console.log(20, props.dataval.length)
-    console.log(8)
     const [resetPage, setResetPage]  = useState(props.dataval)
     useEffect(()=>{
         setResetPage([...props.dataval])
@@ -75,8 +74,10 @@ function FilterProduct(props) {
         return str;
     }
     let navigate = useNavigate();
-    function movePage(i) {
+    function movePage(i,val) {
+        console.log(79,val)
         navigate(`/product/filter/${i}`)
+        // navigate(`/product/filter?id=${val._id}`)
     }
     function filterPages(i, key, e) {
         e.target.classList.toggle('myStyle')
@@ -432,8 +433,8 @@ function FilterProduct(props) {
 
 
 
-                                        return (<div className="col1 l-2-4 m-4 c-12">
-                                            <button onClick={() => { movePage(removeAccents(val.productName).split(' ').join('')) }} className="home-product-item">
+                                        return (<div className="col1 l-2-4 mg-4 c-12">
+                                            <button onClick={() => { movePage(removeAccents(val.productName).split(' ').join(''),val) }} className="home-product-item">
                                                 <div >
                                                     <img className="home-product-item__img" src={`http://localhost:3150${val.thumNail}`} alt="" />
                                                 </div>

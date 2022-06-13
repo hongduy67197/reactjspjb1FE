@@ -20,7 +20,7 @@ import UserSingIn from "./User/UserSingIn";
 import UserPase from "./User/UserPase";
 import ContextProvider from "./Conter/ContextProvider";
 import Home1 from "./compunentes/home/Home";
-import CreateOrder from "./Pages/CreateOrder";
+// import CreateOrder from "./Pages/CreateOrder";
 import "./App.css";
 import ProductChild from "./Pages/ProductChild";
 import FilterProduct from "./Pages/FilterProduct";
@@ -93,13 +93,16 @@ const App = (props) => {
       .then(function (res) {
         // setDataDuy(res.data.product)
         // setShow(res.data.product.slice(0, 2))
-        const ListData = res.data.listProductCode.map((val) => {
-          val.storage = Math.floor(Math.random() * 100);
-          val.ram = val.ramRange[0];
-          val.rom = val.romRange[0];
-          return val;
-        });
-        setProductList(ListData);
+        console.log(45, res.data.listData)
+        const ListData= res.data.listProductCode.map((val)=>{
+          val.storage =Math.floor(Math.random() * 100);
+          val.ram=val.ramRange[0];
+          val.rom=val.romRange[0];
+          return val
+        })
+        console.log(4556, ListData)
+        setProductList(ListData)
+        setDataFilter(ListData)
       })
       .catch((err) => {
         console.log(err);
@@ -212,8 +215,11 @@ const App = (props) => {
         <ContextProvider>
           <Routes>
             {dataFilter.map((val, i) => {
+              console.log(177,`/product/filter?id=${val._id}`)
+              console.log(178,val)
               return (
                 <Route
+                  // path={`/product/filter?id=${val._id}`}    
                   path={`/product/filter/${RemoveAccents(val.productName)
                     .split(" ")
                     .join("")}`}
@@ -469,8 +475,8 @@ const App = (props) => {
               path="/User/UserSingIn"
               element={<UserSingIn></UserSingIn>}
             />
-            <Route path="/User/UserPase" element={<UserPase></UserPase>} />
-            <Route path="/createorder" element={<CreateOrder />}></Route>
+            {/* <Route path="/User/UserPase" element={<UserPase></UserPase>} />
+            <Route path="/createorder" element={<CreateOrder />}></Route> */}
           </Routes>
           <ToastContainer />
         </ContextProvider>
