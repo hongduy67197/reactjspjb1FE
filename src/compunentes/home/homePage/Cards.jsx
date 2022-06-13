@@ -90,13 +90,17 @@ const Cards = ({ item, keyId }) => {
 
           <div>
             {typeof item.minPrice === "number" ? (
-              <span className="price">{item.minPrice.toLocaleString()}₫</span>
+              <span className="price">
+                {item.minPrice.toLocaleString()} <span className="đ">₫</span>
+              </span>
             ) : null}
 
             {NewPrice ? <span className="NewSale"> -{NewSale}%</span> : null}
 
             {isNaN(NewPrice) ? null : (
-              <p className="NewPrice">{NewPrice.toLocaleString()}₫</p>
+              <p className="NewPrice">
+                {NewPrice.toLocaleString()} <span className="đ">₫</span>
+              </p>
             )}
           </div>
           <div className="cards-info">
