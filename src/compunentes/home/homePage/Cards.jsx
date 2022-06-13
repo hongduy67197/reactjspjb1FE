@@ -7,12 +7,12 @@ import axios from "../../../axios";
 import { useNavigate } from "react-router-dom";
 
 const Cards = ({ item, searchTitle, keyId }) => {
+  let navigate = useNavigate();
   // console.log(10,item,searchTitle, keyId)
   if (!item.data.length > 0) {
     item.data = [{ minPrice: "chua set gia" }];
     item.minPrice = "chưa set giá ";
   }
-  let navigate = useNavigate();
   if (item.data[0].icon == null) {
     item.data[0].icon = [{ iconName: "not icon" }];
     item.data[0].icon.iconName = "not icon";

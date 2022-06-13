@@ -21,6 +21,7 @@ const Search = (props) => {
       axios
         .get(`http://localhost:3150/user/fillter?productName=${e}`)
         .then(function (res) {
+          console.log(res);
           // setPost(res.data.listProductCode);
           let dataSearch = res.data.listProductCode;
           console.log(25, dataSearch);
