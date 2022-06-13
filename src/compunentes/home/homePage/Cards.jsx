@@ -1,10 +1,9 @@
-import { Rate } from "antd";
-import App from "./Rate";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import React, { useState, useEffect } from "react";
 import { ExceptionMap } from "antd/lib/result";
 import axios from "../../../axios";
 import { useNavigate } from "react-router-dom";
+import Rate from "./Rate";
 
 const Cards = ({ item, keyId }) => {
   let navigate = useNavigate();
@@ -104,6 +103,9 @@ const Cards = ({ item, keyId }) => {
             <p className="design">{item.design}</p>
             <p className="panel">{item.panel}</p>
             <p className="cameraProduct">{item.cameraProduct}</p>
+            <p>
+              <Rate />
+            </p>
           </div>
         </div>
       </div>

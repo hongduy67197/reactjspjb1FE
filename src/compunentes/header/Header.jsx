@@ -517,7 +517,7 @@ const Header = () => {
                   <>
                     <li className="header_navbar-item">
                       <Link to="/User/UserSingIn">
-                        <button className="header_singin">Sing Un</button>
+                        <button className="header_singin">Sing Up</button>
                       </Link>
                     </li>
                     <li className="header_navbar-item header_navbar-item--pillar1">
