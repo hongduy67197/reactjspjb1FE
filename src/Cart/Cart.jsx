@@ -8,15 +8,17 @@ import { notification, Space } from "antd";
 import { WarningOutlined } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import { getApi } from "../api/config";
+import { patchApi } from "../api/config";
 function Cart(props) {
   const [productData, setProductData] = useState([]);
   useEffect(() => {
-    axios
-      .get("http://localhost:3150/admin/product/list")
+    getApi("http://localhost:3150/user/carts")
       .then((data) => {
-        console.log(data);
-        setProductData(data.data);
+        console.log(17, data.data[0].listProduct);
+        console.log(18, data);
+        setProductData(data.data[0].listProduct);
+        console.log(21, data.data[0].listProduct[0].idProduct.productPic[0]);
       })
       .catch((err) => {
         console.log(err);
@@ -67,7 +69,6 @@ function Cart(props) {
       console.log(productData);
     }
   };
-  // console.log(666666, dataNew);
   //================================================
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [getIndex, setGetIndex] = useState(0);
@@ -116,6 +117,19 @@ function Cart(props) {
 
   const handleCancel = () => {
     setIsModalVisible(false);
+
+    // axios
+    //   .put(`http://localhost:3150/admin/product/${productData[getIndex]._id}`, {
+    //     storage: 1,
+    //   })
+    //   .then((data) => {
+    //     console.log(data);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    setQuantity(Quantity + 1);
+    setProduct(...productData);
   };
   //===================================================
   function upQuantity(index, id) {
@@ -135,9 +149,10 @@ function Cart(props) {
     setProduct(...productData);
   }
   //===============================================
-  function deleteProduct(id, index) {
-    axios
-      .delete(`http://localhost:3150/admin/product/${index}`)
+  function deleteProduct(index) {
+    patchApi(`http://localhost:3150/user/carts/${index}`, {
+      quantity: 4,
+    })
       .then((data) => {
         console.log(data);
       })
@@ -232,20 +247,23 @@ function Cart(props) {
                   <div className="img-list">
                     <img
                       className="Img_product"
-                      src={"http://localhost:3150" + value.productPic[0]}
+                      src={`http://localhost:3150${value.idProduct.productPic[0]}`}
                     />
                   </div>
                   <div className="nameProduct">
-                    {value.idProductCode.productName}{" "}
+                    {/* {value.idProductCode.productName}{" "} */}
                   </div>
                   <div className="phanloai-product">
                     <div className="ramrom-phanloai">
-                      {value.ram}/{value.rom}
+                      {value.idProduct.ram}/{value.idProduct.rom}
                     </div>
-                    <div className="color-phanloai"> {value.color}</div>
+                    <div className="color-phanloai">
+                      {" "}
+                      {value.idProduct.color}
+                    </div>
                   </div>
                   <div className="info-dongia">
-                    {value.price.toLocaleString()}
+                    {value.idProduct.price.toLocaleString()}
                     <sup>đ</sup>
                   </div>
                   <div className="info-list-soluong">
@@ -267,22 +285,19 @@ function Cart(props) {
                         onCancel={handleCancel}
                       >
                         <p>
-                          {productData[getIndex].idProductCode.productName}(
-                          {productData[getIndex].color})
+                          {/* {productData[getIndex].idProductCode.productName}( */}
+                          {productData[getIndex].idProduct.color}
                         </p>
                         <div className="img-list">
                           <img
                             className="Img_product"
-                            src={
-                              "http://localhost:3150" +
-                              productData[getIndex].productPic[0]
-                            }
+                            src={`http://localhost:3150${productData[getIndex].idProduct.productPic[0]}`}
                           />
                         </div>
                       </Modal>
                     </>
 
-                    <div className="quanity-result">{value.storage}</div>
+                    <div className="quanity-result">{value.quantity}</div>
                     <button
                       onClick={() => upQuantity(index, value._id)}
                       className="btn1"
@@ -292,14 +307,14 @@ function Cart(props) {
                   </div>
                   <div className="info-list-thanhtien">
                     {(
-                      Number(value.price) * Number(value.storage)
+                      Number(value.idProduct.price) * Number(value.quantity)
                     ).toLocaleString()}
                     <sup>đ</sup>
                   </div>
                   <div className="info-list-thaotac">
                     <p
                       className="text-xoa"
-                      onClick={() => deleteProduct(index, value._id)}
+                      onClick={() => deleteProduct(value._id)}
                     >
                       Xóa
                     </p>
