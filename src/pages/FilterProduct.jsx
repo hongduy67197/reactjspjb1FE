@@ -433,7 +433,7 @@ function FilterProduct(props) {
 
 
 
-                                        return (<div className="col1 l-2-4 m-4 c-12">
+                                        return (<div className="col1 l-2-4 mg-4 c-12">
                                             <button onClick={() => { movePage(removeAccents(val.productName).split(' ').join(''),val) }} className="home-product-item">
                                                 <div >
                                                     <img className="home-product-item__img" src={`http://localhost:3150${val.thumNail}`} alt="" />

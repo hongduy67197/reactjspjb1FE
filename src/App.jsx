@@ -20,7 +20,7 @@ import UserSingIn from "./User/UserSingIn";
 import UserPase from "./User/UserPase";
 import ContextProvider from "./Conter/ContextProvider";
 import Home1 from "./compunentes/home/Home";
-import CreateOrder from "./Pages/CreateOrder";
+// import CreateOrder from "./Pages/CreateOrder";
 import "./App.css";
 import ProductChild from "./Pages/ProductChild";
 import FilterProduct from "./Pages/FilterProduct";
@@ -475,8 +475,8 @@ const App = (props) => {
               path="/User/UserSingIn"
               element={<UserSingIn></UserSingIn>}
             />
-            <Route path="/User/UserPase" element={<UserPase></UserPase>} />
-            <Route path="/createorder" element={<CreateOrder />}></Route>
+            {/* <Route path="/User/UserPase" element={<UserPase></UserPase>} />
+            <Route path="/createorder" element={<CreateOrder />}></Route> */}
           </Routes>
           <ToastContainer />
         </ContextProvider>
