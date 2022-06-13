@@ -4,6 +4,8 @@ import '../asset/css/base-productChild.css'
 import Header from '../compunentes/header/Header';
 import Footer from '../compunentes/footer/Footer';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { patchApi } from '../api/config';
 let countproduct = 1;
 function ProductChild(props) {
   console.log(9, props)
@@ -161,15 +163,17 @@ function ProductChild(props) {
       return val.color ===color && val.ram ===ram && val.rom === rom;
     })[0]._id
     console.log(163,productCart)
-    axios.patch('http://localhost:3150/user/carts/',{
-      idUser: '628b58c4ea09208e34d8ca5a', 
+    // const userid = useSelector(function(state){return state.user})
+    // console.log(165,userid)
+    patchApi('http://localhost:3150/user/carts/',{
       quantity: countProduct,
       idProduct:productCart
     })
       .then(function (res) {
+        console.log(173, res)
       })
       .catch((err) => {
-        console.log(err)
+        console.log(176, err)
       })
   }
     
