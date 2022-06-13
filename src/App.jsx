@@ -2,7 +2,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Admin/Home/home";
-import Xacnhan from "./Pages/Admin/DonhangFolder/Xacnhan"
+import Xacnhan from "./Pages/Admin/DonhangFolder/Xacnhan";
 import Hoanthanh from "./Pages/Admin/DonhangFolder/Hoanthanh";
 import Danggiao from "./Pages/Admin/DonhangFolder/Danggiao";
 import Chinhsua from "./Pages/Admin/Sanpham/Chinhsua";
@@ -34,17 +34,49 @@ const App = (props) => {
   const [count1, setCount1] = useState(0);
   const [dataFilter, setDataFilter] = useState([]);
   const filterProduct = {
-    brand: ['Iphone', 'Samsung', 'Oppo', 'Vivo', 'Xiaomi', 'Realmi', 'Nokia', 'Itel', 'Masstel'],
-    price: ['dưới 2tr', 'từ 2- 4tr', 'từ 4-7tr', 'từ 7-13tr', 'từ 13-20tr', 'trên 20tr'],
-    productType: ['android', 'Iphone(iOS)', 'Điện thoại phổ thông'],
-    performanceProduct: ['chơi game/cấu hình cao', 'Pin khủng trên 5000 mAh', 'Sạc pin nhanh'],
-    ram: ['2GB', '3GB', '4GB', '6GB', '8GB', '12GB'],
-    rom: ['8GB', '16GB', '32GB', '64GB', '128GB', '256GB'],
-    cameraProduct: ['chụp cận cảnh(macro)', 'chụp góc rộng', 'chụp xóa phông', 'chụp zoom xa'],
-    specialFeatures: ['Hỗ trợ 5g', 'Bảo mật khuôn mặt', 'bảo mật vân tay', 'Sạc không dây', 'Kháng nước , bụi'],
-    design: ['Tràn viền', 'Mỏng nhẹ', 'Mặt lưng kính'],
-    panel: ['nhỏ gọn dễ cầm', 'Từ 6inch trở lên', 'Màn hình gập']
-  }
+    brand: [
+      "Iphone",
+      "Samsung",
+      "Oppo",
+      "Vivo",
+      "Xiaomi",
+      "Realmi",
+      "Nokia",
+      "Itel",
+      "Masstel",
+    ],
+    price: [
+      "dưới 2tr",
+      "từ 2- 4tr",
+      "từ 4-7tr",
+      "từ 7-13tr",
+      "từ 13-20tr",
+      "trên 20tr",
+    ],
+    productType: ["android", "Iphone(iOS)", "Điện thoại phổ thông"],
+    performanceProduct: [
+      "chơi game/cấu hình cao",
+      "Pin khủng trên 5000 mAh",
+      "Sạc pin nhanh",
+    ],
+    ram: ["2GB", "3GB", "4GB", "6GB", "8GB", "12GB"],
+    rom: ["8GB", "16GB", "32GB", "64GB", "128GB", "256GB"],
+    cameraProduct: [
+      "chụp cận cảnh(macro)",
+      "chụp góc rộng",
+      "chụp xóa phông",
+      "chụp zoom xa",
+    ],
+    specialFeatures: [
+      "Hỗ trợ 5g",
+      "Bảo mật khuôn mặt",
+      "bảo mật vân tay",
+      "Sạc không dây",
+      "Kháng nước , bụi",
+    ],
+    design: ["Tràn viền", "Mỏng nhẹ", "Mặt lưng kính"],
+    panel: ["nhỏ gọn dễ cầm", "Từ 6inch trở lên", "Màn hình gập"],
+  };
   // color: Xanh , Đỏ , Tím , Hồng, Đen
   let productCode = [];
   // const [ProductList, setProductList] = useState(listProductCode.listProductCode)

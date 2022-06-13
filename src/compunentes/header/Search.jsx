@@ -2,13 +2,13 @@ import "../header/header.css";
 import { React, useEffect, useState } from "react";
 import axios from "../../axios";
 import Cards from "../home/homePage/Cards";
-let tempAddToSearchBar ;
+let tempAddToSearchBar;
 
 const Search = (props) => {
   const [post, setPost] = useState([]);
   // const [searchTitle, setSearchTitle] = useState('');
   let setTime;
-  
+
   function SearchTitle(e) {
     let getInputSearch = document.querySelector('.header_search-input').value
     tempAddToSearchBar= getInputSearch;
@@ -56,7 +56,9 @@ const Search = (props) => {
           </div> */}
 
           <ul className=" header_search-history-heading-text-list">
-              <li className="header_search-history-heading-text-list-item">{post.length > 0 ? <td> {post[0].panel}</td> : null}</li>
+            <li className="header_search-history-heading-text-list-item">
+              {post.length > 0 ? <td> {post[0].panel}</td> : null}
+            </li>
             {/* <li className="header_search-history-heading-text-list-item">
               <a href=""> iphone</a>
             </li> */}

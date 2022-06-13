@@ -149,6 +149,11 @@
     border: none;
     opacity: 0.7;
 }
+.login_conter_modal_button:focus{
+    border: 2px solid black;
+   opacity: 1;
+
+}
 .login_conter_modal_a {
     position: absolute;
     bottom: 180px;

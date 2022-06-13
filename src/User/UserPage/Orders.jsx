@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import axios from '../../axios'
-import order from "../../assets/images/ordermenu.png";
+import React, { useEffect } from 'react';
 import OrderAll from "./Order/OrderAll";
 import OrderCheck from "./Order/OrderCheck";
 import OrderDaGiao from "./Order/OrderDaGiao";
@@ -8,8 +6,8 @@ import OrderDaHuy from "./Order/OrderDaHuy";
 import OrderDangGiao from "./Order/OrderDangGiao";
 import OrderWaiting from "./Order/OrderWaiting";
 import "./OrderCss.css";
-import {getApi,deleteApi, putApi,getAllUser} from '../../api/config'
-import { getUserCookie, refreshToken } from "../../refreshToken";
+import {getApi} from '../../api/config'
+import { getUserCookie} from "../../refreshToken";
 function Orders(props) {
 
 //  url: '/admin/order/user/:idUer' type: GET tác dụng:  Hiển thị danh sách Order theo idUser
@@ -29,10 +27,11 @@ useEffect(() => {
 // oder()
 async function getAllUser (){
   let token = getUserCookie('user')
-  // console.log(147, token);
+  console.log(147, token);
   try {
-    const res = await getApi('/admin/user/')
+    const res = await getApi('/user/order/:idOrder')
     console.log(48,res)
+    console.log(123)
     // setstate1(res.data)
   } catch (error) {
     console.log(168, error);

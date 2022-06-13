@@ -68,7 +68,6 @@ function UserLogin(props) {
     }
     // ẩn hiện cảnh báo
     function clean_email() {
-        // document.querySelector(".login_conter_modal_email").value = "";
         document.querySelector('.login_email_text').innerHTML = '';
         document.querySelector('.login_phone_userName_text').innerHTML = '';
 
@@ -95,16 +94,16 @@ function UserLogin(props) {
         } else if (password === '' || testPassword1(password)) {
             document.querySelector('.login_phone_password_text').innerHTML = 'Vui lòng nhập Password';
         } else {
-            // let res = await axios.post('/user/login', { email, password });
-            // console.log(res.data);
-            // if (res.data.status === 'undifind password') {
-            //     alert(res.data.status);
-            // } else {
-            //     setCookie('user', res.data.data.token, 30);
-            //     const action = Login(res.data.data.userData);
-            //     dispatch(action);
-            //     navigate('/compunentes/home/Home');
-            // }
+            let res = await axios.post('/user/login', { email, password });
+            console.log(res.data);
+            if (res.data.status === 'undifind password') {
+                alert(res.data.status);
+            } else {
+                setCookie('user', res.data.data.token, 30);
+                const action = Login(res.data.data.userData);
+                dispatch(action);
+                navigate('/compunentes/home/Home');
+            }
         }
     }
        // kiểm tra đầu vào Email

@@ -17,14 +17,9 @@ function Xacnhan() {
   const [state2, setstate2] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isindex, setIsIndex] = useState(0);
-  const [isin, setIsin] = useState(0);
 
   const database = [];
   const data = [];
-
-  function count() {
-    setIsin(isin + 1);
-  }
 
   useEffect(() => {
     async function getAllorder (){
@@ -43,7 +38,7 @@ function Xacnhan() {
       let token = getUserCookie('user')
       try {
         const res = await getApi('/admin/user/')
-        setstate1(res.data)
+        setstate1(41,res.data)
       } catch (error) {
         console.log(168, error);
       }
@@ -62,7 +57,7 @@ function Xacnhan() {
     }
     getAllproduct()
 
-  }, [isin]);
+  }, []);
 
   for (let i = 0; i < state1.length; i++) {
     for (let j = 0; j < state.length; j++) {
@@ -91,14 +86,17 @@ function Xacnhan() {
 
   for (let i = 0; i < state2.length; i++) {
     for (let j = 0; j < database.length; j++) {
-      if (state2[i]._id === database[j].idProduct[0]) {
+      console.log(68, state2[i]._id);
+      console.log(69, database[j].idProduct);
+
+      if (state2[i]._id === database[j].idProduct) {
         data.push({
           _id: database[j]._id,
           idUser: database[j].idUser,
           address: database[j].address,
           phone: database[j].phone,
           total: database[j].total,
-          idProduct: state2[i].idProductCode.productName,
+          // idProduct: state2[i].idProductCode.productName,
           quantity: database[j].quantity,
           status: database[j].status,
         });
@@ -128,7 +126,7 @@ function Xacnhan() {
       dataIndex: "total",
     },
     {
-      title: "Name Product",
+      title: "idProduct",
       align: "center",
       dataIndex: "idProduct",
     },
@@ -171,21 +169,16 @@ function Xacnhan() {
 
   const showModal = (id) => {
     setIsIndex(id);
-    count();
     setIsModalVisible(true);
-    data.map(function (val) {
-      if (val._id == id) {
-        document.querySelector(".phone").value = val.phone;
-        document.querySelector(".address").value = val.address;
-        document.querySelector(".status").value = val.status;
-      }
-    });
   };
 
+  console.log(137, isindex);
   const handleOk = () => {
     let phone = document.querySelector(".phone").value;
     let diachi = document.querySelector(".address").value;
     let status = document.querySelector(".status").value;
+
+    console.log(147, phone, diachi, status, isindex);
     if (phone !== "" && diachi !== "" && status !== "") {
       async function getAllorder (){
         let token = getUserCookie('user')
@@ -203,7 +196,7 @@ function Xacnhan() {
       }
       getAllorder()
 
-      count();
+      // count();
       setIsModalVisible(false);
     } else {
       document.querySelector(".Not").innerHTML = "Vui lòng không được để trống";
@@ -232,7 +225,7 @@ function Xacnhan() {
         }
         getAllorder()
 
-        count();
+        // count();
       },
     });
   }
@@ -242,12 +235,7 @@ function Xacnhan() {
       <Header></Header>
       <div className="table_xacnhan ">
         <h1 className="title_xacnhan">Đơn hàng chờ xác nhận</h1>
-        <Table
-          columns={columns}
-          dataSource={data}
-          onChange={onChange}
-          className="pending"
-        />
+        <Table columns={columns} dataSource={database} onChange={onChange} />
       </div>
       <Modal
         title="Quản lý đơn hàng"

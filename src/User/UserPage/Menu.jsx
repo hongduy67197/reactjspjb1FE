@@ -13,7 +13,10 @@ function Menu(props) {
         return state.user;
     });
     const userName = userInfo.username ? userInfo.username : 'hello';
-    const userAvatar = userInfo.avatar ? userInfo.avatar : userlogo;
+    const imager = userInfo.avatar
+    ? process.env.REACT_APP_CLIENT_URL + userInfo.avatar
+    : userlogo;
+
     function onof_mypage() {
         // navigate()
         props.onof_hoso();
@@ -76,7 +79,7 @@ function Menu(props) {
     return (
         <div className="menu_">
             <div className="menu_header">
-                <img src={process.env.REACT_APP_CLIENT_URL+userAvatar} alt="img" />
+                <img src={imager}alt="img" />
                 <span>{userName}</span>
                 <button onClick={onof_mypage}>
                     <i className="fa-solid fa-pen"></i>Sửa Hồ Sơ
