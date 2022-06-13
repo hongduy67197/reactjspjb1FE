@@ -6,7 +6,7 @@ import { ExceptionMap } from "antd/lib/result";
 import axios from "../../../axios";
 import { useNavigate } from "react-router-dom";
 
-const Cards = ({ item, searchTitle, keyId }) => {
+const Cards = ({ item, keyId }) => {
   let navigate = useNavigate();
   // console.log(10,item,searchTitle, keyId)
   if (!item.data.length > 0) {
@@ -60,47 +60,47 @@ const Cards = ({ item, searchTitle, keyId }) => {
       }}
       className="home_cards-itm"
     >
-      <div className="cards">
-        {/* <p className="installment">{icon[0].iconName}</p> */}
-        <div className="item_image-box">
-          <div className="image_box">
-            <img
-              className="image_box-image"
-              src={"http://localhost:3150" + item.thumNail}
-              alt=""
-            />
+      <div className="cards-container">
+        <div className="cards">
+          <div className="item_image-box">
+            <div className="image_box">
+              <img
+                className="image_box-image"
+                src={"http://localhost:3150" + item.thumNail}
+                alt=""
+              />
+            </div>
           </div>
-        </div>
 
-        <div>
-          <div className="details">
-            {item.data[0].icon.iconName !== "not icon" ? (
-              <p className="VNPayIcon">
-                <img
-                  className="VNPayIcon-icon"
-                  src={"http://localhost:3150" + item.data[0].icon.iconPic}
-                />
-                {item.data[0].icon.iconName}
-              </p>
+          <div>
+            <div className="details">
+              {item.data[0].icon.iconName !== "not icon" ? (
+                <p className="VNPayIcon">
+                  <img
+                    className="VNPayIcon-icon"
+                    src={"http://localhost:3150" + item.data[0].icon.iconPic}
+                  />
+                  {item.data[0].icon.iconName}
+                </p>
+              ) : null}
+            </div>
+            <p className="ProductName">{item.productName}</p>
+          </div>
+
+          <div>
+            {typeof item.minPrice === "number" ? (
+              <span className="price">{item.minPrice.toLocaleString()}₫</span>
             ) : null}
+
+            {NewSale ? <span className="NewSale"> -{NewSale}%</span> : null}
+            {isNaN(NewPrice) ? null : (
+              <p className="NewPrice">{NewPrice.toLocaleString()}₫</p>
+            )}
           </div>
-          <p className="ProductName">{item.productName}</p>
+          <p className="design">{item.design}</p>
+          <p className="panel">{item.panel}</p>
+          <p className="cameraProduct">{item.cameraProduct}</p>
         </div>
-
-        <div>
-          {typeof item.minPrice === "number" ? (
-            <span className="price">{item.minPrice.toLocaleString()}₫</span>
-          ) : null}
-
-          {NewSale ? <span className="NewSale"> -{NewSale}%</span> : null}
-          {isNaN(NewPrice) ? null : (
-            <p className="NewPrice">{NewPrice.toLocaleString()}₫</p>
-          )}
-        </div>
-
-        <p className="design">{item.design}</p>
-        <p className="panel">{item.panel}</p>
-        <p className="cameraProduct">{item.cameraProduct}</p>
       </div>
     </div>
   );

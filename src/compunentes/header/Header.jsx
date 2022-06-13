@@ -17,7 +17,7 @@ import {
 } from "@ant-design/icons";
 import axios from "../../axios";
 import { SmokingRoomsOutlined } from "@mui/icons-material";
-const Header = (props) => {
+const Header = () => {
   const navigate = useNavigate();
   const userInfo = useSelector(function (state) {
     return state.user;
@@ -62,7 +62,7 @@ const Header = (props) => {
   }
 
   return (
-    <div className="app">
+    <>
       <header className="Cuong__header">
         <div className="gird">
           <nav className="header_navbar">
@@ -331,8 +331,7 @@ const Header = (props) => {
           </div>
         </div>
       </header>
-      <div className="container"></div>
-    </div>
+    </>
   );
 };
 

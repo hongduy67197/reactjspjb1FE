@@ -8,23 +8,20 @@ let tempAddToSearchBar;
 
 const Search = (props) => {
   const [post, setPost] = useState([]);
-  // const [searchTitle, setSearchTitle] = useState('');
+  const [search, setSearch] = useState("");
   let setTime;
 
   function SearchTitle(e) {
-    console.log(14, e);
     let getInputSearch = document.querySelector(".header_search-input").value;
+    setSearch(getInputSearch);
     tempAddToSearchBar = getInputSearch;
     props.getValue(getInputSearch);
     clearTimeout(setTime);
     setTime = setTimeout(() => {
       axios
-        .get(`http://localhost:3150/user/fillter?productName=${e}`)
+        .get(`/user/fillter?productName=${e}`)
         .then(function (res) {
-          console.log(res);
-          // setPost(res.data.listProductCode);
           let dataSearch = res.data.listProductCode;
-          console.log(25, dataSearch);
           if (dataSearch.length > 0) {
             setPost(dataSearch);
           } else {
@@ -44,13 +41,6 @@ const Search = (props) => {
     }, [50]);
   }
 
-  // props.getValue(122424234234)
-  //   if(tempAddToSearchBar ===0 ){
-  //   document.querySelector('.header_search-input').innerHTML= ''
-  // }else {
-  //   document.querySelector('.header_search-input').innerHTML= tempAddToSearchBar
-
-  // }
   const navigate = useNavigate();
   function RemoveAccents(str) {
     var AccentsMap = [
@@ -93,7 +83,10 @@ const Search = (props) => {
         onChange={(e) => SearchTitle(e.target.value)}
       />
       {/* Search History */}
-      <div className="header_search-history">
+      <div
+        className="header_search-history"
+        style={search ? { display: "inline-block" } : { display: "none" }}
+      >
         <h3 className="header_search-history-heading">
           {/* <div className="header_search-history-heading-display-flex">
             <span className="header_search-history-heading-span">
@@ -122,10 +115,7 @@ const Search = (props) => {
                   movePageToProduct(e);
                 }}
                 className="header_search-history-heading-text-list-item"
-              >
-                {" "}
-                mời bạn nhập ..........
-              </li>
+              ></li>
             )}
 
             {/* <li className="header_search-history-heading-text-list-item">

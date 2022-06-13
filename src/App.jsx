@@ -35,6 +35,7 @@ import Footer from "./compunentes/footer/Footer";
 const App = (props) => {
   const [count1, setCount1] = useState(0);
   const [dataFilter, setDataFilter] = useState([]);
+
   const filterProduct = {
     brand: [
       "Iphone",
@@ -86,6 +87,29 @@ const App = (props) => {
   //---------------------------
   // axious project sellMobilePhone
   useEffect(() => {
+    window.addEventListener("click", function (e) {
+      let listLi = this.document.querySelectorAll(
+        ".header_search-history-heading-text-list-item"
+      );
+      let check = false;
+      for (let i = 0; i < listLi.length; i++) {
+        if (listLi[i] == e.target) {
+          check = true;
+        }
+      }
+      if (!check) {
+        document.querySelector(".header_search-input").value = "";
+      } else {
+      }
+    });
+    // let searchInput = document.querySelector(".header_search-input");
+    // if (searchInput) {
+    //   searchInput.addEventListener("focus", function () {
+    //     document
+    //       .querySelector(".header_search-history")
+    //       .setAttribute("style", "display:inline-block");
+    //   });
+    // }
     axios
       .get(
         "http://localhost:3150/user/fillter?idCategories=628c8b29e8654d960a5c8983"

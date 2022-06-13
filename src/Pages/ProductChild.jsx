@@ -6,13 +6,11 @@ import Footer from "../compunentes/footer/Footer";
 import axios from "axios";
 let countproduct = 1;
 function ProductChild(props) {
-  console.log(9, props);
   let arrayOrigin = props.dataFilter[props.chimuc].products;
   const [dem, setDem] = useState(0);
   const [count, setCount] = useState(countproduct);
   const [countStorage, setCountStorage] = useState(arrayOrigin[0].storage);
   const [priceProduct, setPriceProduct] = useState(arrayOrigin[0].price);
-  console.log(5, props.dataFilter[props.chimuc].products);
   // ram products
   let arrayOriginRam = [
     ...new Set(
@@ -21,7 +19,6 @@ function ProductChild(props) {
       })
     ),
   ];
-  console.log(11, arrayOriginRam);
   // rom products]
   let arrayOriginRom = [
     ...new Set(
@@ -31,7 +28,7 @@ function ProductChild(props) {
     ),
   ];
   const [filterRom, setFilterRom] = useState(arrayOriginRom);
-  console.log(16, arrayOriginRom);
+
   // color product
   let arrayOriginColor = [
     ...new Set(
@@ -41,7 +38,6 @@ function ProductChild(props) {
     ),
   ];
   const [filterColor, setFilterColor] = useState(arrayOriginColor);
-  console.log(21, arrayOriginColor);
   // img product
   let arrayOriginImg = [];
   for (let i = 0; i < arrayOrigin.length; i++) {
@@ -50,7 +46,6 @@ function ProductChild(props) {
     }
   }
   arrayOriginImg = [...new Set(arrayOriginImg)];
-  console.log(117, arrayOriginImg);
 
   const [currentIMG, setCurrentIMG] = useState(arrayOriginImg[0]);
   useEffect(() => {
@@ -63,8 +58,6 @@ function ProductChild(props) {
     for (let i = 0; i < queryRam.length; i++) {
       if (queryRam[i].classList.contains("onButton")) {
         let valueRam = queryRam[i].innerHTML;
-        console.log(116, valueRam);
-        console.log("khong co gi");
         arrayOriginRom = [
           ...new Set(
             arrayOrigin
@@ -87,7 +80,6 @@ function ProductChild(props) {
               })
           ),
         ];
-        console.log(140, arrayOriginRom);
         setFilterRom(arrayOriginRom);
         setFilterColor(arrayOriginColor);
       }
@@ -121,7 +113,6 @@ function ProductChild(props) {
     let valueOfFieldRam = checkExistClass(listProductRam).innerHTML;
     let valueOfFieldRom = checkExistClass(listProductRom).innerHTML;
     let valueOfFieldColor = checkExistClass(listProductColor).innerHTML;
-    console.log(144, valueOfFieldRam, valueOfFieldRom, valueOfFieldColor);
     let destinyPrice = arrayOrigin.filter((val, i) => {
       return (
         val.ram === valueOfFieldRam &&
@@ -129,7 +120,6 @@ function ProductChild(props) {
         val.color === valueOfFieldColor
       );
     });
-    console.log(148, destinyPrice[0].price);
     setPriceProduct(destinyPrice[0].price);
   }
   function changePriceViaRom(e) {
@@ -143,7 +133,6 @@ function ProductChild(props) {
     let valueOfFieldRam = checkExistClass(listProductRam).innerHTML;
     let valueOfFieldRom = checkExistClass(listProductRom).innerHTML;
     let valueOfFieldColor = checkExistClass(listProductColor).innerHTML;
-    console.log(144, valueOfFieldRam, valueOfFieldRom, valueOfFieldColor);
     let destinyPrice = arrayOrigin.filter((val, i) => {
       return (
         val.ram === valueOfFieldRam &&
@@ -151,7 +140,6 @@ function ProductChild(props) {
         val.color === valueOfFieldColor
       );
     });
-    console.log(148, destinyPrice[0].price);
     setPriceProduct(destinyPrice[0].price);
   }
   function changePriceViaColor(e) {
@@ -165,7 +153,6 @@ function ProductChild(props) {
     let valueOfFieldRam = checkExistClass(listProductRam).innerHTML;
     let valueOfFieldRom = checkExistClass(listProductRom).innerHTML;
     let valueOfFieldColor = checkExistClass(listProductColor).innerHTML;
-    console.log(144, valueOfFieldRam, valueOfFieldRom, valueOfFieldColor);
     let destinyPrice = arrayOrigin.filter((val, i) => {
       return (
         val.ram === valueOfFieldRam &&
@@ -173,7 +160,6 @@ function ProductChild(props) {
         val.color === valueOfFieldColor
       );
     });
-    console.log(148, destinyPrice[0].price);
     setPriceProduct(destinyPrice[0].price);
   }
   function changeImageDetail(index) {
@@ -182,9 +168,6 @@ function ProductChild(props) {
   function sendCart() {
     let countProduct =
       document.querySelector(".number-plus-subtract").innerHTML * 1;
-    console.log(153, countProduct * 1);
-    console.log(123, props.dataFilter);
-    console.log(152, props.dataFilter[props.chimuc]);
     let ram = document.getElementsByClassName("onButton")[0].innerHTML;
     let rom = document.getElementsByClassName("onButton")[1].innerHTML;
     let color = document.getElementsByClassName("onButton")[2].innerHTML;
@@ -192,7 +175,6 @@ function ProductChild(props) {
       console.log(161, ram, rom, color);
       return val.color === color && val.ram === ram && val.rom === rom;
     })[0]._id;
-    console.log(163, productCart);
     axios
       .patch("http://localhost:3150/user/carts/", {
         idUser: "628b58c4ea09208e34d8ca5a",
