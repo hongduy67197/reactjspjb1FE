@@ -116,6 +116,19 @@ function Cart(props) {
 
   const handleCancel = () => {
     setIsModalVisible(false);
+
+    // axios
+    //   .put(`http://localhost:3150/admin/product/${productData[getIndex]._id}`, {
+    //     storage: 1,
+    //   })
+    //   .then((data) => {
+    //     console.log(data);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    setQuantity(Quantity + 1);
+    setProduct(...productData);
   };
   //===================================================
   function upQuantity(index, id) {
