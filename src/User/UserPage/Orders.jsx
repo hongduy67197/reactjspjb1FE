@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
+import axios from '../../axios'
 import order from "../../assets/images/ordermenu.png";
 import OrderAll from "./Order/OrderAll";
 import OrderCheck from "./Order/OrderCheck";
@@ -6,8 +7,29 @@ import OrderDaGiao from "./Order/OrderDaGiao";
 import OrderDaHuy from "./Order/OrderDaHuy";
 import OrderDangGiao from "./Order/OrderDangGiao";
 import OrderWaiting from "./Order/OrderWaiting";
+import "./OrderCss.css";
 
-function Orders() {
+function Orders(props) {
+console.log(12,props)
+//  url: '/admin/order/user/:idUer' type: GET tác dụng:  Hiển thị danh sách Order theo idUser
+useEffect(() => {
+  async function oder(){
+    // await axios.get('/admin/order/user/:idUer')
+    await axios.get('/admin/order/user/:idUer')
+    .then(function(data){
+      console.log(19,data)
+    }
+    )
+    .catch((orr)=>{
+      console.log(23,orr)
+    }
+    )
+  }
+oder()
+ 
+}, [])
+
+
   function onofAll() {
     document.querySelector(".orderAll").style.display = "block";
     document.querySelector(".orderCheck").style.display = "none";
