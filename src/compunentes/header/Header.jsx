@@ -58,7 +58,7 @@ const Header = () => {
     navigate(`/product/filter?brand=${e.target.innerHTML}`);
   }
   function moveToCart() {
-    navigate(`/Cart`);
+    navigate("/Cart");
   }
 
   return (
