@@ -93,16 +93,16 @@ const App = (props) => {
       .then(function (res) {
         // setDataDuy(res.data.product)
         // setShow(res.data.product.slice(0, 2))
-        console.log(45, res.data.listData)
-        const ListData= res.data.listProductCode.map((val)=>{
-          val.storage =Math.floor(Math.random() * 100);
-          val.ram=val.ramRange[0];
-          val.rom=val.romRange[0];
-          return val
-        })
-        console.log(4556, ListData)
-        setProductList(ListData)
-        setDataFilter(ListData)
+        // console.log(45, res.data.listData);
+        const ListData = res.data.listProductCode.map((val) => {
+          val.storage = Math.floor(Math.random() * 100);
+          val.ram = val.ramRange[0];
+          val.rom = val.romRange[0];
+          return val;
+        });
+        // console.log(4556, ListData);
+        setProductList(ListData);
+        setDataFilter(ListData);
       })
       .catch((err) => {
         console.log(err);
@@ -215,11 +215,11 @@ const App = (props) => {
         <ContextProvider>
           <Routes>
             {dataFilter.map((val, i) => {
-              console.log(177,`/product/filter?id=${val._id}`)
-              console.log(178,val)
+              // console.log(177, `/product/filter?id=${val._id}`);
+              // console.log(178,val)
               return (
                 <Route
-                  // path={`/product/filter?id=${val._id}`}    
+                  // path={`/product/filter?id=${val._id}`}
                   path={`/product/filter/${RemoveAccents(val.productName)
                     .split(" ")
                     .join("")}`}
