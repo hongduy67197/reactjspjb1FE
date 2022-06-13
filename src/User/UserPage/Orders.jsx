@@ -12,6 +12,7 @@ function Orders(props) {
 
 //  url: '/admin/order/user/:idUer' type: GET tác dụng:  Hiển thị danh sách Order theo idUser
 useEffect(() => {
+  
 //   async function oder(){
 //     // await axios.get('/admin/order/user/:idUer')
 //     await axios.get('/admin/order/user/:idUer')
@@ -25,19 +26,26 @@ useEffect(() => {
 //     )
 //   }
 // oder()
-async function getAllUser (){
-  let token = getUserCookie('user')
-  console.log(147, token);
-  try {
-    const res = await getApi('/user/order/:idOrder')
-    console.log(48,res)
-    console.log(123)
-    // setstate1(res.data)
-  } catch (error) {
-    console.log(168, error);
-  }
-}
-getAllUser()
+getApi('/user/carts')
+.then(function(data){
+  console.log(31,data)
+})
+.catch(function(orr){
+  console.log(34,orr)
+})
+// async function getAllUser (){
+//   let token = getUserCookie('user')
+//   console.log(147, token);
+//   try {
+//     const res = await getApi('/user/carts')
+//     console.log(48,res)
+//     console.log(123)
+//     // setstate1(res.data)
+//   } catch (error) {
+//     console.log(168, error);
+//   }
+// }
+// getAllUser()
 
 }, [])
 

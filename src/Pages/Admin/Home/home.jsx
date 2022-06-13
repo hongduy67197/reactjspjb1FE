@@ -16,7 +16,7 @@ function Home(props) {
   useEffect(() => {
     async function getAllproduct (){
       let token = getUserCookie('user')
-      console.log(147, token);
+      // console.log(147, token);
       try {
         const res = await getApi('/admin/product/list')
         setstate(res.data)
@@ -97,7 +97,7 @@ function Home(props) {
   useEffect(() => {
     async function getAllUser (){
       let token = getUserCookie('user')
-      console.log(147, token);
+      // console.log(147, token);
       try {
         const res = await getApi('/admin/user/')
         setstate1(res.data)
@@ -109,7 +109,7 @@ function Home(props) {
 
     async function getAllorder (){
       let token = getUserCookie('user')
-      console.log(147, token);
+      // console.log(147, token);
       try {
         const res = await getApi('/admin/order/')
         setstate2(res.data)
