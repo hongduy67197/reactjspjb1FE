@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import OrderAll from "./Order/OrderAll";
 import OrderCheck from "./Order/OrderCheck";
 import OrderDaGiao from "./Order/OrderDaGiao";
@@ -7,49 +7,32 @@ import OrderDangGiao from "./Order/OrderDangGiao";
 import OrderWaiting from "./Order/OrderWaiting";
 import "./OrderCss.css";
 import {getApi} from '../../api/config'
-import { getUserCookie} from "../../refreshToken";
+
+
+
+
+
 function Orders(props) {
-
-//  url: '/admin/order/user/:idUer' type: GET tác dụng:  Hiển thị danh sách Order theo idUser
+  const [userCart,setUserCart]=useState([])
+  function upCart(arr){
+    setUserCart(arr)
+  }
+ 
 useEffect(() => {
-  
-//   async function oder(){
-//     // await axios.get('/admin/order/user/:idUer')
-//     await axios.get('/admin/order/user/:idUer')
-//     .then(function(data){
-//       console.log(19,data)
-//     }
-//     )
-//     .catch((orr)=>{
-//       console.log(23,orr)
-//     }
-//     )
-//   }
-// oder()
-getApi('/user/carts')
-.then(function(data){
-  console.log(31,data)
-})
-.catch(function(orr){
+  getApi('/user/orders')
+  .then(function(data){
+    console.log(24, data)
+    console.log(25, data.data[4].listProduct)
+    console.log(26, data.data[4].status)
+    console.log(27, data.data[4].updatedAt)
+
+    const newCart =data.data
+    upCart(newCart)
+  })
+ .catch(function(orr){
   console.log(34,orr)
-})
-// async function getAllUser (){
-//   let token = getUserCookie('user')
-//   console.log(147, token);
-//   try {
-//     const res = await getApi('/user/carts')
-//     console.log(48,res)
-//     console.log(123)
-//     // setstate1(res.data)
-//   } catch (error) {
-//     console.log(168, error);
-//   }
-// }
-// getAllUser()
-
+  })
 }, [])
-
-
   function onofAll() {
     document.querySelector(".orderAll").style.display = "block";
     document.querySelector(".orderCheck").style.display = "none";
@@ -109,22 +92,22 @@ getApi('/user/carts')
         <button onClick={onofDaHuy}>Đã hủy </button>
       </div>
       <div className="orderAll">
-        <OrderAll></OrderAll>
+        <OrderAll userCart={userCart}></OrderAll>
       </div>
       <div className="orderCheck">
-        <OrderCheck></OrderCheck>
+        <OrderCheck userCart={userCart}></OrderCheck>
       </div>
       <div className="orderDaGiao">
-        <OrderDaGiao></OrderDaGiao>
+        <OrderDaGiao userCart={userCart}></OrderDaGiao>
       </div>
       <div className="orderWaiting">
-        <OrderWaiting></OrderWaiting>
+        <OrderWaiting userCart={userCart}></OrderWaiting>
       </div>
       <div className="orderDangGiao">
-        <OrderDangGiao></OrderDangGiao>
+        <OrderDangGiao userCart={userCart}></OrderDangGiao>
       </div>
       <div className="orderDaHuy">
-        <OrderDaHuy></OrderDaHuy>
+        <OrderDaHuy userCart={userCart}></OrderDaHuy>
       </div>
     </div>
   );
