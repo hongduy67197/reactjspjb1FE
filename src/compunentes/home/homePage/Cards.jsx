@@ -23,6 +23,7 @@ const Cards = ({ item, keyId }) => {
   //     item.data = [{ iconName: 'not icon' }];
   //     item.data[0].icon.iconName = 'not icon';
   // }
+
   function RemoveAccents(str) {
     var AccentsMap = [
       "aàảãáạăằẳẵắặâầẩẫấậ",
@@ -49,6 +50,7 @@ const Cards = ({ item, keyId }) => {
   }
   const NewSale = item.Sale.replace("%", "") * 1;
   const NewPrice = item.minPrice - (NewSale * item.minPrice) / 100;
+
   function moveToProduct(Name) {
     navigate(`/product/filter/${Name}`);
   }
@@ -92,14 +94,17 @@ const Cards = ({ item, keyId }) => {
               <span className="price">{item.minPrice.toLocaleString()}₫</span>
             ) : null}
 
-            {NewSale ? <span className="NewSale"> -{NewSale}%</span> : null}
+            {NewPrice ? <span className="NewSale"> -{NewSale}%</span> : null}
+
             {isNaN(NewPrice) ? null : (
               <p className="NewPrice">{NewPrice.toLocaleString()}₫</p>
             )}
           </div>
-          <p className="design">{item.design}</p>
-          <p className="panel">{item.panel}</p>
-          <p className="cameraProduct">{item.cameraProduct}</p>
+          <div className="cards-info">
+            <p className="design">{item.design}</p>
+            <p className="panel">{item.panel}</p>
+            <p className="cameraProduct">{item.cameraProduct}</p>
+          </div>
         </div>
       </div>
     </div>
