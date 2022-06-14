@@ -6,14 +6,18 @@ import voucher from '../../assets/images/voucher.png';
 import userlogo from '../../assets/images/userlogo.jpg';
 import { useSelector } from 'react-redux';
 import './MenuCss.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
 function Menu(props) {
     const navigate = useNavigate();
     const userInfo = useSelector(function (state) {
         return state.user;
     });
     const userName = userInfo.username ? userInfo.username : 'hello';
-    const userAvatar = userInfo.avatar ? userInfo.avatar : userlogo;
+    const imager = userInfo.avatar
+    ? process.env.REACT_APP_CLIENT_URL + userInfo.avatar
+    : userlogo;
+
     function onof_mypage() {
         // navigate()
         props.onof_hoso();
@@ -46,6 +50,8 @@ function Menu(props) {
     }
     // THÔNG BÁO
     function menu_capNhat() {
+    // navigate('/User/UserPage/Comment/CapNhat');
+
         props.onof_capNhat();
     }
     function menu_khuyenMai() {
@@ -76,7 +82,7 @@ function Menu(props) {
     return (
         <div className="menu_">
             <div className="menu_header">
-                <img src={process.env.REACT_APP_CLIENT_URL+userAvatar} alt="img" />
+                <img src={imager}alt="img" />
                 <span>{userName}</span>
                 <button onClick={onof_mypage}>
                     <i className="fa-solid fa-pen"></i>Sửa Hồ Sơ
@@ -100,7 +106,7 @@ function Menu(props) {
                 <img src={comment} alt="" />
                 <button onClick={onof_comment}>Thông Báo</button>
                 <div className="menu_comment_list">
-                    <p onClick={menu_capNhat}>Cập Nhật Đơn Hàng</p>
+                    <p onClick={menu_capNhat}>Cập Nhật Đơn Hàng</p>                   
                     <p onClick={menu_khuyenMai}>Khuyến Mãi</p>
                     <p onClick={menu_vi}>Cập Nhật Ví</p>
                     <p onClick={menu_hoatDong}>Hoạt Động</p>

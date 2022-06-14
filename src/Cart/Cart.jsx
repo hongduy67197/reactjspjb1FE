@@ -10,6 +10,8 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { getApi } from "../api/config";
 import { patchApi } from "../api/config";
+import { putApi } from "../api/config";
+import { deleteApi } from "../api/config";
 function Cart(props) {
   const [productData, setProductData] = useState([]);
   useEffect(() => {
@@ -75,22 +77,21 @@ function Cart(props) {
 
   let showModal = (index, id) => {
     setGetIndex(index);
-    productData[index].storage = productData[index].storage - 1;
-    let storage1 = productData[index].storage;
+    productData[index].quantity = productData[index].quantity - 1;
+    let storage1 = productData[index].quantity;
     console.log(81, storage1);
 
-    axios
-      .put(`http://localhost:3150/admin/product/${id}`, {
-        storage: storage1,
-      })
+    patchApi(`http://localhost:3150/user/carts${id}`, {
+      quantity: storage1,
+    })
       .then((data) => {
         console.log(data);
       })
       .catch((err) => {
         console.log(err);
       });
-    if (productData[index].storage < 1) {
-      productData[index].storage = 1;
+    if (productData[index].quantity < 1) {
+      productData[index].quantity = 1;
 
       setIsModalVisible(true);
     }
@@ -100,10 +101,7 @@ function Cart(props) {
   const handleOk = () => {
     setIsModalVisible(false);
     console.log(103, productData[getIndex]._id);
-    axios
-      .delete(
-        `http://localhost:3150/admin/product/${productData[getIndex]._id}`
-      )
+    patchApi(`http://localhost:3150/admin/product/${productData[getIndex]._id}`)
       .then((data) => {
         console.log(data);
       })
@@ -133,12 +131,12 @@ function Cart(props) {
   };
   //===================================================
   function upQuantity(index, id) {
-    productData[index].storage = productData[index].storage + 1;
-    let storage1 = productData[index].storage;
-    axios
-      .put(`http://localhost:3150/admin/product/${id}`, {
-        storage: storage1,
-      })
+    console.log(136, id);
+    productData[index].quantity = productData[index].quantity + 1;
+    let storage1 = productData[index].quantity;
+    patchApi(`http://localhost:3150/user/carts${id}`, {
+      quantity: storage1,
+    })
       .then((data) => {
         console.log(data);
       })
@@ -151,10 +149,10 @@ function Cart(props) {
   //===============================================
   function deleteProduct(index) {
     patchApi(`http://localhost:3150/user/carts/${index}`, {
-      quantity: 4,
+      quantity: "",
     })
       .then((data) => {
-        console.log(data);
+        console.log(157, data);
       })
       .catch((err) => {
         console.log(err);
@@ -183,7 +181,9 @@ function Cart(props) {
   var total = 0;
   for (let i = 0; i < productData.length; i++) {
     if (productData[i].isChecked === true) {
-      total += Number(productData[i].price) * Number(productData[i].storage);
+      total +=
+        Number(productData[i].idProduct.price) *
+        Number(productData[i].quantity);
       count1++;
     }
   }
