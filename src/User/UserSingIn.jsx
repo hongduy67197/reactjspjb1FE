@@ -7,9 +7,10 @@ import apple from "../assets/images/logoApple.png";
 import Context from "../Conter/Context";
 import { useContext } from "react";
 import logoShopee from "../assets/images/logoShopee2.jpeg";
-
 import axios from "../axios";
 import "./Usersingin.css";
+import showPass2 from "../assets/images/showpass.png";
+import showPass1 from "../assets/images/showpass2.png";
 function UserSingIn(props) {
   const navigate = useNavigate();
   async function userSingin_next() {
@@ -31,7 +32,7 @@ function UserSingIn(props) {
         "Mật khẩu không khớp";
     } else {
       const res = await axios.post("/user/register", { password, email });
-      console.log(res);
+      console.log(26, res);
       document.querySelector(".singIn_ofcanva_modal").style.display = "block";
       document.querySelector(".singin_").style.background = "#EBEBEB";
       document.querySelector(".login_header").style.display = "none";
@@ -87,10 +88,7 @@ function UserSingIn(props) {
     document.querySelector(".singin_mail_text").innerHTML = "";
     document.querySelector(".singin_conter_modal_email").value = "";
   }
-  // reset input password
-  function reset_password() {
-    document.querySelector(".singin_password_text").innerHTML = "";
-  }
+
   // reset input againpass
   function reset_againpass() {
     document.querySelector(".singin_again_text").innerHTML = "";
@@ -145,6 +143,36 @@ function UserSingIn(props) {
     document.querySelector(".singin_phone_conter_password1_text").innerHTML =
       "";
   }
+  // showpass
+  function showPass() {
+    document
+      .querySelector(".singin_conter_modal_password")
+      .setAttribute("type", "text");
+    document.querySelector(".singin_password_show3").style.display = "block";
+    document.querySelector(".singin_password_show1").style.display = "none";
+  }
+  function showPass_() {
+    document
+      .querySelector(".singin_conter_modal_againpassword")
+      .setAttribute("type", "text");
+    document.querySelector(".singin_password_show2").style.display = "none";
+    document.querySelector(".singin_password_show4").style.display = "block";
+  }
+  // not showopass
+  function NoShowPass() {
+    document
+      .querySelector(".singin_conter_modal_password")
+      .setAttribute("type", "password");
+    document.querySelector(".singin_password_show3").style.display = "none";
+    document.querySelector(".singin_password_show1").style.display = "block";
+  }
+  function NoShowPass_() {
+    document
+      .querySelector(".singin_conter_modal_againpassword")
+      .setAttribute("type", "password");
+    document.querySelector(".singin_password_show2").style.display = "block";
+    document.querySelector(".singin_password_show4").style.display = "none";
+  }
   return (
     <>
       <div className="singin_">
@@ -173,13 +201,23 @@ function UserSingIn(props) {
             />
             <span className="singin_mail_text"></span>
             <input
-              onClick={reset_password}
               type="password"
               placeholder="Mật khẩu"
               className="singin_conter_modal_password"
             />
             <span className="singin_password_text"></span>
-
+            <img
+              src={showPass2}
+              alt="img"
+              className="singin_password_show1"
+              onClick={showPass}
+            />
+            <img
+              src={showPass1}
+              alt="img"
+              className="singin_password_show3"
+              onClick={NoShowPass}
+            />
             <input
               onClick={reset_againpass}
               type="password"
@@ -187,6 +225,18 @@ function UserSingIn(props) {
               className="singin_conter_modal_againpassword"
             />
             <span className="singin_again_text"></span>
+            <img
+              src={showPass2}
+              alt="img"
+              className="singin_password_show2"
+              onClick={showPass_}
+            />
+            <img
+              src={showPass1}
+              alt="img"
+              className="singin_password_show4"
+              onClick={NoShowPass_}
+            />
 
             <button
               className="singin_conter_modal_next"
@@ -217,7 +267,11 @@ function UserSingIn(props) {
           </div>
         </div>
         <div className="singIn_ofcanva_modal" style={{ display: "none" }}>
-          <p>Vui lòng check email, xác nhận tài khoản !</p>
+          <p>Đăng ký tài khoản thành công !</p>
+          <p>Đến trang đăng nhập để đăng nhập tài khoản</p>
+          <Link to="/user/UserLogin">
+            <button className="ofcanva_loginRouter">Đăng Nhập</button>
+          </Link>
           <button className="ofcanva_modal_close" onClick={of_ofcanva_modal}>
             Close
           </button>

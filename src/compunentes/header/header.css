@@ -616,6 +616,6 @@
 }
 
 .header-with-search-product-ul li:hover {
-  color: white;
-  opacity: 0.7;
+    color: white;
+    opacity: 0.7;
 }

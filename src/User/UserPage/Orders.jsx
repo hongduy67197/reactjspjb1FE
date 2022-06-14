@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from '../../axios'
-import order from "../../assets/images/ordermenu.png";
 import OrderAll from "./Order/OrderAll";
 import OrderCheck from "./Order/OrderCheck";
 import OrderDaGiao from "./Order/OrderDaGiao";
@@ -8,28 +6,31 @@ import OrderDaHuy from "./Order/OrderDaHuy";
 import OrderDangGiao from "./Order/OrderDangGiao";
 import OrderWaiting from "./Order/OrderWaiting";
 import "./OrderCss.css";
+import {getApi} from '../../api/config'
+
+
+
+
 
 function Orders(props) {
-console.log(12,props)
-//  url: '/admin/order/user/:idUer' type: GET tác dụng:  Hiển thị danh sách Order theo idUser
-useEffect(() => {
-  async function oder(){
-    // await axios.get('/admin/order/user/:idUer')
-    await axios.get('/admin/order/user/:idUer')
-    .then(function(data){
-      console.log(19,data)
-    }
-    )
-    .catch((orr)=>{
-      console.log(23,orr)
-    }
-    )
+  const [userCart,setUserCart]=useState([])
+  function upCart(arr){
+    setUserCart(arr)
   }
-oder()
  
+useEffect(() => {
+  getApi('/user/orders')
+  .then(function(data){
+    // console.log(24, data.data[data.data.length-1])
+    const newCart =data.data[data.data.length-1] ? data.data[data.data.length-1] : []
+   
+    upCart(newCart)
+  })
+ .catch(function(orr){
+  console.log(34,orr)
+  })
 }, [])
-
-
+// console.log(userCart)
   function onofAll() {
     document.querySelector(".orderAll").style.display = "block";
     document.querySelector(".orderCheck").style.display = "none";
@@ -89,22 +90,22 @@ oder()
         <button onClick={onofDaHuy}>Đã hủy </button>
       </div>
       <div className="orderAll">
-        <OrderAll></OrderAll>
+        <OrderAll userCart={userCart}></OrderAll>
       </div>
       <div className="orderCheck">
-        <OrderCheck></OrderCheck>
+        <OrderCheck userCart={userCart}></OrderCheck>
       </div>
       <div className="orderDaGiao">
-        <OrderDaGiao></OrderDaGiao>
+        <OrderDaGiao userCart={userCart}></OrderDaGiao>
       </div>
       <div className="orderWaiting">
-        <OrderWaiting></OrderWaiting>
+        <OrderWaiting userCart={userCart}></OrderWaiting>
       </div>
       <div className="orderDangGiao">
-        <OrderDangGiao></OrderDangGiao>
+        <OrderDangGiao userCart={userCart}></OrderDangGiao>
       </div>
       <div className="orderDaHuy">
-        <OrderDaHuy></OrderDaHuy>
+        <OrderDaHuy userCart={userCart}></OrderDaHuy>
       </div>
     </div>
   );
