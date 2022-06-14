@@ -51,7 +51,10 @@ const Header = (props) => {
     if (variableTemp == "0") {
       navigate(`/product/filter`);
     } else {
-      navigate(`/user/fillter?productName=${variableTemp}`);
+      // navigate(`/user/fillter?productName=${variableTemp}`);
+      navigate(`/product/filter/${variableTemp}`);
+      // navigate(`/product/filter`);
+
     }
 
     // navigate('/product/filter')

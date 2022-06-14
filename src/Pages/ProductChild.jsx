@@ -6,6 +6,7 @@ import Footer from '../compunentes/footer/Footer';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { getApi, patchApi } from '../api/config';
+import { useNavigate } from 'react-router-dom';
 let countproduct = 1;
 function ProductChild(props) {
   let arrayOrigin = props.dataFilter[props.chimuc].products;
@@ -198,6 +199,38 @@ function ProductChild(props) {
       console.log(error)
     }
   }
+  const navigate = useNavigate()
+  async function sendCart2 (){
+    let countProduct = document.querySelector('.number-plus-subtract').innerHTML*1
+    console.log(153,countProduct*1)
+    console.log(123,props.dataFilter )
+    console.log(152,props.dataFilter[props.chimuc])
+    let ram = document.getElementsByClassName('onButton')[0].innerHTML
+    let rom = document.getElementsByClassName('onButton')[1].innerHTML
+    let color = document.getElementsByClassName('onButton')[2].innerHTML
+    let productCart = props.dataFilter[props.chimuc].products.filter((val)=>{
+      console.log(161, ram, rom , color)
+      return val.color ===color && val.ram ===ram && val.rom === rom;
+    })[0]._id
+    console.log(163,productCart)
+    // const userid = useSelector(function(state){return state.user})
+    // console.log(165,userid)
+    try {
+      await patchApi('http://localhost:3150/user/carts/',{
+        quantity: countProduct,
+        idProduct:productCart
+      })
+      // alert('Đã thêm vào giỏ hàng')
+      const res = await getApi("http://localhost:3150/user/carts")
+      console.log(193 ,res)    
+      setQuatityCart(res.data[0].listProduct.length)
+      navigate("/Cart");
+      
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <>
@@ -342,7 +375,9 @@ function ProductChild(props) {
               >
                 thêm vào giỏ hàng
               </button>
-              <button class="buy-now button-add-cart">mua ngay</button>
+              <button  onClick={() => {
+                  sendCart2();
+                }} class="buy-now button-add-cart">mua ngay</button>
             </div>
           </div>
         </div>
