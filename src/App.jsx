@@ -32,9 +32,11 @@ import productList from "./data-tinh/dataold";
 import listProductCode from "./data-tinh/dataNewMix";
 import Header from "./compunentes/header/Header";
 import Footer from "./compunentes/footer/Footer";
+import CapNhat from "./User/UserPage/Comment/CapNhat";
 const App = (props) => {
   const [count1, setCount1] = useState(0);
   const [dataFilter, setDataFilter] = useState([]);
+
   const filterProduct = {
     brand: [
       "Iphone",
@@ -86,6 +88,29 @@ const App = (props) => {
   //---------------------------
   // axious project sellMobilePhone
   useEffect(() => {
+    window.addEventListener("click", function (e) {
+      let listLi = this.document.querySelectorAll(
+        ".header_search-history-heading-text-list-item"
+      );
+      let check = false;
+      for (let i = 0; i < listLi.length; i++) {
+        if (listLi[i] == e.target) {
+          check = true;
+        }
+      }
+      if (!check) {
+        document.querySelector(".header_search-input").value = "";
+      } else {
+      }
+    });
+    // let searchInput = document.querySelector(".header_search-input");
+    // if (searchInput) {
+    //   searchInput.addEventListener("focus", function () {
+    //     document
+    //       .querySelector(".header_search-history")
+    //       .setAttribute("style", "display:inline-block");
+    //   });
+    // }
     axios
       .get(
         "http://localhost:3150/user/fillter?idCategories=628c8b29e8654d960a5c8983"
@@ -93,16 +118,16 @@ const App = (props) => {
       .then(function (res) {
         // setDataDuy(res.data.product)
         // setShow(res.data.product.slice(0, 2))
-        // console.log(45, res.data.listData)
-        const ListData= res.data.listProductCode.map((val)=>{
-          val.storage =Math.floor(Math.random() * 100);
-          val.ram=val.ramRange[0];
-          val.rom=val.romRange[0];
-          return val
-        })
-        // console.log(4556, ListData)
-        setProductList(ListData)
-        setDataFilter(ListData)
+        // console.log(45, res.data.listData);
+        const ListData = res.data.listProductCode.map((val) => {
+          val.storage = Math.floor(Math.random() * 100);
+          val.ram = val.ramRange[0];
+          val.rom = val.romRange[0];
+          return val;
+        });
+        // console.log(4556, ListData);
+        setProductList(ListData);
+        setDataFilter(ListData);
       })
       .catch((err) => {
         console.log(err);
@@ -154,20 +179,6 @@ const App = (props) => {
   const [sign, setsign] = useState(0);
   const [model, setmodel] = useState([]);
   const [listdt, setlistdt] = useState([]);
-  const [user, setUser] = useState([
-    {
-      email: "hoang@gmail.com",
-      password: "123456789",
-    },
-    {
-      email: "hoang@gmail.com",
-      password: "123456789",
-    },
-    {
-      email: "hoang@gmail.com",
-      password: "123456789",
-    },
-  ]);
   const [Payment, SetPayment] = useState([]);
   const [ChangeCart, SetChangeCart] = useState(0);
   function ChangedataCart() {
@@ -183,28 +194,7 @@ const App = (props) => {
   function changesign() {
     setsign(sign + 1);
   }
-  // useEffect(() => {
-  //   axios
-  //     .get("/admin/productcode/list")
-  //     .then(function (response) {
-  //       setdata(response.data);
-  //       setshowdata(response.data);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // }, []);
 
-  // useEffect(() => {
-  //   axios
-  //     .get("/admin/categories")
-  //     .then(function (response) {
-  //       setbrand(response.data);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // }, []);
 
   function changesign() {
     setsign(sign + 1);
@@ -215,11 +205,8 @@ const App = (props) => {
         <ContextProvider>
           <Routes>
             {dataFilter.map((val, i) => {
-              // console.log(177,`/product/filter?id=${val._id}`)
-              // console.log(178,val)
               return (
                 <Route
-                  // path={`/product/filter?id=${val._id}`}    
                   path={`/product/filter/${RemoveAccents(val.productName)
                     .split(" ")
                     .join("")}`}
@@ -476,7 +463,8 @@ const App = (props) => {
               element={<UserSingIn></UserSingIn>}
             />
             <Route path="/User/UserPase" element={<UserPase></UserPase>} />
-            {/* <Route path="/createorder" element={<CreateOrder />}></Route> */}
+            <Route path="/User/UserPage/Comment/CapNhat" element={<CapNhat></CapNhat>} />
+     
           </Routes>
           <ToastContainer />
         </ContextProvider>

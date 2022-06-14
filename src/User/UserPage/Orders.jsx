@@ -21,18 +21,16 @@ function Orders(props) {
 useEffect(() => {
   getApi('/user/orders')
   .then(function(data){
-    console.log(24, data)
-    console.log(25, data.data[4].listProduct)
-    console.log(26, data.data[4].status)
-    console.log(27, data.data[4].updatedAt)
-
-    const newCart =data.data
+    // console.log(24, data.data[data.data.length-1])
+    const newCart =data.data[data.data.length-1] ? data.data[data.data.length-1] : []
+   
     upCart(newCart)
   })
  .catch(function(orr){
   console.log(34,orr)
   })
 }, [])
+// console.log(userCart)
   function onofAll() {
     document.querySelector(".orderAll").style.display = "block";
     document.querySelector(".orderCheck").style.display = "none";

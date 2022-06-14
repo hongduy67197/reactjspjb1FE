@@ -19,7 +19,7 @@ import {
 } from "@ant-design/icons";
 import axios from "../../axios";
 import { SmokingRoomsOutlined } from "@mui/icons-material";
-const Header = (props) => {
+const Header = () => {
   const navigate = useNavigate();
   const userInfo = useSelector(function (state) {
     return state.user;
@@ -59,13 +59,12 @@ const Header = (props) => {
   function navigateToProduct2(e) {
     navigate(`/product/filter?brand=${e.target.innerHTML}`);
   }
-  function moveToCart(){
+  function moveToCart() {
     navigate(`/Cart`);
-
   }
 
   return (
-    <div className="app">
+    <>
       <header className="Cuong__header">
         <div className="gird">
           <nav className="header_navbar">
@@ -312,7 +311,12 @@ const Header = (props) => {
               </div>
             </div>
             <div className="header_cart">
-              <div onClick={()=>{moveToCart()}} className="header_cart-wrap">
+              <div
+                onClick={() => {
+                  moveToCart();
+                }}
+                className="header_cart-wrap"
+              >
                 <ShoppingCartOutlined className="header_cart-icon" />
                 <div className="header_cart-list header_cart-list--no-cart">
                   <img
@@ -329,8 +333,7 @@ const Header = (props) => {
           </div>
         </div>
       </header>
-      <div className="container"></div>
-    </div>
+    </>
   );
 };
 

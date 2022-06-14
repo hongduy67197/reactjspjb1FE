@@ -63,17 +63,17 @@
   font-size: 12px;
   transition-duration: 0.5s;
 }
+
 .cards:hover .image_box-image {
   margin-top: 0;
   padding-bottom: 10px;
-  transition-delay: 0.1s;
   font-size: 12px;
   transition-duration: 0.5s;
 }
 .image_box:hover .image-monopoly {
   margin-top: 0;
   padding-bottom: 10px;
-  transition-delay: 0.1s;
+
   font-size: 12px;
   transition-duration: 0.5s;
 }
@@ -81,7 +81,6 @@
 .image_box:hover .image-warranty {
   margin-top: 0;
   padding-bottom: 10px;
-  transition-delay: 0.1s;
   font-size: 12px;
   transition-duration: 0.5s;
 }
@@ -90,8 +89,12 @@
   color: blue;
 }
 
+.cards-container {
+  border: 1px ridge #f3f3f3;
+}
+
 .cards {
-  border: 1px solid #f3f3f3;
+  background-color: #fff;
   padding: 10px 15px 20px;
   overflow: hidden;
   width: 240px;
@@ -105,7 +108,9 @@
 }
 
 .cards:hover {
-  box-shadow: 0 2px 2px 2px rgba(53, 53, 53, 0.1);
+  -webkit-box-shadow: 0 2px 12px rgb(0 0 0 / 12%);
+  -moz-box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
 }
 
 .ProductName {

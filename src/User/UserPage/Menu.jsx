@@ -6,7 +6,8 @@ import voucher from '../../assets/images/voucher.png';
 import userlogo from '../../assets/images/userlogo.jpg';
 import { useSelector } from 'react-redux';
 import './MenuCss.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
 function Menu(props) {
     const navigate = useNavigate();
     const userInfo = useSelector(function (state) {
@@ -49,6 +50,8 @@ function Menu(props) {
     }
     // THÔNG BÁO
     function menu_capNhat() {
+    // navigate('/User/UserPage/Comment/CapNhat');
+
         props.onof_capNhat();
     }
     function menu_khuyenMai() {
@@ -103,7 +106,7 @@ function Menu(props) {
                 <img src={comment} alt="" />
                 <button onClick={onof_comment}>Thông Báo</button>
                 <div className="menu_comment_list">
-                    <p onClick={menu_capNhat}>Cập Nhật Đơn Hàng</p>
+                    <p onClick={menu_capNhat}>Cập Nhật Đơn Hàng</p>                   
                     <p onClick={menu_khuyenMai}>Khuyến Mãi</p>
                     <p onClick={menu_vi}>Cập Nhật Ví</p>
                     <p onClick={menu_hoatDong}>Hoạt Động</p>
