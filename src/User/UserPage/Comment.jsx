@@ -1,7 +1,14 @@
 import React from "react";
 
+
 function Comment() {
-  return <div></div>;
+  return <div>
+
+
+
+
+
+  </div>;
 }
 
 export default Comment;

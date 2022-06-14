@@ -30,7 +30,6 @@ import "antd/dist/antd.css"; //ở trong nodemodum
 //data
 import productList from "./data-tinh/dataold";
 import listProductCode from "./data-tinh/dataNewMix";
-
 const App = (props) => {
   const [count1, setCount1] = useState(0);
   const [dataFilter, setDataFilter] = useState([]);
@@ -171,20 +170,6 @@ const App = (props) => {
   const [sign, setsign] = useState(0);
   const [model, setmodel] = useState([]);
   const [listdt, setlistdt] = useState([]);
-  const [user, setUser] = useState([
-    {
-      email: "hoang@gmail.com",
-      password: "123456789",
-    },
-    {
-      email: "hoang@gmail.com",
-      password: "123456789",
-    },
-    {
-      email: "hoang@gmail.com",
-      password: "123456789",
-    },
-  ]);
   const [Payment, SetPayment] = useState([]);
   const [ChangeCart, SetChangeCart] = useState(0);
   function ChangedataCart() {
@@ -210,11 +195,8 @@ const App = (props) => {
         <ContextProvider>
           <Routes>
             {dataFilter.map((val, i) => {
-              // console.log(177, `/product/filter?id=${val._id}`);
-              // console.log(178,val)
               return (
                 <Route
-                  // path={`/product/filter?id=${val._id}`}
                   path={`/product/filter/${RemoveAccents(val.productName)
                     .split(" ")
                     .join("")}`}
@@ -470,8 +452,7 @@ const App = (props) => {
               path="/User/UserSingIn"
               element={<UserSingIn></UserSingIn>}
             />
-            {/* <Route path="/User/UserPase" element={<UserPase></UserPase>} />
-            <Route path="/createorder" element={<CreateOrder />}></Route> */}
+            <Route path="/User/UserPase" element={<UserPase></UserPase>} />     
           </Routes>
           <ToastContainer />
         </ContextProvider>

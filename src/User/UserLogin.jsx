@@ -14,7 +14,8 @@ import { useDispatch } from 'react-redux';
 import { Login } from '../redux/action/userAction';
 import '../../src/App.css';
 import { postApi } from '../api/config';
-
+import showPass2 from '../assets/images/showpass.png'
+import showPass1 from '../assets/images/showpass2.png'
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();
     d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
@@ -37,11 +38,9 @@ function UserLogin(props) {
         } else {
             // let res = await axios.post('/user/login', { email, password });
             let res = await postApi('/user/login', { email, password });
-            console.log(40, res.data);
             if (res.data.status === 'undifind password') {
                 alert(res.data.status);
             } else {
-                console.log(42, res.data);
                 setCookie('user', res.data.data.token, 30);
                 const action = Login(res.data.data.userData);
                 dispatch(action);
@@ -69,7 +68,6 @@ function UserLogin(props) {
     }
     // ẩn hiện cảnh báo
     function clean_email() {
-        // document.querySelector(".login_conter_modal_email").value = "";
         document.querySelector('.login_email_text').innerHTML = '';
         document.querySelector('.login_phone_userName_text').innerHTML = '';
 
@@ -96,17 +94,16 @@ function UserLogin(props) {
         } else if (password === '' || testPassword1(password)) {
             document.querySelector('.login_phone_password_text').innerHTML = 'Vui lòng nhập Password';
         } else {
-            console.log(email, password)
-            // let res = await axios.post('/user/login', { email, password });
-            // console.log(res.data);
-            // if (res.data.status === 'undifind password') {
-            //     alert(res.data.status);
-            // } else {
-            //     setCookie('user', res.data.data.token, 30);
-            //     const action = Login(res.data.data.userData);
-            //     dispatch(action);
-            //     navigate('/compunentes/home/Home');
-            // }
+            let res = await axios.post('/user/login', { email, password });
+            console.log(res.data);
+            if (res.data.status === 'undifind password') {
+                alert(res.data.status);
+            } else {
+                setCookie('user', res.data.data.token, 30);
+                const action = Login(res.data.data.userData);
+                dispatch(action);
+                navigate('/compunentes/home/Home');
+            }
         }
     }
        // kiểm tra đầu vào Email
@@ -126,6 +123,18 @@ function UserLogin(props) {
         } else {
             document.querySelector('.login_phone_password_text').innerHTML = '';
         }
+    }
+    // showpass
+    function loginShowPass(){
+        document.querySelector('.login_conter_modal_password').setAttribute("type",'text')
+        document.querySelector('.login_password_show3').style.display = 'block'
+        document.querySelector('.login_password_show1').style.display = 'none'
+    }
+    // no showpass
+    function loginNoShowPass(){
+        document.querySelector('.login_conter_modal_password').setAttribute("type",'password')
+        document.querySelector('.login_password_show3').style.display = 'none'
+        document.querySelector('.login_password_show1').style.display = 'block'
     }
     return (
         <>
@@ -162,6 +171,9 @@ function UserLogin(props) {
                             className="login_conter_modal_password"
                         />
                         <span className="login_password_text"></span>
+                        <img src={showPass2} alt="img" className='login_password_show1' onClick={loginShowPass} />
+                        <img src={showPass1} alt="img" className='login_password_show3' onClick={loginNoShowPass} />
+
                         <button className="login_conter_modal_button" onClick={submit}>
                             ĐĂNG NHẬP
                         </button>
