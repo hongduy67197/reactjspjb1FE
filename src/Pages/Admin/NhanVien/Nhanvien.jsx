@@ -41,7 +41,7 @@ function Nhanvien(props) {
     let diachi = document.querySelector(".address").value;
     let phone = document.querySelector(".sdt").value;
     let role = document.querySelector(".role").value;
-    count();
+
     if ((name !== "" && diachi !== "" && phone !== "", role !== "")) {
       async function getAllorder() {
         let token = getUserCookie("user");
@@ -59,7 +59,7 @@ function Nhanvien(props) {
         }
       }
       getAllorder();
-
+      count();
       setIsModalVisible(false);
     } else {
       document.querySelector(".Not").innerHTML = "Vui lòng không được để trống";
