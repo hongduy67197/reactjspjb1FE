@@ -103,8 +103,19 @@
   position: relative;
 }
 
+.cards-info p {
+  font-size: 14px;
+}
+
 .cards p {
   margin-bottom: 0;
+}
+
+.đ {
+  position: relative;
+  font-size: 13px;
+  top: -4px;
+  left: -3px;
 }
 
 .cards:hover {
@@ -115,7 +126,7 @@
 
 .ProductName {
   font-size: 15px;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .cards:hover .ProductName {

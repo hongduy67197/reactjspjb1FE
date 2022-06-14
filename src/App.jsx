@@ -30,9 +30,6 @@ import "antd/dist/antd.css"; //ở trong nodemodum
 //data
 import productList from "./data-tinh/dataold";
 import listProductCode from "./data-tinh/dataNewMix";
-import Header from "./compunentes/header/Header";
-import Footer from "./compunentes/footer/Footer";
-import CapNhat from "./User/UserPage/Comment/CapNhat";
 const App = (props) => {
   const [count1, setCount1] = useState(0);
   const [dataFilter, setDataFilter] = useState([]);
@@ -88,6 +85,7 @@ const App = (props) => {
   //---------------------------
   // axious project sellMobilePhone
   useEffect(() => {
+    // cái này của cường nhé ae - header_search-input
     window.addEventListener("click", function (e) {
       let listLi = this.document.querySelectorAll(
         ".header_search-history-heading-text-list-item"
@@ -103,14 +101,7 @@ const App = (props) => {
       } else {
       }
     });
-    // let searchInput = document.querySelector(".header_search-input");
-    // if (searchInput) {
-    //   searchInput.addEventListener("focus", function () {
-    //     document
-    //       .querySelector(".header_search-history")
-    //       .setAttribute("style", "display:inline-block");
-    //   });
-    // }
+
     axios
       .get(
         "http://localhost:3150/user/fillter?idCategories=628c8b29e8654d960a5c8983"
@@ -194,7 +185,6 @@ const App = (props) => {
   function changesign() {
     setsign(sign + 1);
   }
-
 
   function changesign() {
     setsign(sign + 1);
@@ -462,9 +452,7 @@ const App = (props) => {
               path="/User/UserSingIn"
               element={<UserSingIn></UserSingIn>}
             />
-            <Route path="/User/UserPase" element={<UserPase></UserPase>} />
-            <Route path="/User/UserPage/Comment/CapNhat" element={<CapNhat></CapNhat>} />
-     
+            <Route path="/User/UserPase" element={<UserPase></UserPase>} />     
           </Routes>
           <ToastContainer />
         </ContextProvider>
