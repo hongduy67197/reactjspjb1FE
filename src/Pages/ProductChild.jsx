@@ -5,7 +5,7 @@ import Header from '../compunentes/header/Header';
 import Footer from '../compunentes/footer/Footer';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import { patchApi } from '../api/config';
+import { getApi, patchApi } from '../api/config';
 let countproduct = 1;
 function ProductChild(props) {
   let arrayOrigin = props.dataFilter[props.chimuc].products;
@@ -167,7 +167,9 @@ function ProductChild(props) {
   function changeImageDetail(index) {
     setCurrentIMG(arrayOriginImg[index]);
   }
-  function sendCart (){
+
+  const [quatityCart, setQuatityCart] = useState(0)
+  async function sendCart (){
     let countProduct = document.querySelector('.number-plus-subtract').innerHTML*1
     console.log(153,countProduct*1)
     console.log(123,props.dataFilter )
@@ -182,22 +184,25 @@ function ProductChild(props) {
     console.log(163,productCart)
     // const userid = useSelector(function(state){return state.user})
     // console.log(165,userid)
-    patchApi('http://localhost:3150/user/carts/',{
-      quantity: countProduct,
-      idProduct:productCart
-    })
-      .then(function (res) {
-        console.log(173, res)
+    try {
+      await patchApi('http://localhost:3150/user/carts/',{
+        quantity: countProduct,
+        idProduct:productCart
       })
-      .then(function (res) {})
-      .catch((err) => {
-        console.log(err);
-      });
+      alert('Đã thêm vào giỏ hàng')
+      const res = await getApi("http://localhost:3150/user/carts")
+      console.log(193 ,res)    
+      setQuatityCart(res.data[0].listProduct.length)
+
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
     <>
-      <Header></Header>
+    {/*  */}
+      <Header quatityCart = {quatityCart}></Header>
       <div class="container">
         <div class="product-detail-wrap">
           <div class="image-wrap">

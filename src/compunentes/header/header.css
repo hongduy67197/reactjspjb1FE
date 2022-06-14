@@ -619,3 +619,9 @@
   color: white;
   opacity: 0.7;
 }
+.count-number-cart {
+  position: absolute;
+  top : 0;
+  right: 0;
+  font-weight: bold;
+}
