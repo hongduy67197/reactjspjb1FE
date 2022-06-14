@@ -148,7 +148,7 @@ function Cart(props) {
   }
   //===============================================
   function deleteProduct(index) {
-    patchApi(`http://localhost:3150/user/carts${index}`, {
+    patchApi(`http://localhost:3150/user/carts/${index}`, {
       quantity: "",
     })
       .then((data) => {
