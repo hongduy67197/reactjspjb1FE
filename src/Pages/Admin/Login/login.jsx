@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import logo from "./logo.jpg";
 import "./styleLogin.css";
 import { useNavigate } from "react-router-dom";
-import axios from "../../../axios";
 import { useDispatch } from "react-redux";
 import { Loginadmin } from "../../../redux/action/userAction";
 import { postApi } from "../../../api/config";
