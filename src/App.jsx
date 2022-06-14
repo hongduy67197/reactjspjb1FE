@@ -105,6 +105,7 @@ const App = (props) => {
     axios
       .get(
         "http://localhost:3150/user/fillter?idCategories=628c8b29e8654d960a5c8983"
+        // "http://localhost:3150//admin/productcode/list"
       )
       .then(function (res) {
         // setDataDuy(res.data.product)

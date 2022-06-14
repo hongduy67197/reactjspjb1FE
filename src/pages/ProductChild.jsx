@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
-import "../App.css";
-import "../asset/css/base-productChild.css";
-import Header from "../compunentes/header/Header";
-import Footer from "../compunentes/footer/Footer";
-import axios from "axios";
+import React, { useEffect, useState } from 'react'
+import '../App.css'
+import '../asset/css/base-productChild.css'
+import Header from '../compunentes/header/Header';
+import Footer from '../compunentes/footer/Footer';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { patchApi } from '../api/config';
 let countproduct = 1;
 function ProductChild(props) {
   let arrayOrigin = props.dataFilter[props.chimuc].products;
@@ -165,21 +167,27 @@ function ProductChild(props) {
   function changeImageDetail(index) {
     setCurrentIMG(arrayOriginImg[index]);
   }
-  function sendCart() {
-    let countProduct =
-      document.querySelector(".number-plus-subtract").innerHTML * 1;
-    let ram = document.getElementsByClassName("onButton")[0].innerHTML;
-    let rom = document.getElementsByClassName("onButton")[1].innerHTML;
-    let color = document.getElementsByClassName("onButton")[2].innerHTML;
-    let productCart = props.dataFilter[props.chimuc].products.filter((val) => {
-      console.log(161, ram, rom, color);
-      return val.color === color && val.ram === ram && val.rom === rom;
-    })[0]._id;
-    axios
-      .patch("http://localhost:3150/user/carts/", {
-        idUser: "628b58c4ea09208e34d8ca5a",
-        quantity: countProduct,
-        idProduct: productCart,
+  function sendCart (){
+    let countProduct = document.querySelector('.number-plus-subtract').innerHTML*1
+    console.log(153,countProduct*1)
+    console.log(123,props.dataFilter )
+    console.log(152,props.dataFilter[props.chimuc])
+    let ram = document.getElementsByClassName('onButton')[0].innerHTML
+    let rom = document.getElementsByClassName('onButton')[1].innerHTML
+    let color = document.getElementsByClassName('onButton')[2].innerHTML
+    let productCart = props.dataFilter[props.chimuc].products.filter((val)=>{
+      console.log(161, ram, rom , color)
+      return val.color ===color && val.ram ===ram && val.rom === rom;
+    })[0]._id
+    console.log(163,productCart)
+    // const userid = useSelector(function(state){return state.user})
+    // console.log(165,userid)
+    patchApi('http://localhost:3150/user/carts/',{
+      quantity: countProduct,
+      idProduct:productCart
+    })
+      .then(function (res) {
+        console.log(173, res)
       })
       .then(function (res) {})
       .catch((err) => {
