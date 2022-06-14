@@ -81,8 +81,9 @@ const Header = (props) => {
   useEffect(() => {
     getApi("http://localhost:3150/user/carts")
       .then((data) => {
-        console.log('heardercart 78', data.data[0].listProduct.length);
-        setCartNumber(data.data[0].listProduct.length)
+        console.log(84, data.data.listCartsUser[0])
+        console.log('heardercart 78', data.data.listCartsUser[0].listProduct.length);
+        setCartNumber(data.data.listCartsUser[0].listProduct.length)
       })
       .catch((err) => {
         console.log(err);
