@@ -5,6 +5,8 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: auto;
+  width: 100%;
+  min-width: 980px;
 }
 
 .installment {
@@ -97,7 +99,6 @@
   background-color: #fff;
   padding: 10px 15px 20px;
   overflow: hidden;
-  width: 240px;
   height: 528px;
   cursor: pointer;
   position: relative;
