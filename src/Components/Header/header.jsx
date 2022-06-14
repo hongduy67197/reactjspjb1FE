@@ -365,9 +365,8 @@ function Header(props) {
             <i className="fa-solid fa-angle-right arrow"></i>
           </div>
           <div className="staff">
-            <p>- Cap quyen</p>
             <p onClick={QLnhanvien} className="qlnv">
-              - Quan ly nhan vien
+              - Quan ly Quyền
             </p>
           </div>
           <div onClick={onselect} className="menu1">
