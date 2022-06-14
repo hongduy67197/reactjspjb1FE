@@ -1,4 +1,6 @@
 import { ToastContainer } from "react-toastify";
+import Cart from "./Cart/Cart";
+import Comment1 from "./Comment/Comment";
 import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Admin/Home/home";
@@ -17,7 +19,7 @@ import UserSingIn from "./User/UserSingIn";
 import UserPase from "./User/UserPase";
 import ContextProvider from "./Conter/ContextProvider";
 import Home1 from "./compunentes/home/Home";
-import CreateOrder from "./Pages/CreateOrder";
+// import CreateOrder from "./Pages/CreateOrder";
 import "./App.css";
 import ProductChild from "./Pages/ProductChild";
 import FilterProduct from "./Pages/FilterProduct";
@@ -90,14 +92,12 @@ const App = (props) => {
       .then(function (res) {
         // setDataDuy(res.data.product)
         // setShow(res.data.product.slice(0, 2))
-        console.log(45, res.data.listData);
         const ListData = res.data.listProductCode.map((val) => {
           val.storage = Math.floor(Math.random() * 100);
           val.ram = val.ramRange[0];
           val.rom = val.romRange[0];
           return val;
         });
-        console.log(4556, ListData);
         setProductList(ListData);
       })
       .catch((err) => {
@@ -150,25 +150,31 @@ const App = (props) => {
   const [sign, setsign] = useState(0);
   const [model, setmodel] = useState([]);
   const [listdt, setlistdt] = useState([]);
-
-  const [id, setId] = useState([]);
-  function addId(newId) {
-    setId(newId);
+  const [user, setUser] = useState([
+    {
+      email: "hoang@gmail.com",
+      password: "123456789",
+    },
+    {
+      email: "hoang@gmail.com",
+      password: "123456789",
+    },
+    {
+      email: "hoang@gmail.com",
+      password: "123456789",
+    },
+  ]);
+  const [Payment, SetPayment] = useState([]);
+  const [ChangeCart, SetChangeCart] = useState(0);
+  function ChangedataCart() {
+    SetChangeCart(ChangeCart + 1);
   }
-  const [Categories, setCategories] = useState([]);
-
-  // useEffect(() => {
-  //   axios
-  //     .get("/admin/categories")
-  //     .then(function (res) {
-  //       console.log(44, res.data);
-  //       setCategories(res.data);
-  //       // console.log(res.data);
-  //     })
-  //     .catch(function (err) {
-  //       console.log(99, err);
-  //     });
-  // }, []);
+  function Change(newData) {
+    SetPayment(newData);
+  }
+  function Store(newData) {
+    setCount(newData);
+  }
 
   function changesign() {
     setsign(sign + 1);
@@ -416,6 +422,17 @@ const App = (props) => {
               element={<Hoanthanh name={name} />}
             />
             <Route path="/admin/Danggiao" element={<Danggiao name={name} />} />
+            <Route
+              path="/Cart"
+              element={
+                <Cart
+                  ChangedataCart={ChangedataCart}
+                  Store={Store}
+                  Change={Change}
+                />
+              }
+            />
+            <Route path="/Comment" element={<Comment1 />} />
             <Route path="/admin/Khohang" element={<Khohang name={name} />} />
             <Route path="/admin/Spmoi" element={<Spmoi name={name} />} />
             <Route
@@ -439,7 +456,7 @@ const App = (props) => {
               element={<UserSingIn></UserSingIn>}
             />
             <Route path="/User/UserPase" element={<UserPase></UserPase>} />
-            <Route path="/createorder" element={<CreateOrder />}></Route>
+            {/* <Route path="/createorder" element={<CreateOrder />}></Route> */}
           </Routes>
           <ToastContainer />
         </ContextProvider>

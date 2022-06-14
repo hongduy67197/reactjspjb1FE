@@ -1,5 +1,10 @@
-import React from "react";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { Table } from "antd";
+import { Modal } from "bootstrap";
+import React, { useEffect, useState } from "react";
+import axios from "../../../axios";
 import Header from "../../../Components/Header/header";
+import Footer from "../../../compunentes/footer/Footer";
 
 function Hoanthanh() {
   const [state, setstate] = useState([]);
@@ -214,6 +219,7 @@ function Hoanthanh() {
           className="done"
         />
       </div>
+      <Footer />
     </div>
   );
 }

@@ -14,11 +14,15 @@
   --star-gold-color: #ffce3d;
   --header-sort-bar-height: 46px;
 }
-*{
-    box-sizing: inherit;/*  inherits : mang ý nghĩa kế thừa từ box chứa nó có thuộc tính box-sizing; */
+* {
+  box-sizing: inherit; /*  inherits : mang ý nghĩa kế thừa từ box chứa nó có thuộc tính box-sizing; */
 }
-
-
+/* html {
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+} */
 /* responsive */
 .grid__row {
   display: flex; /* Nhũng thẻ nằm trong cái class này sẽ cùng nằm trên 1 hàng ngang */

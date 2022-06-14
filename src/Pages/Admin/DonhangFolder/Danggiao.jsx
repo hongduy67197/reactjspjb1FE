@@ -1,4 +1,8 @@
-import React from "react";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { Table } from "antd";
+import { Modal } from "bootstrap";
+import React, { useEffect, useState } from "react";
+import axios from "../../../axios";
 import Header from "../../../Components/Header/header";
 import "./Donhang.css";
 
@@ -12,7 +16,6 @@ function Danggiao() {
 
   const database = [];
   const data = [];
-
   useEffect(() => {
     axios
       .get("http://localhost:3150/admin/order/")
