@@ -167,7 +167,6 @@ function Danggiao() {
   const showModal = (id) => {
     console.log(168, id);
     setIsIndex(id);
-    count();
     setIsModalVisible(true);
     data.map(function (val) {
       if (val._id == id) {
@@ -176,6 +175,7 @@ function Danggiao() {
         document.querySelector(".status").value = val.status;
       }
     });
+    count();
   };
 
   const handleOk = () => {

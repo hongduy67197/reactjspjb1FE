@@ -23,7 +23,6 @@ function Nhanvien(props) {
 
   const showModal = (id) => {
     setIsIndex(id);
-    count();
     setIsModalVisible(true);
     data.map(function (val) {
       if (val._id == id) {
@@ -34,6 +33,7 @@ function Nhanvien(props) {
         document.querySelector(".role").value = val.role;
       }
     });
+    count();
   };
 
   const handleOk = () => {

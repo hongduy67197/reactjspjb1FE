@@ -161,7 +161,6 @@ function Hoanthanh() {
 
   const showModal = (id) => {
     setIsIndex(id);
-    count();
     setIsModalVisible(true);
     data.map(function (val) {
       if (val._id == id) {
@@ -170,6 +169,7 @@ function Hoanthanh() {
         document.querySelector(".status").value = val.status;
       }
     });
+    count();
   };
 
   const handleOk = () => {
