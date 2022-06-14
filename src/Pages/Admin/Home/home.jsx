@@ -79,7 +79,7 @@ function Home(props) {
   const database = [];
   if (state.length > 0) {
     var so = state.length - 10;
-    for (let i = 0; i < state.length; i++) {
+    for (let i = so; i < state.length; i++) {
       database.push({
         productName: state[i].idProductCode.productName,
         productPic: state[i].productPic,
