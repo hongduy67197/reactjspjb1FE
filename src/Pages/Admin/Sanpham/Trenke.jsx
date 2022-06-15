@@ -1,10 +1,10 @@
-import Header from "../../../Components/Header/header";
-import "./product.css";
-import { render } from "@testing-library/react";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { getApi } from "../../../api/config";
+import Header from '../../../Components/Header/header';
+import './product.css';
+import { render } from '@testing-library/react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { getUserCookie, refreshToken } from "../../../refreshToken";
+import {getApi} from '../../../api/config'
 
 var vitri;
 var maso;

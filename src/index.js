@@ -10,13 +10,13 @@ import indexReducer from "./redux/reducers/indexReducer";
 import "bootstrap/dist/css/bootstrap.min.css";
 const store = createStore(indexReducer);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-    // <React.StrictMode>
-    <Provider store={store}>
-        <App />
-    </Provider>,
-    // </React.StrictMode>,
+  // <React.StrictMode>
+  <Provider store={store}>
+    <App />
+  </Provider>
+  // {/* </React.StrictMode> */}
 );
 
 reportWebVitals();

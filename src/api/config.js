@@ -41,6 +41,7 @@ export const postApi = async (path, data , config={}) => {
 export const putApi = async (path, data , config={}) => {
     let token = getUserCookie('user')
     config.headers = {Authorization: token}
+    console.log(44, config);
     try {
         let res = await axios.put(path, data, config)
         if(res.data.message === 'jwt expired'){

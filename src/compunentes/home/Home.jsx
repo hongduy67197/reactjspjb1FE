@@ -5,7 +5,7 @@ import SeeMore from "../home/homePage/SeeMore";
 import ListProduct from "./homePage/ListProduct";
 import Advertisement from "../../advertisement/Advertisement";
 
-import { WechatOutlined } from "@ant-design/icons";
+import { WechatOutlined, ThunderboltFilled } from "@ant-design/icons";
 import Header from "../header/Header";
 import Slider from "../slider/Slider";
 import Footer from "../footer/Footer";
@@ -40,14 +40,34 @@ const Home = () => {
   return (
     <>
       <Header></Header>
-      <div className="home-container">
-        <Slider Slides={Slides} />
-        <Categories categories={categories} />
-        <div className="home_status_container-chat">
-          <i title="New messages" id="unread-msg-number">
-            <WechatOutlined className="WechatOutlined" />
-          </i>
-          <a href="#" id="status-icon"></a>
+      <div className="home">
+        <div className="home-container">
+          <Slider Slides={Slides} />
+          <Categories categories={categories} />
+          <div className=" box-checkbox">
+            <p className="total-product">{productCode.length} Điện Thoại</p>
+            <span className="product-item-flash">
+              <ThunderboltFilled className="item-flash-icon" />
+              GIAO SIÊU NHANH
+            </span>
+          </div>
+          <div className="home_status_container-chat">
+            <i title="New messages" id="unread-msg-number">
+              <WechatOutlined className="WechatOutlined" />
+            </i>
+            <a href="#" id="status-icon"></a>
+          </div>
+          <div className="home-container-filter">
+            <div className="home-page-product">
+              <ListProduct
+                productCode={productCode}
+                numberShow={numberShow}
+                NewIcon={NewIcon}
+              />
+            </div>
+          </div>
+          <SeeMore seeMore={seeMore} />
+          <Advertisement />
         </div>
         <div className="home-container-filter">
           <div className="home-page-product">

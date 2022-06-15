@@ -14,7 +14,7 @@ const Advertisement = () => {
     <div className="Advertisement">
       <div className="Advertisement-container">
         <div className="container-product">
-          <div className="title">
+          <div className="title-BHX">
             <span className="dotnew">
               <span className="animation"></span>
             </span>

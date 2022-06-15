@@ -29,11 +29,10 @@ import "antd/dist/antd.css"; //ở trong nodemodum
 //data
 import productList from "./data-tinh/dataold";
 import listProductCode from "./data-tinh/dataNewMix";
-import Header from "./compunentes/header/Header";
-import Footer from "./compunentes/footer/Footer";
 const App = (props) => {
   const [count1, setCount1] = useState(0);
   const [dataFilter, setDataFilter] = useState([]);
+
   const filterProduct = {
     brand: [
       "Iphone",
@@ -85,20 +84,41 @@ const App = (props) => {
   //---------------------------
   // axious project sellMobilePhone
   useEffect(() => {
+    // cái này của cường nhé ae - header_search-input
+    window.addEventListener("click", function (e) {
+      let listLi = this.document.querySelectorAll(
+        ".header_search-history-heading-text-list-item"
+      );
+      let check = false;
+      for (let i = 0; i < listLi.length; i++) {
+        if (listLi[i] == e.target) {
+          check = true;
+        }
+      }
+      if (!check) {
+        document.querySelector(".header_search-input").value = "";
+      } else {
+      }
+    });
+
     axios
       .get(
         "http://localhost:3150/user/fillter?idCategories=628c8b29e8654d960a5c8983"
+        // "http://localhost:3150//admin/productcode/list"
       )
       .then(function (res) {
         // setDataDuy(res.data.product)
         // setShow(res.data.product.slice(0, 2))
+        // console.log(45, res.data.listData);
         const ListData = res.data.listProductCode.map((val) => {
           val.storage = Math.floor(Math.random() * 100);
           val.ram = val.ramRange[0];
           val.rom = val.romRange[0];
           return val;
         });
+        // console.log(4556, ListData);
         setProductList(ListData);
+        setDataFilter(ListData);
       })
       .catch((err) => {
         console.log(err);
@@ -150,20 +170,6 @@ const App = (props) => {
   const [sign, setsign] = useState(0);
   const [model, setmodel] = useState([]);
   const [listdt, setlistdt] = useState([]);
-  const [user, setUser] = useState([
-    {
-      email: "hoang@gmail.com",
-      password: "123456789",
-    },
-    {
-      email: "hoang@gmail.com",
-      password: "123456789",
-    },
-    {
-      email: "hoang@gmail.com",
-      password: "123456789",
-    },
-  ]);
   const [Payment, SetPayment] = useState([]);
   const [ChangeCart, SetChangeCart] = useState(0);
   function ChangedataCart() {
@@ -179,28 +185,6 @@ const App = (props) => {
   function changesign() {
     setsign(sign + 1);
   }
-  // useEffect(() => {
-  //   axios
-  //     .get("/admin/productcode/list")
-  //     .then(function (response) {
-  //       setdata(response.data);
-  //       setshowdata(response.data);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // }, []);
-
-  // useEffect(() => {
-  //   axios
-  //     .get("/admin/categories")
-  //     .then(function (response) {
-  //       setbrand(response.data);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // }, []);
 
   function changesign() {
     setsign(sign + 1);
@@ -433,6 +417,17 @@ const App = (props) => {
               }
             />
             <Route path="/Comment" element={<Comment1 />} />
+            <Route
+              path="/admin/Chinhsua"
+              element={
+                <Cart
+                  ChangedataCart={ChangedataCart}
+                  Store={Store}
+                  Change={Change}
+                />
+              }
+            />
+            <Route path="/Comment" element={<Comment1 />} />
             <Route path="/admin/Khohang" element={<Khohang name={name} />} />
             <Route path="/admin/Spmoi" element={<Spmoi name={name} />} />
             <Route
@@ -455,8 +450,7 @@ const App = (props) => {
               path="/User/UserSingIn"
               element={<UserSingIn></UserSingIn>}
             />
-            <Route path="/User/UserPase" element={<UserPase></UserPase>} />
-            {/* <Route path="/createorder" element={<CreateOrder />}></Route> */}
+            <Route path="/User/UserPase" element={<UserPase></UserPase>} />     
           </Routes>
           <ToastContainer />
         </ContextProvider>

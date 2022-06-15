@@ -4,7 +4,10 @@ import { Modal } from "bootstrap";
 import React, { useEffect, useState } from "react";
 import axios from "../../../axios";
 import Header from "../../../Components/Header/header";
-import "./Donhang.css";
+import "./styledanggiao.css";
+// import axios from "axios";
+import {getApi,deleteApi, putApi} from '../../../api/config'
+import { getUserCookie, refreshToken } from "../../../refreshToken";
 
 function Danggiao() {
   const [state, setstate] = useState([]);
@@ -17,32 +20,46 @@ function Danggiao() {
   const database = [];
   const data = [];
   useEffect(() => {
-    axios
-      .get("http://localhost:3150/admin/order/")
-      .then(function (res) {
-        setstate(res.data);
-      })
-      .catch(function (fail) {
-        console.log(fail);
-      });
+    async function getAllorder (){
+      let token = getUserCookie('user')
+      // console.log(147, token);
+      try {
+        const res = await getApi('/admin/order/')
+        setstate(res.data)
+      } catch (error) {
+        console.log(168, error);
+      }
+    }
+    getAllorder()
+ 
 
-    axios
-      .get(`http://localhost:3150/admin/user/`)
-      .then(function (res) {
-        setstate1(res.data);
-      })
-      .catch(function (fail) {
-        console.log(fail);
-      });
+    async function getAllUser (){
+      let token = getUserCookie('user')
+      // console.log(147, token);
+      try {
+        const res = await getApi('/admin/user/')
+        setstate1(res.data)
+      } catch (error) {
+        console.log(168, error);
+      }
+    }
+    getAllUser()
 
-    axios
-      .get("http://localhost:3150/admin/product/list")
-      .then(function (res) {
-        setstate2(res.data);
-      })
-      .catch(function (fail) {
-        console.log(fail);
-      });
+   
+
+    async function getAllproduct (){
+      let token = getUserCookie('user')
+      // console.log(147, token);
+      try {
+        const res = await getApi('/admin/product/list')
+        setstate2(res.data)
+      } catch (error) {
+        console.log(168, error);
+      }
+    }
+    getAllproduct()
+
+  
   }, [isin]);
 
   for (let i = 0; i < state1.length; i++) {
@@ -152,6 +169,7 @@ function Danggiao() {
     setIsin(isin + 1);
   }
   const showModal = (id) => {
+    console.log(173, id);
     setIsIndex(id);
     count();
     setIsModalVisible(true);
@@ -165,24 +183,30 @@ function Danggiao() {
   };
 
   const handleOk = () => {
+    console.log(187);
     let phone = document.querySelector(".phone").value;
     let diachi = document.querySelector(".address").value;
     let status = document.querySelector(".status").value;
 
     if (phone !== "" && diachi !== "" && status !== "") {
-      axios
-        .put(`http://localhost:3150/admin/user/${isindex}`, {
-          address: diachi,
-          phone: phone,
-          status: status,
-        })
-        .then(function (res) {
-          // setChangedata(1);
-        })
-        .catch(function (fail) {
-          console.log(fail);
-        });
+      console.log(phone,diachi,status)
+      async function getAllorder1 (){
+        let token = getUserCookie('user')
+        console.log(147, isindex);
+        try {
+          const res = await putApi(`/admin/order/${isindex}`,{
+            address: diachi,
+            phone: phone,
+            status: status,
+          })
+          console.log(226,res)
+        } catch (error) {
+          console.log(168, error);
+        }
+      }
+      getAllorder1()
       count();
+      
       setIsModalVisible(false);
     } else {
       document.querySelector(".Not").innerHTML = "Vui lòng không được để trống";
@@ -199,14 +223,17 @@ function Danggiao() {
       okText: "Yes",
       okType: "danger",
       onOk: () => {
-        axios
-          .delete(`http://localhost:3150/admin/order/${id}`)
-          .then(function (res) {
-            // setChangedata(1);
-          })
-          .catch(function (err) {
-            console.log(err);
-          });
+        async function getAllorder (){
+          let token = getUserCookie('user')
+          console.log(147, token);
+          try {
+            const res = await deleteApi(`/admin/order/${id}`)
+          } catch (error) {
+            console.log(168, error);
+          }
+        }
+        getAllorder()
+        
         count();
       },
     });
@@ -215,15 +242,20 @@ function Danggiao() {
   return (
     <div>
       <Header></Header>
-      <div className="table_giao">
-        <h1 className="title_giao">Đơn hàng đang giao</h1>
-        <Table
-          columns={columns}
-          dataSource={data}
-          onChange={onChange}
-          className="doing"
-        />
+      <div className="danggiao">
+        <h1>Dang giao</h1>
       </div>
+      <Modal
+        title="Quản lý đơn hàng"
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <input type="text" placeholder="phone" className="phone" />
+        <input type="text" placeholder="Địa chỉ" className="address" />
+        <input type="text" placeholder="status" className="status" />
+        <p className="Not"></p>
+      </Modal>
     </div>
   );
 }

@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import "../categories/categories.css";
 
 const Categories = (item) => {
-  // onClick={()=>{}}
   let navigate = useNavigate();
   function movePage(val) {
     navigate(`/product/filter?brand=${val}`);

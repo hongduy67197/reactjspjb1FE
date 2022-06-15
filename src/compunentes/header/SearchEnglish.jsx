@@ -6,7 +6,7 @@ import { ConsoleSqlOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 let tempAddToSearchBar;
 
-const Search = (props) => {
+const SearchEnglish = (props) => {
   const [post, setPost] = useState([]);
   const [search, setSearch] = useState("");
   let setTime;
@@ -27,8 +27,7 @@ const Search = (props) => {
           } else {
             setPost([
               {
-                productName:
-                  "không có kết quả nào phù hợp, mời bạn nhập lại !!!",
+                productName: "There are no matches, please re-enter !!!",
               },
             ]);
           }
@@ -73,21 +72,13 @@ const Search = (props) => {
     navigate(`/product/filter/${linktoProductModify}`);
   }
 
-  // props.getValue(122424234234)
-  //   if(tempAddToSearchBar ===0 ){
-  //   document.querySelector('.header_search-input').innerHTML= ''
-  // }else {
-  //   document.querySelector('.header_search-input').innerHTML= tempAddToSearchBar
-
-  // }
-
   return (
     <div className="header_search-input-wrap">
       <input
         type="text"
         name=""
-        className="header_search-input"
-        placeholder="Nhập vào từ khóa muốn tìm kiếm ... "
+        className="header_search-input header_search-input "
+        placeholder="Search for your keywords ... "
         onChange={(e) => SearchTitle(e.target.value)}
       />
       {/* Search History */}
@@ -126,4 +117,4 @@ const Search = (props) => {
   );
 };
 
-export default Search;
+export default SearchEnglish;
