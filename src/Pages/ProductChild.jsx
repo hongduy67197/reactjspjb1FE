@@ -192,8 +192,9 @@ function ProductChild(props) {
       })
       alert('Đã thêm vào giỏ hàng')
       const res = await getApi("http://localhost:3150/user/carts")
-      console.log(193 ,res)    
-      setQuatityCart(res.data[0].listProduct.length)
+      console.log(193 ,res.data.listCartsUser[0].listProduct.length)    
+      // console.log(194 ,res)    
+      setQuatityCart(res.data.listCartsUser[0].listProduct.length)
 
     } catch (error) {
       console.log(error)
@@ -225,8 +226,6 @@ function ProductChild(props) {
       console.log(193 ,res)    
       setQuatityCart(res.data[0].listProduct.length)
       navigate("/Cart");
-      
-
     } catch (error) {
       console.log(error)
     }
