@@ -87,21 +87,21 @@ const App = (props) => {
   // axious project sellMobilePhone
   useEffect(() => {
     // cái này của cường nhé ae - header_search-input
-    // window.addEventListener("click", function (e) {
-    //   let listLi = this.document.querySelectorAll(
-    //     ".header_search-history-heading-text-list-item"
-    //   );
-    //   let check = false;
-    //   for (let i = 0; i < listLi.length; i++) {
-    //     if (listLi[i] == e.target) {
-    //       check = true;
-    //     }
-    //   }
-    //   if (!check) {
-    //     document.querySelector(".header_search-input").value = "";
-    //   } else {
-    //   }
-    // });
+    window.addEventListener("click", function (e) {
+      let listLi = this.document.querySelectorAll(
+        ".header_search-history-heading-text-list-item"
+      );
+      let check = false;
+      for (let i = 0; i < listLi.length; i++) {
+        if (listLi[i] == e.target) {
+          check = true;
+        }
+      }
+      if (!check) {
+        document.querySelector(".header_search-input").value = "";
+      } else {
+      }
+    });
 
     axios
       .get(
