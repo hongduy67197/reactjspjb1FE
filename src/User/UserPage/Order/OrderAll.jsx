@@ -3,8 +3,15 @@ import order from "../../../assets/images/ordermenu.png";
 
 function OrderAll(props) {
   const allOrder = props.userCart.listProduct
+  const dataOrder = props.userOder
+  // console.log(7,dataOrder)
+  // console.log(8,dataOrder.idProduct.productType)
   // console.log(16,allOrder)
   // console.log(17, props.userCart.status)
+  // console.log(36,data.data[0].listProduct[0].idProduct.productType)
+  // console.log(36,data.data[0].listProduct[0].idProduct.price)
+  // console.log(36,data.data[0].listProduct[0].idProduct.color)
+  // console.log(37,data.data[0].listProduct[0].quantity)
   return (
     <div>
       <div className="order_seach">

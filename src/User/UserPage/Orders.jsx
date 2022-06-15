@@ -9,28 +9,37 @@ import "./OrderCss.css";
 import {getApi} from '../../api/config'
 
 
-
-
-
 function Orders(props) {
   const [userCart,setUserCart]=useState([])
   function upCart(arr){
     setUserCart(arr)
   }
- 
+ const [userOder, setUserOder]=useState([])
 useEffect(() => {
   getApi('/user/orders')
   .then(function(data){
-    // console.log(24, data.data[data.data.length-1])
     const newCart =data.data[data.data.length-1] ? data.data[data.data.length-1] : []
-   
+    console.log('newCart',newCart)
     upCart(newCart)
   })
  .catch(function(orr){
   console.log(34,orr)
   })
 }, [])
-// console.log(userCart)
+
+useEffect(() => {
+  getApi("http://localhost:3150/user/carts")
+    .then((data) => {
+      const dataOder =  data.data[0].listProduct[0]
+      setUserOder(dataOder)
+      console.log('dataOder',dataOder)
+      // localStorage.setItem('userCart',JSON.stringify(dataOder))
+    })
+    .catch((err) => {
+      console.log(43,err);
+    });
+}, []);
+
   function onofAll() {
     document.querySelector(".orderAll").style.display = "block";
     document.querySelector(".orderCheck").style.display = "none";
@@ -90,10 +99,10 @@ useEffect(() => {
         <button onClick={onofDaHuy}>Đã hủy </button>
       </div>
       <div className="orderAll">
-        <OrderAll userCart={userCart}></OrderAll>
+        <OrderAll userCart={userCart} userOder={userOder}></OrderAll>
       </div>
       <div className="orderCheck">
-        <OrderCheck userCart={userCart}></OrderCheck>
+        <OrderCheck userCart={userCart} userOder={userOder}></OrderCheck>
       </div>
       <div className="orderDaGiao">
         <OrderDaGiao userCart={userCart}></OrderDaGiao>

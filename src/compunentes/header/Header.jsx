@@ -33,6 +33,7 @@ const Header = () => {
   async function logout() {
     await axios.post("/user/logOut");
     window.localStorage.removeItem("user");
+    window.localStorage.removeItem("userCart");
     window.location.reload(true);
     navigate("/");
   }
