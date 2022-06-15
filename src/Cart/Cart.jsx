@@ -352,7 +352,10 @@ function Cart(props) {
                       ).toLocaleString()}
                       <sup>đ</sup>
                     </div>
-                    <div className="info-list-thaotac">
+                    <div
+                      style={{ cursor: "pointer" }}
+                      className="info-list-thaotac"
+                    >
                       <p
                         className="text-xoa"
                         onClick={() =>
