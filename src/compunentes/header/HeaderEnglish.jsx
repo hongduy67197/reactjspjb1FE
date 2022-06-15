@@ -324,8 +324,8 @@ const HeaderEnglish = () => {
               }}
               className="header_cart-wrap"
             >
-              <ShoppingCartOutlined className="header_cart-icon" />
-              <div className="header_cart-list header_cart-list--no-cart">
+              {/* <ShoppingCartOutlined className="header_cart-icon" /> */}
+              {/* <div className="header_cart-list header_cart-list--no-cart">
                 <img
                   src="https://komo.com.vn/uploads/img/cart.png"
                   alt=""
@@ -334,7 +334,7 @@ const HeaderEnglish = () => {
                 <p className="header_cart-list--no-cart-messenger">
                   Chưa Có Sản Phẩm
                 </p>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
