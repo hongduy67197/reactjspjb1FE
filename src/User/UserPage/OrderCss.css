@@ -42,6 +42,10 @@
 .order_seach input:focus {
   border-color: #eaeaea;
 } /* CONTER */
+.order_conter_img{
+  width: 40px;
+  margin: 5px;
+}
 .order_conter {
   width: 100%;
   padding: 0 8px;

@@ -1,7 +1,8 @@
 import React from "react";
 import order from "../../../assets/images/ordermenu.png";
 
-function OrderCheck() {
+function OrderCheck(props) {
+  //  console.log(5,props)
   return (
     <div>
       <div className="order_conter">
