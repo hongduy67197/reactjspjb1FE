@@ -17,7 +17,7 @@ function UserSingIn(props) {
         const email = document.querySelector('.singin_conter_modal_email').value;
         const password = document.querySelector('.singin_conter_modal_password').value;
         const againpassword = document.querySelector('.singin_conter_modal_againpassword').value;
-        if (email === '' || testEmail(email)) {
+        if (email === '' ) {
             document.querySelector('.singin_mail_text').innerHTML = 'Vui lòng nhập email';
         } else if (password === '' || testPassword(password)) {
             document.querySelector('.singin_password_text').innerHTML = 'Vui lòng nhập mật khẩu';
@@ -25,12 +25,16 @@ function UserSingIn(props) {
             document.querySelector('.singin_again_text').innerHTML = 'Mật khẩu không khớp';
         } else {
             const res = await axios.post('/user/register', { password, email });
-            console.log(26,res);
-            document.querySelector('.singIn_ofcanva_modal').style.display = 'block';
-            document.querySelector('.singin_').style.background = '#EBEBEB';
-            document.querySelector('.login_header').style.display = 'none';
-            document.querySelector('.login_conter').style.display = 'none';
-            document.querySelector('.singin_conter_modal').style.display = 'none';
+            setTimeout(function(){
+                navigate('/user/UserLogin')
+            },1000)
+          
+            // console.log(26,res);
+            // document.querySelector('.singIn_ofcanva_modal').style.display = 'block';
+            // document.querySelector('.singin_').style.background = '#EBEBEB';
+            // document.querySelector('.login_header').style.display = 'none';
+            // document.querySelector('.login_conter').style.display = 'none';
+            // document.querySelector('.singin_conter_modal').style.display = 'none';
         }
     }
     // kiểm tra đầu vào password laptop
