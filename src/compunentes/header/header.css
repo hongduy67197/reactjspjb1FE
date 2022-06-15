@@ -606,6 +606,7 @@
   padding-top: 3px;
   margin: 0;
   padding-left: 0;
+  display: none;
 }
 
 .header-with-search-product-ul li {
@@ -616,8 +617,8 @@
 }
 
 .header-with-search-product-ul li:hover {
-    color: white;
-    opacity: 0.7;
+  color: white;
+  opacity: 0.7;
 }
 .count-number-cart {
   position: absolute;

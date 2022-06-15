@@ -51,7 +51,19 @@ const Header = (props) => {
     if (variableTemp == "0") {
       navigate(`/product/filter`);
     } else {
-      navigate(`/user/fillter?productName=${variableTemp}`);
+      // navigate(`/user/fillter?productName=${variableTemp}`);
+      
+      axios.get('http://localhost:3150/user/fillter?productName=i')
+      .then(function(res){
+        console.log(58,res)
+
+      })
+      .catch((error)=>{
+        console.log(error)
+      })
+      navigate(`/product/filter/search?${variableTemp}`);
+      // navigate(`/product/filter`);
+
     }
 
     // navigate('/product/filter')
@@ -78,8 +90,9 @@ const Header = (props) => {
   useEffect(() => {
     getApi("http://localhost:3150/user/carts")
       .then((data) => {
-        console.log('heardercart 78', data.data[0].listProduct.length);
-        setCartNumber(data.data[0].listProduct.length)
+        console.log(84, data.data.listCartsUser[0])
+        console.log('heardercart 78', data.data.listCartsUser[0].listProduct.length);
+        setCartNumber(data.data.listCartsUser[0].listProduct.length)
       })
       .catch((err) => {
         console.log(err);
