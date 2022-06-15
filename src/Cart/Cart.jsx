@@ -20,7 +20,10 @@ function Cart(props) {
         console.log(17, data.data.listCartsUser[0].listProduct);
         console.log(18, data);
         setProductData(data.data.listCartsUser[0].listProduct);
-        console.log(21, data.data.listCartsUser[0].listProduct[0].idProduct.productPic[0]);
+        console.log(
+          21,
+          data.data.listCartsUser[0].listProduct[0].idProduct.productPic[0]
+        );
       })
       .catch((err) => {
         console.log(err);
@@ -61,17 +64,16 @@ function Cart(props) {
       for (let i = 0; i < productData.length; i++) {
         if (productData[i].isChecked === true) {
           newArr.push(productData[i]);
-          console.log(64,productData[i])
+          console.log(64, productData[i]);
           // setDataNew(...productData[i])
         }
-        
       }
-      postApi('http://localhost:3150/user/order',{
-                 address: 'Thanh Xuân - Hà Nội', 
-                 total: 14000000, 
-                 phone: '0936666666',
-          })
-          Navigate("/user/order")
+      postApi("http://localhost:3150/user/order", {
+        address: "Thanh Xuân - Hà Nội",
+        total: 14000000,
+        phone: "0936666666",
+      });
+      Navigate("/user/order");
       console.log(555, newArr);
       setDataNew(newArr);
       var filterObj = productData.filter((item) => item.isChecked !== true);
