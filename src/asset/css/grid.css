@@ -230,6 +230,7 @@
   .m-12 {
     flex: 0 0 100%;
     max-width: 100%;
+    margin: auto;
   }
 
   .m-o-1 {

@@ -287,7 +287,9 @@ function FilterProduct(props) {
       .querySelector(".select-input__label")
       .classList.add("select-input__label-change-color");
     myJSON.sort((a, b) => {
-      return a.price - b.price;
+      let saleNumbera = (1 - a.Sale.replace('%','')*0.01)
+      let saleNumberb = (1 - b.Sale.replace('%','')*0.01)
+      return a.price*saleNumbera - b.price*saleNumberb;
     });
     setStateSort([...myJSON]);
     setCount(trig + 1);
@@ -300,7 +302,10 @@ function FilterProduct(props) {
       .querySelector(".select-input__label")
       .classList.add("select-input__label-change-color");
     myJSON.sort((a, b) => {
-      return b.price - a.price;
+      let saleNumberav = (1 - a.Sale.replace('%','')*0.01)
+      let saleNumberbv = (1 - b.Sale.replace('%','')*0.01)
+      
+      return b.price*saleNumberav - a.price*saleNumberbv;
     });
     setStateSort([...myJSON]);
     setCount(trig + 1);
@@ -324,7 +329,7 @@ function FilterProduct(props) {
                 <ul className="category-list">
                   {/* category-item--active */}
                   <li className="category-item ">
-                    <div className="category-item_link">
+                    <div  className="category-item_link">
                       <div className="title-filter">BRAND</div>
                       <div className="category-item-detail-wrap">
                         {props.filter.brand.map((val, i) => {
@@ -345,7 +350,7 @@ function FilterProduct(props) {
                     </div>
                   </li>
                   <li className="category-item ">
-                    <div className="category-item_link">
+                    <div style ={{display: "none"}} className="category-item_link">
                       <div className="title-filter">GIÁ</div>
                       <div className="category-item-detail-wrap">
                         {props.filter.price.map((val, i) => {
