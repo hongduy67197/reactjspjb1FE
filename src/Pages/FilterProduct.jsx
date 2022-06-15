@@ -174,10 +174,10 @@ function FilterProduct(props) {
       a4.shift();
       let a7 = a4[0].split(",");
       let a5 = { [a6]: a7 };
-    
+
       return a5;
     });
-    console.log(180,a3)
+    console.log(180, a3)
   }
   //----------------------------------------------------function xử lí lọc qua chỉ mục truyền vào các chỉ mục lọc và lọc trong data những dữ liệu thỏa mãn dk
   function handleDataFollowFiler(data, ref) {
@@ -287,9 +287,9 @@ function FilterProduct(props) {
       .querySelector(".select-input__label")
       .classList.add("select-input__label-change-color");
     myJSON.sort((a, b) => {
-      let saleNumbera = (1 - a.Sale.replace('%','')*0.01)
-      let saleNumberb = (1 - b.Sale.replace('%','')*0.01)
-      return a.price*saleNumbera - b.price*saleNumberb;
+      let saleNumbera = (1 - a.Sale.replace('%', '') * 0.01)
+      let saleNumberb = (1 - b.Sale.replace('%', '') * 0.01)
+      return a.price * saleNumbera - b.price * saleNumberb;
     });
     setStateSort([...myJSON]);
     setCount(trig + 1);
@@ -302,10 +302,10 @@ function FilterProduct(props) {
       .querySelector(".select-input__label")
       .classList.add("select-input__label-change-color");
     myJSON.sort((a, b) => {
-      let saleNumberav = (1 - a.Sale.replace('%','')*0.01)
-      let saleNumberbv = (1 - b.Sale.replace('%','')*0.01)
-      
-      return b.price*saleNumberav - a.price*saleNumberbv;
+      let saleNumberav = (1 - a.Sale.replace('%', '') * 0.01)
+      let saleNumberbv = (1 - b.Sale.replace('%', '') * 0.01)
+
+      return b.price * saleNumberav - a.price * saleNumberbv;
     });
     setStateSort([...myJSON]);
     setCount(trig + 1);
@@ -329,7 +329,7 @@ function FilterProduct(props) {
                 <ul className="category-list">
                   {/* category-item--active */}
                   <li className="category-item ">
-                    <div  className="category-item_link">
+                    <div className="category-item_link">
                       <div className="title-filter">BRAND</div>
                       <div className="category-item-detail-wrap">
                         {props.filter.brand.map((val, i) => {
@@ -350,7 +350,7 @@ function FilterProduct(props) {
                     </div>
                   </li>
                   <li className="category-item ">
-                    <div style ={{display: "none"}} className="category-item_link">
+                    <div style={{ display: "none" }} className="category-item_link">
                       <div className="title-filter">GIÁ</div>
                       <div className="category-item-detail-wrap">
                         {props.filter.price.map((val, i) => {
