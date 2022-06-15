@@ -10,8 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { getApi, postApi } from "../api/config";
 import { patchApi } from "../api/config";
-import { putApi } from "../api/config";
-import { deleteApi } from "../api/config";
+let cartsQuantity;
 function Cart(props) {
   const [productData, setProductData] = useState([]);
   useEffect(() => {
@@ -58,14 +57,10 @@ function Cart(props) {
         duration: 3,
       });
     } else {
-      // Navigate("/PriceProduct")
-      // var filterObj = productData.filter(item => item.isChecked !== true);
-      // setProduct(filterObj)
       for (let i = 0; i < productData.length; i++) {
         if (productData[i].isChecked === true) {
           newArr.push(productData[i]);
           console.log(64, productData[i]);
-          // setDataNew(...productData[i])
         }
       }
       postApi("http://localhost:3150/user/order", {
@@ -91,33 +86,50 @@ function Cart(props) {
     let quantity = productData[index].quantity;
     console.log(81, quantity);
 
-    patchApi(`http://localhost:3150/user/carts/${id}`, {
-      quantity: quantity,
+    patchApi(`http://localhost:3150/user/carts`, {
+      idProduct: id,
+      quantity: -1,
     })
       .then((data) => {
         console.log(data);
+        setQuantity(Quantity + 1);
+        setProduct(...productData);
       })
       .catch((err) => {
         console.log(err);
       });
-    if (productData[index].quantity < 1) {
+    if (productData[index].quantity == 0) {
       productData[index].quantity = 1;
 
       setIsModalVisible(true);
+      // patchApi(`http://localhost:3150/user/carts`, {
+      //   idProduct: id,
+      //   quantity: 1,
+      // })
+      //   .then((data) => {
+      //     console.log(data);
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
     }
-    setQuantity(Quantity + 1);
-    setProduct(...productData);
+    // setQuantity(Quantity + 1);
+    // setProduct(...productData);
   };
+
   const handleOk = () => {
     setIsModalVisible(false);
     console.log(103, productData[getIndex]._id);
-    patchApi(`http://localhost:3150/user/carts/${productData[getIndex]._id}`)
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // patchApi(`http://localhost:3150/user/carts`, {
+    //   idProduct: productData[getIndex].idProduct._id,
+    //   // quantity: "",
+    // })
+    //   .then((data) => {
+    //     console.log(data);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
     productData.splice(getIndex, 1);
     setQuantity(Quantity + 1);
     setProduct(...productData);
@@ -125,27 +137,10 @@ function Cart(props) {
 
   const handleCancel = () => {
     setIsModalVisible(false);
-
-    // axios
-    //   .put(`http://localhost:3150/admin/product/${productData[getIndex]._id}`, {
-    //     storage: 1,
-    //   })
-    //   .then((data) => {
-    //     console.log(data);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-    setQuantity(Quantity + 1);
-    setProduct(...productData);
-  };
-  //===================================================
-  function upQuantity(index, id) {
-    console.log(136, id);
-    productData[index].quantity = productData[index].quantity + 1;
-    let quantity = productData[index].quantity;
-    patchApi(`http://localhost:3150/user/carts/${id}`, {
-      quantity: quantity,
+    console.log(productData[getIndex].idProduct._id);
+    patchApi(`http://localhost:3150/user/carts`, {
+      idProduct: productData[getIndex].idProduct._id,
+      quantity: 1,
     })
       .then((data) => {
         console.log(data);
@@ -155,21 +150,49 @@ function Cart(props) {
       });
     setQuantity(Quantity + 1);
     setProduct(...productData);
-  }
-  //===============================================
-  function deleteProduct(index) {
-    patchApi(`http://localhost:3150/user/carts/${index}`, {
-      quantity: 0,
+  };
+  //===================================================
+  function upQuantity(index, id) {
+    console.log(136, id);
+    productData[index].quantity = productData[index].quantity + 1;
+    cartsQuantity = productData[index].quantity + 1;
+    patchApi(`http://localhost:3150/user/carts`, {
+      idProduct: id,
+      quantity: 1,
     })
       .then((data) => {
-        console.log(157, data);
+        setQuantity(Quantity + 1);
+        setProduct(...productData);
+        console.log(data);
       })
       .catch((err) => {
         console.log(err);
       });
-    // productData.splice(id, 1);
-    setQuantity(Quantity + 1);
-    setProduct(...productData);
+    // setQuantity(Quantity + 1);
+    // setProduct(...productData);
+  }
+  //===============================================
+  async function deleteProduct(index, id) {
+    try {
+      console.log(123, id);
+      let a = await patchApi(`http://localhost:3150/user/carts`, {
+        idProduct: id,
+        // quantity: ,
+      });
+      console.log(163, a);
+      setQuantity(Quantity + 1);
+      setProduct(...productData);
+    } catch (error) {
+      console.log(error);
+    }
+    console.log(172, index);
+    productData.splice(index, 1);
+    // if (productData.length === 0) {
+    //   document.querySelector(".container_body").style.display = "none";
+    // } else {
+    //   document.querySelector(".giohang_trong").style.display = "none";
+    //   document.querySelector(".container_body").style.display = "block";
+    // }
   }
   //=============================================================
   function handleChange(e) {
@@ -281,7 +304,7 @@ function Cart(props) {
                       <Button
                         type="primary"
                         onClick={() => {
-                          showModal(index, value._id);
+                          showModal(index, value.idProduct._id);
                         }}
                       >
                         -
@@ -309,7 +332,7 @@ function Cart(props) {
 
                     <div className="quantity-result">{value.quantity}</div>
                     <button
-                      onClick={() => upQuantity(index, value._id)}
+                      onClick={() => upQuantity(index, value.idProduct._id)}
                       className="btn1"
                     >
                       +
@@ -324,7 +347,7 @@ function Cart(props) {
                   <div className="info-list-thaotac">
                     <p
                       className="text-xoa"
-                      onClick={() => deleteProduct(value._id)}
+                      onClick={() => deleteProduct(index, value.idProduct._id)}
                     >
                       Xóa
                     </p>
