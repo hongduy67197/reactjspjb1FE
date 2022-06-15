@@ -73,6 +73,14 @@ const Search = (props) => {
     navigate(`/product/filter/${linktoProductModify}`);
   }
 
+  // props.getValue(122424234234)
+  //   if(tempAddToSearchBar ===0 ){
+  //   document.querySelector('.header_search-input').innerHTML= ''
+  // }else {
+  //   document.querySelector('.header_search-input').innerHTML= tempAddToSearchBar
+
+  // }
+
   return (
     <div className="header_search-input-wrap">
       <input

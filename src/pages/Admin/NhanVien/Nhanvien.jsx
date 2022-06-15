@@ -5,7 +5,7 @@ import { Modal } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useEffect } from "react";
-import { getApi, deleteApi, putApi } from "../../../api/config";
+import { getApi, putApi, deleteApi } from "../../../api/config";
 import "./style.css";
 import { getUserCookie, refreshToken } from "../../../refreshToken";
 

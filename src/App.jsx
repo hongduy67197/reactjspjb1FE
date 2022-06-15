@@ -7,7 +7,7 @@ import Home from "./Pages/Admin/Home/home";
 import Xacnhan from "./Pages/Admin/DonhangFolder/Xacnhan";
 import Hoanthanh from "./Pages/Admin/DonhangFolder/Hoanthanh";
 import Danggiao from "./Pages/Admin/DonhangFolder/Danggiao";
-import Chinhsua from "./Pages/Admin/Sanpham/Chinhsua";
+// import Chinhsua from "./Pages/Admin/Sanpham/Chinhsua";
 import Khohang from "./Pages/Admin/Sanpham/Khohang";
 import Spmoi from "./Pages/Admin/Sanpham/Spmoi";
 import Trenke from "./Pages/Admin/Sanpham/Trenke";
@@ -30,10 +30,11 @@ import "antd/dist/antd.css"; //ở trong nodemodum
 //data
 import productList from "./data-tinh/dataold";
 import listProductCode from "./data-tinh/dataNewMix";
+import CreateOrder from "./Pages/CreateOrder";
+import SearchProduct from "./Pages/SearchProduct";
 const App = (props) => {
   const [count1, setCount1] = useState(0);
   const [dataFilter, setDataFilter] = useState([]);
-
   const filterProduct = {
     brand: [
       "Iphone",
@@ -44,6 +45,7 @@ const App = (props) => {
       "Realmi",
       "Nokia",
       "Itel",
+      "masstel",
       "Masstel",
     ],
     price: [
@@ -86,21 +88,21 @@ const App = (props) => {
   // axious project sellMobilePhone
   useEffect(() => {
     // cái này của cường nhé ae - header_search-input
-    window.addEventListener("click", function (e) {
-      let listLi = this.document.querySelectorAll(
-        ".header_search-history-heading-text-list-item"
-      );
-      let check = false;
-      for (let i = 0; i < listLi.length; i++) {
-        if (listLi[i] == e.target) {
-          check = true;
-        }
-      }
-      if (!check) {
-        document.querySelector(".header_search-input").value = "";
-      } else {
-      }
-    });
+    // window.addEventListener("click", function (e) {
+    //   let listLi = this.document.querySelectorAll(
+    //     ".header_search-history-heading-text-list-item"
+    //   );
+    //   let check = false;
+    //   for (let i = 0; i < listLi.length; i++) {
+    //     if (listLi[i] == e.target) {
+    //       check = true;
+    //     }
+    //   }
+    //   if (!check) {
+    //     document.querySelector(".header_search-input").value = "";
+    //   } else {
+    //   }
+    // });
 
     axios
       .get(
@@ -212,6 +214,27 @@ const App = (props) => {
                 />
               );
             })}
+
+
+            //route search
+                <Route
+                  path={`/product/filter/search`}
+                  element={
+                    <SearchProduct
+                      referent="brand"
+                      dataval={ProductList}
+                      chimuc= {'Iphone'}
+                      filter={filter}
+                      data={dataProduct}
+                      changeFilterData={changeFilterData}
+                    />
+                  }
+                />
+            
+
+
+
+
             {/* route for filter brand */}
             {filterProduct.brand.map((val, i) => {
               return (
@@ -421,16 +444,14 @@ const App = (props) => {
             <Route
               path="/admin/Chinhsua"
               element={
-                <Chinhsua
-                  model={model}
-                  setmodel={setmodel}
-                  changesign={changesign}
-                  listdt={listdt}
-                  setlistdt={setlistdt}
-                  name={name}
+                <Cart
+                  ChangedataCart={ChangedataCart}
+                  Store={Store}
+                  Change={Change}
                 />
               }
             />
+            <Route path="/Comment" element={<Comment1 />} />
             <Route path="/admin/Khohang" element={<Khohang name={name} />} />
             <Route path="/admin/Spmoi" element={<Spmoi name={name} />} />
             <Route
@@ -454,6 +475,7 @@ const App = (props) => {
               element={<UserSingIn></UserSingIn>}
             />
             <Route path="/User/UserPase" element={<UserPase></UserPase>} />     
+            <Route path="/User/order" element={<CreateOrder/>} />     
           </Routes>
           <ToastContainer />
         </ContextProvider>
