@@ -7,7 +7,6 @@ import Home from "./Pages/Admin/Home/home";
 import Xacnhan from "./Pages/Admin/DonhangFolder/Xacnhan";
 import Hoanthanh from "./Pages/Admin/DonhangFolder/Hoanthanh";
 import Danggiao from "./Pages/Admin/DonhangFolder/Danggiao";
-// import Chinhsua from "./Pages/Admin/Sanpham/Chinhsua";
 import Khohang from "./Pages/Admin/Sanpham/Khohang";
 import Spmoi from "./Pages/Admin/Sanpham/Spmoi";
 import Trenke from "./Pages/Admin/Sanpham/Trenke";
@@ -35,6 +34,7 @@ import SearchProduct from "./Pages/SearchProduct";
 const App = (props) => {
   const [count1, setCount1] = useState(0);
   const [dataFilter, setDataFilter] = useState([]);
+
   const filterProduct = {
     brand: [
       "Iphone",
@@ -45,7 +45,6 @@ const App = (props) => {
       "Realmi",
       "Nokia",
       "Itel",
-      "masstel",
       "Masstel",
     ],
     price: [
@@ -88,21 +87,21 @@ const App = (props) => {
   // axious project sellMobilePhone
   useEffect(() => {
     // cái này của cường nhé ae - header_search-input
-    // window.addEventListener("click", function (e) {
-    //   let listLi = this.document.querySelectorAll(
-    //     ".header_search-history-heading-text-list-item"
-    //   );
-    //   let check = false;
-    //   for (let i = 0; i < listLi.length; i++) {
-    //     if (listLi[i] == e.target) {
-    //       check = true;
-    //     }
-    //   }
-    //   if (!check) {
-    //     document.querySelector(".header_search-input").value = "";
-    //   } else {
-    //   }
-    // });
+    window.addEventListener("click", function (e) {
+      let listLi = this.document.querySelectorAll(
+        ".header_search-history-heading-text-list-item"
+      );
+      let check = false;
+      for (let i = 0; i < listLi.length; i++) {
+        if (listLi[i] == e.target) {
+          check = true;
+        }
+      }
+      if (!check) {
+        document.querySelector(".header_search-input").value = "";
+      } else {
+      }
+    });
 
     axios
       .get(
