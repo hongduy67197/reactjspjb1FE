@@ -18,7 +18,11 @@ function Cart(props) {
   useEffect(() => {
     getApi("http://localhost:3150/user/carts")
       .then((data) => {
-        console.log(17, data.data.listCartsUser[0].listProduct);
+        console.log(
+          17,
+          data.data.listCartsUser[0].listProduct[0].idProduct.idProductCode
+            .productName
+        );
         console.log(18, data);
         setProductData(data.data.listCartsUser[0].listProduct);
         console.log(
@@ -285,7 +289,7 @@ function Cart(props) {
                       />
                     </div>
                     <div className="nameProduct">
-                      {/* {value.idProductCode.productName}{" "} */}
+                      {value.idProduct.idProductCode.productName}
                     </div>
                     <div className="phanloai-product">
                       <div className="ramrom-phanloai">
@@ -319,8 +323,11 @@ function Cart(props) {
                           onCancel={handleCancel}
                         >
                           <p>
-                            {/* {productData[getIndex].idProductCode.productName}( */}
-                            {productData[getIndex].idProduct.color}
+                            {
+                              productData[getIndex].idProduct.idProductCode
+                                .productName
+                            }
+                            ({productData[getIndex].idProduct.color})
                           </p>
                           <div className="img-list">
                             <img
