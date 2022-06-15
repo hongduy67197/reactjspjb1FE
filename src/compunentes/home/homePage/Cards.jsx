@@ -17,6 +17,7 @@ const Cards = ({ item, keyId }) => {
     item.data[0].icon.iconName = "not icon";
   }
 
+  console.log(item.data[0].icon.iconPic);
   // test
   // if (Object.keys(item.data[0]).length > 1) {
   //     item.data = [{ iconName: 'not icon' }];
