@@ -29,11 +29,12 @@ function ResetPassword() {
         console.log(password, newPassword, newPassword1);
         if(password===''){
             document.querySelector('.right_password_last_text').innerHTML='Vui lòng nhập password'
-        }else if(newPassword===''||tesNewPasseord(newPassword)){
+        }else if(newPassword===''){
             document.querySelector('.right_password_new_text').innerHTML='Vui lòng nhập password mới'
+        }else if(newPassword.length <8){
+            document.querySelector('.right_password_new_text').innerHTML='NewPassword phải chứa ít nhất 8 ký tự'
         }else if(newPassword !==newPassword1 ){
             document.querySelector('.right_password_newagain_text').innerHTML='password mới không khớp'
-
         }else{
             try {
                 let a = await axios.patch("http://localhost:3150/user/changePassword", {
