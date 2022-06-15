@@ -7,7 +7,7 @@
 package-lock.json
 # testing
 /coverage
-react-axios-example
+# react-axios-example
 
 # production
 /build
