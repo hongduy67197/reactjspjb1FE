@@ -5,7 +5,7 @@ import { Modal } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useEffect } from "react";
-import { getApi } from "../../../api/config";
+import { getApi, putApi, deleteApi } from "../../../api/config";
 import "./style.css";
 import { getUserCookie, refreshToken } from "../../../refreshToken";
 
@@ -13,7 +13,7 @@ function Nhanvien(props) {
   const [state, setstate] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isindex, setIsIndex] = useState(0);
-  const [isin, setIsin] = useState(0);
+  const [isin, setIsin] = useState(1);
 
   const data = [];
 
@@ -23,7 +23,6 @@ function Nhanvien(props) {
 
   const showModal = (id) => {
     setIsIndex(id);
-    count();
     setIsModalVisible(true);
     data.map(function (val) {
       if (val._id == id) {
@@ -34,32 +33,32 @@ function Nhanvien(props) {
         document.querySelector(".role").value = val.role;
       }
     });
+    count();
   };
 
   const handleOk = () => {
-    // const from12 = document.querySelector(".fromlist");
-    // const fromData12 = new FormData(from12);
-    // let anh = document.querySelector(".avatar").value;
     let name = document.querySelector(".name").value;
     let diachi = document.querySelector(".address").value;
     let phone = document.querySelector(".sdt").value;
     let role = document.querySelector(".role").value;
 
     if ((name !== "" && diachi !== "" && phone !== "", role !== "")) {
-      axios
-        .put(`http://localhost:3150/admin/user/${isindex}`, {
-          // avatar: anh,
-          username: name,
-          address: diachi,
-          phone: phone,
-          role: role,
-        })
-        .then(function (res) {
-          // setChangedata(1);
-        })
-        .catch(function (fail) {
-          console.log(fail);
-        });
+      async function getAllorder() {
+        let token = getUserCookie("user");
+        console.log(147, token);
+        try {
+          const res = await putApi(`/admin/user/${isindex}`, {
+            username: name,
+            address: diachi,
+            phone: phone,
+            role: role,
+          });
+          console.log(226, res);
+        } catch (error) {
+          console.log(168, error);
+        }
+      }
+      getAllorder();
       count();
       setIsModalVisible(false);
     } else {
@@ -165,14 +164,16 @@ function Nhanvien(props) {
       okText: "Yes",
       okType: "danger",
       onOk: () => {
-        axios
-          .delete(`http://localhost:3150/admin/user/${id}`)
-          .then(function (res) {
-            // setChangedata(1);
-          })
-          .catch(function (err) {
-            console.log(err);
-          });
+        async function getAllorder() {
+          let token = getUserCookie("user");
+          console.log(147, token);
+          try {
+            const res = await deleteApi(`/admin/user/${id}`);
+          } catch (error) {
+            console.log(168, error);
+          }
+        }
+        getAllorder();
         count();
       },
     });
