@@ -54,7 +54,7 @@ function Cart(props) {
   var newArr = [];
   const [dataNew, setDataNew] = useState([]);
 
-  const openNotification = async (placement) => {
+  const openNotification = (placement) => {
     if (total === 0) {
       notification.info({
         message: `Thông báo !!!`,
@@ -70,7 +70,7 @@ function Cart(props) {
           console.log(64, productData[i]);
         }
       }
-      await postApi("http://localhost:3150/user/order", {
+      postApi("http://localhost:3150/user/order", {
         address: "Thanh Xuân - Hà Nội",
         total: 14000000,
         phone: "0936666666",
