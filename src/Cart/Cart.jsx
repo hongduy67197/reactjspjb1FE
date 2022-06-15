@@ -5,10 +5,10 @@ import { useState, useEffect } from "react";
 import { Modal, Button } from "antd";
 import "antd/dist/antd.css";
 import { notification, Space } from "antd";
-import { WarningOutlined } from "@ant-design/icons";
+import { ConsoleSqlOutlined, WarningOutlined } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { getApi } from "../api/config";
+import { getApi, postApi } from "../api/config";
 import { patchApi } from "../api/config";
 import { putApi } from "../api/config";
 import { deleteApi } from "../api/config";
@@ -45,6 +45,7 @@ function Cart(props) {
 
   var newArr = [];
   const [dataNew, setDataNew] = useState([]);
+
   const openNotification = (placement) => {
     if (total === 0) {
       notification.info({
@@ -61,9 +62,17 @@ function Cart(props) {
       for (let i = 0; i < productData.length; i++) {
         if (productData[i].isChecked === true) {
           newArr.push(productData[i]);
+          console.log(64,productData[i])
           // setDataNew(...productData[i])
         }
+        
       }
+      postApi('http://localhost:3150/user/order',{
+                 address: 'Thanh Xuân - Hà Nội', 
+                 total: 14000000, 
+                 phone: '0936666666',
+          })
+          Navigate("/user/order")
       console.log(555, newArr);
       setDataNew(newArr);
       var filterObj = productData.filter((item) => item.isChecked !== true);

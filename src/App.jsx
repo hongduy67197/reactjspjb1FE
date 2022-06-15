@@ -30,6 +30,8 @@ import "antd/dist/antd.css"; //ở trong nodemodum
 //data
 import productList from "./data-tinh/dataold";
 import listProductCode from "./data-tinh/dataNewMix";
+import CreateOrder from "./Pages/CreateOrder";
+import SearchProduct from "./Pages/SearchProduct";
 const App = (props) => {
   const [count1, setCount1] = useState(0);
   const [dataFilter, setDataFilter] = useState([]);
@@ -86,21 +88,21 @@ const App = (props) => {
   // axious project sellMobilePhone
   useEffect(() => {
     // cái này của cường nhé ae - header_search-input
-    window.addEventListener("click", function (e) {
-      let listLi = this.document.querySelectorAll(
-        ".header_search-history-heading-text-list-item"
-      );
-      let check = false;
-      for (let i = 0; i < listLi.length; i++) {
-        if (listLi[i] == e.target) {
-          check = true;
-        }
-      }
-      if (!check) {
-        document.querySelector(".header_search-input").value = "";
-      } else {
-      }
-    });
+    // window.addEventListener("click", function (e) {
+    //   let listLi = this.document.querySelectorAll(
+    //     ".header_search-history-heading-text-list-item"
+    //   );
+    //   let check = false;
+    //   for (let i = 0; i < listLi.length; i++) {
+    //     if (listLi[i] == e.target) {
+    //       check = true;
+    //     }
+    //   }
+    //   if (!check) {
+    //     document.querySelector(".header_search-input").value = "";
+    //   } else {
+    //   }
+    // });
 
     axios
       .get(
@@ -212,6 +214,27 @@ const App = (props) => {
                 />
               );
             })}
+
+
+            //route search
+                <Route
+                  path={`/product/filter/search`}
+                  element={
+                    <SearchProduct
+                      referent="brand"
+                      dataval={ProductList}
+                      chimuc= {'Iphone'}
+                      filter={filter}
+                      data={dataProduct}
+                      changeFilterData={changeFilterData}
+                    />
+                  }
+                />
+            
+
+
+
+
             {/* route for filter brand */}
             {filterProduct.brand.map((val, i) => {
               return (
@@ -454,6 +477,7 @@ const App = (props) => {
               element={<UserSingIn></UserSingIn>}
             />
             <Route path="/User/UserPase" element={<UserPase></UserPase>} />     
+            <Route path="/User/order" element={<CreateOrder/>} />     
           </Routes>
           <ToastContainer />
         </ContextProvider>
