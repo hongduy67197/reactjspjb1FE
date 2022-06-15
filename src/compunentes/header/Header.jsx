@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../header/header.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -17,7 +17,9 @@ import {
   ConsoleSqlOutlined,
 } from "@ant-design/icons";
 import axios from "../../axios";
-const Header = () => {
+import { getApi } from "../../api/config";
+const Header = (props) => {
+  console.log(22222222222, props.quatityCart)
   const navigate = useNavigate();
   const userInfo = useSelector(function (state) {
     return state.user;
@@ -49,7 +51,19 @@ const Header = () => {
     if (variableTemp == "0") {
       navigate(`/product/filter`);
     } else {
-      navigate(`/user/fillter?productName=${variableTemp}`);
+      // navigate(`/user/fillter?productName=${variableTemp}`);
+      
+      axios.get('http://localhost:3150/user/fillter?productName=i')
+      .then(function(res){
+        console.log(58,res)
+
+      })
+      .catch((error)=>{
+        console.log(error)
+      })
+      navigate(`/product/filter/search?${variableTemp}`);
+      // navigate(`/product/filter`);
+
     }
 
     // navigate('/product/filter')
@@ -70,6 +84,21 @@ const Header = () => {
     document.querySelector(".HeaderVietnamese").style.display = "inline-block";
     document.querySelector(".HeaderEnglish").style.display = "none";
   }
+
+  //duongthetao
+  const [cartNumber, setCartNumber] = useState(0)
+  useEffect(() => {
+    getApi("http://localhost:3150/user/carts")
+      .then((data) => {
+        console.log(84, data.data.listCartsUser[0])
+        console.log('heardercart 78', data.data.listCartsUser[0].listProduct.length);
+        setCartNumber(data.data.listCartsUser[0].listProduct.length)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // console.log(32,productData[0].idProductCode)
+  }, [props.quatityCart]);
 
   return (
     <>
@@ -345,7 +374,7 @@ const Header = () => {
                   className="header_cart-wrap"
                 >
                   <ShoppingCartOutlined className="header_cart-icon" />
-                  <div className="header_cart-list header_cart-list--no-cart">
+                  {/* <div className="header_cart-list header_cart-list--no-cart">
                     <img
                       src="https://komo.com.vn/uploads/img/cart.png"
                       alt=""
@@ -354,7 +383,9 @@ const Header = () => {
                     <p className="header_cart-list--no-cart-messenger">
                       Chưa Có Sản Phẩm
                     </p>
-                  </div>
+                  </div> */}
+                  <div className="count-number-cart">{cartNumber}</div>
+                  {/* <h1>{props.quatityCart }</h1> */}
                 </div>
               </div>
             </div>
@@ -627,14 +658,17 @@ const Header = () => {
                 </div>
               </div>
               <div className="header_cart">
+                
                 <div
                   onClick={() => {
                     moveToCart();
                   }}
                   className="header_cart-wrap"
                 >
+                  
                   <ShoppingCartOutlined className="header_cart-icon" />
-                  <div className="header_cart-list header_cart-list--no-cart">
+                  
+                  {/* <div className="header_cart-list header_cart-list--no-cart">
                     <img
                       src="https://komo.com.vn/uploads/img/cart.png"
                       alt=""
@@ -643,7 +677,7 @@ const Header = () => {
                     <p className="header_cart-list--no-cart-messenger">
                       No Product
                     </p>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

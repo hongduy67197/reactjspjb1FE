@@ -19,11 +19,9 @@ function Header(props) {
   function Home() {
     navigate("/admin/home");
   }
-
   function QLnhanvien() {
     navigate("/admin/nhanvien");
   }
-
   function xacnhan() {
     navigate("/admin/Xacnhan");
   }
@@ -32,12 +30,6 @@ function Header(props) {
   }
   function hoanthanh() {
     navigate("/admin/Hoanthanh");
-  }
-  function tongket() {
-    navigate("/admin/Tongket");
-  }
-  function chinhsua() {
-    navigate("/admin/Chinhsua");
   }
   function khohang() {
     navigate("/admin/Khohang");
@@ -48,12 +40,7 @@ function Header(props) {
   function trenke() {
     navigate("/admin/Trenke");
   }
-  function chinhanh() {
-    navigate("/admin/Chinhanh");
-  }
-  function about() {
-    navigate("/admin/About");
-  }
+
   function onselect() {
     countselect++;
     if (countselect % 2 !== 0) {
@@ -398,30 +385,12 @@ function Header(props) {
             <p className="hover" onClick={spmoi}>
               - Sản phẩm mới
             </p>
-            <p className="hover" onClick={chinhsua}>
-              - Chỉnh sửa sản phẩm
-            </p>
+
             <p className="hover" onClick={khohang}>
               - Kho hàng
             </p>
           </div>
-          <div onClick={oninfor} className="menu1">
-            <div>
-              <i className="fa-solid fa-pen-fancy vicon"></i>
-              <p className="opt thongtin" style={{ marginLeft: "15px" }}>
-                Thông tin
-              </p>
-            </div>
-            <i className="fa-solid fa-angle-right arrow"></i>
-          </div>
-          <div className="infor">
-            <p className="hover" onClick={chinhanh}>
-              - Chi nhánh cửa hàng
-            </p>
-            <p className="hover" onClick={about}>
-              - Về doanh nghiệp
-            </p>
-          </div>
+          <div onClick={oninfor} className="menu1"></div>
         </div>
       </div>
       <div className="headervinh">
@@ -434,7 +403,7 @@ function Header(props) {
           </div>
         </div>
         <div className="mid">
-          <i className="fa-solid fa-magnifying-glass search"></i>
+          <i className="fa-solid fa-magnifying-glass searchvinh"></i>
           <input placeholder="Search..." type="search" />
         </div>
         <div className="right">

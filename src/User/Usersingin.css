@@ -1,3 +1,5 @@
+
+
 .singin_ {
     width: 100%;
     min-height: 800px;
@@ -17,7 +19,7 @@
 .singIn_ofcanva_modal p {
     font-size: 18px;
 }
-.ofcanva_modal_login {
+.ofcanva_loginRouter {
     position: absolute;
     bottom: 20px;
     right: 100px;
@@ -71,6 +73,7 @@
     left: 35px;
     padding: 10px 8px;
     width: 83%;
+   
 }
 .singin_password_text {
     position: absolute;
@@ -78,6 +81,13 @@
     left: 35px;
     color: #ee4d2d;
     font-size: 15px;
+}
+.singin_password_show1, .singin_password_show3{
+    position: absolute;
+    top: 150px;
+    right: 12%;
+    width: 20px;
+    cursor: pointer;
 }
 .singin_conter_modal_againpassword {
     position: absolute;
@@ -93,6 +103,16 @@
     color: #ee4d2d;
     font-size: 15px;
 }
+.singin_password_show2, .singin_password_show4{
+    position: absolute;
+    top: 230px;
+    right: 12%;
+    width: 20px;
+    cursor: pointer;
+}
+.singin_password_show3, .singin_password_show4{
+    display: none;
+}
 .singin_conter_modal_next {
     position: absolute;
     bottom: 220px;
@@ -104,6 +124,11 @@
     background-color: #ee4d2d;
     color: #ffffff;
     border-radius: 3px;
+    opacity: .8;
+}
+.singin_conter_modal_next:focus{
+    border: 2px solid black;
+    opacity: 1;
 }
 .singin_conter_modal_buttonGrup {
     position: absolute;

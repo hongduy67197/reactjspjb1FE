@@ -7,7 +7,7 @@ import Home from "./Pages/Admin/Home/home";
 import Xacnhan from "./Pages/Admin/DonhangFolder/Xacnhan";
 import Hoanthanh from "./Pages/Admin/DonhangFolder/Hoanthanh";
 import Danggiao from "./Pages/Admin/DonhangFolder/Danggiao";
-import Chinhsua from "./Pages/Admin/Sanpham/Chinhsua";
+// import Chinhsua from "./Pages/Admin/Sanpham/Chinhsua";
 import Khohang from "./Pages/Admin/Sanpham/Khohang";
 import Spmoi from "./Pages/Admin/Sanpham/Spmoi";
 import Trenke from "./Pages/Admin/Sanpham/Trenke";
@@ -30,11 +30,11 @@ import "antd/dist/antd.css"; //ở trong nodemodum
 //data
 import productList from "./data-tinh/dataold";
 import listProductCode from "./data-tinh/dataNewMix";
-
+import CreateOrder from "./Pages/CreateOrder";
+import SearchProduct from "./Pages/SearchProduct";
 const App = (props) => {
   const [count1, setCount1] = useState(0);
   const [dataFilter, setDataFilter] = useState([]);
-
   const filterProduct = {
     brand: [
       "Iphone",
@@ -45,6 +45,7 @@ const App = (props) => {
       "Realmi",
       "Nokia",
       "Itel",
+      "masstel",
       "Masstel",
     ],
     price: [
@@ -87,25 +88,26 @@ const App = (props) => {
   // axious project sellMobilePhone
   useEffect(() => {
     // cái này của cường nhé ae - header_search-input
-    window.addEventListener("click", function (e) {
-      let listLi = this.document.querySelectorAll(
-        ".header_search-history-heading-text-list-item"
-      );
-      let check = false;
-      for (let i = 0; i < listLi.length; i++) {
-        if (listLi[i] == e.target) {
-          check = true;
-        }
-      }
-      if (!check) {
-        document.querySelector(".header_search-input").value = "";
-      } else {
-      }
-    });
+    // window.addEventListener("click", function (e) {
+    //   let listLi = this.document.querySelectorAll(
+    //     ".header_search-history-heading-text-list-item"
+    //   );
+    //   let check = false;
+    //   for (let i = 0; i < listLi.length; i++) {
+    //     if (listLi[i] == e.target) {
+    //       check = true;
+    //     }
+    //   }
+    //   if (!check) {
+    //     document.querySelector(".header_search-input").value = "";
+    //   } else {
+    //   }
+    // });
 
     axios
       .get(
         "http://localhost:3150/user/fillter?idCategories=628c8b29e8654d960a5c8983"
+        // "http://localhost:3150//admin/productcode/list"
       )
       .then(function (res) {
         // setDataDuy(res.data.product)
@@ -171,20 +173,6 @@ const App = (props) => {
   const [sign, setsign] = useState(0);
   const [model, setmodel] = useState([]);
   const [listdt, setlistdt] = useState([]);
-  const [user, setUser] = useState([
-    {
-      email: "hoang@gmail.com",
-      password: "123456789",
-    },
-    {
-      email: "hoang@gmail.com",
-      password: "123456789",
-    },
-    {
-      email: "hoang@gmail.com",
-      password: "123456789",
-    },
-  ]);
   const [Payment, SetPayment] = useState([]);
   const [ChangeCart, SetChangeCart] = useState(0);
   function ChangedataCart() {
@@ -210,11 +198,8 @@ const App = (props) => {
         <ContextProvider>
           <Routes>
             {dataFilter.map((val, i) => {
-              // console.log(177, `/product/filter?id=${val._id}`);
-              // console.log(178,val)
               return (
                 <Route
-                  // path={`/product/filter?id=${val._id}`}
                   path={`/product/filter/${RemoveAccents(val.productName)
                     .split(" ")
                     .join("")}`}
@@ -229,6 +214,27 @@ const App = (props) => {
                 />
               );
             })}
+
+
+            //route search
+                <Route
+                  path={`/product/filter/search`}
+                  element={
+                    <SearchProduct
+                      referent="brand"
+                      dataval={ProductList}
+                      chimuc= {'Iphone'}
+                      filter={filter}
+                      data={dataProduct}
+                      changeFilterData={changeFilterData}
+                    />
+                  }
+                />
+            
+
+
+
+
             {/* route for filter brand */}
             {filterProduct.brand.map((val, i) => {
               return (
@@ -438,16 +444,14 @@ const App = (props) => {
             <Route
               path="/admin/Chinhsua"
               element={
-                <Chinhsua
-                  model={model}
-                  setmodel={setmodel}
-                  changesign={changesign}
-                  listdt={listdt}
-                  setlistdt={setlistdt}
-                  name={name}
+                <Cart
+                  ChangedataCart={ChangedataCart}
+                  Store={Store}
+                  Change={Change}
                 />
               }
             />
+            <Route path="/Comment" element={<Comment1 />} />
             <Route path="/admin/Khohang" element={<Khohang name={name} />} />
             <Route path="/admin/Spmoi" element={<Spmoi name={name} />} />
             <Route
@@ -470,8 +474,8 @@ const App = (props) => {
               path="/User/UserSingIn"
               element={<UserSingIn></UserSingIn>}
             />
-            {/* <Route path="/User/UserPase" element={<UserPase></UserPase>} />
-            <Route path="/createorder" element={<CreateOrder />}></Route> */}
+            <Route path="/User/UserPase" element={<UserPase></UserPase>} />     
+            <Route path="/User/order" element={<CreateOrder/>} />     
           </Routes>
           <ToastContainer />
         </ContextProvider>

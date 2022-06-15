@@ -6,6 +6,10 @@ import { Table } from "antd";
 import { Modal } from "antd";
 import { useEffect } from "react";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { ClassSharp } from "@mui/icons-material";
+import {getApi,deleteApi, putApi} from '../../../api/config'
+import { getUserCookie, refreshToken } from "../../../refreshToken";
+
 
 function Xacnhan() {
   const [state, setstate] = useState([]);
@@ -18,33 +22,42 @@ function Xacnhan() {
   const data = [];
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3150/admin/order/")
-      .then(function (res) {
-        setstate(res.data);
-      })
-      .catch(function (fail) {
-        console.log(fail);
-      });
+    async function getAllorder (){
+      let token = getUserCookie('user')
+      try {
+        const res = await getApi('/admin/order/')
+        console.log(35,res)
+        setstate(res.data)
+      } catch (error) {
+        console.log(168, error);
+      }
+    }
+    getAllorder()
 
-    axios
-      .get(`http://localhost:3150/admin/user/`)
-      .then(function (res) {
-        setstate1(res.data);
-      })
-      .catch(function (fail) {
-        console.log(fail);
-      });
+    async function getAllUser (){
+      let token = getUserCookie('user')
+      try {
+        const res = await getApi('/admin/user/')
+        setstate1(41,res.data)
+      } catch (error) {
+        console.log(168, error);
+      }
+    }
+    getAllUser()
 
-    axios
-      .get("http://localhost:3150/admin/product/list")
-      .then(function (res) {
-        setstate2(res.data);
-      })
-      .catch(function (fail) {
-        console.log(fail);
-      });
-  }, [state]);
+    async function getAllproduct (){
+      let token = getUserCookie('user')
+      try {
+        const res = await getApi('/admin/product/list')
+        console.log(62,res)
+        setstate2(res.data)
+      } catch (error) {
+        console.log(168, error);
+      }
+    }
+    getAllproduct()
+
+  }, []);
 
   for (let i = 0; i < state1.length; i++) {
     for (let j = 0; j < state.length; j++) {
@@ -167,18 +180,23 @@ function Xacnhan() {
 
     console.log(147, phone, diachi, status, isindex);
     if (phone !== "" && diachi !== "" && status !== "") {
-      axios
-        .put(`http://localhost:3150/admin/order/${isindex}`, {
-          address: diachi,
-          phone: phone,
-          status: status,
-        })
-        .then(function (res) {
-          // setChangedata(1);
-        })
-        .catch(function (fail) {
-          console.log(fail);
-        });
+      async function getAllorder (){
+        let token = getUserCookie('user')
+        console.log(147, token);
+        try {
+          const res = await putApi(`/admin/order/${isindex}`,{
+            address: diachi,
+            phone: phone,
+            status: status,
+          })
+          console.log(226,res)
+        } catch (error) {
+          console.log(168, error);
+        }
+      }
+      getAllorder()
+
+      // count();
       setIsModalVisible(false);
     } else {
       document.querySelector(".Not").innerHTML = "Vui lòng không được để trống";
@@ -196,14 +214,18 @@ function Xacnhan() {
       okText: "Yes",
       okType: "danger",
       onOk: () => {
-        axios
-          .delete(`http://localhost:3150/admin/order/${id}`)
-          .then(function (res) {
-            console.log(res);
-          })
-          .catch(function (err) {
-            console.log(err);
-          });
+        async function getAllorder (){
+          let token = getUserCookie('user')
+          console.log(147, token);
+          try {
+            const res = await deleteApi(`/admin/order/${id}`)
+          } catch (error) {
+            console.log(168, error);
+          }
+        }
+        getAllorder()
+
+        // count();
       },
     });
   }

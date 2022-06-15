@@ -124,6 +124,19 @@
     left: 35px;
     color: #ee4d2d;
 }
+.login_password_show1{
+    position: absolute;
+    bottom: 305px;
+    right: 11%;
+    width: 20px;
+}
+.login_password_show3{
+    position: absolute;
+    bottom: 305px;
+    right: 11%;
+    width: 20px;
+    display: none;
+}
 .login_conter_modal_button {
     position: absolute;
     bottom: 210px;
@@ -135,6 +148,11 @@
     border-radius: 3px;
     border: none;
     opacity: 0.7;
+}
+.login_conter_modal_button:focus{
+    border: 2px solid black;
+   opacity: 1;
+
 }
 .login_conter_modal_a {
     position: absolute;

@@ -5,20 +5,22 @@ import { useState, useEffect } from "react";
 import { Modal, Button } from "antd";
 import "antd/dist/antd.css";
 import { notification, Space } from "antd";
-import { WarningOutlined } from "@ant-design/icons";
+import { ConsoleSqlOutlined, WarningOutlined } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { getApi } from "../api/config";
+import { getApi, postApi } from "../api/config";
 import { patchApi } from "../api/config";
+import { putApi } from "../api/config";
+import { deleteApi } from "../api/config";
 function Cart(props) {
   const [productData, setProductData] = useState([]);
   useEffect(() => {
     getApi("http://localhost:3150/user/carts")
       .then((data) => {
-        console.log(17, data.data[0].listProduct);
+        console.log(17, data.data.listCartsUser[0].listProduct);
         console.log(18, data);
-        setProductData(data.data[0].listProduct);
-        console.log(21, data.data[0].listProduct[0].idProduct.productPic[0]);
+        setProductData(data.data.listCartsUser[0].listProduct);
+        console.log(21, data.data.listCartsUser[0].listProduct[0].idProduct.productPic[0]);
       })
       .catch((err) => {
         console.log(err);
@@ -30,7 +32,6 @@ function Cart(props) {
   console.log(28, productData);
   useEffect(() => {
     if (productData.length === 0) {
-      document.querySelector(".giohang_trong").style.display = "block";
       document.querySelector(".container_body").style.display = "none";
     } else {
       document.querySelector(".giohang_trong").style.display = "none";
@@ -43,6 +44,7 @@ function Cart(props) {
 
   var newArr = [];
   const [dataNew, setDataNew] = useState([]);
+
   const openNotification = (placement) => {
     if (total === 0) {
       notification.info({
@@ -59,9 +61,17 @@ function Cart(props) {
       for (let i = 0; i < productData.length; i++) {
         if (productData[i].isChecked === true) {
           newArr.push(productData[i]);
+          console.log(64,productData[i])
           // setDataNew(...productData[i])
         }
+        
       }
+      postApi('http://localhost:3150/user/order',{
+                 address: 'Thanh Xuân - Hà Nội', 
+                 total: 14000000, 
+                 phone: '0936666666',
+          })
+          Navigate("/user/order")
       console.log(555, newArr);
       setDataNew(newArr);
       var filterObj = productData.filter((item) => item.isChecked !== true);
@@ -75,22 +85,21 @@ function Cart(props) {
 
   let showModal = (index, id) => {
     setGetIndex(index);
-    productData[index].storage = productData[index].storage - 1;
-    let storage1 = productData[index].storage;
+    productData[index].quantity = productData[index].quantity - 1;
+    let storage1 = productData[index].quantity;
     console.log(81, storage1);
 
-    axios
-      .put(`http://localhost:3150/admin/product/${id}`, {
-        storage: storage1,
-      })
+    patchApi(`http://localhost:3150/user/carts${id}`, {
+      quantity: storage1,
+    })
       .then((data) => {
         console.log(data);
       })
       .catch((err) => {
         console.log(err);
       });
-    if (productData[index].storage < 1) {
-      productData[index].storage = 1;
+    if (productData[index].quantity < 1) {
+      productData[index].quantity = 1;
 
       setIsModalVisible(true);
     }
@@ -100,10 +109,7 @@ function Cart(props) {
   const handleOk = () => {
     setIsModalVisible(false);
     console.log(103, productData[getIndex]._id);
-    axios
-      .delete(
-        `http://localhost:3150/admin/product/${productData[getIndex]._id}`
-      )
+    patchApi(`http://localhost:3150/admin/product/${productData[getIndex]._id}`)
       .then((data) => {
         console.log(data);
       })
@@ -133,12 +139,12 @@ function Cart(props) {
   };
   //===================================================
   function upQuantity(index, id) {
-    productData[index].storage = productData[index].storage + 1;
-    let storage1 = productData[index].storage;
-    axios
-      .put(`http://localhost:3150/admin/product/${id}`, {
-        storage: storage1,
-      })
+    console.log(136, id);
+    productData[index].quantity = productData[index].quantity + 1;
+    let storage1 = productData[index].quantity;
+    patchApi(`http://localhost:3150/user/carts${id}`, {
+      quantity: storage1,
+    })
       .then((data) => {
         console.log(data);
       })
@@ -151,10 +157,10 @@ function Cart(props) {
   //===============================================
   function deleteProduct(index) {
     patchApi(`http://localhost:3150/user/carts/${index}`, {
-      quantity: 4,
+      quantity: "",
     })
       .then((data) => {
-        console.log(data);
+        console.log(157, data);
       })
       .catch((err) => {
         console.log(err);
@@ -183,7 +189,9 @@ function Cart(props) {
   var total = 0;
   for (let i = 0; i < productData.length; i++) {
     if (productData[i].isChecked === true) {
-      total += Number(productData[i].price) * Number(productData[i].storage);
+      total +=
+        Number(productData[i].idProduct.price) *
+        Number(productData[i].quantity);
       count1++;
     }
   }
