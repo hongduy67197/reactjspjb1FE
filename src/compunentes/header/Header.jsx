@@ -19,7 +19,7 @@ import {
 import axios from "../../axios";
 import { getApi } from "../../api/config";
 const Header = (props) => {
-  console.log(22222222222, props.quatityCart)
+  // console.log(22222222222, props.quatityCart)
   const navigate = useNavigate();
   const userInfo = useSelector(function (state) {
     return state.user;
@@ -35,6 +35,7 @@ const Header = (props) => {
   async function logout() {
     await axios.post("/user/logOut");
     window.localStorage.removeItem("user");
+    window.localStorage.removeItem("userCart");
     window.location.reload(true);
     navigate("/");
   }
@@ -52,15 +53,15 @@ const Header = (props) => {
       navigate(`/product/filter`);
     } else {
       // navigate(`/user/fillter?productName=${variableTemp}`);
-      
-      axios.get('http://localhost:3150/user/fillter?productName=i')
-      .then(function(res){
-        console.log(58,res)
 
-      })
-      .catch((error)=>{
-        console.log(error)
-      })
+      axios.get('http://localhost:3150/user/fillter?productName=i')
+        .then(function (res) {
+          console.log(58, res)
+
+        })
+        .catch((error) => {
+          console.log(error)
+        })
       navigate(`/product/filter/search?${variableTemp}`);
       // navigate(`/product/filter`);
 
@@ -90,8 +91,8 @@ const Header = (props) => {
   useEffect(() => {
     getApi("http://localhost:3150/user/carts")
       .then((data) => {
-        console.log(84, data.data.listCartsUser[0])
-        console.log('heardercart 78', data.data.listCartsUser[0].listProduct.length);
+        // console.log(84, data.data.listCartsUser[0])
+        // console.log('heardercart 78', data.data.listCartsUser[0].listProduct.length);
         setCartNumber(data.data.listCartsUser[0].listProduct.length)
       })
       .catch((err) => {
@@ -658,16 +659,16 @@ const Header = (props) => {
                 </div>
               </div>
               <div className="header_cart">
-                
+
                 <div
                   onClick={() => {
                     moveToCart();
                   }}
                   className="header_cart-wrap"
                 >
-                  
+
                   <ShoppingCartOutlined className="header_cart-icon" />
-                  
+
                   {/* <div className="header_cart-list header_cart-list--no-cart">
                     <img
                       src="https://komo.com.vn/uploads/img/cart.png"
