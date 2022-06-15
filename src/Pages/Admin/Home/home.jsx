@@ -7,26 +7,24 @@ import { Table } from "antd";
 import axios from "axios";
 import { useEffect } from "react";
 import { FortRounded } from "@mui/icons-material";
-import {getApi} from '../../../api/config'
+import { getApi } from "../../../api/config";
 import { getUserCookie, refreshToken } from "../../../refreshToken";
 
 //npm install react-calendar
 function Home(props) {
   const [state, setstate] = useState([]);
   useEffect(() => {
-    async function getAllproduct (){
-      let token = getUserCookie('user')
-      // console.log(147, token);
+    async function getAllproduct() {
+      let token = getUserCookie("user");
+      console.log(147, token);
       try {
-        const res = await getApi('/admin/product/list')
-        setstate(res.data)
+        const res = await getApi("/admin/product/list");
+        setstate(res.data);
       } catch (error) {
         console.log(168, error);
       }
     }
-    getAllproduct()
-
- 
+    getAllproduct();
   }, []);
   const [state1, setstate1] = useState([]);
   const [state2, setstate2] = useState([]);
@@ -81,7 +79,7 @@ function Home(props) {
   const database = [];
   if (state.length > 0) {
     var so = state.length - 10;
-    for (let i = 0; i < state.length; i++) {
+    for (let i = so; i < state.length; i++) {
       database.push({
         productName: state[i].idProductCode.productName,
         productPic: state[i].productPic,
@@ -95,30 +93,29 @@ function Home(props) {
   }
 
   useEffect(() => {
-    async function getAllUser (){
-      let token = getUserCookie('user')
-      // console.log(147, token);
+    async function getAllUser() {
+      let token = getUserCookie("user");
+      console.log(147, token);
       try {
-        const res = await getApi('/admin/user/')
-        setstate1(res.data)
+        const res = await getApi("/admin/user/");
+        setstate1(res.data);
       } catch (error) {
         console.log(168, error);
       }
     }
-    getAllUser()
+    getAllUser();
 
-    async function getAllorder (){
-      let token = getUserCookie('user')
-      // console.log(147, token);
+    async function getAllorder() {
+      let token = getUserCookie("user");
+      console.log(147, token);
       try {
-        const res = await getApi('/admin/order/')
-        setstate2(res.data)
+        const res = await getApi("/admin/order/");
+        setstate2(res.data);
       } catch (error) {
         console.log(168, error);
       }
     }
-    getAllorder()
-
+    getAllorder();
   }, []);
 
   let sumOrder = 0;
