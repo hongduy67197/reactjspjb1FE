@@ -31,13 +31,12 @@ function UserLogin(props) {
     async function submit() {
         let email = document.querySelector('.login_conter_modal_email').value;
         let password = document.querySelector('.login_conter_modal_password').value;
-        if (email === '' || testEmail(email)) {
+        if (email === ''||testEmail(email) ) {
             document.querySelector('.login_email_text').innerHTML = 'Vui lòng nhập Email';
         } else if (password === '' || testPassword(password)) {
             document.querySelector('.login_password_text').innerHTML = 'Vui lòng nhập Password';
         } else {
             console.log(38,email, password)
-            // let res = await axios.post('/user/login', { email, password });
             let res = await postApi('/user/login', { email, password });
             if (res.data.status === 'undifind password') {
                 alert(res.data.status);
@@ -51,7 +50,7 @@ function UserLogin(props) {
     }
     // kiểm tra đầu vào Email
     function testEmail(email) {
-        var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/;
+        var mailformat = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
         if (mailformat.test(email)) {
             document.querySelector('.login_email_text').innerHTML = '';
         } else {
@@ -109,7 +108,7 @@ function UserLogin(props) {
     }
        // kiểm tra đầu vào Email
        function testEmail1(email) {
-        var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/;
+        var mailformat = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
         if (mailformat.test(email)) {
             document.querySelector('.login_phone_userName_text').innerHTML = '';
         } else {
@@ -160,7 +159,7 @@ function UserLogin(props) {
                         </div>
                         <input
                             onClick={clean_email}
-                            type="text"
+                            type="email"
                             placeholder="Email/Số điện thoại/Tên đăng nhập"
                             className="login_conter_modal_email"
                         />
