@@ -328,7 +328,7 @@ function SearchProduct(props) {
         {/* <!-- phần container items --> */}
         <div className="grid wide">
           <div className="row sm-gutter app__content">
-            <div className="col1 l-2 m-0 c-12">
+            <div style = {{display:'none'}} className="col1 l-2 m-0 c-12">
               <nav className="category">
                 <h4 className="category__heading">
                   <i className="category__heading-icon fa-solid fa-filter"></i>
