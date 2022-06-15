@@ -9,6 +9,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { ConsoleSqlOutlined } from "@ant-design/icons";
 import Header from "../compunentes/header/Header";
 import Footer from "../compunentes/footer/Footer";
+import axios from "../axios";
 
 let trig = 0;
 let trig1 = 0;
@@ -19,11 +20,25 @@ let trig5 = 0;
 let commonButton;
 let newstButton;
 let salestButton;
-function FilterProduct(props) {
+function SearchProduct(props) {
   console.log(20, props.dataval.length);
+  let getLocattion = window.location.href.replace('http://localhost:3000/product/filter/search?','')
+  console.log(26,getLocattion)
   const [resetPage, setResetPage] = useState(props.dataval);
   useEffect(() => {
-    setResetPage([...props.dataval]);
+    axios.get(`http://localhost:3150/user/fillter?productName=${getLocattion}`)
+      .then(function(res){
+        console.log(58,res)
+        setResetPage([...res.data.listProductCode]);
+      })
+      .catch((error)=>{
+        console.log(error)
+      })
+
+
+
+
+    // setResetPage([...props.dataval]);
   }, [props.dataval.length]);
   //giữ lại các chõ đã choose khi load lại trang.
   const [searchParams, setSearchParams] = useSearchParams();
@@ -143,11 +158,11 @@ function FilterProduct(props) {
   }
   //---------------------------------------------------------phân tích và lọc  diomain để tạo ra trường lọc object với các giá trị được choose
   let a1 = window.location.href.replace(
-    "http://localhost:3000/product/filter?",
+    "http://localhost:3000/product/filter/search?",
     ""
   );
   let examine = window.location.href.replace(
-    "http://localhost:3000/product/filter",
+    "http://localhost:3000/product/filter/search?",
     ""
   );
   if (examine === "") {
@@ -167,17 +182,16 @@ function FilterProduct(props) {
       },
     ];
   } else {
-    let a2 = a1.split("&");
-    var a3 = a2.map((val, i) => {
-      let a4 = val.split("=");
-      let a6 = a4[0];
-      a4.shift();
-      let a7 = a4[0].split(",");
-      let a5 = { [a6]: a7 };
-    
-      return a5;
-    });
-    console.log(180,a3)
+    // let a2 = a1.split("&");
+    // var a3 = a2.map((val, i) => {
+    //   let a4 = val.split("=");
+    //   let a6 = a4[0];
+    //   a4.shift();
+    //   let a7 = a4[0].split(",");
+    //   let a5 = { [a6]: a7 };
+    //   return a5;
+    // });
+    var a3 =[{brand: ['Iphone']}]
   }
   //----------------------------------------------------function xử lí lọc qua chỉ mục truyền vào các chỉ mục lọc và lọc trong data những dữ liệu thỏa mãn dk
   function handleDataFollowFiler(data, ref) {
@@ -778,4 +792,4 @@ function FilterProduct(props) {
   );
 }
 
-export default FilterProduct;
+export default SearchProduct;

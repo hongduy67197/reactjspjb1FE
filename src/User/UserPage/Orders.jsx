@@ -11,16 +11,13 @@ import {getApi} from '../../api/config'
 
 function Orders(props) {
   const [userCart,setUserCart]=useState([])
-  function upCart(arr){
-    setUserCart(arr)
-  }
+
  const [userOder, setUserOder]=useState([])
 useEffect(() => {
-  getApi('/user/orders')
+  getApi('/user/carts')
   .then(function(data){
-    const newCart =data.data[data.data.length-1] ? data.data[data.data.length-1] : []
-    console.log('newCart',newCart)
-    upCart(newCart)
+    const newCart =data.data.listCartsUser[0].listProduct 
+    setUserCart(newCart)
   })
  .catch(function(orr){
   console.log(34,orr)
@@ -28,18 +25,15 @@ useEffect(() => {
 }, [])
 
 useEffect(() => {
-  getApi("http://localhost:3150/user/carts")
+  getApi("/user/orders")
     .then((data) => {
-      const dataOder =  data.data[0].listProduct[0]
+      const dataOder =data.data
       setUserOder(dataOder)
-      console.log('dataOder',dataOder)
-      // localStorage.setItem('userCart',JSON.stringify(dataOder))
     })
     .catch((err) => {
       console.log(43,err);
     });
 }, []);
-
   function onofAll() {
     document.querySelector(".orderAll").style.display = "block";
     document.querySelector(".orderCheck").style.display = "none";
@@ -102,19 +96,19 @@ useEffect(() => {
         <OrderAll userCart={userCart} userOder={userOder}></OrderAll>
       </div>
       <div className="orderCheck">
-        <OrderCheck userCart={userCart} userOder={userOder}></OrderCheck>
+        <OrderCheck userCart={setUserCart} userOder={setUserOder}></OrderCheck>
       </div>
       <div className="orderDaGiao">
-        <OrderDaGiao userCart={userCart}></OrderDaGiao>
+        <OrderDaGiao userCart={setUserCart}></OrderDaGiao>
       </div>
       <div className="orderWaiting">
-        <OrderWaiting userCart={userCart}></OrderWaiting>
+        <OrderWaiting userCart={setUserCart}></OrderWaiting>
       </div>
       <div className="orderDangGiao">
-        <OrderDangGiao userCart={userCart}></OrderDangGiao>
+        <OrderDangGiao userCart={setUserCart}></OrderDangGiao>
       </div>
       <div className="orderDaHuy">
-        <OrderDaHuy userCart={userCart}></OrderDaHuy>
+        <OrderDaHuy userCart={setUserCart}></OrderDaHuy>
       </div>
     </div>
   );

@@ -2,16 +2,16 @@ import React from "react";
 import order from "../../../assets/images/ordermenu.png";
 
 function OrderAll(props) {
-  const allOrder = props.userCart.listProduct
-  const dataOrder = props.userOder
-  // console.log(7,dataOrder)
-  // console.log(8,dataOrder.idProduct.productType)
-  // console.log(16,allOrder)
-  // console.log(17, props.userCart.status)
-  // console.log(36,data.data[0].listProduct[0].idProduct.productType)
-  // console.log(36,data.data[0].listProduct[0].idProduct.price)
-  // console.log(36,data.data[0].listProduct[0].idProduct.color)
-  // console.log(37,data.data[0].listProduct[0].quantity)
+  const allCart = props.userCart
+  const allOrder = props.userOder
+  console.log(7,allOrder)
+  let sumOrder = []
+  let sumStatus=0
+for(let a = 0; a < allOrder.length; a++){
+  let list = allOrder[a].listProduct
+  sumStatus = allOrder[a].status
+  sumOrder=[...sumOrder, ...list]
+}
   return (
     <div>
       <div className="order_seach">
@@ -21,30 +21,31 @@ function OrderAll(props) {
           placeholder="Tìm kiếm theo Tên Shop, ID đơn hàng hoặc Tên Sản Phẩm"
         />
       </div>
-      {allOrder?
+      {sumOrder?
      ( <table>
        <thead>
         <tr>
           <th>STT</th>
           <th>Sản phẩm</th>
+          <th>avatar</th>
           <th>Giá</th>
           <th>Số lượng</th>
           <th>status</th>
         </tr>
        </thead>
        <tbody>
-        {allOrder.map(function(value, index){
-          if(value.idProduct !==null){
-            return (
-              <tr key={index}>
-                <td>{index+1}</td>
-                <td>{value.idProduct.productType}</td>
-                <td>{(value.idProduct.price)}</td>
-                <td>{(value.quantity)}</td>
-                <td>{props.userCart.status}</td>
-              </tr>
-            )
-          }else{}
+        {sumOrder.map(function(value, index){
+            if(value.idProduct !== null){
+          return (
+            <tr key={index}>
+              <td>{index+1}</td>
+              <td>{value.idProduct.productType}</td>
+              <td><img src={process.env.REACT_APP_CLIENT_URL+value.idProduct.idProductCode.thumNail} alt="img" className="order_conter_img"/></td>
+              <td>{(value.idProduct.price)}</td>
+              <td>{(value.quantity)}</td>
+              <td>{sumStatus}</td>
+            </tr>
+          )}
          
         })}
        </tbody>

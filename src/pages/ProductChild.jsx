@@ -172,9 +172,9 @@ function ProductChild(props) {
   const [quatityCart, setQuatityCart] = useState(0)
   async function sendCart (){
     let countProduct = document.querySelector('.number-plus-subtract').innerHTML*1
-    console.log(153,countProduct*1)
-    console.log(123,props.dataFilter )
-    console.log(152,props.dataFilter[props.chimuc])
+    // console.log(153,countProduct*1)
+    // console.log(123,props.dataFilter )
+    // console.log(152,props.dataFilter[props.chimuc])
     let ram = document.getElementsByClassName('onButton')[0].innerHTML
     let rom = document.getElementsByClassName('onButton')[1].innerHTML
     let color = document.getElementsByClassName('onButton')[2].innerHTML
@@ -182,7 +182,7 @@ function ProductChild(props) {
       console.log(161, ram, rom , color)
       return val.color ===color && val.ram ===ram && val.rom === rom;
     })[0]._id
-    console.log(163,productCart)
+    // console.log(163,productCart)
     // const userid = useSelector(function(state){return state.user})
     // console.log(165,userid)
     try {
@@ -192,8 +192,9 @@ function ProductChild(props) {
       })
       alert('Đã thêm vào giỏ hàng')
       const res = await getApi("http://localhost:3150/user/carts")
-      console.log(193 ,res)    
-      setQuatityCart(res.data[0].listProduct.length)
+      // console.log(193 ,res.data.listCartsUser[0].listProduct.length)    
+      // console.log(194 ,res)    
+      setQuatityCart(res.data.listCartsUser[0].listProduct.length)
 
     } catch (error) {
       console.log(error)
@@ -202,17 +203,17 @@ function ProductChild(props) {
   const navigate = useNavigate()
   async function sendCart2 (){
     let countProduct = document.querySelector('.number-plus-subtract').innerHTML*1
-    console.log(153,countProduct*1)
-    console.log(123,props.dataFilter )
-    console.log(152,props.dataFilter[props.chimuc])
+    // console.log(153,countProduct*1)
+    // console.log(123,props.dataFilter )
+    // console.log(152,props.dataFilter[props.chimuc])
     let ram = document.getElementsByClassName('onButton')[0].innerHTML
     let rom = document.getElementsByClassName('onButton')[1].innerHTML
     let color = document.getElementsByClassName('onButton')[2].innerHTML
     let productCart = props.dataFilter[props.chimuc].products.filter((val)=>{
-      console.log(161, ram, rom , color)
+      // console.log(161, ram, rom , color)
       return val.color ===color && val.ram ===ram && val.rom === rom;
     })[0]._id
-    console.log(163,productCart)
+    // console.log(163,productCart)
     // const userid = useSelector(function(state){return state.user})
     // console.log(165,userid)
     try {
@@ -222,11 +223,9 @@ function ProductChild(props) {
       })
       // alert('Đã thêm vào giỏ hàng')
       const res = await getApi("http://localhost:3150/user/carts")
-      console.log(193 ,res)    
+      // console.log(193 ,res)    
       setQuatityCart(res.data[0].listProduct.length)
       navigate("/Cart");
-      
-
     } catch (error) {
       console.log(error)
     }

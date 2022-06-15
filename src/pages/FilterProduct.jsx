@@ -174,8 +174,10 @@ function FilterProduct(props) {
       a4.shift();
       let a7 = a4[0].split(",");
       let a5 = { [a6]: a7 };
+    
       return a5;
     });
+    console.log(180,a3)
   }
   //----------------------------------------------------function xử lí lọc qua chỉ mục truyền vào các chỉ mục lọc và lọc trong data những dữ liệu thỏa mãn dk
   function handleDataFollowFiler(data, ref) {
