@@ -31,13 +31,12 @@ function UserLogin(props) {
     async function submit() {
         let email = document.querySelector('.login_conter_modal_email').value;
         let password = document.querySelector('.login_conter_modal_password').value;
-        if (email === '' || testEmail(email)) {
+        if (email === '' ) {
             document.querySelector('.login_email_text').innerHTML = 'Vui lòng nhập Email';
         } else if (password === '' || testPassword(password)) {
             document.querySelector('.login_password_text').innerHTML = 'Vui lòng nhập Password';
         } else {
             console.log(38,email, password)
-            // let res = await axios.post('/user/login', { email, password });
             let res = await postApi('/user/login', { email, password });
             if (res.data.status === 'undifind password') {
                 alert(res.data.status);
