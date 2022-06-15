@@ -10,7 +10,7 @@ import Danggiao from "./Pages/Admin/DonhangFolder/Danggiao";
 import Khohang from "./Pages/Admin/Sanpham/Khohang";
 import Spmoi from "./Pages/Admin/Sanpham/Spmoi";
 import Trenke from "./Pages/Admin/Sanpham/Trenke";
-import Nhanvien from './Pages/Admin/NhanVien/Nhanvien';
+import Nhanvien from './Pages/Admin/Nhanvien/Nhanvien';
 import React, { useState, useEffect } from "react";
 import axios from "./axios";
 import Login from "./Pages/Admin/Login/login";
@@ -161,15 +161,15 @@ const App = (props) => {
     const promise2 = axios.get(URL2);
 
     Promise.all([promise1, promise2]).then(function (values) {
-      let a,b;
-      [a,b] = values
-      let dataProductCode = [...a.data.listProductCode,...b.data.listProductCode]
-      console.log(164,dataProductCode);
+      let a, b;
+      [a, b] = values
+      let dataProductCode = [...a.data.listProductCode, ...b.data.listProductCode]
+      console.log(164, dataProductCode);
       const ListData = dataProductCode.map((val) => {
         val.storage = Math.floor(Math.random() * 100);
         val.ram = val.ramRange[0];
         val.rom = val.romRange[0];
-        
+
         return val;
       });
       console.log(4556, ListData);
@@ -195,7 +195,7 @@ const App = (props) => {
     //       val.storage = Math.floor(Math.random() * 100);
     //       val.ram = val.ramRange[0];
     //       val.rom = val.romRange[0];
-          
+
     //       return val;
     //     });
     //     console.log(4556, ListData);
