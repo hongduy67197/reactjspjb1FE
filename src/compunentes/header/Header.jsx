@@ -52,7 +52,16 @@ const Header = (props) => {
       navigate(`/product/filter`);
     } else {
       // navigate(`/user/fillter?productName=${variableTemp}`);
-      navigate(`/product/filter/${variableTemp}`);
+      
+      axios.get('http://localhost:3150/user/fillter?productName=i')
+      .then(function(res){
+        console.log(58,res)
+
+      })
+      .catch((error)=>{
+        console.log(error)
+      })
+      navigate(`/product/filter/search?${variableTemp}`);
       // navigate(`/product/filter`);
 
     }
