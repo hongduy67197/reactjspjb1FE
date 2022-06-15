@@ -113,8 +113,13 @@
   background-color: rgba(0, 0, 0, 0.04);
 }
 .btn.btn--primary {
+  border: none;
   background-color: var(--primary-color);
   color: var(--while-color);
+}
+.btn.btn--primary:hover {
+  color: white;
+  opacity: 0.8;
 }
 /* .btn.btn--disabled {
     cursor: default;
