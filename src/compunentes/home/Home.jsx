@@ -69,6 +69,17 @@ const Home = () => {
           <SeeMore seeMore={seeMore} />
           <Advertisement />
         </div>
+        <div className="home-container-filter">
+          <div className="home-page-product">
+            <ListProduct
+              productCode={productCode}
+              numberShow={numberShow}
+              NewIcon={NewIcon}
+            />
+          </div>
+        </div>
+        <SeeMore seeMore={seeMore} />
+        <Advertisement />
       </div>
       <Footer />
     </>
