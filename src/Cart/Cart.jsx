@@ -78,11 +78,11 @@ function Cart(props) {
   let showModal = (index, id) => {
     setGetIndex(index);
     productData[index].quantity = productData[index].quantity - 1;
-    let storage1 = productData[index].quantity;
-    console.log(81, storage1);
+    let quantity = productData[index].quantity;
+    console.log(81, quantity);
 
-    patchApi(`http://localhost:3150/user/carts${id}`, {
-      quantity: storage1,
+    patchApi(`http://localhost:3150/user/carts/${id}`, {
+      quantity: quantity,
     })
       .then((data) => {
         console.log(data);
@@ -101,7 +101,7 @@ function Cart(props) {
   const handleOk = () => {
     setIsModalVisible(false);
     console.log(103, productData[getIndex]._id);
-    patchApi(`http://localhost:3150/admin/product/${productData[getIndex]._id}`)
+    patchApi(`http://localhost:3150/user/carts/${productData[getIndex]._id}`)
       .then((data) => {
         console.log(data);
       })
@@ -133,9 +133,9 @@ function Cart(props) {
   function upQuantity(index, id) {
     console.log(136, id);
     productData[index].quantity = productData[index].quantity + 1;
-    let storage1 = productData[index].quantity;
-    patchApi(`http://localhost:3150/user/carts${id}`, {
-      quantity: storage1,
+    let quantity = productData[index].quantity;
+    patchApi(`http://localhost:3150/user/carts/${id}`, {
+      quantity: quantity,
     })
       .then((data) => {
         console.log(data);
@@ -149,7 +149,7 @@ function Cart(props) {
   //===============================================
   function deleteProduct(index) {
     patchApi(`http://localhost:3150/user/carts/${index}`, {
-      quantity: "",
+      quantity: 0,
     })
       .then((data) => {
         console.log(157, data);
@@ -297,7 +297,7 @@ function Cart(props) {
                       </Modal>
                     </>
 
-                    <div className="quanity-result">{value.quantity}</div>
+                    <div className="quantity-result">{value.quantity}</div>
                     <button
                       onClick={() => upQuantity(index, value._id)}
                       className="btn1"
