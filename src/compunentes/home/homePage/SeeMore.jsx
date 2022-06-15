@@ -7,7 +7,7 @@ const SeeMore = (props) => {
   return (
     <div className="seeMore">
       <button onClick={props.seeMore} className="seeMore-button">
-        Xem Thêm 20 Điện thoại
+        Xem Thêm Điện Thoại
         <CaretDownOutlined />
       </button>
     </div>
