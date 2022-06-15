@@ -65,8 +65,7 @@ function Spmoi(props) {
     function addnewcode() {
         const form = document.querySelector('form');
         const formData = new FormData(form);
-        console.log(67, props);
-        props.changesign();
+
         axios
             .post('http://localhost:3150/admin/productcode', formData)
             .then(function (response) {
@@ -75,7 +74,7 @@ function Spmoi(props) {
             .catch(function (error) {
                 console.log(error);
             });
-        props.changesign();
+
         clearallcode();
     }
     function newcodeon() {
@@ -142,7 +141,6 @@ function Spmoi(props) {
             .catch(function (error) {
                 console.log(error);
             });
-        props.changesign();
         clearlist();
     }
     function clearvoucher() {
@@ -163,7 +161,7 @@ function Spmoi(props) {
             .catch(function (error) {
                 console.log(error);
             });
-        props.changesign();
+
         clearvoucher();
     }
     function clearslide() {
@@ -183,7 +181,7 @@ function Spmoi(props) {
             .catch(function (error) {
                 console.log(error);
             });
-        props.changesign();
+
         clearslide();
     }
     function choosebrand(id) {
@@ -217,7 +215,13 @@ function Spmoi(props) {
     }
     function newboxbrandon() {
         setcount(1);
-        document.querySelector('.newboxbrand').style.display = 'block';
+        setcount(count + 1);
+        if (count % 2 !== 0) {
+            document.querySelector('.newboxbrand').style.display = 'block';
+        }
+        if (count % 2 == 0) {
+            document.querySelector('.newboxbrand').style.display = 'none';
+        }
     }
     return (
         <div>

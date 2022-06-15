@@ -32,7 +32,6 @@ function Cart(props) {
   console.log(28, productData);
   useEffect(() => {
     if (productData.length === 0) {
-      document.querySelector(".giohang_trong").style.display = "block";
       document.querySelector(".container_body").style.display = "none";
     } else {
       document.querySelector(".giohang_trong").style.display = "none";
