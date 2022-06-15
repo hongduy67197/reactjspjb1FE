@@ -9,7 +9,6 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { ConsoleSqlOutlined } from "@ant-design/icons";
 import Header from "../compunentes/header/Header";
 import Footer from "../compunentes/footer/Footer";
-import axios from "../axios";
 
 let trig = 0;
 let trig1 = 0;
@@ -20,25 +19,11 @@ let trig5 = 0;
 let commonButton;
 let newstButton;
 let salestButton;
-function SearchProduct(props) {
+function FilterProduct(props) {
   console.log(20, props.dataval.length);
-  let getLocattion = window.location.href.replace('http://localhost:3000/product/filter/search?','')
-  console.log(26,getLocattion)
   const [resetPage, setResetPage] = useState(props.dataval);
   useEffect(() => {
-    axios.get(`http://localhost:3150/user/fillter?productName=${getLocattion}`)
-      .then(function(res){
-        console.log(58,res)
-        setResetPage([...res.data.listProductCode]);
-      })
-      .catch((error)=>{
-        console.log(error)
-      })
-
-
-
-
-    // setResetPage([...props.dataval]);
+    setResetPage([...props.dataval]);
   }, [props.dataval.length]);
   //giữ lại các chõ đã choose khi load lại trang.
   const [searchParams, setSearchParams] = useSearchParams();
@@ -158,11 +143,11 @@ function SearchProduct(props) {
   }
   //---------------------------------------------------------phân tích và lọc  diomain để tạo ra trường lọc object với các giá trị được choose
   let a1 = window.location.href.replace(
-    "http://localhost:3000/product/filter/search?",
+    "http://localhost:3000/product/filter?",
     ""
   );
   let examine = window.location.href.replace(
-    "http://localhost:3000/product/filter/search?",
+    "http://localhost:3000/product/filter",
     ""
   );
   if (examine === "") {
@@ -182,16 +167,17 @@ function SearchProduct(props) {
       },
     ];
   } else {
-    // let a2 = a1.split("&");
-    // var a3 = a2.map((val, i) => {
-    //   let a4 = val.split("=");
-    //   let a6 = a4[0];
-    //   a4.shift();
-    //   let a7 = a4[0].split(",");
-    //   let a5 = { [a6]: a7 };
-    //   return a5;
-    // });
-    var a3 =[{brand: ['Iphone']}]
+    let a2 = a1.split("&");
+    var a3 = a2.map((val, i) => {
+      let a4 = val.split("=");
+      let a6 = a4[0];
+      a4.shift();
+      let a7 = a4[0].split(",");
+      let a5 = { [a6]: a7 };
+
+      return a5;
+    });
+    console.log(180, a3)
   }
   //----------------------------------------------------function xử lí lọc qua chỉ mục truyền vào các chỉ mục lọc và lọc trong data những dữ liệu thỏa mãn dk
   function handleDataFollowFiler(data, ref) {
@@ -301,7 +287,9 @@ function SearchProduct(props) {
       .querySelector(".select-input__label")
       .classList.add("select-input__label-change-color");
     myJSON.sort((a, b) => {
-      return a.price - b.price;
+      let saleNumbera = (1 - a.Sale.replace('%', '') * 0.01)
+      let saleNumberb = (1 - b.Sale.replace('%', '') * 0.01)
+      return a.price * saleNumbera - b.price * saleNumberb;
     });
     setStateSort([...myJSON]);
     setCount(trig + 1);
@@ -314,7 +302,10 @@ function SearchProduct(props) {
       .querySelector(".select-input__label")
       .classList.add("select-input__label-change-color");
     myJSON.sort((a, b) => {
-      return b.price - a.price;
+      let saleNumberav = (1 - a.Sale.replace('%', '') * 0.01)
+      let saleNumberbv = (1 - b.Sale.replace('%', '') * 0.01)
+
+      return b.price * saleNumberav - a.price * saleNumberbv;
     });
     setStateSort([...myJSON]);
     setCount(trig + 1);
@@ -328,7 +319,7 @@ function SearchProduct(props) {
         {/* <!-- phần container items --> */}
         <div className="grid wide">
           <div className="row sm-gutter app__content">
-            <div style = {{display:'none'}} className="col1 l-2 m-0 c-12">
+            <div className="col1 l-2 m-0 c-12">
               <nav className="category">
                 <h4 className="category__heading">
                   <i className="category__heading-icon fa-solid fa-filter"></i>
@@ -359,7 +350,7 @@ function SearchProduct(props) {
                     </div>
                   </li>
                   <li className="category-item ">
-                    <div className="category-item_link">
+                    <div style={{ display: "none" }} className="category-item_link">
                       <div className="title-filter">GIÁ</div>
                       <div className="category-item-detail-wrap">
                         {props.filter.price.map((val, i) => {
@@ -792,4 +783,4 @@ function SearchProduct(props) {
   );
 }
 
-export default SearchProduct;
+export default FilterProduct;
