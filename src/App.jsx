@@ -10,7 +10,7 @@ import Danggiao from "./Pages/Admin/DonhangFolder/Danggiao";
 import Khohang from "./Pages/Admin/Sanpham/Khohang";
 import Spmoi from "./Pages/Admin/Sanpham/Spmoi";
 import Trenke from "./Pages/Admin/Sanpham/Trenke";
-import Nhanvien from "./Pages/Admin/Nhanvien/Nhanvien";
+import Nhanvien from './Pages/Admin/Nhanvien/Nhanvien';
 import React, { useState, useEffect } from "react";
 import axios from "./axios";
 import Login from "./Pages/Admin/Login/login";
@@ -103,28 +103,108 @@ const App = (props) => {
       }
     });
 
-    axios
-      .get(
-        "http://localhost:3150/user/fillter?idCategories=628c8b29e8654d960a5c8983"
-        // "http://localhost:3150//admin/productcode/list"
-      )
-      .then(function (res) {
-        // setDataDuy(res.data.product)
-        // setShow(res.data.product.slice(0, 2))
-        // console.log(45, res.data.listData);
-        const ListData = res.data.listProductCode.map((val) => {
-          val.storage = Math.floor(Math.random() * 100);
-          val.ram = val.ramRange[0];
-          val.rom = val.romRange[0];
-          return val;
-        });
-        // console.log(4556, ListData);
-        setProductList(ListData);
-        setDataFilter(ListData);
-      })
-      .catch((err) => {
-        console.log(err);
+    // const axiosrequest1 = axios.get('http://localhost:3150/user/fillter?idCategories=628c8b29e8654d960a5c8983');
+    // const axiosrequest2 = axios.get('http://localhost:3150/user/fillter?idCategories=628c8b40e8654d960a5c898b');
+    // // you could also use destructuring to have an array of responses
+    // await axios.all([axiosrequest1, axiosrequest2]).then(axios.spread(function(res1, res2) {
+    //   console.log(110,res1.data.listData);
+    //   console.log(111,res2res.data.listData);
+    //    // setDataDuy(res.data.product)
+    //     // setShow(res.data.product.slice(0, 2))
+    //     console.log(45, res.data.listData);
+    //     const ListData = res.data.listProductCode.map((val) => {
+    //       val.storage = Math.floor(Math.random() * 100);
+    //       val.ram = val.ramRange[0];
+    //       val.rom = val.romRange[0];
+    //       return val;
+    //     });
+    //     // console.log(4556, ListData);
+    //     setProductList(ListData);
+    //     setDataFilter(ListData);
+    // }));
+
+
+
+
+
+
+    // let endpoints = [
+    //   'http://localhost:3150/user/fillter?idCategories=628c8b29e8654d960a5c8983',
+    //   'http://localhost:3150/user/fillter?idCategories=628c8b40e8654d960a5c898b',
+
+    // ];
+
+    // axios.all(endpoints.map((endpoint) => axios.get(endpoint)))
+    //   .then((res) => {
+    //     // setDataDuy(res.data.product)
+    //     // setShow(res.data.product.slice(0, 2))
+    //     console.log(45, res.data.listData);
+    //     const ListData = res.data.listProductCode.map((val) => {
+    //       val.storage = Math.floor(Math.random() * 100);
+    //       val.ram = val.ramRange[0];
+    //       val.rom = val.romRange[0];
+    //       return val;
+    //     });
+    //     // console.log(4556, ListData);
+    //     setProductList(ListData);
+    //     setDataFilter(ListData);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+
+
+    let URL1 = "http://localhost:3150/user/fillter?idCategories=628c8b29e8654d960a5c8983"
+    let URL2 = "http://localhost:3150/user/fillter?idCategories=628c8b40e8654d960a5c898b"
+
+    const promise1 = axios.get(URL1);
+    const promise2 = axios.get(URL2);
+
+    Promise.all([promise1, promise2]).then(function (values) {
+      let a,b;
+      [a,b] = values
+      let dataProductCode = [...a.data.listProductCode,...b.data.listProductCode]
+      console.log(164,dataProductCode);
+      const ListData = dataProductCode.map((val) => {
+        val.storage = Math.floor(Math.random() * 100);
+        val.ram = val.ramRange[0];
+        val.rom = val.romRange[0];
+        
+        return val;
       });
+      console.log(4556, ListData);
+      setProductList(ListData);
+      setDataFilter(ListData);
+
+    });
+
+
+
+
+    // axios
+    //   .get(
+    //     "http://localhost:3150/user/fillter?idCategories=628c8b29e8654d960a5c8983"
+    //     // "http://localhost:3150//admin/productcode/list"
+    //   )
+    //   .then(function (res) {
+    //     console.log(178,res.data.listProductCode)
+    //     // setDataDuy(res.data.product)
+    //     // setShow(res.data.product.slice(0, 2))
+    //     // console.log(45, res.data.listData);
+    //     const ListData = res.data.listProductCode.map((val) => {
+    //       val.storage = Math.floor(Math.random() * 100);
+    //       val.ram = val.ramRange[0];
+    //       val.rom = val.romRange[0];
+          
+    //       return val;
+    //     });
+    //     console.log(4556, ListData);
+    //     setProductList(ListData);
+    //     setDataFilter(ListData);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   }, []);
   const [dataProduct, setDataProduce] = useState(productCode);
   const [count, setCount] = useState(0);
@@ -216,20 +296,20 @@ const App = (props) => {
 
 
             //route search
-                <Route
-                  path={`/product/filter/search`}
-                  element={
-                    <SearchProduct
-                      referent="brand"
-                      dataval={ProductList}
-                      chimuc= {'Iphone'}
-                      filter={filter}
-                      data={dataProduct}
-                      changeFilterData={changeFilterData}
-                    />
-                  }
+            <Route
+              path={`/product/filter/search`}
+              element={
+                <SearchProduct
+                  referent="brand"
+                  dataval={ProductList}
+                  chimuc={'Iphone'}
+                  filter={filter}
+                  data={dataProduct}
+                  changeFilterData={changeFilterData}
                 />
-            
+              }
+            />
+
 
 
 
@@ -473,8 +553,8 @@ const App = (props) => {
               path="/User/UserSingIn"
               element={<UserSingIn></UserSingIn>}
             />
-            <Route path="/User/UserPase" element={<UserPase></UserPase>} />     
-            <Route path="/User/order" element={<CreateOrder/>} />     
+            <Route path="/User/UserPase" element={<UserPase></UserPase>} />
+            <Route path="/User/order" element={<CreateOrder />} />
           </Routes>
           <ToastContainer />
         </ContextProvider>
