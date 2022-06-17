@@ -164,7 +164,6 @@ const App = (props) => {
       let a, b;
       [a, b] = values
       let dataProductCode = [...a.data.listProductCode, ...b.data.listProductCode]
-      console.log(164, dataProductCode);
       const ListData = dataProductCode.map((val) => {
         val.storage = Math.floor(Math.random() * 100);
         val.ram = val.ramRange[0];
@@ -172,7 +171,6 @@ const App = (props) => {
 
         return val;
       });
-      console.log(4556, ListData);
       setProductList(ListData);
       setDataFilter(ListData);
 
