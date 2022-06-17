@@ -79,7 +79,7 @@ function Khohang(props) {
             </div>
             <div className="statistext">
               <h3>All Money</h3>
-              {}
+              { }
               <p>{count.toLocaleString()}</p>
             </div>
           </div>
@@ -97,19 +97,19 @@ function Khohang(props) {
             </thead>
             <tbody>
               {statis.map(function (value, index) {
-                console.log(100, 'value',value.idProductCode)
+                console.log(100, 'value', value.idProductCode)
                 // console.log(100, 'value',value.idProductCode.productName)
                 return (
                   <tr key={index}>
                     <td>{index + 1}</td>
-                    {/* <td>{value.idProductCode.productName}</td> */}
+                    <td>{value.idProductCode.productName}</td>
                     <td>
                       <img
                         src={"http://localhost:3150" + value.productPic[0]}
                         alt=""
                       />
                     </td>
-                    {/* <td>{value.price.toLocaleString()}</td> */}
+                    <td>{value.price.toLocaleString()}</td>
                     <td>{value.storage}</td>
                   </tr>
                 )

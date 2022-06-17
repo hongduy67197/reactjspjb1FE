@@ -47,7 +47,7 @@ function Home(props) {
             align: "center",
             sorter: false,
             render: (productPic) => {
-                console.log(50,'http://localhost:3150'+productPic[0]);
+                console.log(50, 'http://localhost:3150' + productPic[0]);
                 // <img src={'http://localhost:3150'+productPic[0]} alt="anh" />
                 <img src={'https://www.pinterest.com/pin/850476710895618198/'} alt="anh" />
             },
@@ -92,7 +92,7 @@ function Home(props) {
                 storage: state[i].storage,
                 price: state[i].price,
             });
-            console.log(93,database)
+            console.log(93, database)
         }
     }
 
@@ -102,7 +102,7 @@ function Home(props) {
             console.log(147, token);
             try {
                 const res = await getApi("/admin/user/");
-                console.log(101,res)
+                console.log(101, res)
                 setstate1(res.data);
             } catch (error) {
                 console.log(168, error);
@@ -115,7 +115,7 @@ function Home(props) {
             console.log(147, token);
             try {
                 const res = await getApi("/admin/order/");
-                console.log(113,res)
+                console.log(113, res)
                 setstate2(res.data);
             } catch (error) {
                 console.log(168, error);
