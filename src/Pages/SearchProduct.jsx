@@ -24,8 +24,10 @@ function SearchProduct(props) {
   console.log(20, props.dataval.length);
   let getLocattion = window.location.href.replace('http://localhost:3000/product/filter/search?','')
   console.log(26,getLocattion)
+  const [trig, setTrig] = useState('')
   const [resetPage, setResetPage] = useState(props.dataval);
   useEffect(() => {
+    // axios.get(`http://localhost:3150/user/fillter?productName=${getLocattion}`)
     axios.get(`http://localhost:3150/user/fillter?productName=${getLocattion}`)
       .then(function(res){
         console.log(58,res)
@@ -39,7 +41,7 @@ function SearchProduct(props) {
 
 
     // setResetPage([...props.dataval]);
-  }, [props.dataval.length]);
+  }, [getLocattion]);
   //giữ lại các chõ đã choose khi load lại trang.
   const [searchParams, setSearchParams] = useSearchParams();
   useEffect(() => {
@@ -191,7 +193,17 @@ function SearchProduct(props) {
     //   let a5 = { [a6]: a7 };
     //   return a5;
     // });
-    var a3 =[{brand: ['Iphone']}]
+    var a3 =[{ brand: [
+      "Iphone",
+      "Samsung",
+      "Oppo",
+      "Vivo",
+      "Xiaomi",
+      "Realmi",
+      "Nokia",
+      "Itel",
+      "masstel",
+    ]}]
   }
   //----------------------------------------------------function xử lí lọc qua chỉ mục truyền vào các chỉ mục lọc và lọc trong data những dữ liệu thỏa mãn dk
   function handleDataFollowFiler(data, ref) {
@@ -225,6 +237,7 @@ function SearchProduct(props) {
   // ---------------------------------------------------xử lí sau khi lọc xong thì  sort lại. trình tự là lọc xong các chỉ mục và đối chiếu sang sort
   // var myJSON = JSON.parse(JSON.stringify(handleDataFollowFiler(props.dataval, a3))); //sao chép
   var myJSON = JSON.parse(JSON.stringify(handleDataFollowFiler(resetPage, a3))); //sao chép
+  console.log(229,resetPage,a3)
   console.log(168, myJSON);
   myJSON.sort((a, b) => {
     return a.storage - b.storage; // tạm thời sort theo storage vì chưa có trường PHỔ BIẾN

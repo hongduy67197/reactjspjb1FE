@@ -6,11 +6,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Admin/Home/home";
 import Xacnhan from "./Pages/Admin/DonhangFolder/Xacnhan";
 import Hoanthanh from "./Pages/Admin/DonhangFolder/Hoanthanh";
-import Danggiao from "./Pages/Admin/DonhangFolder/Danggiao";
+import Danggiao from "./Pages/Admin/DonhangFolder/Danggiao"
 import Khohang from "./Pages/Admin/Sanpham/Khohang";
 import Spmoi from "./Pages/Admin/Sanpham/Spmoi";
 import Trenke from "./Pages/Admin/Sanpham/Trenke";
-import Nhanvien from './Pages/Admin/Nhanvien/Nhanvien';
+import Nhanvien from './Pages/Admin/Nhanvien/Nhanvien'
 import React, { useState, useEffect } from "react";
 import axios from "./axios";
 import Login from "./Pages/Admin/Login/login";
@@ -130,7 +130,7 @@ const App = (props) => {
 
     // let endpoints = [
     //   'http://localhost:3150/user/fillter?idCategories=628c8b29e8654d960a5c8983',
-    //   'http://localhost:3150/user/fillter?idCategories=628c8b40e8654d960a5c898b',
+    //   'http://localhost:3150/user/fillter?idCategories=628c8b40e8654d960a5c898b',    
 
     // ];
 
@@ -506,7 +506,9 @@ const App = (props) => {
               path="/admin/Hoanthanh"
               element={<Hoanthanh name={name} />}
             />
-            <Route path="/admin/Danggiao" element={<Danggiao name={name} />} />
+            {/* <Route path="/admin/Danggiao" element={<Danggiao name={name} />} /> */}
+            <Route path="/admin/Danggiao" element={<Danggiao></Danggiao>} />
+            {/* <Route path="/admin/Danggiao" element={<h1>abc</h1>} /> */}
             <Route
               path="/Cart"
               element={
