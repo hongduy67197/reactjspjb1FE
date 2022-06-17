@@ -18,17 +18,7 @@ function Cart(props) {
   useEffect(() => {
     getApi("http://localhost:3150/user/carts")
       .then((data) => {
-        console.log(
-          17,
-          data.data.listCartsUser[0].listProduct[0].idProduct.idProductCode
-            .productName
-        );
-        console.log(18, data);
         setProductData(data.data.listCartsUser[0].listProduct);
-        console.log(
-          21,
-          data.data.listCartsUser[0].listProduct[0].idProduct.productPic[0]
-        );
       })
       .catch((err) => {
         console.log(err);
