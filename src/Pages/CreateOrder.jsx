@@ -348,7 +348,9 @@ console.log(36,userPage)
                             <div className="subtotal">
                                 <span>Tổng tiền hàng:</span>
                                 <span className="total-price">
-                                    {temp.length != 0 ? temp.total.toLocaleString():null}
+                                {temp.length != 0 ? temp.listProduct.reduce((s,c)=>{
+                                        return s+ (c.quantity*c.idProduct.price)
+                                    },0).toLocaleString():null}
                                     <sup>đ</sup>
                                 </span>
                             </div>
@@ -363,7 +365,10 @@ console.log(36,userPage)
                             <div className="total-subtotal">
                                 <span>Tổng thanh toán:</span>
                                 <span className="total-payment">
-                                    {temp.length != 0 ? temp.total.toLocaleString():null}
+                                    {/* {temp.length != 0 ? temp.total.toLocaleString():null} */}
+                                    {temp.length != 0 ? temp.listProduct.reduce((s,c)=>{
+                                        return s+ (c.quantity*c.idProduct.price)
+                                    },0).toLocaleString():null}
                                     <sup>đ</sup>
                                 </span>
                             </div>
