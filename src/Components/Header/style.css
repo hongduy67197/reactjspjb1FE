@@ -1,8 +1,4 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+
 .admin {
   position: relative;
 }
@@ -256,6 +252,7 @@
   border: 2px solid rgb(0, 0, 0);
   padding: 15px 25px;
   display: none;
+  z-index: 99999;
 }
 .light {
   width: 100%;
