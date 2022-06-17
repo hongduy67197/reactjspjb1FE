@@ -47,9 +47,8 @@ function Home(props) {
             align: "center",
             sorter: false,
             render: (productPic) => {
-                console.log(50, 'http://localhost:3150' + productPic[0]);
-                // <img src={'http://localhost:3150'+productPic[0]} alt="anh" />
-                <img src={'https://www.pinterest.com/pin/850476710895618198/'} alt="anh" />
+                return (<img src={'http://localhost:3150' + productPic[0]} alt="anh" />)
+
             },
         },
         {
