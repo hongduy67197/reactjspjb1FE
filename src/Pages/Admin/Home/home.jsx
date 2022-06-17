@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { FortRounded } from "@mui/icons-material";
 import { getApi } from "../../../api/config";
 import { getUserCookie, refreshToken } from "../../../refreshToken";
+import { ConsoleSqlOutlined } from "@ant-design/icons";
 
 //npm install react-calendar
 function Home(props) {
@@ -45,9 +46,11 @@ function Home(props) {
             dataIndex: "productPic",
             align: "center",
             sorter: false,
-            render: (productPic) => (
-                <img src={"http://localhost:3150" + productPic} alt="anh" />
-            ),
+            render: (productPic) => {
+                console.log(50,'http://localhost:3150'+productPic[0]);
+                // <img src={'http://localhost:3150'+productPic[0]} alt="anh" />
+                <img src={'https://www.pinterest.com/pin/850476710895618198/'} alt="anh" />
+            },
         },
         {
             title: "ProductType",
@@ -89,6 +92,7 @@ function Home(props) {
                 storage: state[i].storage,
                 price: state[i].price,
             });
+            console.log(93,database)
         }
     }
 
@@ -98,6 +102,7 @@ function Home(props) {
             console.log(147, token);
             try {
                 const res = await getApi("/admin/user/");
+                console.log(101,res)
                 setstate1(res.data);
             } catch (error) {
                 console.log(168, error);
@@ -110,6 +115,7 @@ function Home(props) {
             console.log(147, token);
             try {
                 const res = await getApi("/admin/order/");
+                console.log(113,res)
                 setstate2(res.data);
             } catch (error) {
                 console.log(168, error);
