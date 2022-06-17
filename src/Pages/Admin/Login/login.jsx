@@ -42,16 +42,21 @@ function Login(props) {
             //   password,
             // });
             let res = await postApi("/admin/auth", { email, password });
-            console.log(46, res);
-            const action = Loginadmin(res.data.data.userData);
-            dispatch(action);
-            setCookie("user", res.data.data.token, 30);
-            if (res.data.data.role == "admin") {
+            console.log(45, res.data.status);
+            if (res.data.status === 'undifind password') {
+                document.querySelector(".notte").innerHTML =
+                    "undifind password";
+            } else if (res.data.status === 'email is not available') {
+                document.querySelector(".notte").innerHTML =
+                    "email is not available";
+            } else if (res.data.status === 'your account not enought role') {
+                alert(res.data.status);
+            } else if (res.data.data.role == "admin") {
+                setCookie("user", res.data.data.token, 30);
+                const action = Loginadmin(res.data.data.userData);
+                dispatch(action);
                 props.changedata(res.data.data.userData.username);
                 navigate("/admin/home");
-            } else {
-                document.querySelector(".notte").innerHTML =
-                    "Tài khoản không chính xác";
             }
             // const action = Login(res.data.data.userData);
             // dispatch(action);
