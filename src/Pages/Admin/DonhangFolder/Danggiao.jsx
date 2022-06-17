@@ -1,6 +1,6 @@
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Table } from "antd";
-import { Modal } from "bootstrap";
+import { Modal } from "antd";
 import React, { useEffect, useState } from "react";
 import axios from "../../../axios";
 import Header from "../../../Components/Header/header";
@@ -242,8 +242,14 @@ function Danggiao() {
   return (
     <div>
       <Header></Header>
-      <div className="danggiao">
+      <div className="table_giao">
         <h1>Dang giao</h1>
+        <Table
+          columns={columns}
+          dataSource={data}
+          pagination={false}
+          className="done"
+        />
       </div>
       <Modal
         title="Quản lý đơn hàng"

@@ -138,10 +138,10 @@ function Khohang(props) {
                         alt=""
                       />
                     </td>
-                    <td>{value.price.toLocaleString()}</td>
+                    {/* <td>{value.price.toLocaleString()}</td> */}
                     <td>{value.storage}</td>
                   </tr>
-                );
+                )
               })}
             </tbody>
           </table>
