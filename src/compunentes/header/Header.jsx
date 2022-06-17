@@ -237,7 +237,7 @@ const Header = (props) => {
                         alt=""
                         className="header_navbar_item_userimager"
                       />
-                      <span>{userInfo.username}</span>
+                      <span>{userInfo.username?userInfo.username:'hello'}</span>
                     </div>
                     <div className="header_navbar_iteam_mypage_selec">
                       <div
