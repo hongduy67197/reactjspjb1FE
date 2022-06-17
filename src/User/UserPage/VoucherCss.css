@@ -112,6 +112,7 @@
 .allvoucher_conter_div {
   position: relative;
   width: 100%;
+  margin: 5px 0;
 }
 .allvoucher_conter_div:hover {
   background-color: #f7f7f7;

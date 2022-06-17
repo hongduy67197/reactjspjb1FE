@@ -34,14 +34,12 @@ function MyPage(props) {
   async function saveUp() {
     try {
       console.log(123,)
-      // let avatar = document.querySelector(".input_file").value;
-      // let date = document.getElementById("user_date").value;
-      // let name = document.querySelector(".mypage_right_name").value;
-      // let email = document.querySelector(".NewEmail").value;
-      // let phone = document.querySelector(".NewPhone").value;
+      document.querySelector(".newPhone_text").style.display = "none";
+      document.querySelector(".newAddress_text").style.display = "none";
       const form = document.querySelector(".myPageForm");
       const formData = new FormData(form);
       for(const pair of formData.entries()) {
+        console.log(40,pair)
         console.log(43, pair[0], pair[1]);
       }
       let cookie = getUserCookie('user')
@@ -64,33 +62,32 @@ function MyPage(props) {
         console.log(61, res);
       }
       props.newColor()
-      // console.log("roem", avatar, date, name, email, phone);
     } catch (error) {
       console.log(error);
     }
   }
   // bật modal thay đổi số điện thoại
   function onof_newPhone() {
-    document.querySelector(".NewPhone_").style.display = "block";
+    document.querySelector(".NewPhone_modal").style.display = "block";
   }
-  // bật modal thay đổi email
-  function onof_newEmail() {
-    document.querySelector(".newEmail_").style.display = "block";
+  // bật modal thay đổi Địa chỉ
+  function onof_newAddress() {
+    document.querySelector(".newAddress_modal").style.display = "block";
   }
   // tắt modal thay đổi số điện thoại và email
   function of_modal() {
-    document.querySelector(".newEmail_").style.display = "none";
-    document.querySelector(".NewPhone_").style.display = "none";
+    document.querySelector(".newAddress_modal").style.display = "none";
+    document.querySelector(".NewPhone_modal").style.display = "none";
   }
-  // thay đổi email
-  function update_email_form() {
-    let newEmail = document.querySelector(".NewEmail").value;
-    let email = userInfo.email;
-    if (newEmail !== email) {
-      document.querySelector(".newEmail_text").style.display = "block";
-      document.querySelector(".newEmail_render").innerHTML = newEmail;
+  // thay đổi Địa chỉ
+  function update_address_form() {
+    let newAddress = document.querySelector(".NewAddress").value;
+    let address= userInfo.address;
+    if (newAddress !== address) {
+      document.querySelector(".newAddress_text").style.display = "block";
+      document.querySelector(".newAddress_render").value = newAddress;
       document.querySelector(".close").click();
-    } else if (newEmail === "" || newEmail === email) {
+    } else if (newAddress === "" || newAddress === address) {
       document.querySelector(".newEmail_text").style.display = "none";
     }
   }
@@ -100,7 +97,7 @@ function MyPage(props) {
     let phone = userInfo.phone;
     if (newPhone !== phone) {
       document.querySelector(".newPhone_text").style.display = "block";
-      document.querySelector(".newPhone_render").innerHTML = newPhone;
+      document.querySelector(".newPhone_render1").value = newPhone;
       document.querySelector(".close").click();
     } else if (newPhone === "" || newPhone === phone) {
       document.querySelector(".newPhone_text").style.display = "none";
@@ -121,7 +118,7 @@ function MyPage(props) {
             <span className="mypage_leght_email">Email</span>
             <span className="mypage_leght_phone">Số Điện Thoại</span>
             <span className="mypage_leght_check">Giới Tính</span>
-            <span className="mypage_leght_date">Ngày Sinh</span>
+            <span className="mypage_leght_date">Địa Chỉ</span>
           </div>
           {/* right */}
           <form className="myPageForm" action="" encType="multipart/form-data">
@@ -135,13 +132,6 @@ function MyPage(props) {
                />
               <div className="mypage_right_email1">
                 <span className="mypage_right_email">{userInfo.email}</span>
-                <span className="thaydoi" onClick={onof_newEmail}>
-                 Thay Đổi
-                </span>
-              <div className="newEmail_text">
-                <span>Email mới : </span>
-                <span className="newEmail_render"></span>
-              </div>
             </div>
             <div className="mypage_right_phone1">
               <span>{userInfo.phone}</span>
@@ -150,7 +140,7 @@ function MyPage(props) {
               </span>
               <div className="newPhone_text">
                 <span>Số điện thoại mới : </span>
-                <span className="newPhone_render"></span>
+                <input type="text" name ='phone' className="newPhone_render1" style={{border:'none'}} />
               </div>
             </div>
             <div className="mypage_right_check">
@@ -161,9 +151,15 @@ function MyPage(props) {
               <input type="checkbox" name="" id="" />
               Khác
             </div>
-            <div className="mypage_right_date">
-              <input type="date" id="user_date" name="birthDay" />
+            <div className="mypage_right_address">
+               <input type="text" defaultValue={userInfo.address} />
+                <span onClick={onof_newAddress}> Thay Đổi</span>
             </div>
+            <div className="newAddress_text">
+                <span>Địa chỉ mới : </span>
+                <input className="newAddress_render" name='address'></input>
+              </div>
+             {/* chọn  đại diện */}
             <div className="mypage_conter_imager">
               <div className="mypage_conter_imager_wrap">
                 <img src={image ? image : avatr} alt="" className="chooseImage" />
@@ -185,31 +181,29 @@ function MyPage(props) {
             </div>
           </form>
         </div>
-        {/* chọn  đại diện */}
-        
       </div>
-      {/* modal Email*/}
-      <div className="newEmail_">
-        <span>Nhập Email</span>
-        <input type="text" name="" className="NewEmail" />
-        <button className="update" onClick={update_email_form}>
+      {/* modal Address*/}
+      <div className="newAddress_modal" style={{display:'none'}}>
+        <span>Nhập địa chỉ</span>
+        <input type="text" name="" className="NewAddress" />
+        <button className="update" onClick={update_address_form}>
           Lưu
         </button>
         <button className="close" onClick={of_modal}>
           Close
         </button>
       </div>
-      {/* modal Phone*/}
-      <div className="NewPhone_">
-        <span>Nhập Số điện thoại mới</span>
-        <input type="text" name="" className="NewPhone" />
-        <button className="update" onClick={update_phone_form}>
-          Lưu
-        </button>
-        <button className="close" onClick={of_modal}>
-          Close
-        </button>
-      </div>
+             {/* modal Phone*/}
+             <div className="NewPhone_modal">
+                <span>Nhập Số điện thoại mới</span>
+                <input type="number"  className="NewPhone" />
+                <button className="update" onClick={update_phone_form}>
+                 Lưu
+               </button>
+               <button className="close" onClick={of_modal}>
+                Close
+               </button>
+             </div>
     </div>
   );
 }
