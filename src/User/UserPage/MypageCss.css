@@ -93,9 +93,11 @@
   width: 400px;
 
 }
-.newEmail_text,
+
 .newPhone_text {
   display: none;
+}
+.newPhone_render1{
   color: #ee4d2d;
 }
 .mypage_right_email1 a,
@@ -121,16 +123,25 @@
 .mypage_right_check input {
   margin: 0 5px;
 }
-.mypage_right_date {
+.mypage_right_address {
   position: absolute;
   top: 335px;
   left: 0;
   display: flex;
 }
-.mypage_right_date input {
-  width: 100%;
-  padding: 10px 16px;
+.mypage_right_address input {
+  border: none;
+  padding: 10px ;
+  font-size: 18px;
 }
+.mypage_right_address span{
+width: 100px;
+padding: 5px;
+color: #05a;
+font-size: 18px;
+cursor: pointer;
+}
+
 .mypage_right_update {
   position: absolute;
   top: 480px;
@@ -141,6 +152,19 @@
   background-color: #ee4d2d;
   color: #ffffff;
   border-radius: 3px;
+}
+.newAddress_text{
+  position: absolute;
+  top: 380px;
+  left: 10px;
+  width: 500px;
+  display: none;
+  font-size: 18px;
+}
+.newAddress_render{
+  border: none;
+  color: #ee4d2d;
+
 }
 /* ---------------------IMG------------------ */
 .mypage_conter_imager {
@@ -166,8 +190,11 @@
   left: 35%;
   color: #fff;
 }
-.NewPhone_,
-.newEmail_ {
+
+
+
+.NewPhone_modal,
+.newAddress_modal{
   border: 1px solid rgb(232, 219, 219);
   border-radius: 3px;
   background-color: #fff;
@@ -180,12 +207,14 @@
   box-sizing: border-box;
   display: none;
 }
-.NewPhone_ span,
-.newEmail_ span {
+
+
+.NewPhone_modal span,
+.newAddress_modal span {
   font-size: 16px;
 }
-.NewPhone_ input,
-.newEmail_ input {
+.NewPhone_modal input,
+.newAddress_modal input {
   width: 93%;
   margin: 0 auto;
   position: absolute;

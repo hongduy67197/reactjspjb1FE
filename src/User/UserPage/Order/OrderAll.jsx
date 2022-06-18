@@ -2,15 +2,13 @@ import React from "react";
 import order from "../../../assets/images/ordermenu.png";
 
 function OrderAll(props) {
-  const allCart = props.userCart
   const allOrder = props.userOder
-  console.log(7,allOrder)
   let sumOrder = []
   let sumStatus=0
 for(let a = 0; a < allOrder.length; a++){
   let list = allOrder[a].listProduct
   sumStatus = allOrder[a].status
-  sumOrder=[...sumOrder, ...list]
+  sumOrder=[...sumOrder,...list]
 }
   return (
     <div>
