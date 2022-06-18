@@ -1,15 +1,17 @@
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { Table } from "antd";
-import { Modal } from "antd";
-import React, { useEffect, useState } from "react";
-import axios from "../../../axios";
+import React, { useState } from "react";
 import Header from "../../../Components/Header/header";
 import "./styledanggiao.css";
-// import axios from "axios";
-import {getApi,deleteApi, putApi} from '../../../api/config'
+import axios from "axios";
+import { Table } from "antd";
+import { Modal } from "antd";
+import { useEffect } from "react";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { getApi, deleteApi, putApi } from "../../../api/config";
 import { getUserCookie, refreshToken } from "../../../refreshToken";
 
-function Danggiao() {
+  
+const Danggiao = () => {
+
   const [state, setstate] = useState([]);
   const [state1, setstate1] = useState([]);
   const [state2, setstate2] = useState([]);
@@ -17,49 +19,42 @@ function Danggiao() {
   const [isindex, setIsIndex] = useState(0);
   const [isin, setIsin] = useState(0);
 
+
   const database = [];
-  const data = [];
+
   useEffect(() => {
-    async function getAllorder (){
-      let token = getUserCookie('user')
-      // console.log(147, token);
+    async function getAllorder() {
+      let token = getUserCookie("user");
       try {
-        const res = await getApi('/admin/order/')
-        setstate(res.data)
+        const res = await getApi("/admin/order/");
+        setstate(res.data);
       } catch (error) {
         console.log(168, error);
       }
     }
-    getAllorder()
- 
+    getAllorder();
 
-    async function getAllUser (){
-      let token = getUserCookie('user')
-      // console.log(147, token);
+    async function getAllUser() {
+      let token = getUserCookie("user");
       try {
-        const res = await getApi('/admin/user/')
-        setstate1(res.data)
+        const res = await getApi("/admin/user/");
+        setstate1(res.data);
       } catch (error) {
         console.log(168, error);
       }
     }
-    getAllUser()
+    getAllUser();
 
-   
-
-    async function getAllproduct (){
-      let token = getUserCookie('user')
-      // console.log(147, token);
+    async function getAllproduct() {
+      let token = getUserCookie("user");
       try {
-        const res = await getApi('/admin/product/list')
-        setstate2(res.data)
+        const res = await getApi("/admin/product/list");
+        setstate2(res.data);
       } catch (error) {
         console.log(168, error);
       }
     }
-    getAllproduct()
-
-  
+    getAllproduct();
   }, [isin]);
 
   for (let i = 0; i < state1.length; i++) {
@@ -86,10 +81,15 @@ function Danggiao() {
     }
   }
 
+//   console.log(999,data);
+//   console.log(84,database);
+// console.log(85,state2);
+
+let data1 = [];
   for (let i = 0; i < state2.length; i++) {
     for (let j = 0; j < database.length; j++) {
-      if (state2[i]._id === database[j].idProduct[0]) {
-        data.push({
+      if (state2[i]._id === database[j].idProduct[0]._id) {
+        data1.push({
           idUser: database[j].idUser,
           address: database[j].address,
           phone: database[j].phone,
@@ -97,16 +97,18 @@ function Danggiao() {
           idProduct: state2[i].idProductCode.productName,
           quantity: database[j].quantity,
           status: database[j].status,
-        });
+        })
+        
+        }
       }
     }
-  }
+  // console.log(100, state2 );
+  // console.log(200, data1);
 
   const columns = [
     {
       title: "Name",
-
-  align: "center",
+      align: "center",
       dataIndex: "idUser",
     },
     {
@@ -148,7 +150,7 @@ function Danggiao() {
         <>
           <EditOutlined
             onClick={() => {
-              showModal(record._id);
+              showModal(record);
             }}
             style={{ fontSize: 20 }}
           />
@@ -157,7 +159,7 @@ function Danggiao() {
               ondelete(record._id);
             }}
             style={{ color: "red", fontSize: 20, marginLeft: 20 }}
-          />
+            />
         </>
       ),
     },
@@ -170,44 +172,42 @@ function Danggiao() {
     setIsin(isin + 1);
   }
   const showModal = (id) => {
-    console.log(173, id);
+    console.log(168, id);
     setIsIndex(id);
-    count();
     setIsModalVisible(true);
-    data.map(function (val) {
+    data1.map(function (val) {
       if (val._id == id) {
         document.querySelector(".phone").value = val.phone;
         document.querySelector(".address").value = val.address;
         document.querySelector(".status").value = val.status;
       }
     });
+    count();
   };
 
   const handleOk = () => {
-    console.log(187);
     let phone = document.querySelector(".phone").value;
     let diachi = document.querySelector(".address").value;
     let status = document.querySelector(".status").value;
 
     if (phone !== "" && diachi !== "" && status !== "") {
-      console.log(phone,diachi,status)
-      async function getAllorder1 (){
-        let token = getUserCookie('user')
-        console.log(147, isindex);
+      console.log(185,phone, diachi, status);
+      async function getAllorder1() {
+        let token = getUserCookie("user");
         try {
-          const res = await putApi(`/admin/order/${isindex}`,{
+          const res = await putApi(`/admin/order/${isindex}`, {
             address: diachi,
             phone: phone,
             status: status,
-          })
-          console.log(226,res)
+          });
+          console.log(226, res);
         } catch (error) {
           console.log(168, error);
         }
       }
-      getAllorder1()
+      getAllorder1();
       count();
-      
+
       setIsModalVisible(false);
     } else {
       document.querySelector(".Not").innerHTML = "Vui lòng không được để trống";
@@ -223,18 +223,18 @@ function Danggiao() {
       title: "Bạn có chắc muốn xóa không",
       okText: "Yes",
       okType: "danger",
-      onOk: () => {
-        async function getAllorder (){
-          let token = getUserCookie('user')
-          console.log(147, token);
+      onDelete: () => {
+        async function getAllorder() {
+          let token = getUserCookie("user");
           try {
-            const res = await deleteApi(`/admin/order/${id}`)
+            const res = await deleteApi(`/admin/order/${id}`);
+            console.log(res);
           } catch (error) {
             console.log(168, error);
           }
         }
-        getAllorder()
-        
+        getAllorder();
+
         count();
       },
     });
@@ -244,18 +244,18 @@ function Danggiao() {
     <div>
       <Header></Header>
       <div className="table_giao">
-        <h1>Dang giao</h1>
+        <h1 className="title_giao">Đơn hàng đang giao</h1>
         <Table
+        
           columns={columns}
-          dataSource={data}
-          pagination={false}
-          className="done"
-        />
-      </div>
+          dataSource={data1}
+          onChange={onChange}
+          className="doing"
+          />
       <Modal
         title="Quản lý đơn hàng"
         visible={isModalVisible}
-        onOk={handleOk}
+        onDelete={handleOk}
         onCancel={handleCancel}
       >
         <input type="text" placeholder="phone" className="phone" />
@@ -263,6 +263,8 @@ function Danggiao() {
         <input type="text" placeholder="status" className="status" />
         <p className="Not"></p>
       </Modal>
+       
+      </div>
     </div>
   );
 }
