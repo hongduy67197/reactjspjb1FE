@@ -10,7 +10,7 @@ import Danggiao from "./Pages/Admin/DonhangFolder/Danggiao";
 import Khohang from "./Pages/Admin/Sanpham/Khohang";
 import Spmoi from "./Pages/Admin/Sanpham/Spmoi";
 import Trenke from "./Pages/Admin/Sanpham/Trenke";
-import Nhanvien from './Pages/Admin/NhanVien/Nhanvien';
+// import Nhanvien from './Pages/Admin/NhanVien/Nhanvien';
 import React, { useState, useEffect } from "react";
 import axios from "./axios";
 import Login from "./Pages/Admin/Login/login";
@@ -123,11 +123,6 @@ const App = (props) => {
     //     setDataFilter(ListData);
     // }));
 
-
-
-
-
-
     // let endpoints = [
     //   'http://localhost:3150/user/fillter?idCategories=628c8b29e8654d960a5c8983',
     //   'http://localhost:3150/user/fillter?idCategories=628c8b40e8654d960a5c898b',
@@ -153,33 +148,33 @@ const App = (props) => {
     //     console.log(err);
     //   });
 
-
-    let URL1 = "http://localhost:3150/user/fillter?idCategories=628c8b29e8654d960a5c8983"
-    let URL2 = "http://localhost:3150/user/fillter?idCategories=628c8b40e8654d960a5c898b"
+    let URL1 =
+      "http://localhost:3150/user/fillter?idCategories=628c8b29e8654d960a5c8983";
+    let URL2 =
+      "http://localhost:3150/user/fillter?idCategories=628c8b40e8654d960a5c898b";
 
     const promise1 = axios.get(URL1);
     const promise2 = axios.get(URL2);
 
     Promise.all([promise1, promise2]).then(function (values) {
-      let a,b;
-      [a,b] = values
-      let dataProductCode = [...a.data.listProductCode,...b.data.listProductCode]
-      console.log(164,dataProductCode);
+      let a, b;
+      [a, b] = values;
+      let dataProductCode = [
+        ...a.data.listProductCode,
+        ...b.data.listProductCode,
+      ];
+      console.log(164, dataProductCode);
       const ListData = dataProductCode.map((val) => {
         val.storage = Math.floor(Math.random() * 100);
         val.ram = val.ramRange[0];
         val.rom = val.romRange[0];
-        
+
         return val;
       });
       console.log(4556, ListData);
       setProductList(ListData);
       setDataFilter(ListData);
-
     });
-
-
-
 
     // axios
     //   .get(
@@ -195,7 +190,7 @@ const App = (props) => {
     //       val.storage = Math.floor(Math.random() * 100);
     //       val.ram = val.ramRange[0];
     //       val.rom = val.romRange[0];
-          
+
     //       return val;
     //     });
     //     console.log(4556, ListData);
@@ -293,8 +288,6 @@ const App = (props) => {
                 />
               );
             })}
-
-
             //route search
             <Route
               path={`/product/filter/search`}
@@ -302,18 +295,13 @@ const App = (props) => {
                 <SearchProduct
                   referent="brand"
                   dataval={ProductList}
-                  chimuc={'Iphone'}
+                  chimuc={"Iphone"}
                   filter={filter}
                   data={dataProduct}
                   changeFilterData={changeFilterData}
                 />
               }
             />
-
-
-
-
-
             {/* route for filter brand */}
             {filterProduct.brand.map((val, i) => {
               return (
@@ -502,7 +490,7 @@ const App = (props) => {
               element={<Login changedata={changedata} />}
             />
             <Route path="/admin/home" element={<Home name={name} />} />
-            <Route path="/admin/nhanvien" element={<Nhanvien name={name} />} />
+            {/* <Route path="/admin/nhanvien" element={<Nhanvien name={name} />} /> */}
             <Route path="/admin/Xacnhan" element={<Xacnhan name={name} />} />
             <Route
               path="/admin/Hoanthanh"
