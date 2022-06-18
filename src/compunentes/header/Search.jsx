@@ -21,7 +21,9 @@ const Search = (props) => {
       axios
         .get(`/user/fillter?productName=${e}`)
         .then(function (res) {
+          console.log(24, res);
           let dataSearch = res.data.listProductCode;
+
           if (dataSearch.length > 0) {
             setPost(dataSearch);
           } else {
@@ -68,6 +70,7 @@ const Search = (props) => {
   }
   function movePageToProduct(e) {
     let linktoProduct = e.target.innerHTML;
+    console.log(73, linktoProduct);
     let linktoProductModify = RemoveAccents(linktoProduct).split(" ").join("");
     console.log(51, e.target.innerHTML);
     navigate(`/product/filter/${linktoProductModify}`);

@@ -27,6 +27,7 @@ const Home = () => {
     axios
       .get("/user/list")
       .then(function (res) {
+        console.log(30, res);
         setProductCode(res.data.dataProductCode);
         setSlides(res.data.listSlide);
         setCategories(res.data.listCategories);

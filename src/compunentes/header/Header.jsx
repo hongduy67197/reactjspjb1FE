@@ -54,17 +54,16 @@ const Header = (props) => {
     } else {
       // navigate(`/user/fillter?productName=${variableTemp}`);
 
-      axios.get('http://localhost:3150/user/fillter?productName=i')
+      axios
+        .get("http://localhost:3150/user/fillter?productName=i")
         .then(function (res) {
-          console.log(58, res)
-
+          console.log(58, res);
         })
         .catch((error) => {
-          console.log(error)
-        })
+          console.log(error);
+        });
       navigate(`/product/filter/search?${variableTemp}`);
       // navigate(`/product/filter`);
-
     }
 
     // navigate('/product/filter')
@@ -87,13 +86,13 @@ const Header = (props) => {
   }
 
   //duongthetao
-  const [cartNumber, setCartNumber] = useState(0)
+  const [cartNumber, setCartNumber] = useState(0);
   useEffect(() => {
     getApi("http://localhost:3150/user/carts")
       .then((data) => {
         // console.log(84, data.data.listCartsUser[0])
         // console.log('heardercart 78', data.data.listCartsUser[0].listProduct.length);
-        setCartNumber(data.data.listCartsUser[0].listProduct.length)
+        setCartNumber(data.data.listCartsUser[0].listProduct.length);
       })
       .catch((err) => {
         console.log(err);
@@ -237,7 +236,9 @@ const Header = (props) => {
                         alt=""
                         className="header_navbar_item_userimager"
                       />
-                      <span>{userInfo.username?userInfo.username:'hello'}</span>
+                      <span>
+                        {userInfo.username ? userInfo.username : "hello"}
+                      </span>
                     </div>
                     <div className="header_navbar_iteam_mypage_selec">
                       <div
@@ -660,14 +661,12 @@ const Header = (props) => {
                 </div>
               </div>
               <div className="header_cart">
-
                 <div
                   onClick={() => {
                     moveToCart();
                   }}
                   className="header_cart-wrap"
                 >
-
                   <ShoppingCartOutlined className="header_cart-icon" />
 
                   {/* <div className="header_cart-list header_cart-list--no-cart">

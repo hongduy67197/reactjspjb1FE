@@ -297,201 +297,219 @@ function CreateOrder(props) {
                 </DialogActions>
               </Dialog>
             </div>
-<<<<<<< HEAD
-          </div>
-=======
 
             {/* Sản phẩm, số lượng, đơn giá */}
             <div className="container_">
-                <div className="section-product">
-                    <div className="titles">
-                        <div className="product-title">Sản phẩm</div>
-                        <div className="price_">Giá</div>
-                        <div className="Quantity">Số lượng</div>
-                        <div className="total">Thành tiền</div>
-                    </div>
-
-                    <div className="product-list-items">
-                        {/* {console.log(311,temp.listProduct)} */}
-
-
-                        {temp.length == 0 ? null: temp.listProduct.map((dataItem, index) => (
-                            <div className="product-item" key={index}>
-                                <div className="product-image">
-                                    <img src={'http://localhost:3150'+dataItem.idProduct.productPic[0]} alt={dataItem.productPic} />
-                                    <h3>{dataItem.idProduct.idProductCode.productName}</h3>
-                                </div>
-
-                                <div>
-                                    {dataItem.idProduct.price.toLocaleString()}
-                                    <sup>đ</sup>
-                                </div>
-                                <div className="product-quantity">{dataItem.quantity}</div>
-                                <div>
-                                    {(dataItem.quantity * dataItem.idProduct.price).toLocaleString()}
-                                    <sup>đ</sup>
-                                </div>
-                            </div>
-                        ))}
-                        
-                    </div>
+              <div className="section-product">
+                <div className="titles">
+                  <div className="product-title">Sản phẩm</div>
+                  <div className="price_">Giá</div>
+                  <div className="Quantity">Số lượng</div>
+                  <div className="total">Thành tiền</div>
                 </div>
+
+                <div className="product-list-items">
+                  {/* {console.log(311,temp.listProduct)} */}
+
+                  {temp.length == 0
+                    ? null
+                    : temp.listProduct.map((dataItem, index) => (
+                        <div className="product-item" key={index}>
+                          <div className="product-image">
+                            <img
+                              src={
+                                "http://localhost:3150" +
+                                dataItem.idProduct.productPic[0]
+                              }
+                              alt={dataItem.productPic}
+                            />
+                            <h3>
+                              {dataItem.idProduct.idProductCode.productName}
+                            </h3>
+                          </div>
+
+                          <div>
+                            {dataItem.idProduct.price.toLocaleString()}
+                            <sup>đ</sup>
+                          </div>
+                          <div className="product-quantity">
+                            {dataItem.quantity}
+                          </div>
+                          <div>
+                            {(
+                              dataItem.quantity * dataItem.idProduct.price
+                            ).toLocaleString()}
+                            <sup>đ</sup>
+                          </div>
+                        </div>
+                      ))}
+                </div>
+              </div>
             </div>
 
             {/* Thành tiền */}
             <div className="container_">
-                <div className="payment-list">
-                    <div className="payment-top">
-                        <div className="payment-info">
-                            <div className="subtotal">
-                                <span>Tổng tiền hàng:</span>
-                                <span className="total-price">
-                                {temp.length != 0 ? temp.listProduct.reduce((s,c)=>{
-                                        return s+ (c.quantity*c.idProduct.price)
-                                    },0).toLocaleString():null}
-                                    <sup>đ</sup>
-                                </span>
-                            </div>
-
-                            <div className="payment-shipping">
-                                <span>Phí vận chuyển:</span>
-                                <span>
-                                    0<sup>đ</sup>
-                                </span>
-                            </div>
-
-                            <div className="total-subtotal">
-                                <span>Tổng thanh toán:</span>
-                                <span className="total-payment">
-                                    {/* {temp.length != 0 ? temp.total.toLocaleString():null} */}
-                                    {temp.length != 0 ? temp.listProduct.reduce((s,c)=>{
-                                        return s+ (c.quantity*c.idProduct.price)
-                                    },0).toLocaleString():null}
-                                    <sup>đ</sup>
-                                </span>
-                            </div>
-                        </div>
+              <div className="payment-list">
+                <div className="payment-top">
+                  <div className="payment-info">
+                    <div className="subtotal">
+                      <span>Tổng tiền hàng:</span>
+                      <span className="total-price">
+                        {temp.length != 0
+                          ? temp.listProduct
+                              .reduce((s, c) => {
+                                return s + c.quantity * c.idProduct.price;
+                              }, 0)
+                              .toLocaleString()
+                          : null}
+                        <sup>đ</sup>
+                      </span>
                     </div>
 
-                    <div className="payment-bottom">
-                        <button
-                            className="payment-send"
-                            onClick={() => {
-                                postOrder();
-
-                                toast.info('Cảm ơn bạn đã mua hàng', {
-                                    position: 'top-center',
-                                    autoClose: 3000,
-                                });
-
-                                setTimeout(() => {
-                                    navigate('/');
-                                }, 4000);
-                            }}
-                        >
-                            PAYMENT
-                        </button>
-                    </div>
-                </div>
-            </div>
-
->>>>>>> 231fe94cd929fa14eea694187b18669d7deb8702
-        </div>
-      </div>
-
-      {/* Sản phẩm, số lượng, đơn giá */}
-      <div className="container_">
-        <div className="section-product">
-          <div className="titles">
-            <div className="product-title">Sản phẩm</div>
-            <div className="price_">Giá</div>
-            <div className="Quantity">Số lượng</div>
-            <div className="total">Thành tiền</div>
-          </div>
-
-          <div className="product-list-items">
-            {/* {console.log(311,temp.listProduct)} */}
-
-            {temp.length == 0
-              ? null
-              : temp.listProduct.map((dataItem, index) => (
-                  <div className="product-item" key={index}>
-                    <div className="product-image">
-                      <img
-                        src={
-                          "http://localhost:3150" +
-                          dataItem.idProduct.productPic[0]
-                        }
-                        alt={dataItem.productPic}
-                      />
-                      <h3>{dataItem.idProduct.idProductCode.productName}</h3>
+                    <div className="payment-shipping">
+                      <span>Phí vận chuyển:</span>
+                      <span>
+                        0<sup>đ</sup>
+                      </span>
                     </div>
 
-                    <div>
-                      {dataItem.idProduct.price.toLocaleString()}
-                      <sup>đ</sup>
-                    </div>
-                    <div className="product-quantity">{dataItem.quantity}</div>
-                    <div>
-                      {(
-                        dataItem.quantity * dataItem.idProduct.price
-                      ).toLocaleString()}
-                      <sup>đ</sup>
+                    <div className="total-subtotal">
+                      <span>Tổng thanh toán:</span>
+                      <span className="total-payment">
+                        {/* {temp.length != 0 ? temp.total.toLocaleString():null} */}
+                        {temp.length != 0
+                          ? temp.listProduct
+                              .reduce((s, c) => {
+                                return s + c.quantity * c.idProduct.price;
+                              }, 0)
+                              .toLocaleString()
+                          : null}
+                        <sup>đ</sup>
+                      </span>
                     </div>
                   </div>
-                ))}
-          </div>
-        </div>
-      </div>
+                </div>
 
-      {/* Thành tiền */}
-      <div className="container_">
-        <div className="payment-list">
-          <div className="payment-top">
-            <div className="payment-info">
-              <div className="subtotal">
-                <span>Tổng tiền hàng:</span>
-                <span className="total-price">
-                  {temp.length != 0 ? temp.total.toLocaleString() : null}
-                  <sup>đ</sup>
-                </span>
-              </div>
+                <div className="payment-bottom">
+                  <button
+                    className="payment-send"
+                    onClick={() => {
+                      postOrder();
 
-              <div className="payment-shipping">
-                <span>Phí vận chuyển:</span>
-                <span>
-                  0<sup>đ</sup>
-                </span>
-              </div>
+                      toast.info("Cảm ơn bạn đã mua hàng", {
+                        position: "top-center",
+                        autoClose: 3000,
+                      });
 
-              <div className="total-subtotal">
-                <span>Tổng thanh toán:</span>
-                <span className="total-payment">
-                  {temp.length != 0 ? temp.total.toLocaleString() : null}
-                  <sup>đ</sup>
-                </span>
+                      setTimeout(() => {
+                        navigate("/");
+                      }, 4000);
+                    }}
+                  >
+                    PAYMENT
+                  </button>
+                </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div className="payment-bottom">
-            <button
-              className="payment-send"
-              onClick={() => {
-                postOrder();
+        {/* Sản phẩm, số lượng, đơn giá */}
+        <div className="container_">
+          <div className="section-product">
+            <div className="titles">
+              <div className="product-title">Sản phẩm</div>
+              <div className="price_">Giá</div>
+              <div className="Quantity">Số lượng</div>
+              <div className="total">Thành tiền</div>
+            </div>
 
-                toast.info("Cảm ơn bạn đã mua hàng", {
-                  position: "top-center",
-                  autoClose: 3000,
-                });
+            <div className="product-list-items">
+              {/* {console.log(311,temp.listProduct)} */}
 
-                setTimeout(() => {
-                  navigate("/");
-                }, 4000);
-              }}
-            >
-              PAYMENT
-            </button>
+              {temp.length == 0
+                ? null
+                : temp.listProduct.map((dataItem, index) => (
+                    <div className="product-item" key={index}>
+                      <div className="product-image">
+                        <img
+                          src={
+                            "http://localhost:3150" +
+                            dataItem.idProduct.productPic[0]
+                          }
+                          alt={dataItem.productPic}
+                        />
+                        <h3>{dataItem.idProduct.idProductCode.productName}</h3>
+                      </div>
+
+                      <div>
+                        {dataItem.idProduct.price.toLocaleString()}
+                        <sup>đ</sup>
+                      </div>
+                      <div className="product-quantity">
+                        {dataItem.quantity}
+                      </div>
+                      <div>
+                        {(
+                          dataItem.quantity * dataItem.idProduct.price
+                        ).toLocaleString()}
+                        <sup>đ</sup>
+                      </div>
+                    </div>
+                  ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Thành tiền */}
+        <div className="container_">
+          <div className="payment-list">
+            <div className="payment-top">
+              <div className="payment-info">
+                <div className="subtotal">
+                  <span>Tổng tiền hàng:</span>
+                  <span className="total-price">
+                    {temp.length != 0 ? temp.total.toLocaleString() : null}
+                    <sup>đ</sup>
+                  </span>
+                </div>
+
+                <div className="payment-shipping">
+                  <span>Phí vận chuyển:</span>
+                  <span>
+                    0<sup>đ</sup>
+                  </span>
+                </div>
+
+                <div className="total-subtotal">
+                  <span>Tổng thanh toán:</span>
+                  <span className="total-payment">
+                    {temp.length != 0 ? temp.total.toLocaleString() : null}
+                    <sup>đ</sup>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="payment-bottom">
+              <button
+                className="payment-send"
+                onClick={() => {
+                  postOrder();
+
+                  toast.info("Cảm ơn bạn đã mua hàng", {
+                    position: "top-center",
+                    autoClose: 3000,
+                  });
+
+                  setTimeout(() => {
+                    navigate("/");
+                  }, 4000);
+                }}
+              >
+                PAYMENT
+              </button>
+            </div>
           </div>
         </div>
       </div>

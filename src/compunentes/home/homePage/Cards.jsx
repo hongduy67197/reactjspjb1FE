@@ -52,6 +52,7 @@ const Cards = ({ item, keyId }) => {
   const NewPrice = item.minPrice - (NewSale * item.minPrice) / 100;
 
   function moveToProduct(Name) {
+    console.log(1212, Name);
     navigate(`/product/filter/${Name}`);
   }
   return (
