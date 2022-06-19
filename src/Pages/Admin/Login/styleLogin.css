@@ -89,11 +89,12 @@
     cursor: pointer;
     color: white;
     border: none;
-    background-color: #fe9a8b;
+    background-color: #fe441b;
   }
   
   .btnLogin:hover {
     box-shadow: 0 5px 20px 0 rgb(0 0 0 / 30%);
+    opacity: 0.9;
   }
   
   .logo-info {
