@@ -47,9 +47,8 @@ function Home(props) {
             align: "center",
             sorter: false,
             render: (productPic) => {
-                return(<img src={'http://localhost:3150'+productPic[0]} alt="anh" />)
-                
-        },
+                return (<img src={'http://localhost:3150' + productPic[0]} alt="anh" />)
+            },
         },
         {
             title: "ProductType",
@@ -92,7 +91,7 @@ function Home(props) {
                 storage: state[i].storage,
                 price: state[i].price,
             });
-            console.log(93,database)
+            console.log(93, database)
         }
     }
 
@@ -102,7 +101,7 @@ function Home(props) {
             console.log(147, token);
             try {
                 const res = await getApi("/admin/user/");
-                console.log(101,res)
+                console.log(101, res)
                 setstate1(res.data);
             } catch (error) {
                 console.log(168, error);
@@ -115,7 +114,7 @@ function Home(props) {
             console.log(147, token);
             try {
                 const res = await getApi("/admin/order/");
-                console.log(113,res)
+                console.log(113, res)
                 setstate2(res.data);
             } catch (error) {
                 console.log(168, error);
@@ -125,6 +124,8 @@ function Home(props) {
     }, []);
 
     let sumOrder = 0;
+
+    console.log(128, state2)
     for (let i = 0; i < state2.length; i++) {
         if (state2[i].status === "done") {
             sumOrder = sumOrder + 1;
