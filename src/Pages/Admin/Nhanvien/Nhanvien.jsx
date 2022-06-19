@@ -146,6 +146,7 @@ function Nhanvien(props) {
       console.log(147, token);
       try {
         const res = await getApi("/admin/user");
+        console.log(149, 'user',res)
         setstate(res.data);
       } catch (error) {
         console.log(168, error);

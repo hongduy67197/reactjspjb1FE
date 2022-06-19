@@ -8,8 +8,17 @@ import "./style.css";
 import React from "react";
 import anh1 from "./aaa.png";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 
 function Header(props) {
+  const userInfor = useSelector(function(state){
+return state.user
+  })
+  const userName = userInfor.username?userInfor.username:'hello'
+  const avatr = process.env.REACT_APP_CLIENT_URL + userInfor.avatar
+ 
+  console.log(userInfor)
   const navigate = useNavigate();
   var countproduct = 0;
   var countselect = 0;
@@ -59,15 +68,15 @@ function Header(props) {
       document.querySelector(".product").style.display = "none";
     }
   }
-  function onstaff() {
-    countstaff++;
-    if (countstaff % 2 !== 0) {
-      document.querySelector(".staff").style.display = "block";
-    }
-    if (countstaff % 2 == 0) {
-      document.querySelector(".staff").style.display = "none";
-    }
-  }
+  // function onstaff() {
+  //   countstaff++;
+  //   if (countstaff % 2 !== 0) {
+  //     document.querySelector(".staff").style.display = "block";
+  //   }
+  //   if (countstaff % 2 == 0) {
+  //     document.querySelector(".staff").style.display = "none";
+  //   }
+  // }
   function oninfor() {
     countinfor++;
     console.log(countinfor);
@@ -344,19 +353,20 @@ function Header(props) {
               Dashboard
             </p>
           </div>
-          <div onClick={onstaff} className="menu1">
+          {/* <div onClick={onstaff} className="menu1"> */}
+          <div  className="menu1">
             <div>
               <i className="fa-solid fa-users vicon"></i>
-              <p className="opt">Nhan vien</p>
+              <p className="opt" onClick={QLnhanvien}>Nhan vien</p>
             </div>
             <i className="fa-solid fa-angle-right arrow"></i>
           </div>
-          <div className="staff">
+          {/* <div className="staff">
             <p>- Cap quyen</p>
             <p onClick={QLnhanvien} className="qlnv">
               - Quan ly nhan vien
             </p>
-          </div>
+          </div> */}
           <div onClick={onselect} className="menu1">
             <div>
               <i className="fa-solid fa-truck-ramp-box vicon"></i>
@@ -409,10 +419,11 @@ function Header(props) {
         <div className="right">
           <div className="right1">
             <BgColorsOutlined onClick={onchangecolor} className="iconcolor" />
-
-            <i className="fa-solid fa-circle-user iconuser"></i>
+            {avatr?
+            <img src={avatr} alt="img"  className="user_avatar"/>
+            :<i className="fa-solid fa-circle-user iconuser"></i>}
           </div>
-          <p className="tenuser">{props.tenname}</p>
+          <p className="tenuser">{userName}</p>
         </div>
       </div>
       <div className="changecolor">
