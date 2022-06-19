@@ -506,9 +506,7 @@ const App = (props) => {
               path="/admin/Hoanthanh"
               element={<Hoanthanh name={name} />}
             />
-            {/* <Route path="/admin/Danggiao" element={<Danggiao name={name} />} /> */}
             <Route path="/admin/Danggiao" element={<Danggiao></Danggiao>} />
-            {/* <Route path="/admin/Danggiao" element={<h1>abc</h1>} /> */}
             <Route
               path="/Cart"
               element={
