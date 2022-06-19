@@ -94,7 +94,8 @@ function Menu(props) {
                 <div className="menu_mypage_list">
                     <p onClick={menu_mypage}>Hồ Sơ</p>
                     <p onClick={menu_bank}>Ngân Hàng</p>
-                    <p onClick={menu_from}>Địa Chỉ</p>
+                    {/* <p onClick={menu_from}>Địa Chỉ</p> */}
+                    <p onClick={menu_from}></p>
                     <p onClick={menu_resetpassword}>Đổi Mật Khẩu</p>
                 </div>
             </div>
