@@ -17,7 +17,7 @@ function Hoanthanh() {
   const [isindex, setIsIndex] = useState(0);
   const [isin, setIsin] = useState(0);
 
-  const database = [];
+ var database = [];
   const data = [];
 
   function count() {
@@ -31,6 +31,7 @@ function Hoanthanh() {
       try {
         const res = await getApi('/admin/order/')
         setstate(res.data)
+        console.log(34,'oder',res.data)
       } catch (error) {
         console.log(168, error);
       }
@@ -44,6 +45,7 @@ function Hoanthanh() {
       try {
         const res = await getApi('/admin/user/')
         setstate1(res.data)
+        console.log(48, 'admin/user',res.data)
       } catch (error) {
         console.log(168, error);
       }
@@ -54,8 +56,9 @@ function Hoanthanh() {
       let token = getUserCookie('user')
       // console.log(147, token);
       try {
-        const res = await getApi('/admin/product/list')
+        const res = await getApi('/admin/order/listOrder')
         setstate2(res.data)
+        console.log(61,'/admin/product/list',res.data)
       } catch (error) {
         console.log(168, error);
       }
@@ -63,28 +66,36 @@ function Hoanthanh() {
     getAllproduct()
    
   }, [isin]);
-
+// state1 = user . state = oder
   for (let i = 0; i < state1.length; i++) {
     for (let j = 0; j < state.length; j++) {
+      if(state[j].listProduct.length >=1){
+      
       if (state1[i]._id === state[j].idUser) {
-        if (state[j].status === "done") {
+   
+        // if (state[j].status === "done") {
+          // console.log(77,state[j].status)
           database.push({
-            idUser: state1[i].username,
+            idUser: state1[i]._id,
             address: state[j].address,
             phone: state[j].phone,
             total: state[j].total,
             idProduct: state[j].listProduct.map(function (val) {
-              let a = val.idProduct;
-              return a;
+              let a = val._id;
+              return a
             }),
-            quantity: state[j].listProduct[0].quantity,
+            quantity: state[j].listProduct.map(function(value){
+              let b = value.quantity;
+              return b
+            }),
             status: state[j].status,
-          });
+          })
+        // }
         }
       }
-    }
-  }
-
+    }}
+    console.log(93,'database',database)
+// state2 = admin/product/list
   for (let i = 0; i < state2.length; i++) {
     for (let j = 0; j < database.length; j++) {
       if (state2[i]._id === database[j].idProduct[0]) {
@@ -162,6 +173,7 @@ function Hoanthanh() {
   ];
 
   const showModal = (id) => {
+    console.log(id)
     setIsIndex(id);
     count();
     setIsModalVisible(true);

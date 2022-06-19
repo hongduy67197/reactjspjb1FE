@@ -16,6 +16,8 @@ function Danggiao() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isindex, setIsIndex] = useState(0);
   const [isin, setIsin] = useState(0);
+  const [userOder, setUserOder] = useState([]);
+
 
   const database = [];
   const data = [];
@@ -25,6 +27,7 @@ function Danggiao() {
       // console.log(147, token);
       try {
         const res = await getApi('/admin/order/')
+        console.log(28, 'oder', res)
         setstate(res.data)
       } catch (error) {
         console.log(168, error);
@@ -38,6 +41,8 @@ function Danggiao() {
       // console.log(147, token);
       try {
         const res = await getApi('/admin/user/')
+        console.log(42, 'admin/user', res)
+
         setstate1(res.data)
       } catch (error) {
         console.log(168, error);
@@ -52,16 +57,29 @@ function Danggiao() {
       // console.log(147, token);
       try {
         const res = await getApi('/admin/product/list')
+        console.log(58, '/admin/product/list', res)
         setstate2(res.data)
       } catch (error) {
         console.log(168, error);
       }
     }
     getAllproduct()
+    async function getAllproductid (){
+      let token = getUserCookie('user')
+      // console.log(147, token);
+      try {
+        const res = await getApi('/admin/order/listOrder')
+        console.log(71, 'status=pending', res)
+        setUserOder(res.data)
+        console.log(80,'userOder',res.data)
 
-  
+      } catch (error) {
+        console.log(168, error);
+      }
+    }
+    getAllproductid()
+
   }, [isin]);
-
   for (let i = 0; i < state1.length; i++) {
     for (let j = 0; j < state.length; j++) {
       if (state1[i]._id === state[j].idUser) {

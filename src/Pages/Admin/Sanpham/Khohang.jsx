@@ -102,14 +102,14 @@ function Khohang(props) {
                 return (
                   <tr key={index}>
                     <td>{index + 1}</td>
-                    {/* <td>{value.idProductCode.productName}</td> */}
+                    <td>{value.idProductCode.productName}</td>
                     <td>
                       <img
                         src={"http://localhost:3150" + value.productPic[0]}
                         alt=""
                       />
                     </td>
-                    {/* <td>{value.price.toLocaleString()}</td> */}
+                    <td>{value.price.toLocaleString()}</td>
                     <td>{value.storage}</td>
                   </tr>
                 )
