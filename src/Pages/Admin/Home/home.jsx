@@ -79,6 +79,7 @@ function Home(props) {
         },
     ];
     const database = [];
+    console.log(state.length);
     if (state.length > 0) {
         var so = state.length - 10;
         for (let i = so; i < state.length; i++) {

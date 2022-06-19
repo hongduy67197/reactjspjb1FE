@@ -27,10 +27,10 @@ const Home = () => {
     axios
       .get("/user/list")
       .then(function (res) {
-        setProductCode(res.data.dataProductCode);
-        setSlides(res.data.listSlide);
-        setCategories(res.data.listCategories);
-        setNewIcon(res.data.dataProductCode[0].data[0].icon);
+          setProductCode(res.data.dataProductCode);
+          setSlides(res.data.listSlide);
+          setCategories(res.data.listCategories);
+          setNewIcon(res.data.dataProductCode[0].data[0].icon);
       })
       .catch(function (err) {
         console.log(36, err);
