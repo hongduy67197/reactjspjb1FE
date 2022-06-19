@@ -10,7 +10,6 @@ import { ConstructionOutlined } from "@mui/icons-material";
 // import { Doughnut } from "react-chartjs-2";
 
 var allcode;
-console.log(allcode)
 var alllist;
 var count = 0;
 function Khohang(props) {
@@ -119,7 +118,7 @@ function Khohang(props) {
           <table id="statistable">
             <thead>
               <tr>
-                <th>STT</th>
+                <th id="stt">STT</th>
                 <th>Tên sản phẩm</th>
                 <th>Hình ảnh</th>
                 <th>Giá</th>
@@ -130,9 +129,9 @@ function Khohang(props) {
               {statis.length == 0 ? null : statis.map(function (value, index) {
                 return (
                   <tr key={index}>
-                    <td>{index + 1}</td>
+                    <td id="stt-td">{index + 1}</td>
                     {console.log(133, value, index + 1)}
-                    <td>{value.idProductCode.productName}</td>
+                    <td >{value.idProductCode.productName}</td>
                     <td>
                       <img
                         src={"http://localhost:3150" + value.productPic[0]}
@@ -147,6 +146,8 @@ function Khohang(props) {
             </tbody>
           </table>
         </div>
+
+
         {/* <Doughnut
           data={{
             labels: [
