@@ -1,8 +1,4 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+
 
 /* them san pham moi */
 .addboard {
@@ -18,6 +14,14 @@
   justify-content: space-evenly;
   margin-top: 20px;
 }
+
+#stt,  #stt-td{
+ width: 50px;
+} 
+
+
+
+
 .addbut button {
   width: 30%;
   height: 50px;
