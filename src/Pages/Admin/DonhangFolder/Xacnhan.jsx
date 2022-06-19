@@ -284,6 +284,8 @@ import { useEffect, useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
 import { getApi } from '../../../api/config';
 import { getUserCookie } from '../../../refreshToken';
+import Header from "../../../Components/Header/header";
+import "./styleXacnhan.css";
 let data =  [
   {
     key: '---------------',
@@ -482,7 +484,15 @@ function Xacnhan() {console.log(288, data)
       sortDirections: ['descend', 'ascend'],
     },
   ];
-  return <Table columns={columns} dataSource={data} pagination= {{defaultPageSize:300}}/>;
+  return   (
+
+    <>
+    <Header></Header>
+    <div className="table_xacnhan" >
+    <Table columns={columns} dataSource={data} pagination= {{defaultPageSize:300}}/>;
+    </div>
+    </>
+  )
 };
 export default Xacnhan; 
 // --------------------------------------------------------------------------------------
