@@ -334,7 +334,7 @@ function Xacnhan() {console.log(288, data)
           newarray.push({
             key: index + 1,
             stt: index +1,
-            name: val.idUser ? val.idUser.username : '----------',
+            name: val.idUser ? (val.idUser.username==''||val.idUser.username==undefined?'---------':val.idUser.username ): '----------',
             age: val.phone ? val.phone : '----------',
             address: val.address ? val.address : '-----------',
           })
@@ -460,7 +460,7 @@ function Xacnhan() {console.log(288, data)
       title: 'User Name',
       dataIndex: 'name',
       key: 'name',
-      width: '10%',
+      width: '20%',
       ...getColumnSearchProps('name'),
       sorter: (a, b) => a.address.length - b.address.length,
       sortDirections: ['descend', 'ascend'],
@@ -469,7 +469,7 @@ function Xacnhan() {console.log(288, data)
       title: 'Phone Number',
       dataIndex: 'age',
       key: 'age',
-      width: '10%',
+      width: '20%',
       ...getColumnSearchProps('age'),
       sorter: (a, b) => a.address.length - b.address.length,
       sortDirections: ['descend', 'ascend'],
@@ -478,7 +478,7 @@ function Xacnhan() {console.log(288, data)
       title: 'Address',
       dataIndex: 'address',
       key: 'address',
-      width: '10%',
+      width: '20%',
       ...getColumnSearchProps('address'),
       sorter: (a, b) => a.address.length - b.address.length,
       sortDirections: ['descend', 'ascend'],
@@ -494,5 +494,5 @@ function Xacnhan() {console.log(288, data)
     </>
   )
 };
-export default Xacnhan; 
+export default Xacnhan;
 // --------------------------------------------------------------------------------------
