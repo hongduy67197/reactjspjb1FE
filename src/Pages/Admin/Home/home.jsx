@@ -48,9 +48,7 @@ function Home(props) {
             align: "center",
             sorter: false,
             render: (productPic) => {
-                console.log(50,'http://localhost:3150'+productPic[0]);
-                // <img src={'http://localhost:3150'+productPic[0]} alt="anh" />
-                <img src={'https://www.pinterest.com/pin/850476710895618198/'} alt="anh" />
+                return (<img src={'http://localhost:3150' + productPic[0]} alt="anh" />)
             },
         },
         {
@@ -81,56 +79,59 @@ function Home(props) {
         },
     ];
     const database = [];
-    // if (state.length > 0) {
-    //     var so = state.length - 10;
-    //     for (let i = so; i < state.length; i++) {
-    //         database.push({
-    //             productName: state[i].idProductCode.productName,
-    //             productPic: state[i].productPic,
-    //             productType: state[i].idProductCode.productType,
-    //             performanceProduct: state[i].idProductCode.performanceProduct,
-    //             panel: state[i].idProductCode.panel,
-    //             storage: state[i].storage,
-    //             price: state[i].price,
-    //         });
-    //         console.log(93,database)
-    //     }
-    // }
+    console.log(state.length);
+    if (state.length > 0) {
+        var so = state.length - 10;
+        for (let i = so; i < state.length; i++) {
+            database.push({
+                productName: state[i].idProductCode.productName,
+                productPic: state[i].productPic,
+                productType: state[i].idProductCode.productType,
+                performanceProduct: state[i].idProductCode.performanceProduct,
+                panel: state[i].idProductCode.panel,
+                storage: state[i].storage,
+                price: state[i].price,
+            });
+            console.log(93, database)
+        }
+    }
 
     useEffect(() => {
-        // async function getAllUser() {
-        //     let token = getUserCookie("user");
-        //     console.log(147, token);
-        //     try {
-        //         const res = await getApi("/admin/user/");
-        //         console.log(101,res)
-        //         setstate1(res.data);
-        //     } catch (error) {
-        //         console.log(168, error);
-        //     }
-        // }
-        // getAllUser();
+        async function getAllUser() {
+            let token = getUserCookie("user");
+            console.log(147, token);
+            try {
+                const res = await getApi("/admin/user/");
+                console.log(101, res)
+                setstate1(res.data);
+            } catch (error) {
+                console.log(168, error);
+            }
+        }
+        getAllUser();
 
-        // async function getAllorder() {
-        //     let token = getUserCookie("user");
-        //     console.log(147, token);
-        //     try {
-        //         const res = await getApi("/admin/order/");
-        //         console.log(113,res.data)
-        //         setstate2(res.data);
-        //     } catch (error) {
-        //         console.log(168, error);
-        //     }
-        // }
-        // getAllorder();
+        async function getAllorder() {
+            let token = getUserCookie("user");
+            console.log(147, token);
+            try {
+                const res = await getApi("/admin/order/");
+                console.log(113, res)
+                setstate2(res.data);
+            } catch (error) {
+                console.log(168, error);
+            }
+        }
+        getAllorder();
     }, []);
 
-    // let sumOrder = 0;
-    // for (let i = 0; i < state2.length; i++) {
-    //     if (state2[i].status === "done") {
-    //         sumOrder = sumOrder + 1;
-    //     }
-    // }
+    let sumOrder = 0;
+
+    console.log(128, state2)
+    for (let i = 0; i < state2.length; i++) {
+        if (state2[i].status === "done") {
+            sumOrder = sumOrder + 1;
+        }
+    }
 
     // let sumTotal = 0;
     // for (let i = 0; i < state2.length; i++) {
