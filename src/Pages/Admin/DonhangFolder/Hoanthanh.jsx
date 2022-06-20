@@ -451,7 +451,9 @@ function Hoanthanh() {console.log(288, data)
           }}
           searchWords={[searchText]}
           autoEscape
-          textToHighlight={text ? text.toString() : ''}
+          textToHighlight={text ? text.toString() : ''} 
+
+
         />
       ) : (
         text
