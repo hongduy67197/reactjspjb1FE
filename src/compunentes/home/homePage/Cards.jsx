@@ -17,17 +17,6 @@ const Cards = ({ item, keyId, sort }) => {
     item.data[0].icon.iconName = "not icon";
   }
 
-// HomeFilter
-  // dùng useState và useEffect để lắng nghe thay đổi phía đường dẫn rồi từ đó render lại theo trường đc sort
-  const [stateSort, setStateSort] = useState(sort);
-
-
-  useEffect(() => {   
-    setStateSort([sort]) 
-  }, [sort])
-  
-  console.log(30,stateSort);
-
 
   // chuyển tiếng việt có dấu thành không dấu
   function RemoveAccents(str) {
