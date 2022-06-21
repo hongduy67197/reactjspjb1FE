@@ -331,12 +331,26 @@ function Xacnhan() {console.log(288, data)
         console.log(35, arrayCall)
         const newarray = [];
         arrayCall.map((val, index) => {
+          let a =val.listProduct
+          let b;
+          if(a.length>0){
+             b =a.map((value)=>{return value.idProduct.idProductCode.productName})
+             b=new Set(b)
+            b= Array.from(b).join(',')
+          }else{
+              b = 'không có data'
+          }
+          
+         console.log(334,a) 
           newarray.push({
             key: index + 1,
             stt: index +1,
+            total: val.total ? val.total : 0, 
+            date: val.updatedAt,//.toLocaleString('en-GB', { timeZone: 'UTC' }) ,
             name: val.idUser ? (val.idUser.username==''||val.idUser.username==undefined?'---------':val.idUser.username ): '----------',
             age: val.phone ? val.phone : '----------',
             address: val.address ? val.address : '-----------',
+            products: b//
           })
           return val
         })
@@ -462,7 +476,7 @@ function Xacnhan() {console.log(288, data)
       key: 'name',
       width: '20%',
       ...getColumnSearchProps('name'),
-      sorter: (a, b) => a.address.length - b.address.length,
+      sorter: (a, b) => a.name.length - b.name.length,
       sortDirections: ['descend', 'ascend'],
     },
     {
@@ -471,7 +485,35 @@ function Xacnhan() {console.log(288, data)
       key: 'age',
       width: '20%',
       ...getColumnSearchProps('age'),
-      sorter: (a, b) => a.address.length - b.address.length,
+      sorter: (a, b) => a.age.length - b.age.length,
+      sortDirections: ['descend', 'ascend'],
+    },
+    {
+      title: 'Products',
+      dataIndex: 'products',
+      key: 'products',
+      width: '20%',
+      ...getColumnSearchProps('products'),
+      sorter: (a, b) => a.products.length - b.products.length,
+      sortDirections: ['descend', 'ascend'],
+    },
+    
+    {
+      title: 'Order value',
+      dataIndex: 'total',
+      key: 'total',
+      width: '10%',
+      ...getColumnSearchProps('total'),
+      sorter: (a, b) => a.total - b.total,
+      sortDirections: ['descend', 'ascend'],
+    },
+    {
+      title: 'Order date',
+      dataIndex: 'date',
+      key: 'date',
+      width: '10%',
+      ...getColumnSearchProps('date'),
+      sorter: (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
       sortDirections: ['descend', 'ascend'],
     },
     {
