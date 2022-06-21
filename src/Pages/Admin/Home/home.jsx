@@ -20,7 +20,8 @@ function Home(props) {
             console.log(147, token);
             try {
                 const res = await getApi("/admin/product/list");
-                setstate(res.data);
+                console.log(23,'res',res)
+                // setstate(res.data);
             } catch (error) {
                 console.log(168, error);
             }
@@ -47,9 +48,8 @@ function Home(props) {
             align: "center",
             sorter: false,
             render: (productPic) => {
-                return(<img src={'http://localhost:3150'+productPic[0]} alt="anh" />)
-                
-        },
+                return (<img src={'http://localhost:3150' + productPic[0]} alt="anh" />)
+            },
         },
         {
             title: "ProductType",
@@ -92,7 +92,7 @@ function Home(props) {
                 storage: state[i].storage,
                 price: state[i].price,
             });
-            console.log(93,database)
+            console.log(93, database)
         }
     }
 
@@ -102,7 +102,7 @@ function Home(props) {
             console.log(147, token);
             try {
                 const res = await getApi("/admin/user/");
-                console.log(101,res)
+                console.log(101, res)
                 setstate1(res.data);
             } catch (error) {
                 console.log(168, error);
@@ -115,7 +115,7 @@ function Home(props) {
             console.log(147, token);
             try {
                 const res = await getApi("/admin/order/");
-                console.log(113,res)
+                console.log(113, res)
                 setstate2(res.data);
             } catch (error) {
                 console.log(168, error);
@@ -125,22 +125,24 @@ function Home(props) {
     }, []);
 
     let sumOrder = 0;
+
+    console.log(128, state2)
     for (let i = 0; i < state2.length; i++) {
         if (state2[i].status === "done") {
             sumOrder = sumOrder + 1;
         }
     }
 
-    let sumTotal = 0;
-    for (let i = 0; i < state2.length; i++) {
-        if (state2[i].status === "done") {
-            sumTotal += state2[i].total;
-        }
-    }
-    let countCustomers = state1.length;
-    let countSale = state2.length;
-    let countTotal = sumTotal;
-    let countOrder = sumOrder;
+    // let sumTotal = 0;
+    // for (let i = 0; i < state2.length; i++) {
+    //     if (state2[i].status === "done") {
+    //         sumTotal += state2[i].total;
+    //     }
+    // }
+    // let countCustomers = state1.length;
+    // let countSale = state2.length;
+    // let countTotal = sumTotal;
+    // let countOrder = sumOrder;
 
     return (
         <div>
@@ -154,7 +156,7 @@ function Home(props) {
                         </div>
                         <div className="content_sale">
                             <p className="icon_title">Sales</p>
-                            <p className="thongso">{countSale}</p>
+                            {/* <p className="thongso">{countSale}</p> */}
                         </div>
                     </div>
                     <div className="table">
@@ -163,7 +165,7 @@ function Home(props) {
                         </div>
                         <div className="content_sale">
                             <p className="icon_title">Orders</p>
-                            <p className="thongso">{countOrder}</p>
+                            {/* <p className="thongso">{countOrder}</p> */}
                         </div>
                     </div>
                     <div className="table">
@@ -172,7 +174,7 @@ function Home(props) {
                         </div>
                         <div className="content_sale">
                             <p className="icon_title">Customers</p>
-                            <p className="thongso">{countCustomers}</p>
+                            {/* <p className="thongso">{countCustomers}</p> */}
                         </div>
                     </div>
                     <div className="table">
@@ -181,7 +183,7 @@ function Home(props) {
                         </div>
                         <div className="content_sale">
                             <p className="icon_title">Income</p>
-                            <p className="thongso">{countTotal.toLocaleString()}</p>
+                            {/* <p className="thongso">{countTotal.toLocaleString()}</p> */}
                         </div>
                     </div>
                 </div>

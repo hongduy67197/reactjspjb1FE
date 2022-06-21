@@ -31,26 +31,18 @@ function UserSingIn(props) {
     }else if(againpassword === "" || password !== againpassword){
       document.querySelector(".singin_again_text").innerHTML = "Mật khẩu không khớp"
     }else{ 
-
-      const res = postApi("/user/register", { password, email })
-
-     navigate("/user/UserLogin")
-    }
-  
-    
+    await postApi("/user/register", { password, email })
+      setTimeout(function(){
+       navigate('/user/UserLogin')
+      },1000)
+      // if(res.data){
+      //   alert(res.data.message + '.  '+' check gmail to comple register !')
+      // } else{
+      //   alert(res.response.data.status)
+      // }
+    }    
   }
-  // if (password === "" || testPassword(password)) {
-  //   document.querySelector(".singin_password_text").innerHTML =
-  //     "Vui lòng nhập mật khẩu";
-  // } if (againpassword === "" || password !== againpassword) {
-  //   document.querySelector(".singin_again_text").innerHTML =
-  //     "Mật khẩu không khớp";
-  // } else {
-  //   // const res = await axios.post("/user/register", { password, email });
-  //   setTimeout(function(){
-  //     navigate("/user/UserLogin");
-  //   },1000)
-  // }
+
   // kiểm tra đầu vào password laptop
   function testPassword(pass) {
     var arr = /^(?=.*[a-zA-Z0-9](?=.*\d)[A-Za-z0-9]{8,})$/;

@@ -361,9 +361,8 @@
 #statistable tr {
   margin-top: 10px;
 }
-table thead,
+/* table thead,
 table tbody tr {
-  display: table;
   width: 100%;
   table-layout: fixed;
 }
@@ -381,3 +380,12 @@ table tbody::-webkit-scrollbar-thumb {
   background: rgb(59, 59, 59);
   border-radius: 50px;
 }
+.ant-table-cell{
+  padding: 0;
+}
+.ant-table-thead > tr > th {
+padding: 0;
+}
+.ant-table-content table {
+  width: 100%;
+} */

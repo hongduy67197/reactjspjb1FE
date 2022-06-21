@@ -17,6 +17,7 @@ import Login from "./Pages/Admin/Login/login";
 import UserLogin from "./User/UserLogin";
 import UserSingIn from "./User/UserSingIn";
 import UserPase from "./User/UserPase";
+import ForgotPassword from "./User/UserPage/ForgotPassword/ForgotPassword";
 import ContextProvider from "./Conter/ContextProvider";
 import Home1 from "./compunentes/home/Home";
 // import CreateOrder from "./Pages/CreateOrder";
@@ -506,9 +507,7 @@ const App = (props) => {
               path="/admin/Hoanthanh"
               element={<Hoanthanh name={name} />}
             />
-            {/* <Route path="/admin/Danggiao" element={<Danggiao name={name} />} /> */}
             <Route path="/admin/Danggiao" element={<Danggiao></Danggiao>} />
-            {/* <Route path="/admin/Danggiao" element={<h1>abc</h1>} /> */}
             <Route
               path="/Cart"
               element={
@@ -555,6 +554,7 @@ const App = (props) => {
             />
             <Route path="/User/UserPase" element={<UserPase></UserPase>} />
             <Route path="/User/order" element={<CreateOrder />} />
+            <Route path="User/UserPage/ForgotPassword/ForgotPassword" element={<ForgotPassword></ForgotPassword>} />
           </Routes>
           <ToastContainer />
         </ContextProvider>
