@@ -16,6 +16,8 @@ import '../../src/App.css';
 import { postApi } from '../api/config';
 import showPass2 from '../assets/images/showpass.png'
 import showPass1 from '../assets/images/showpass2.png'
+import forgot from '../User/UserPage/ForgotPassword/ForgotPassword'
+
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();
     d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
@@ -179,7 +181,7 @@ function UserLogin(props) {
                             ĐĂNG NHẬP
                         </button>
                         <div className="login_conter_modal_a">
-                            <a href="">Quên mật khẩu</a>
+                            <Link to='/User/UserPage/ForgotPassword/ForgotPassword'>Quên mật khẩu</Link>
                             <a href="" className="login_conter_modal_a2">
                                 Đăng nhập với SMS
                             </a>
