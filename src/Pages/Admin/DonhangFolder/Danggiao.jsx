@@ -62,6 +62,7 @@ const Danggiao = () => {
       if (state1[i]._id === state[j].idUser) {
         if (state[j].status === "doing") {
           database.push({
+            id: state1[i]._id,
             idUser: state1[i].username,
             address: state[j].address,
             phone: state[j].phone,
@@ -81,7 +82,9 @@ const Danggiao = () => {
     }
   }
 
-//   console.log(999,data);
+  console.log(11,state);
+  console.log(12,state1[0]);
+//   console.log(999,data1);
 //   console.log(84,database);
 // console.log(85,state2);
 
@@ -90,6 +93,7 @@ let data1 = [];
     for (let j = 0; j < database.length; j++) {
       if (state2[i]._id === database[j].idProduct[0]._id) {
         data1.push({
+          id: database[j].id,
           idUser: database[j].idUser,
           address: database[j].address,
           phone: database[j].phone,
@@ -103,7 +107,7 @@ let data1 = [];
       }
     }
   // console.log(100, state2 );
-  // console.log(200, data1);
+  // console.log(200, database);
 
   const columns = [
     {
@@ -156,7 +160,8 @@ let data1 = [];
           />
           <DeleteOutlined
             onClick={() => {
-              ondelete(record._id);
+              ondelete(record.id);
+              console.log(160, record.id);
             }}
             style={{ color: "red", fontSize: 20, marginLeft: 20 }}
             />
@@ -219,11 +224,30 @@ let data1 = [];
   };
 
   function ondelete(id) {
+    console.log(222,id);
     Modal.confirm({
       title: "Bạn có chắc muốn xóa không",
       okText: "Yes",
       okType: "danger",
+
       onDelete: () => {
+
+// axios.delete(`/admin/order/${id}`)
+
+// .then(function(checkData){
+//   console.log(9999,checkData);
+// })
+// .catch(function(err){
+//   console.log(err);
+// })
+
+// console.log(`http://localhost:3150/admin/order/${id}`);
+
+
+
+
+
+
         async function getAllorder() {
           let token = getUserCookie("user");
           try {

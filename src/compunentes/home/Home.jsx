@@ -10,6 +10,8 @@ import Header from "../header/Header";
 import Slider from "../slider/Slider";
 import Footer from "../footer/Footer";
 import Categories from "../categories/Categories";
+import Chat from "./homePage/Chat";
+import HomeFilter from "./homeFillter/HomeFilter";
 
 const Home = () => {
   const [productCode, setProductCode] = useState([]);
@@ -17,6 +19,9 @@ const Home = () => {
   const [Slides, setSlides] = useState([]);
   const [categories, setCategories] = useState([]);
   const [NewIcon, setNewIcon] = useState([]);
+
+  // HomeFilter --- tạo giá trị ban đầu là 0 để làm trung gian khi sort cao thấp
+  const [sort, setSort] = useState (0);
 
   function seeMore() {
     setNumberShow(numberShow + 20);
@@ -50,16 +55,14 @@ const Home = () => {
               <ThunderboltFilled className="item-flash-icon" />
               GIAO SIÊU NHANH
             </span>
+            {/* truyền productCode và setSort vào để lấy giá trị render  */}
+            <HomeFilter productCode={productCode} setSort={setSort}/> 
           </div>
-          <div className="home_status_container-chat">
-            <i title="New messages" id="unread-msg-number">
-              <WechatOutlined className="WechatOutlined" />
-            </i>
-            <a href="#" id="status-icon"></a>
-          </div>
+          <Chat/>
           <div className="home-container-filter">
             <div className="home-page-product">
               <ListProduct
+                sort={sort}
                 productCode={productCode}
                 numberShow={numberShow}
                 NewIcon={NewIcon}
