@@ -31,15 +31,16 @@ function UserSingIn(props) {
     }else if(againpassword === "" || password !== againpassword){
       document.querySelector(".singin_again_text").innerHTML = "Mật khẩu không khớp"
     }else{ 
-      const res = await postApi("/user/register", { password, email })
-      if(res.data){
-        alert(res.data.message + '.  '+' check gmail to comple register !')
-      } else{
-        alert(res.response.data.status)
-      }
-    }
-  
-    
+    await postApi("/user/register", { password, email })
+      setTimeout(function(){
+       navigate('/user/UserLogin')
+      },1000)
+      // if(res.data){
+      //   alert(res.data.message + '.  '+' check gmail to comple register !')
+      // } else{
+      //   alert(res.response.data.status)
+      // }
+    }    
   }
 
   // kiểm tra đầu vào password laptop
