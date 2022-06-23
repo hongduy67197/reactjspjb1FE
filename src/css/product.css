@@ -12,6 +12,9 @@ body {
   min-width: 1000px;
   /* display: none; */
 }
+.quantity-result {
+  padding: 10px;
+}
 .logo_shop {
   width: 100px;
   height: 100px;

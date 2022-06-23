@@ -1,8 +1,4 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+
 .admin {
   position: relative;
 }
@@ -246,6 +242,7 @@
   cursor: pointer;
 }
 .changecolor {
+  z-index: 99;
   width: 700px;
   height: 500px;
   background-color: rgb(255, 255, 255);
@@ -256,6 +253,7 @@
   border: 2px solid rgb(0, 0, 0);
   padding: 15px 25px;
   display: none;
+  z-index: 99999;
 }
 .light {
   width: 100%;
@@ -325,4 +323,11 @@
 .hover:hover {
   color: white;
   cursor: pointer;
+}
+
+/* thêm avatar của user */
+.user_avatar{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
 }

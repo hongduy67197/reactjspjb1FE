@@ -11,35 +11,38 @@ import axios from "../axios";
 import "./Usersingin.css";
 import showPass2 from "../assets/images/showpass.png";
 import showPass1 from "../assets/images/showpass2.png";
+import { postApi } from "../api/config";
+
 function UserSingIn(props) {
   const navigate = useNavigate();
   async function userSingin_next() {
     const email = document.querySelector(".singin_conter_modal_email").value;
-    const password = document.querySelector(
-      ".singin_conter_modal_password"
-    ).value;
-    const againpassword = document.querySelector(
-      ".singin_conter_modal_againpassword"
-    ).value;
-    if (email === "" || testEmail(email)) {
-      document.querySelector(".singin_mail_text").innerHTML =
-        "Vui lòng nhập email";
-    } else if (password === "" || testPassword(password)) {
-      document.querySelector(".singin_password_text").innerHTML =
-        "Vui lòng nhập mật khẩu";
-    } else if (againpassword === "" || password !== againpassword) {
-      document.querySelector(".singin_again_text").innerHTML =
-        "Mật khẩu không khớp";
-    } else {
-      const res = await axios.post("/user/register", { password, email });
-      console.log(26, res);
-      document.querySelector(".singIn_ofcanva_modal").style.display = "block";
-      document.querySelector(".singin_").style.background = "#EBEBEB";
-      document.querySelector(".login_header").style.display = "none";
-      document.querySelector(".login_conter").style.display = "none";
-      document.querySelector(".singin_conter_modal").style.display = "none";
-    }
+    const password = document.querySelector(".singin_conter_modal_password").value;
+    const againpassword = document.querySelector(".singin_conter_modal_againpassword").value;
+    var mailformat = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if ( email==='') {
+      document.querySelector(".singin_mail_text").innerHTML ="Vui lòng nhập email";
+    }else if(!mailformat.test(email)){
+      document.querySelector(".singin_mail_text").innerHTML ="email không hợp lệ";
+    }else if(password===''){
+      document.querySelector(".singin_password_text").innerHTML ="Vui lòng nhập mật khẩu"
+    }else if(password.length<8){
+      document.querySelector(".singin_password_text").innerHTML = "Mật khẩu phải có ít nhất 8 ký tự"
+    }else if(againpassword === "" || password !== againpassword){
+      document.querySelector(".singin_again_text").innerHTML = "Mật khẩu không khớp"
+    }else{ 
+    await postApi("/user/register", { password, email })
+      setTimeout(function(){
+       navigate('/user/UserLogin')
+      },1000)
+      // if(res.data){
+      //   alert(res.data.message + '.  '+' check gmail to comple register !')
+      // } else{
+      //   alert(res.response.data.status)
+      // }
+    }    
   }
+
   // kiểm tra đầu vào password laptop
   function testPassword(pass) {
     var arr = /^(?=.*[a-zA-Z0-9](?=.*\d)[A-Za-z0-9]{8,})$/;
@@ -52,6 +55,7 @@ function UserSingIn(props) {
   }
   // kiểm tra đầu vào password phone
   function testPasswordPhone(pass) {
+    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     var arr = /^(?=.*[a-zA-Z0-9](?=.*\d)[A-Za-z0-9]{8,})$/;
     if (arr.test(pass) || pass.length < 8) {
       document.querySelector(".singin_phone_conter_password_text").innerHTML =
@@ -63,19 +67,19 @@ function UserSingIn(props) {
   }
   // kiểm tra đầu vào Email laptop
   function testEmail(email) {
-    var mailformat =
-      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/;
-    if (mailformat.test(email)) {
-      document.querySelector(".singin_mail_text").innerHTML = "";
-    } else {
-      document.querySelector(".singin_mail_text").innerHTML =
-        "Email không hợp lệ";
-    }
+    var mailformat = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if(email===''){
+      document.querySelector(".singin_mail_text").innerHTML = "Vui lòng nhập email";
+    } if (!mailformat.test(email)) {
+        document.querySelector(".singin_mail_text").innerHTML = "Email không hợp lệ";
+      } else {
+        document.querySelector(".singin_mail_text").innerHTML =
+          "";
+      }  
   }
   // kiểm tra đầu vào Email phone
   function testEmailPhone(email) {
-    var mailformat =
-      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/;
+   var mailformat = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     if (mailformat.test(email)) {
       document.querySelector(".singin_phone_conter_name_text").innerHTML = "";
     } else {
@@ -88,7 +92,9 @@ function UserSingIn(props) {
     document.querySelector(".singin_mail_text").innerHTML = "";
     document.querySelector(".singin_conter_modal_email").value = "";
   }
-
+function reset_password(){
+  document.querySelector('.singin_password_text').innerHTML=''
+}
   // reset input againpass
   function reset_againpass() {
     document.querySelector(".singin_again_text").innerHTML = "";
@@ -195,12 +201,13 @@ function UserSingIn(props) {
             <span className="login_conter_modal_headline">Đăng ký</span>
             <input
               onClick={reset_email}
-              type="text"
+              type="email"
               placeholder="Email"
               className="singin_conter_modal_email"
             />
             <span className="singin_mail_text"></span>
             <input
+              onClick={reset_password}
               type="password"
               placeholder="Mật khẩu"
               className="singin_conter_modal_password"

@@ -4,37 +4,66 @@ import "./khohangchinhsua.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import "./product.css";
+import { ConsoleSqlOutlined } from "@ant-design/icons";
+import { getApi } from "../../../api/config";
+import { ConstructionOutlined } from "@mui/icons-material";
 // import { Doughnut } from "react-chartjs-2";
 
 var allcode;
 var alllist;
+var count = 0;
 function Khohang(props) {
   const [money, setmoney] = useState([]);
   const [statis, setstatis] = useState([]);
-  var count = 0;
+  
+
+
+  // useEffect(() => {
+  //   async function getAllUser() {
+  //     let token = getUserCookie("user");
+  //     console.log(147, token);
+  //     try {
+  //       const res = await getApi("/admin/user");
+  //       setstate(res.data);
+  //     } catch (error) {
+  //       console.log(168, error);
+  //     }
+  //   }
+  //   getAllUser();
+  // }, [isin]);
+
+
+
+
+
   useEffect(() => {
-    axios
-      .get(`http://localhost:3150/admin/productcode/list`)
+    
+    getApi(`/admin/productcode/list`)
       .then(function (response) {
-        allcode = response.data.length;
+         allcode = response.data.length;
+        console.log(43,allcode)
+
       })
       .catch(function (error) {
-        console.log(error);
+          console.log(error);
       });
-    axios
-      .get(`http://localhost:3150/admin/product/list`)
+      getApi(`/admin/product/list`)
       .then(function (response) {
         alllist = response.data.length;
+        console.log(52,response)
         setmoney(response.data);
+        console.log(56,response.data)
         setstatis(response.data);
       })
       .catch(function (error) {
         console.log(error);
       });
   }, []);
-  money.map(function (value, index) {
-    count += value.price * value.storage;
-  });
+  console.log(60, money)
+  money.length > 0 ? count = money.reduce((sum,cur)=>{
+    
+
+    return sum + (cur.price *cur.storage ) },0): count =0 ;
   return (
     <div>
       <Header></Header>
@@ -88,7 +117,7 @@ function Khohang(props) {
           <table id="statistable">
             <thead>
               <tr>
-                <th>STT</th>
+                <th id="stt">STT</th>
                 <th>Tên sản phẩm</th>
                 <th>Hình ảnh</th>
                 <th>Giá</th>
@@ -96,13 +125,14 @@ function Khohang(props) {
               </tr>
             </thead>
             <tbody>
-              {statis.map(function (value, index) {
+              {statis.length==0? null:  statis.map(function (value, index) {
                 return (
                   <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>{value.idProductCode.productName}</td>
+                    <td id="stt-td">{index + 1}</td>
+                    {console.log(133,value,index + 1)}
+                    <td >{value.idProductCode.productName}</td>
                     <td>
-                      <img
+                      <img 
                         src={"http://localhost:3150" + value.productPic[0]}
                         alt=""
                       />
@@ -110,11 +140,13 @@ function Khohang(props) {
                     <td>{value.price.toLocaleString()}</td>
                     <td>{value.storage}</td>
                   </tr>
-                );
+                )
               })}
             </tbody>
           </table>
         </div>
+
+
         {/* <Doughnut
           data={{
             labels: [

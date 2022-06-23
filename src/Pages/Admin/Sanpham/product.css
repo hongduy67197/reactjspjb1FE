@@ -277,7 +277,7 @@ table th {
 }
 table tbody {
     display: block;
-    height: 398px;
+    /* height: 398px; */
     overflow: auto;
 }
 table thead,

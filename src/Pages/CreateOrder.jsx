@@ -18,6 +18,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Header from '../compunentes/header/Header';
 import Footer from '../compunentes/footer/Footer';
 import { getApi } from '../api/config';
+import { useSelector } from "react-redux";
 
 
 function CreateOrder(props) {
@@ -28,8 +29,11 @@ function CreateOrder(props) {
         phone: '0982656262',
         address: 'so 7 ngõ 260 Cau Giay, HN.',
     });
-
-
+    // dữ liệu user trả về theo phiên đăng nhập
+    const userPage =useSelector(function(state){
+        return state.user
+    })
+console.log(36,userPage)
 
     const [temp, setTemp] = useState([])
 
@@ -215,15 +219,15 @@ function CreateOrder(props) {
     return (
         <div className="main">
 
-            <div className="navbar">
+            <div className="navbar_link">
                 <Link to="/">
-                    <span className="navbar-shopee">Shopee</span>
-                    <span className="navbar-payment">Thanh toán</span>
+                    <span className="navbar_shopee">Shopee</span>
+                    <span className="navbar_payment">Thanh toán</span>
                 </Link>
             </div>
 
             {/* Địa chỉ nhận hàng */}
-            <div className="container">
+            <div className="container_">
                 <div className="section-address">
                     <div className="address__border-top"></div>
                     <div className="address-top">
@@ -233,18 +237,18 @@ function CreateOrder(props) {
                     <div className="address-inner">
                         <div className="address-user">
                             {/* <div>{userInfo.name}</div> */}
-                            <div>Duong the tao</div>
-                            <div>{temp.length != 0 ? temp.phone:null}</div>
+                        <div>{userPage.username}</div>
+                            <div>{userPage.phone}</div>
                         </div>
 
-                        <div>{temp.length != 0 ?temp.address:null}</div>
+                        <div>{userPage.address}</div>
 
                         <span className="address-default">Mặc định</span>
 
                         {/* Change infomation */}
                         <div>
-                            <Button variant="outlined" onClick={handleClickOpen}>
-                                Thay đổi
+                            <Button variant="outlined" onClick={handleClickOpen} style ={{display:'none'}}>
+                           
                             </Button>
                             <Dialog open={open} onClose={handleClose}>
                                 <DialogActions style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -263,7 +267,7 @@ function CreateOrder(props) {
                                         type="text"
                                         fullWidth
                                         variant="outlined"
-                                        value={userInfo.name}
+                                        defaultValue={userPage.username}
                                         onChange={(e) => handleEditInfo(e, 'name')}
                                     />
                                     <TextField
@@ -273,7 +277,7 @@ function CreateOrder(props) {
                                         type="phone"
                                         fullWidth
                                         variant="outlined"
-                                        value={userInfo.phone}
+                                        defaultValue={userPage.phone}
                                         onChange={(e) => handleEditInfo(e, 'phone')}
                                     />
                                     <TextField
@@ -283,7 +287,7 @@ function CreateOrder(props) {
                                         type="text"
                                         fullWidth
                                         variant="outlined"
-                                        value={userInfo.address}
+                                        defaultValue={userPage.address}
                                         onChange={(e) => handleEditInfo(e, 'address')}
                                     />
                                 </DialogContent>
@@ -300,11 +304,11 @@ function CreateOrder(props) {
             </div>
 
             {/* Sản phẩm, số lượng, đơn giá */}
-            <div className="container">
+            <div className="container_">
                 <div className="section-product">
                     <div className="titles">
                         <div className="product-title">Sản phẩm</div>
-                        <div className="price">Giá</div>
+                        <div className="price_">Giá</div>
                         <div className="Quantity">Số lượng</div>
                         <div className="total">Thành tiền</div>
                     </div>
@@ -337,14 +341,16 @@ function CreateOrder(props) {
             </div>
 
             {/* Thành tiền */}
-            <div className="container">
+            <div className="container_">
                 <div className="payment-list">
                     <div className="payment-top">
                         <div className="payment-info">
                             <div className="subtotal">
                                 <span>Tổng tiền hàng:</span>
                                 <span className="total-price">
-                                    {temp.length != 0 ? temp.total.toLocaleString():null}
+                                {temp.length != 0 ? temp.listProduct.reduce((s,c)=>{
+                                        return s+ (c.quantity*c.idProduct.price)
+                                    },0).toLocaleString():null}
                                     <sup>đ</sup>
                                 </span>
                             </div>
@@ -359,7 +365,10 @@ function CreateOrder(props) {
                             <div className="total-subtotal">
                                 <span>Tổng thanh toán:</span>
                                 <span className="total-payment">
-                                    {temp.length != 0 ? temp.total.toLocaleString():null}
+                                    {/* {temp.length != 0 ? temp.total.toLocaleString():null} */}
+                                    {temp.length != 0 ? temp.listProduct.reduce((s,c)=>{
+                                        return s+ (c.quantity*c.idProduct.price)
+                                    },0).toLocaleString():null}
                                     <sup>đ</sup>
                                 </span>
                             </div>

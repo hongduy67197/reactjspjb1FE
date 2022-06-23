@@ -6,18 +6,18 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Admin/Home/home";
 import Xacnhan from "./Pages/Admin/DonhangFolder/Xacnhan";
 import Hoanthanh from "./Pages/Admin/DonhangFolder/Hoanthanh";
-import Danggiao from "./Pages/Admin/DonhangFolder/Danggiao";
-// import Chinhsua from "./Pages/Admin/Sanpham/Chinhsua";
+import Danggiao from "./Pages/Admin/DonhangFolder/Danggiao"
 import Khohang from "./Pages/Admin/Sanpham/Khohang";
 import Spmoi from "./Pages/Admin/Sanpham/Spmoi";
 import Trenke from "./Pages/Admin/Sanpham/Trenke";
-import Nhanvien from "./Pages/Admin/NhanVien/Nhanvien";
+import Nhanvien from './Pages/Admin/Nhanvien/Nhanvien'
 import React, { useState, useEffect } from "react";
 import axios from "./axios";
 import Login from "./Pages/Admin/Login/login";
 import UserLogin from "./User/UserLogin";
 import UserSingIn from "./User/UserSingIn";
 import UserPase from "./User/UserPase";
+import ForgotPassword from "./User/UserPage/ForgotPassword/ForgotPassword";
 import ContextProvider from "./Conter/ContextProvider";
 import Home1 from "./compunentes/home/Home";
 // import CreateOrder from "./Pages/CreateOrder";
@@ -35,6 +35,7 @@ import SearchProduct from "./Pages/SearchProduct";
 const App = (props) => {
   const [count1, setCount1] = useState(0);
   const [dataFilter, setDataFilter] = useState([]);
+
   const filterProduct = {
     brand: [
       "Iphone",
@@ -45,7 +46,6 @@ const App = (props) => {
       "Realmi",
       "Nokia",
       "Itel",
-      "masstel",
       "Masstel",
     ],
     price: [
@@ -88,44 +88,122 @@ const App = (props) => {
   // axious project sellMobilePhone
   useEffect(() => {
     // cái này của cường nhé ae - header_search-input
-    // window.addEventListener("click", function (e) {
-    //   let listLi = this.document.querySelectorAll(
-    //     ".header_search-history-heading-text-list-item"
-    //   );
-    //   let check = false;
-    //   for (let i = 0; i < listLi.length; i++) {
-    //     if (listLi[i] == e.target) {
-    //       check = true;
-    //     }
-    //   }
-    //   if (!check) {
-    //     document.querySelector(".header_search-input").value = "";
-    //   } else {
-    //   }
-    // });
+    window.addEventListener("click", function (e) {
+      let listLi = this.document.querySelectorAll(
+        ".header_search-history-heading-text-list-item"
+      );
+      let check = false;
+      for (let i = 0; i < listLi.length; i++) {
+        if (listLi[i] == e.target) {
+          check = true;
+        }
+      }
+      if (!check) {
+        document.querySelector(".header_search-input").value = "";
+      } else {
+      }
+    });
 
-    axios
-      .get(
-        "http://localhost:3150/user/fillter?idCategories=628c8b29e8654d960a5c8983"
-        // "http://localhost:3150//admin/productcode/list"
-      )
-      .then(function (res) {
-        // setDataDuy(res.data.product)
-        // setShow(res.data.product.slice(0, 2))
-        // console.log(45, res.data.listData);
-        const ListData = res.data.listProductCode.map((val) => {
-          val.storage = Math.floor(Math.random() * 100);
-          val.ram = val.ramRange[0];
-          val.rom = val.romRange[0];
-          return val;
-        });
-        // console.log(4556, ListData);
-        setProductList(ListData);
-        setDataFilter(ListData);
-      })
-      .catch((err) => {
-        console.log(err);
+    // const axiosrequest1 = axios.get('http://localhost:3150/user/fillter?idCategories=628c8b29e8654d960a5c8983');
+    // const axiosrequest2 = axios.get('http://localhost:3150/user/fillter?idCategories=628c8b40e8654d960a5c898b');
+    // // you could also use destructuring to have an array of responses
+    // await axios.all([axiosrequest1, axiosrequest2]).then(axios.spread(function(res1, res2) {
+    //   console.log(110,res1.data.listData);
+    //   console.log(111,res2res.data.listData);
+    //    // setDataDuy(res.data.product)
+    //     // setShow(res.data.product.slice(0, 2))
+    //     console.log(45, res.data.listData);
+    //     const ListData = res.data.listProductCode.map((val) => {
+    //       val.storage = Math.floor(Math.random() * 100);
+    //       val.ram = val.ramRange[0];
+    //       val.rom = val.romRange[0];
+    //       return val;
+    //     });
+    //     // console.log(4556, ListData);
+    //     setProductList(ListData);
+    //     setDataFilter(ListData);
+    // }));
+
+
+
+
+
+
+    // let endpoints = [
+    //   'http://localhost:3150/user/fillter?idCategories=628c8b29e8654d960a5c8983',
+    //   'http://localhost:3150/user/fillter?idCategories=628c8b40e8654d960a5c898b',    
+
+    // ];
+
+    // axios.all(endpoints.map((endpoint) => axios.get(endpoint)))
+    //   .then((res) => {
+    //     // setDataDuy(res.data.product)
+    //     // setShow(res.data.product.slice(0, 2))
+    //     console.log(45, res.data.listData);
+    //     const ListData = res.data.listProductCode.map((val) => {
+    //       val.storage = Math.floor(Math.random() * 100);
+    //       val.ram = val.ramRange[0];
+    //       val.rom = val.romRange[0];
+    //       return val;
+    //     });
+    //     // console.log(4556, ListData);
+    //     setProductList(ListData);
+    //     setDataFilter(ListData);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+
+
+    let URL1 = "http://localhost:3150/user/fillter?idCategories=628c8b29e8654d960a5c8983"
+    let URL2 = "http://localhost:3150/user/fillter?idCategories=628c8b40e8654d960a5c898b"
+
+    const promise1 = axios.get(URL1);
+    const promise2 = axios.get(URL2);
+
+    Promise.all([promise1, promise2]).then(function (values) {
+      let a, b;
+      [a, b] = values
+      let dataProductCode = [...a.data.listProductCode, ...b.data.listProductCode]
+      const ListData = dataProductCode.map((val) => {
+        val.storage = Math.floor(Math.random() * 100);
+        val.ram = val.ramRange[0];
+        val.rom = val.romRange[0];
+
+        return val;
       });
+      setProductList(ListData);
+      setDataFilter(ListData);
+
+    });
+
+
+
+
+    // axios
+    //   .get(
+    //     "http://localhost:3150/user/fillter?idCategories=628c8b29e8654d960a5c8983"
+    //     // "http://localhost:3150//admin/productcode/list"
+    //   )
+    //   .then(function (res) {
+    //     console.log(178,res.data.listProductCode)
+    //     // setDataDuy(res.data.product)
+    //     // setShow(res.data.product.slice(0, 2))
+    //     // console.log(45, res.data.listData);
+    //     const ListData = res.data.listProductCode.map((val) => {
+    //       val.storage = Math.floor(Math.random() * 100);
+    //       val.ram = val.ramRange[0];
+    //       val.rom = val.romRange[0];
+
+    //       return val;
+    //     });
+    //     console.log(4556, ListData);
+    //     setProductList(ListData);
+    //     setDataFilter(ListData);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   }, []);
   const [dataProduct, setDataProduce] = useState(productCode);
   const [count, setCount] = useState(0);
@@ -217,20 +295,20 @@ const App = (props) => {
 
 
             //route search
-                <Route
-                  path={`/product/filter/search`}
-                  element={
-                    <SearchProduct
-                      referent="brand"
-                      dataval={ProductList}
-                      chimuc= {'Iphone'}
-                      filter={filter}
-                      data={dataProduct}
-                      changeFilterData={changeFilterData}
-                    />
-                  }
+            <Route
+              path={`/product/filter/search`}
+              element={
+                <SearchProduct
+                  referent="brand"
+                  dataval={ProductList}
+                  chimuc={'Iphone'}
+                  filter={filter}
+                  data={dataProduct}
+                  changeFilterData={changeFilterData}
                 />
-            
+              }
+            />
+
 
 
 
@@ -429,7 +507,7 @@ const App = (props) => {
               path="/admin/Hoanthanh"
               element={<Hoanthanh name={name} />}
             />
-            <Route path="/admin/Danggiao" element={<Danggiao name={name} />} />
+            <Route path="/admin/Danggiao" element={<Danggiao></Danggiao>} />
             <Route
               path="/Cart"
               element={
@@ -474,8 +552,9 @@ const App = (props) => {
               path="/User/UserSingIn"
               element={<UserSingIn></UserSingIn>}
             />
-            <Route path="/User/UserPase" element={<UserPase></UserPase>} />     
-            <Route path="/User/order" element={<CreateOrder/>} />     
+            <Route path="/User/UserPase" element={<UserPase></UserPase>} />
+            <Route path="/User/order" element={<CreateOrder />} />
+            <Route path="User/UserPage/ForgotPassword/ForgotPassword" element={<ForgotPassword></ForgotPassword>} />
           </Routes>
           <ToastContainer />
         </ContextProvider>

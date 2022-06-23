@@ -16,6 +16,8 @@ import '../../src/App.css';
 import { postApi } from '../api/config';
 import showPass2 from '../assets/images/showpass.png'
 import showPass1 from '../assets/images/showpass2.png'
+import forgot from '../User/UserPage/ForgotPassword/ForgotPassword'
+
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();
     d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
@@ -31,14 +33,14 @@ function UserLogin(props) {
     async function submit() {
         let email = document.querySelector('.login_conter_modal_email').value;
         let password = document.querySelector('.login_conter_modal_password').value;
-        if (email === '' || testEmail(email)) {
+        if (email === ''||testEmail(email) ) {
             document.querySelector('.login_email_text').innerHTML = 'Vui lòng nhập Email';
         } else if (password === '' || testPassword(password)) {
             document.querySelector('.login_password_text').innerHTML = 'Vui lòng nhập Password';
         } else {
             console.log(38,email, password)
-            // let res = await axios.post('/user/login', { email, password });
             let res = await postApi('/user/login', { email, password });
+            
             if (res.data.status === 'undifind password') {
                 alert(res.data.status);
             } else {
@@ -51,7 +53,7 @@ function UserLogin(props) {
     }
     // kiểm tra đầu vào Email
     function testEmail(email) {
-        var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/;
+        var mailformat = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
         if (mailformat.test(email)) {
             document.querySelector('.login_email_text').innerHTML = '';
         } else {
@@ -109,7 +111,7 @@ function UserLogin(props) {
     }
        // kiểm tra đầu vào Email
        function testEmail1(email) {
-        var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/;
+        var mailformat = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
         if (mailformat.test(email)) {
             document.querySelector('.login_phone_userName_text').innerHTML = '';
         } else {
@@ -160,7 +162,7 @@ function UserLogin(props) {
                         </div>
                         <input
                             onClick={clean_email}
-                            type="text"
+                            type="email"
                             placeholder="Email/Số điện thoại/Tên đăng nhập"
                             className="login_conter_modal_email"
                         />
@@ -179,7 +181,7 @@ function UserLogin(props) {
                             ĐĂNG NHẬP
                         </button>
                         <div className="login_conter_modal_a">
-                            <a href="">Quên mật khẩu</a>
+                            <Link to='/User/UserPage/ForgotPassword/ForgotPassword'>Quên mật khẩu</Link>
                             <a href="" className="login_conter_modal_a2">
                                 Đăng nhập với SMS
                             </a>

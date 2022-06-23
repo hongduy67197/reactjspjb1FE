@@ -9,28 +9,31 @@ import "./OrderCss.css";
 import {getApi} from '../../api/config'
 
 
-
-
-
 function Orders(props) {
   const [userCart,setUserCart]=useState([])
-  function upCart(arr){
-    setUserCart(arr)
-  }
- 
+
+ const [userOder, setUserOder]=useState([])
 useEffect(() => {
-  getApi('/user/orders')
+  getApi('/user/carts')
   .then(function(data){
-    // console.log(24, data.data[data.data.length-1])
-    const newCart =data.data[data.data.length-1] ? data.data[data.data.length-1] : []
-   
-    upCart(newCart)
+    const newCart =data.data.listCartsUser[0].listProduct 
+    setUserCart(newCart)
   })
  .catch(function(orr){
   console.log(34,orr)
   })
 }, [])
-// console.log(userCart)
+
+useEffect(() => {
+  getApi("/user/orders")
+    .then((data) => {
+      const dataOder =data.data
+      setUserOder(dataOder)
+    })
+    .catch((err) => {
+      console.log(43,err);
+    });
+}, []);
   function onofAll() {
     document.querySelector(".orderAll").style.display = "block";
     document.querySelector(".orderCheck").style.display = "none";
@@ -90,22 +93,22 @@ useEffect(() => {
         <button onClick={onofDaHuy}>Đã hủy </button>
       </div>
       <div className="orderAll">
-        <OrderAll userCart={userCart}></OrderAll>
+        <OrderAll userCart={userCart} userOder={userOder}></OrderAll>
       </div>
       <div className="orderCheck">
-        <OrderCheck userCart={userCart}></OrderCheck>
+        <OrderCheck userCart={setUserCart} userOder={setUserOder}></OrderCheck>
       </div>
       <div className="orderDaGiao">
-        <OrderDaGiao userCart={userCart}></OrderDaGiao>
+        <OrderDaGiao userCart={setUserCart}></OrderDaGiao>
       </div>
       <div className="orderWaiting">
-        <OrderWaiting userCart={userCart}></OrderWaiting>
+        <OrderWaiting userCart={setUserCart}></OrderWaiting>
       </div>
       <div className="orderDangGiao">
-        <OrderDangGiao userCart={userCart}></OrderDangGiao>
+        <OrderDangGiao userCart={setUserCart}></OrderDangGiao>
       </div>
       <div className="orderDaHuy">
-        <OrderDaHuy userCart={userCart}></OrderDaHuy>
+        <OrderDaHuy userCart={setUserCart}></OrderDaHuy>
       </div>
     </div>
   );

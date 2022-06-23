@@ -626,3 +626,12 @@
   right: 0;
   font-weight: bold;
 }
+/* --------------- */
+.header_logo_my {
+  color: black;
+  font-size: 30px;
+  font-weight: bold;
+} 
+.header-with-search a {
+  text-decoration: none;
+}

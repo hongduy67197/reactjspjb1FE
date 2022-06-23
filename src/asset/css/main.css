@@ -1212,7 +1212,7 @@
   border: none;
   padding-top: 8px;
   width: 100%;
-  /* min-height: 570px; */
+  min-height: 451px;
 }
 
 .home-product-item:hover {
