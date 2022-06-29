@@ -5,7 +5,7 @@ import axios from "../../../axios";
 import { useNavigate } from "react-router-dom";
 import Rate from "./Rate";
 
-const Cards = ({ item, keyId }) => {
+const Cards = ({ item, keyId, sort }) => {
   let navigate = useNavigate();
   // console.log(10,item,searchTitle, keyId)
   if (!item.data.length > 0) {
@@ -17,13 +17,8 @@ const Cards = ({ item, keyId }) => {
     item.data[0].icon.iconName = "not icon";
   }
 
-  console.log(item.data[0].icon.iconPic);
-  // test
-  // if (Object.keys(item.data[0]).length > 1) {
-  //     item.data = [{ iconName: 'not icon' }];
-  //     item.data[0].icon.iconName = 'not icon';
-  // }
 
+  // chuyển tiếng việt có dấu thành không dấu
   function RemoveAccents(str) {
     var AccentsMap = [
       "aàảãáạăằẳẵắặâầẩẫấậ",
@@ -57,14 +52,15 @@ const Cards = ({ item, keyId }) => {
   return (
     <div
       key={keyId}
-      onClick={() => {
-        moveToProduct(RemoveAccents(item.productName).split(" ").join(""));
-      }}
       className="home_cards-itm"
     >
       <div className="cards-container">
         <div className="cards">
-          <div className="item_image-box">
+          <div className="item_image-box"
+           onClick={() => {
+            moveToProduct(RemoveAccents(item.productName).split(" ").join(""));
+          }}
+          >
             <div className="image_box">
               <img
                 className="image_box-image"
@@ -90,15 +86,16 @@ const Cards = ({ item, keyId }) => {
           </div>
 
           <div>
+
             {typeof item.minPrice === "number" ? (
               <span className="price">
                 {item.minPrice.toLocaleString()} <span className="đ">₫</span>
               </span>
             ) : null}
-
+         
             {NewPrice ? <span className="NewSale"> -{NewSale}%</span> : null}
 
-            {isNaN(NewPrice) ? null : (
+            {isNaN(NewPrice)? null : (
               <p className="NewPrice">
                 {NewPrice.toLocaleString()} <span className="đ">₫</span>
               </p>

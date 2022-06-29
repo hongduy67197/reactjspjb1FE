@@ -168,7 +168,7 @@ const Footer = () => {
         <section>
           <p>
             © 2022. Công ty cổ phần Cường Đặng. GPDKKD: 0303217354 do{" "}
-            <a href="nondemy.vn">Nodemy</a> cung cấp ngày 10/06/2022 . GPMXH:
+            <a href="https://www.nodemy.vn">Nodemy</a> cung cấp ngày 10/06/2022 . GPMXH:
             238/GP-BTTTT do Bộ Thông Tin và Truyền Thông cấp ngày 10/06/2022.
             <br />
             Địa chỉ: 250 Kim Giang, Quận Thanh Xuân, Hà Nội. Điện thoại:

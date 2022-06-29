@@ -16,6 +16,8 @@ import '../../src/App.css';
 import { postApi } from '../api/config';
 import showPass2 from '../assets/images/showpass.png'
 import showPass1 from '../assets/images/showpass2.png'
+import forgot from '../User/UserPage/ForgotPassword/ForgotPassword'
+
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();
     d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
@@ -31,14 +33,14 @@ function UserLogin(props) {
     async function submit() {
         let email = document.querySelector('.login_conter_modal_email').value;
         let password = document.querySelector('.login_conter_modal_password').value;
-        if (email === ''||testEmail(email) ) {
+        if (email === '' || testEmail(email)) {
             document.querySelector('.login_email_text').innerHTML = 'Vui lòng nhập Email';
         } else if (password === '' || testPassword(password)) {
             document.querySelector('.login_password_text').innerHTML = 'Vui lòng nhập Password';
         } else {
-            console.log(38,email, password)
+            console.log(38, email, password)
             let res = await postApi('/user/login', { email, password });
-            
+
             if (res.data.status === 'undifind password') {
                 alert(res.data.status);
             } else {
@@ -85,9 +87,9 @@ function UserLogin(props) {
     function of_ofcanva_modal() {
         document.querySelector('.login_ofcanva_modal').style.display = 'none';
     }
-    function on_home() {}
+    function on_home() { }
     // PHONE
-    async function phone_login(){
+    async function phone_login() {
         let email = document.querySelector('.login_phone_userName').value;
         let password = document.querySelector('.login_phone_password').value;
         if (email === '' || testEmail1(email)) {
@@ -107,8 +109,8 @@ function UserLogin(props) {
             }
         }
     }
-       // kiểm tra đầu vào Email
-       function testEmail1(email) {
+    // kiểm tra đầu vào Email
+    function testEmail1(email) {
         var mailformat = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
         if (mailformat.test(email)) {
             document.querySelector('.login_phone_userName_text').innerHTML = '';
@@ -116,8 +118,8 @@ function UserLogin(props) {
             document.querySelector('.login_phone_userName_text').innerHTML = 'Email không hợp lệ';
         }
     }
-       // kiểm tra đầu vào password
-       function testPassword1(pass) {
+    // kiểm tra đầu vào password
+    function testPassword1(pass) {
         var arr = /^(?=.*[a-zA-Z0-9](?=.*\d)[A-Za-z0-9]{8,})$/;
         if (arr.test(pass) || pass.length < 8) {
             document.querySelector('.login_phone_password_text').innerHTML = 'Mật khẩu phải có ít nhất 8 ký tự';
@@ -126,14 +128,14 @@ function UserLogin(props) {
         }
     }
     // showpass
-    function loginShowPass(){
-        document.querySelector('.login_conter_modal_password').setAttribute("type",'text')
+    function loginShowPass() {
+        document.querySelector('.login_conter_modal_password').setAttribute("type", 'text')
         document.querySelector('.login_password_show3').style.display = 'block'
         document.querySelector('.login_password_show1').style.display = 'none'
     }
     // no showpass
-    function loginNoShowPass(){
-        document.querySelector('.login_conter_modal_password').setAttribute("type",'password')
+    function loginNoShowPass() {
+        document.querySelector('.login_conter_modal_password').setAttribute("type", 'password')
         document.querySelector('.login_password_show3').style.display = 'none'
         document.querySelector('.login_password_show1').style.display = 'block'
     }
@@ -179,7 +181,7 @@ function UserLogin(props) {
                             ĐĂNG NHẬP
                         </button>
                         <div className="login_conter_modal_a">
-                            <a href="">Quên mật khẩu</a>
+                            <Link to='/User/UserPage/ForgotPassword/ForgotPassword'>Quên mật khẩu</Link>
                             <a href="" className="login_conter_modal_a2">
                                 Đăng nhập với SMS
                             </a>
@@ -232,7 +234,7 @@ function UserLogin(props) {
                 </div>
                 <div className="login_phone_conter">
                     <img src={logoShopee} alt="img" />
-                    <input type="text" className="login_phone_userName" placeholder="Email\Phone\UserName" onClick={clean_email}/>
+                    <input type="text" className="login_phone_userName" placeholder="Email\Phone\UserName" onClick={clean_email} />
                     <span className='login_phone_userName_text'>user</span>
                     <div className="login_phone_password_">
                         <input type="text" className="login_phone_password" placeholder="Password" />

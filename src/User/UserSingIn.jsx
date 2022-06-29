@@ -32,17 +32,15 @@ function UserSingIn(props) {
       document.querySelector(".singin_again_text").innerHTML = "Mật khẩu không khớp"
     } else {
       await postApi("/user/register", { password, email })
+      setTimeout(function () {
+        navigate('/user/UserLogin')
+      }, 1000)
       // if(res.data){
       //   alert(res.data.message + '.  '+' check gmail to comple register !')
       // } else{
       //   alert(res.response.data.status)
       // }
-      setTimeout(function () {
-        navigate('/user/UserLogin')
-      }, 1000)
     }
-
-
   }
 
   // kiểm tra đầu vào password laptop
