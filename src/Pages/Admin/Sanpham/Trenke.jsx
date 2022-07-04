@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { getUserCookie, refreshToken } from "../../../refreshToken";
-import {getApi} from '../../../api/config'
+import { getApi, putApi, deleteApi } from '../../../api/config'
 
 var vitri;
 var maso;
@@ -79,14 +79,24 @@ function Trenke(props) {
   const [clearao, setclearao] = useState([]);
   const [clearaocode, setclearaocode] = useState([]);
   useEffect(() => {
-    axios
-      .get("http://localhost:3150/admin/productcode/list")
-      .then(function (response) {
-        sethien(response.data);
-      })
-      .catch(function (error) {
+    async function getAllProductList() {
+      let token = getUserCookie("user");
+      try {
+        let data = await getApi('http://localhost:3150/admin/productcode/list')
+        sethien(data.data)
+      } catch (error) {
         console.log(error);
-      });
+      }
+    }
+    getAllProductList();
+    // axios
+    //   .get("http://localhost:3150/admin/productcode/list")
+    //   .then(function (response) {
+    //     sethien(response.data);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
   }, []);
   function choosebrand(id) {
     let listBrand = document.querySelectorAll(".brand");
@@ -96,21 +106,19 @@ function Trenke(props) {
     document.querySelector(`[value="${id}"]`).style.background = "black";
     document.querySelector(`[value="${id}"]`).style.color = "white";
     abcarr = [];
-    data.map(function (value, index) {
+    data.map(async function (value, index) {
       if (value.idCategories[0] === id) {
         abcarr.push(value);
         sethien(abcarr);
-        axios
-          .get(
+        try {
+          const abx = await getApi(
             `http://localhost:3150/admin/categories/${value.idCategories[0]}`
           )
-          .then(function (response) {
-            document.querySelector(".sptk").innerHTML =
-              response.data.categoriesName;
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+          document.querySelector(".sptk").innerHTML =
+            abx.data.categoriesName;
+        } catch (error) {
+          console.log(error);
+        }
       }
     });
     document.querySelector(".boxtable").style.display = "block";
@@ -127,20 +135,16 @@ function Trenke(props) {
     document.querySelector(".boxlist").style.display = "none";
     sethien(data);
   }
-  function onclear(id, index) {
+  async function onclear(id, index) {
     vitri = index;
     maso = id;
-    axios
-      .get(`http://localhost:3150/admin/productcode/${id}`)
-      .then(function (response) {
-        console.log(response.data);
-        clearcode.push(response.data);
-        setclearaocode(clearcode);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-
+    try {
+      let data = await getApi(`http://localhost:3150/admin/productcode/${id}`)
+      clearcode.push(data.data);
+      setclearaocode(clearcode);
+    } catch (error) {
+      console.log(error);
+    }
     document.querySelector(".boxclear").style.display = "block";
   }
   function accept() {
@@ -194,7 +198,7 @@ function Trenke(props) {
     document.querySelector(".boxfix").style.display = "none";
     document.querySelector(".boxfixlist").style.display = "none";
   }
-  function update() {
+  async function update() {
     var productName = document.querySelector(".productName").value;
     var productType = document.querySelector(".productType").value;
     var performanceProduct = document.querySelector(
@@ -219,8 +223,8 @@ function Trenke(props) {
     hien[vitriup].panel = document.querySelector(".panel").value;
     hien[vitriup].countSold = document.querySelector(".countSold").value;
     hien[vitriup].Sale = document.querySelector(".Sale").value;
-    axios
-      .put(`http://localhost:3150/admin/productcode/${masoup}`, {
+    try {
+      let response = await putApi(`http://localhost:3150/admin/productcode/${masoup}`, {
         productName,
         productType,
         performanceProduct,
@@ -231,79 +235,68 @@ function Trenke(props) {
         countSold,
         Sale,
       })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    closeupdate();
-    changesign();
+      console.log(response);
+      closeupdate();
+      changesign();
+    } catch (error) {
+      console.log(error);
+    }
   }
-  function onboxlist(id, index) {
+  async function onboxlist(id, index) {
     let listBrand = document.querySelectorAll(".brand");
     for (let i = 0; i < listBrand.length; i++) {
       listBrand[i].setAttribute("style", "");
     }
     document.querySelector(".boxlist").style.display = "block";
     document.querySelector(".boxtable").style.display = "none";
-    axios
-      .get(`http://localhost:3150/admin/product/product/${id}`)
-      .then(function (response) {
-        setproductlist(response.data);
-        document.querySelector(".sptk").innerHTML =
-          response.data[0].idProductCode.productName;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    try {
+      let response = await getApi(`http://localhost:3150/admin/product/product/${id}`)
+      setproductlist(response.data);
+      document.querySelector(".sptk").innerHTML =
+        response.data[0].idProductCode.productName;
+    } catch (error) {
+      console.log(error);
+    }
   }
-  function onclearlist(id, index) {
+  async function onclearlist(id, index) {
     vitrilist = index;
     masolist = id;
-    axios
-      .get(`http://localhost:3150/admin/product/${id}`)
-      .then(function (response) {
-        cleararr.push(response.data);
-        setclearao(cleararr);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    document.querySelector(".boxclearlist").style.display = "block";
+    try {
+      let response = await getApi(`http://localhost:3150/admin/product/${id}`)
+      cleararr.push(response.data);
+      setclearao(cleararr);
+      document.querySelector(".boxclearlist").style.display = "block";
+    } catch (error) {
+      console.log(error);
+    }
   }
-  function acceptlist() {
-    axios
-      .delete(`http://localhost:3150/admin/product/${masolist}`)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    productlist.splice(vitrilist, 1);
-    changesign();
-    closeclearlist();
+  async function acceptlist() {
+    try {
+      let data = await deleteApi(`http://localhost:3150/admin/product/${masolist}`)
+      productlist.splice(vitrilist, 1);
+      changesign();
+      closeclearlist();
+    } catch (error) {
+      console.log(error);
+    }
   }
-  function onupdatelist(id, index) {
+  async function onupdatelist(id, index) {
     document.querySelector(".boxfixlist").style.display = "block";
     vitrifixlist = index;
     masofixlist = id;
-    axios
-      .get(`http://localhost:3150/admin/product/${id}`)
-      .then(function (response) {
-        document.querySelector(".pricevinh").value = response.data.price;
-        document.querySelector(".priceRange").value = response.data.priceRange;
-        document.querySelector(".storage").value = response.data.storage;
-        document.querySelector(".ram").value = response.data.ram;
-        document.querySelector(".rom").value = response.data.rom;
-        document.querySelector(".color").value = response.data.color;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    try {
+      let response = await getApi(`http://localhost:3150/admin/product/${id}`)
+      document.querySelector(".pricevinh").value = response.data.price;
+      document.querySelector(".priceRange").value = response.data.priceRange;
+      document.querySelector(".storage").value = response.data.storage;
+      document.querySelector(".ram").value = response.data.ram;
+      document.querySelector(".rom").value = response.data.rom;
+      document.querySelector(".color").value = response.data.color;
+    } catch (error) {
+      console.log(error);
+    }
   }
-  function updatelist() {
+  async function updatelist() {
     var price = document.querySelector(".pricevinh").value;
     var priceRange = document.querySelector(".priceRange").value;
     var storage = document.querySelector(".storage").value;
@@ -317,8 +310,8 @@ function Trenke(props) {
     productlist[vitrifixlist].ram = ram;
     productlist[vitrifixlist].rom = rom;
     productlist[vitrifixlist].color = color;
-    axios
-      .put(`http://localhost:3150/admin/product/${masofixlist}`, {
+    try {
+      let response = await putApi(`http://localhost:3150/admin/product/${masofixlist}`, {
         price,
         priceRange,
         storage,
@@ -326,14 +319,11 @@ function Trenke(props) {
         rom,
         color,
       })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (err) {
-        console.log(err);
-      });
-    closeupdate();
-    changesign();
+      closeupdate();
+      changesign();
+    } catch (error) {
+      console.log(error);
+    }
   }
   return (
     <div>
